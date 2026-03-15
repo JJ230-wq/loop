@@ -64,10 +64,10 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='30' viewBox='0 0 60 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15c0-8.284-6.716-15-15-15S0 6.716 0 15s6.716 15 15 15c3.513 0 6.742-1.207 9.299-3.222C26.856 28.793 30.085 30 33.598 30c8.284 0 15-6.716 15-15s-6.716-15-15-15-15 6.716-15 15c0 3.513 1.207 6.742 3.222 9.299C24.207 21.856 23 25.085 23 28.598c0 8.284 6.716 15 15 15s15-6.716 15-15-6.716-15-15-15c-3.513 0-6.742 1.207-9.299 3.222C26.856 8.793 30.085 7 33.598 7c8.284 0 15 6.716 15 15s-6.716 15-15 15c-3.513 0-6.742-1.207-9.299-3.222z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
             background-repeat: repeat;
-            background-size: 200px 100px;
+            background-size: 40px 40px;
         }
         
         .top-left-logo {
@@ -100,6 +100,22 @@
             width: 30px;
             height: 30px;
             animation: rotate 20s linear infinite;
+            object-fit: contain;
+        }
+
+        /* Fallback logo circle if image fails to load */
+        .top-left-logo-fallback {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff, #ccc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
         }
         @keyframes rotate {
             from { transform: rotate(0deg); }
@@ -1093,7 +1109,7 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-container">
-            <img src="https://z-cdn-media.chatglm.cn/files/a0916708-c3d2-4701-8105-4821dcc643b9_loop.png?auth_key=1789402497-7b525e7bd07845629a427f276a46a142-0-f94b59b3d77cb14b0e5bb6783ce74329" alt="Loop Bot Logo" class="loading-logo" id="loadingLogo">
+            <img src="assets/loop-logo.png" alt="Loop Bot Logo" class="loading-logo" id="loadingLogo">
             <div class="loading-text" id="loadingText">Loading</div>
             <div class="loading-progress">
                 <div class="loading-progress-bar"></div>
@@ -1109,7 +1125,8 @@
     
     <!-- Enhanced Top Left Logo -->
     <a href="#" class="top-left-logo">
-        <img src="https://z-cdn-media.chatglm.cn/files/a0916708-c3d2-4701-8105-4821dcc643b9_loop.png?auth_key=1789402497-7b525e7bd07845629a427f276a46a142-0-f94b59b3d77cb14b0e5bb6783ce74329" alt="Loop Bot Logo">
+        <img src="assets/loop-logo.png" alt="Loop Bot Logo" id="topLeftLogo">
+        <div class="top-left-logo-fallback" id="topLeftLogoFallback" style="display: none;">L</div>
     </a>
     
     <!-- Enhanced Header -->
@@ -1784,7 +1801,7 @@
             initializeFAQ();
             initializeSmoothScrolling();
             initializeScrollAnimations();
-            
+
             // Animate counters when stats section comes into view
             const statsSection = document.querySelector('.stats-section');
             const statsObserver = new IntersectionObserver((entries) => {
@@ -1795,11 +1812,29 @@
                     }
                 });
             }, { threshold: 0.5 });
-            
+
             if (statsSection) {
                 statsObserver.observe(statsSection);
             }
-            
+
+            // Swap to fallback logo elements if the image fails to load
+            const topLeftLogoImg = document.getElementById('topLeftLogo');
+            const topLeftLogoFallback = document.getElementById('topLeftLogoFallback');
+            if (topLeftLogoImg && topLeftLogoFallback) {
+                topLeftLogoImg.addEventListener('error', () => {
+                    topLeftLogoImg.style.display = 'none';
+                    topLeftLogoFallback.style.display = 'flex';
+                });
+            }
+
+            const loadingLogo = document.getElementById('loadingLogo');
+            if (loadingLogo) {
+                loadingLogo.addEventListener('error', () => {
+                    // If loading logo fails, just show text and progress bar cleanly
+                    loadingLogo.style.display = 'none';
+                });
+            }
+
             // Hide loading screen after ultra-fast delay (modern minimalistic style)
             setTimeout(hideLoadingScreen, 2000);
         });
