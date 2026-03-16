@@ -5,648 +5,388 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loop - Discord's Premier All-in-One App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #dadbe6 0%, #babacd 100%);
-            --primary: #dadbe6;
-            --bg-dark: #000000;
-            --bg-darker: #000000;
-            --card-bg: #18181f;
-            --accent: #b7b7c4;
-            --accent2: #8d8d9b;
-            --border-radius: 18px;
-            --text-main: #eaeaf2;
-            --text-muted: #b3b7c4;
-            --spacing: 30px;
-            --container-width: 1100px;
-            --shadow-1: 0 2px 16px 0 rgba(42,42,44,0.10);
-            --shadow-2: 0 6px 36px 0 rgba(10, 10, 20, 0.15);
+            --bg: #ffffff;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-soft: #e0e0e0;
+            --border-strong: #cccccc;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --hero-max-width: 900px;
+            --radius: 10px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
         }
 
         html, body {
             margin: 0;
             padding: 0;
-            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-            color: var(--text-main);
             min-height: 100vh;
-            background: var(--bg-dark);
-            scroll-behavior: smooth;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text-main);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
         }
+
         body {
-            background: #000000;
-        }
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        .header-container {
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 40px 0 16px 0;
+            flex-direction: column;
         }
+
+        a {
+            color: inherit;
+        }
+
+        .page-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 96px 24px 64px;
+            width: 100%;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(8px);
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .navbar-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
         .nav-links {
             display: flex;
-            gap: 30px;
-        }
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 200;
-            padding: 8px 14px;
-            border-radius: 5px;
-            transition: background 0.2s, color 0.18s;
-            letter-spacing: 0.05em;
-        }
-        .nav-links a:hover, .nav-links a:focus {
-            background: var(--primary-gradient);
-            color: #111;
+            gap: 20px;
+            font-size: 0.92rem;
         }
 
-        .top-left-logo {
-            position: fixed;
-            top: 25px;
-            left: 28px;
-            z-index: 100;
+        .nav-links a {
+            text-decoration: none;
+            padding: 4px 0;
+            border-bottom: 1px solid transparent;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            border-bottom-color: var(--border-strong);
+        }
+
+        /* Hero */
+        .hero {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            text-decoration: none;
-            background: none;
-        }
-        .top-left-logo img {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #18181f;
-            box-shadow: 0 0 16px 2px rgba(0,0,0,0.15);
-        }
-        .top-left-logo-fallback {
-            display: none;
-            width: 48px;
-            height: 48px;
-            font-size: 2rem;
-            color: #fff;
-            background: #1f1f23;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-        }
-        .main-content {
             text-align: center;
-            margin-top: 60px;
-            padding-bottom: 48px;
+            padding: 64px 0 72px;
         }
-        h1, h2, h3, h4 {
-            font-family: inherit;
-            font-weight: 200;
-            margin: 0;
-            color: var(--text-main);
-            letter-spacing: 0.03em;
+
+        .hero-inner {
+            max-width: var(--hero-max-width);
         }
-        h1 {
-            font-size: 2.6rem;
-            margin-bottom: 18px;
-            font-weight: 200;
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 0 8px;
         }
-        .gradient-text {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin: 0 0 16px;
         }
-        .button-container {
-            margin-top: 22px;
+
+        .hero-description {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            margin: 0 auto;
+            max-width: 520px;
         }
-        .btn {
-            background: var(--primary-gradient);
-            color: #222;
-            font-size: 1rem;
-            font-weight: 200;
-            border: none;
-            outline: none;
-            border-radius: 12px;
-            padding: 12px 34px;
+
+        .hero-actions {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 999px;
+            padding: 10px 22px;
             text-decoration: none;
-            cursor: pointer;
-            letter-spacing: 2px;
-            box-shadow: var(--shadow-1);
-            transition: background 0.17s, box-shadow 0.15s, transform 0.14s;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-        }
-        .btn:hover, .btn:focus {
-            background: linear-gradient(135deg, #c6c7ce 0%, #88899b 100%);
-            box-shadow: var(--shadow-2);
-            transform: translateY(-2px) scale(1.03);
-            color: #222;
+            justify-content: center;
+            gap: 8px;
         }
 
-        /* Remove the subtle star color, keep barely visible pattern as monochrome */
-        .starfield {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            left: 0; top: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ffffff;
-            border-radius: 50%;
-            opacity: 0.4;
-            box-shadow: 0 0 6px rgba(255,255,255,0.4);
-            animation-name: starDrift;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-        @keyframes starDrift {
-            from {
-                transform: translate3d(0, 0, 0);
-            }
-            to {
-                transform: translate3d(-40px, 40px, 0);
-            }
+        .btn-primary {
+            background: #111111;
+            color: #ffffff;
+            border: 1px solid #111111;
         }
 
-        /* Features Section */
-        .features-section {
-            margin-top: 40px;
-            background: rgba(21,21,26,0.88);
-            border-radius: var(--border-radius);
-            padding: 30px 0 10px 0;
-            box-shadow: var(--shadow-1);
+        .btn-secondary {
+            background: transparent;
+            color: #111111;
+            border: 1px solid var(--border-strong);
         }
-        .features-header {
+
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
+            background: #000000;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus-visible {
+            border-color: #999999;
+        }
+
+        /* Sections */
+        section {
+            padding: 32px 0 40px;
+        }
+
+        section + section {
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .section-header {
+            margin-bottom: 24px;
             text-align: center;
-            margin-bottom: 22px;
         }
-        .features-header h2 {
-            font-size: 2rem;
-            letter-spacing: 0.07em;
-            font-weight: 200;
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 0 6px;
         }
-        .features-header p {
-            color: var(--text-muted);
-            font-weight: 200;
+
+        .section-subtitle {
             margin: 0;
-            font-size: 1.01rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
+
+        /* Features */
         .features-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
         }
+
         .feature-card {
-            background: var(--card-bg);
-            box-shadow: 0 2px 16px 0 rgba(36,36,42,0.12);
-            border-radius: var(--border-radius);
-            padding: 30px 28px;
-            max-width: 290px;
-            flex: 1 1 220px;
-            text-align: center;
-            transition: box-shadow 0.16s, transform 0.18s;
-            font-weight: 200;
+            background: #ffffff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-soft);
+            padding: 18px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
-        .feature-card:hover, .feature-card:focus-within {
-            box-shadow: 0 7px 28px 0 rgba(108,108,122,0.17);
-            transform: translateY(-3px) scale(1.03);
-        }
+
         .feature-icon {
-            font-size: 2.3rem;
-            background: linear-gradient(135deg, #cacddc 20%, #23242a 90%);
-            border-radius: 50%;
-            width: 52px;
-            height: 52px;
-            margin: 0 auto 14px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #222;
-            box-shadow: 0 0 12px 3px rgba(192, 194, 221, 0.05);
-        }
-        .feature-card h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.18rem;
-            font-weight: 200;
-        }
-        .feature-card p {
-            color: var(--text-muted);
             font-size: 1rem;
-            margin: 0;
-            font-weight: 200;
+            color: #111111;
         }
 
-        /* Stats Section */
-        .stats-section {
-            margin: 48px 0 0 0;
-            background: rgba(24,24,29,0.86);
-            border-radius: var(--border-radius);
-            box-shadow: 0 2px 12px 0 rgba(30, 32, 40, 0.10);
+        .feature-title {
+            font-size: 0.98rem;
+            font-weight: 600;
         }
-        .stats-container {
-            padding: 24px 0;
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
-        .stats-grid {
+
+        .feature-card:hover,
+        .feature-card:focus-within {
+            border-color: var(--border-strong);
+            background: #f6f6f6;
+        }
+
+        /* Stats */
+        .stats-row {
             display: flex;
             justify-content: center;
-            gap: 46px;
-        }
-        .stat-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 18px 32px;
+            flex-wrap: wrap;
+            gap: 32px;
             text-align: center;
-            box-shadow: 0 1px 12px 0 rgba(90,95,130,0.06);
-            min-width: 142px;
-        }
-        .stat-number {
-            font-size: 2.08rem;
-            font-weight: 200;
-            animation: statFadein .8s 0.2s backwards;
-            color: var(--primary);
-        }
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 1.02rem;
-            font-weight: 200;
-            letter-spacing: 0.05em;
-        }
-        @keyframes statFadein {
-            from { opacity: 0; transform: translateY(12px);}
-            to { opacity: 1; transform: none;}
         }
 
-        /* Commands Section */
-        .commands-section {
-            margin: 52px 0 0 0;
+        .stat-item-number {
+            font-size: 1.6rem;
+            font-weight: 600;
         }
-        .commands-header {
-            text-align: center;
-            margin-bottom: 12px;
+
+        .stat-item-label {
+            margin-top: 4px;
+            font-size: 0.75rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-muted);
         }
-        .commands-header h2 {
-            margin: 0 0 7px 0;
-            font-weight: 200;
-        }
+
+        /* Commands preview */
         .commands-controls {
             display: flex;
-            gap: 17px;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-            margin-bottom: 14px;
+            margin-bottom: 18px;
         }
+
         .search-container {
-            position: relative;
             display: flex;
             align-items: center;
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 5px 10px 5px 36px;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-soft);
+            padding: 4px 0;
         }
+
         .search-input {
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
             background: transparent;
-            border: none;
-            outline: none;
-            color: var(--text-main);
-            font-size: 1rem;
-            width: 170px;
-            padding: 8px 10px 8px 0;
-            font-weight: 200;
-            font-family: inherit;
+            min-width: 160px;
         }
-        .search-icon {
-            position: absolute;
-            left: 12px;
-            color: var(--accent2);
-            font-size: 1rem;
-        }
-        .search-clear {
-            cursor: pointer;
-            color: var(--text-muted);
-            margin-left: 8px;
-            font-size: 1.1rem;
-            display: none;
-        }
-        .filter-group {
-            display: flex;
-            align-items: center;
-        }
+
         .category-filter {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background: linear-gradient(135deg, #242630 80%, #23242a 100%);
-            color: #e7e9f0;
-            border: none;
-            outline: none;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 0.6em 2em 0.6em 1.25em;
-            border-radius: 1.1em;
-            margin-right: 8px;
-            box-shadow: 0 2px 8px 0 rgba(24,28,37,0.1), 0 1.5px 0.5px 0 rgba(44,44,59,0.05);
-            transition: box-shadow 0.17s, background 0.18s;
-            position: relative;
-            cursor: pointer;
-            background-image:
-                linear-gradient(135deg, #242630 80%, #23242a 100%),
-                url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M6 8l4 4 4-4" stroke="%239C9DB4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-            background-repeat: no-repeat, no-repeat;
-            background-position: right 1em center, right 1em center;
-            background-size: 1.1em, 1.1em;
+            border: 1px solid var(--border-soft);
+            border-radius: 999px;
+            padding: 6px 18px;
+            font-size: 0.86rem;
+            background: transparent;
         }
-        .category-filter:hover, .category-filter:focus {
-            box-shadow: 0 3px 16px 0 rgba(24,28,37,0.16), 0 1.5px 0.6px 0 rgba(44,44,59,0.08);
-            background: linear-gradient(135deg, #282a36 80%, #292a31 100%);
-        }
-        .category-filter option {
-            background: #20222b !important;
-            color: #e1e2ed;
-            border-radius: 0 !important;
-            padding: 0.7em 1.2em !important;
-            font-size: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-            transition: background 0.14s, color 0.13s;
-        }
-        .category-filter option:checked,
-        .category-filter option:focus,
-        .category-filter option:hover {
-            background: #353746 !important;
-            color: #fff !important;
-        }
-        .category-filter:focus-visible {
-            outline: none;
-            box-shadow: 0 2px 16px 0 rgba(36,38,55,.15), 0 1.5px 0.5px 0 rgba(30,30,44,0.09);
-        }
-        .category-filter::-ms-expand {
-            display: none;
-        }
-        .clear-filters {
-            border-radius: 100px;
-            padding: 0.5em 1.3em;
-            background: #20222a;
-            color: #babacd;
-            border: none;
-            outline: none;
-            margin-left: 4px;
-            transition: background 0.17s, color .14s;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 500;
-            opacity: .88;
-        }
-        .clear-filters:enabled:hover,.clear-filters:enabled:focus {
-            background: #282837;
-            color: #fff;
-            opacity: 1;
-        }
-        .clear-filters:disabled {
-            opacity: 0.55;
-            cursor: default;
-        }
+
         .command-count {
             text-align: center;
+            font-size: 0.88rem;
             color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 5px;
-            font-weight: 200;
-        }
-        .commands-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 22px;
-            justify-content: center;
-            margin-top: 8px;
+            margin-bottom: 12px;
         }
 
-        /* FAQ Section */
-        .faq-section {
-            margin: 52px 0 0 0;
-            background: rgba(21,21,26,0.93);
-            border-radius: var(--border-radius);
-            padding: 35px 0 18px 0;
-            box-shadow: var(--shadow-1);
+        .commands-list {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
         }
-        .faq-header {
-            text-align: center;
-            margin-bottom: 19px;
+
+        .commands-list th,
+        .commands-list td {
+            padding: 8px 6px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
         }
-        .faq-header h2 {
-            font-weight: 200;
+
+        .commands-list th {
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
         }
-        .faq-item {
-            background: var(--card-bg);
-            margin: 0 auto 14px auto;
-            border-radius: 14px;
-            box-shadow: 0 1px 8px 0 rgba(66,70,130,0.04);
-            max-width: 730px;
-            padding: 0;
+
+        .commands-list-name {
+            width: 35%;
+            white-space: nowrap;
         }
-        .faq-question {
-            cursor: pointer;
-            padding: 18px 28px 18px 28px;
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-soft);
+            padding: 16px 24px 24px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-weight: 200;
-        }
-        .faq-question h3 {
-            margin: 0;
-            font-size: 1.11rem;
-            font-weight: 200;
-        }
-        .faq-icon {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-left: 12px;
-            transition: transform .16s;
-        }
-        .faq-answer {
-            padding: 0 27px 14px 27px;
-            color: var(--text-muted);
-            font-size: 1rem;
-            display: none;
-            font-weight: 200;
-        }
-        .faq-item.open .faq-answer {
-            display: block;
-        }
-        .faq-item.open .faq-icon {
-            transform: rotate(45deg);
-        }
-        /* Testimonials */
-        .testimonials-section {
-            margin: 56px 0 17px 0;
-        }
-        .testimonials-header {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        .testimonials-header h2 {
-            font-weight: 200;
-        }
-        .testimonials-grid {
-            display: flex;
             flex-wrap: wrap;
-            gap: 25px;
-            justify-content: center;
-        }
-        .testimonial-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            max-width: 330px;
-            flex: 1 1 240px;
-            box-shadow: 0 1px 7px 0 rgba(66,70,130,0.04);
-            padding: 23px 20px;
-            transition: transform 0.17s;
-            font-weight: 200;
-        }
-        .testimonial-card:hover, .testimonial-card:focus-within {
-            transform: translateY(-1.5px) scale(1.017);
-        }
-        .testimonial-content {
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            color: #e6e6ef;
-            font-weight: 200;
-        }
-        .testimonial-author {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            font-weight: 200;
-        }
-        .testimonial-avatar {
-            background: var(--primary-gradient);
-            color: #333;
-            font-size: 1rem;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 200;
-        }
-        .testimonial-info h4 {
-            margin: 0;
-            font-size: 0.97rem;
-            font-weight: 200;
-        }
-        .testimonial-info p {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            font-weight: 200;
+            gap: 8px;
         }
 
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            left: 0; top: 0; right: 0; bottom: 0;
-            background: #000000;
-            color: #fff;
-            z-index: 12000;
+        .footer-links {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            transition: opacity .4s;
+            gap: 16px;
         }
-        .loading-screen .loading-stars {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
+
+        .footer-links a {
+            text-decoration: none;
         }
-        .loading-container {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .loading-logo {
-            width: 65px;
-            height: 65px;
-            margin-bottom: 16px;
-            border-radius: 50%;
-            background: transparent;
-            box-shadow: none;
-        }
-        .loading-text {
-            color: #ececec;
-            font-size: 1.13rem;
-            margin-bottom: 7px;
-            font-family: inherit;
-            font-weight: 200;
-        }
-        .loading-progress {
-            width: 160px;
-            height: 2px;
-            margin: 0 auto;
-            background: transparent;
-            overflow: hidden;
-        }
-        .loading-progress-bar {
-            width: 0%;
-            height: 100%;
-            background: #ffffff;
-            border-radius: 999px;
-            transition: width .6s;
+
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            text-decoration: underline;
         }
 
         /* Responsive */
-        @media (max-width: 1000px) {
-            .container {
-                padding: 0 8px;
-            }
-            .features-grid, .stats-grid, .testimonials-grid {
-                flex-direction: column;
-                gap: 17px;
-            }
-            .feature-card, .stat-card, .testimonial-card {
-                max-width: 97vw;
+        @media (max-width: 900px) {
+            .features-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
-        @media (max-width: 700px) {
-            .main-content h1 { font-size: 1.55rem; }
-            .features-header h2, .commands-header h2, .faq-header h2, .testimonials-header h2 { font-size: 1rem;}
-            .stats-grid { gap: 13px; }
+
+        @media (max-width: 640px) {
+            .navbar-inner {
+                padding-inline: 16px;
+            }
+
+            .page-container {
+                padding-inline: 16px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .commands-list th:nth-child(3),
+            .commands-list td:nth-child(3) {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="loading-screen" id="loadingScreen" style="display: flex;">
-        <div class="loading-container">
-            <img src="assets/loop-logo.png" alt="Loop Bot Logo" class="loading-logo" id="loadingLogo">
-            <div class="loading-text" id="loadingText">Loading</div>
-            <div class="loading-progress">
-                <div class="loading-progress-bar" id="loadingProgressBar"></div>
-            </div>
-        </div>
-    </div>
-    <div class="starfield" id="starfield"></div>
-    <a href="index.html" class="top-left-logo">
-        <img src="assets/loop-logo.png" alt="Loop Bot Logo" id="topLeftLogo"
-             onerror="this.style.display='none';document.getElementById('topLeftLogoFallback').style.display='flex';">
-        <div class="top-left-logo-fallback" id="topLeftLogoFallback" style="display: none;">L</div>
-    </a>
-    <header id="header">
-        <div class="container header-container">
+    <header class="navbar">
+        <div class="navbar-inner">
+            <div class="nav-logo">Loop</div>
             <nav class="nav-links">
                 <a href="#features">Features</a>
                 <a href="commands.html">Commands</a>
@@ -655,366 +395,148 @@
             </nav>
         </div>
     </header>
-    <main>
-        <div class="container">
-            <div class="main-content">
-                <h1><span class="gradient-text">Loop</span> is Discord's premier all-in-one app</h1>
-                <p style="color:var(--text-muted);font-weight:200;margin-top:18px;">Loop is the ultimate all-in-one Discord bot designed to keep your server running smoothly with advanced protection, logging, economy, and more.</p>
-                <div class="button-container">
-                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fab fa-discord"></i> <span>Invite to Discord</span>
+
+    <main class="page-container">
+        <section class="hero" id="top">
+            <div class="hero-inner">
+                <h1 class="hero-title">Loop</h1>
+                <p class="hero-subtitle">Discord's premier all-in-one app</p>
+                <p class="hero-description">
+                    Advanced protection, detailed logging, rich economy tools, and streamlined server management in a single reliable Discord bot.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                        <i class="fab fa-discord"></i>
+                        <span>Invite to Discord</span>
+                    </a>
+                    <a href="commands.html" class="btn-secondary">
+                        <span>View Commands</span>
                     </a>
                 </div>
             </div>
-        </div>
-    </main>
-    <section id="features" class="features-section">
-        <div class="container">
-            <div class="features-header">
-                <h2>Features</h2>
-                <p>Discover what makes Loop the ultimate Discord bot</p>
+        </section>
+
+        <section id="features">
+            <div class="section-header">
+                <h2 class="section-title">Features</h2>
+                <p class="section-subtitle">Everything you need to run a modern Discord server.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Advanced Protection</h3>
-                    <p>Comprehensive anti-raid, anti-nuke, and moderation tools to keep your server safe from malicious users and attacks.</p>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="feature-title">Advanced Protection</div>
+                    <p class="feature-text">Anti-raid, anti-nuke, and moderation safeguards to keep your community safe.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-coins"></i></div>
+                    <div class="feature-title">Economy System</div>
+                    <p class="feature-text">Balances, rewards, and configurable games to keep members engaged.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-cog"></i></div>
+                    <div class="feature-title">Server Management</div>
+                    <p class="feature-text">Roles, channels, and automation for smooth day-to-day server operations.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="feature-title">Analytics &amp; Logging</div>
+                    <p class="feature-text">Clear records of activity, actions, and growth over time.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="feature-title">Fun &amp; Entertainment</div>
+                    <p class="feature-text">Roleplay, games, and utilities that make your server feel alive.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <div class="feature-title">Community Features</div>
+                    <p class="feature-text">Welcome flows, levels, and rewards that recognize your members.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="stats">
+            <div class="section-header">
+                <h2 class="section-title">At a glance</h2>
+            </div>
+            <div class="stats-row">
+                <div>
+                    <div class="stat-item-number">20+</div>
+                    <div class="stat-item-label">Servers</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <h3>Economy System</h3>
-                    <p>Complete economy with daily rewards, gambling games, shop system, and leaderboards to engage your community.</p>
+                <div>
+                    <div class="stat-item-number">2,000+</div>
+                    <div class="stat-item-label">Users</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cog"></i>
-                    </div>
-                    <h3>Server Management</h3>
-                    <p>Powerful tools for role management, channel organization, auto-moderation, and server customization.</p>
+                <div>
+                    <div class="stat-item-number">99.9%</div>
+                    <div class="stat-item-label">Uptime</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Analytics & Logging</h3>
-                    <p>Detailed logging system and server analytics to track activity, moderation actions, and server growth.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>Fun & Entertainment</h3>
-                    <p>Engaging games, roleplay commands, image generation, and interactive features to keep your community active.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community Features</h3>
-                    <p>Welcome messages, auto-roles, leveling system, and boost rewards to build a thriving community.</p>
+                <div>
+                    <div class="stat-item-number">24/7</div>
+                    <div class="stat-item-label">Support</div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="stats-section">
-        <div class="container stats-container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" data-target="20">0</div>
-                    <div class="stat-label">Servers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="2000">0</div>
-                    <div class="stat-label">Users</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="99.9">0</div>
-                    <div class="stat-label">Uptime %</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="24">0</div>
-                    <div class="stat-label">Hours Support</div>
-                </div>
+        </section>
+
+        <section id="commands-preview">
+            <div class="section-header">
+                <h2 class="section-title">Commands</h2>
+                <p class="section-subtitle">Search and explore Loop's full command set.</p>
             </div>
-        </div>
-    </section>
-    <section id="commands" class="commands-section">
-        <div class="container commands-container">
-            <div class="commands-header">
-                <h2>Commands</h2>
-                <p>Explore all available commands for Loop Bot</p>
-            </div>
+
             <div class="commands-controls">
                 <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-input" placeholder="Search commands..." id="commandSearch">
-                    <i class="fas fa-times search-clear" id="searchClear"></i>
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input type="text" class="search-input" placeholder="Search commands…" aria-label="Search commands" disabled>
                 </div>
-                <div class="filter-group">
-                    <select class="category-filter" id="categoryFilter" title="Filter commands by category">
-                        <option value="all">All types</option>
-                        <option value="moderation">Moderation</option>
-                        <option value="economy">Economy</option>
-                        <option value="utility">Utility</option>
-                        <option value="fun">Fun / RP</option>
-                        <option value="config">Config / Setup</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <button class="clear-filters" id="clearFilters" disabled>
-                        <i class="fas fa-times"></i>
-                        Clear
-                    </button>
-                </div>
+                <select class="category-filter" aria-label="Filter commands by category" disabled>
+                    <option>All categories</option>
+                </select>
             </div>
-            <div class="command-count" id="commandCount">Showing 0 of 0 commands</div>
-            <div class="commands-grid" id="commandsGrid"></div>
-        </div>
-    </section>
-    <section class="faq-section">
-        <div class="container faq-container">
-            <div class="faq-header">
-                <h2>Frequently Asked Questions</h2>
-                <p>Everything you need to know about Loop Bot</p>
+
+            <div class="command-count">
+                View and filter all commands on the dedicated commands page.
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do I invite Loop Bot to my server?</h3>
-                    <i class="fas fa-plus faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Simply click the "Invite to Discord" button above to join our Discord server, where you'll find the invite link and setup instructions. Our support team will guide you through the entire process.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What makes Loop Bot different from other Discord bots?</h3>
-                    <i class="fas fa-plus faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Loop Bot offers a comprehensive all-in-one solution with advanced moderation, economy system, logging, and entertainment features. Our bot is constantly updated with new features and has 99.9% uptime.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Is Loop Bot free to use?</h3>
-                    <i class="fas fa-plus faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Loop Bot offers both free and premium tiers. The free version includes basic features, while premium unlocks advanced moderation tools, economy features, and priority support.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do I get support if I have issues?</h3>
-                    <i class="fas fa-plus faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Join our Discord support server using the "Support" link above. Our team provides 24/7 support and will help you resolve any issues quickly.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Can I customize Loop Bot for my server?</h3>
-                    <i class="fas fa-plus faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes! Loop Bot offers extensive customization options including custom prefixes, role management, channel settings, and personalized welcome messages. Use the settings commands to configure everything to your needs.</p>
-                </div>
+
+            <table class="commands-list" aria-hidden="true">
+                <thead>
+                    <tr>
+                        <th class="commands-list-name">Example</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/ban</td>
+                        <td>Ban a member with an optional reason.</td>
+                        <td>Moderation</td>
+                    </tr>
+                    <tr>
+                        <td>/give</td>
+                        <td>Transfer currency to another user.</td>
+                        <td>Economy</td>
+                    </tr>
+                    <tr>
+                        <td>/serverinfo</td>
+                        <td>Show an overview of your server.</td>
+                        <td>Utility</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div>© Loop</div>
+            <div class="footer-links">
+                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Invite</a>
+                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
+                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
             </div>
         </div>
-    </section>
-    <section class="testimonials-section">
-        <div class="container testimonials-container">
-            <div class="testimonials-header">
-                <h2>What Our Users Say</h2>
-                <p>Join thousands of satisfied server owners</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        "Loop Bot has completely transformed our server management. The moderation tools are incredibly powerful and the economy system keeps our community engaged daily."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">A</div>
-                        <div class="testimonial-info">
-                            <h4>Alex Johnson</h4>
-                            <p>Server Owner, Gaming Community</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        "The best Discord bot I've ever used. The support team is amazing and the bot never goes down. Worth every penny for premium features."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">S</div>
-                        <div class="testimonial-info">
-                            <h4>Sarah Chen</h4>
-                            <p>Community Manager, Tech Server</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        "Loop Bot's logging system is phenomenal. We can track everything that happens in our server and the economy features have increased member activity by 300%."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">M</div>
-                        <div class="testimonial-info">
-                            <h4>Mike Rodriguez</h4>
-                            <p>Admin, Large Gaming Guild</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script>
-        // Create moving starfield background
-        document.addEventListener('DOMContentLoaded', function () {
-            const starfield = document.getElementById('starfield');
-            if (starfield) {
-                const starCount = 90;
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
-
-                for (let i = 0; i < starCount; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'star';
-
-                    const size = Math.random() * 1.7 + 1; // 1px – 2.7px
-                    const startX = Math.random() * viewportWidth;
-                    const startY = Math.random() * viewportHeight;
-                    const duration = Math.random() * 40 + 50; // 50s – 90s
-                    const delay = Math.random() * -duration;
-                    const opacity = Math.random() * 0.4 + 0.25;
-
-                    star.style.width = size + 'px';
-                    star.style.height = size + 'px';
-                    star.style.left = startX + 'px';
-                    star.style.top = startY + 'px';
-                    star.style.opacity = opacity.toString();
-                    star.style.animationDuration = duration + 's';
-                    star.style.animationDelay = delay + 's';
-
-                    starfield.appendChild(star);
-                }
-            }
-
-            // Loading screen stars
-            const loadingScreen = document.getElementById('loadingScreen');
-            if (loadingScreen) {
-                let starLayer = loadingScreen.querySelector('.loading-stars');
-                if (!starLayer) {
-                    starLayer = document.createElement('div');
-                    starLayer.className = 'loading-stars';
-                    loadingScreen.appendChild(starLayer);
-                }
-
-                const loadStarCount = 55;
-                const width = loadingScreen.clientWidth || window.innerWidth;
-                const height = loadingScreen.clientHeight || window.innerHeight;
-
-                for (let i = 0; i < loadStarCount; i++) {
-                    const dot = document.createElement('div');
-                    dot.className = 'star';
-
-                    const size = Math.random() * 18 + 2; // 2px – 20px max
-                    const x = Math.random() * width;
-                    const y = Math.random() * height;
-                    const duration = Math.random() * 35 + 45; // 45s – 80s
-                    const delay = Math.random() * -duration;
-                    const opacity = Math.random() * 0.5 + 0.3;
-
-                    dot.style.width = size + 'px';
-                    dot.style.height = size + 'px';
-                    dot.style.left = x + 'px';
-                    dot.style.top = y + 'px';
-                    dot.style.opacity = opacity.toString();
-                    dot.style.animationDuration = duration + 's';
-                    dot.style.animationDelay = delay + 's';
-
-                    starLayer.appendChild(dot);
-                }
-            }
-        });
-
-        // Animate stats on scroll
-        function animateStatNumbers() {
-            const stats = document.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const target = +stat.dataset.target;
-                if (!stat.animated && stat.getBoundingClientRect().top < window.innerHeight) {
-                    stat.animated = true;
-                    let start = 0;
-                    let decimals = 0;
-                    if(target.toString().includes('.')) decimals = target.toString().split('.')[1].length;
-                    const speed = Math.max(Math.abs(target) > 15 ? 35 : 120, 22);
-
-                    function updateVal() {
-                        start += (target / speed);
-                        if ((target > 0 && start < target) || (target < 0 && start > target)) {
-                            stat.textContent = (start).toFixed(decimals);
-                            requestAnimationFrame(updateVal);
-                        } else {
-                            stat.textContent = target;
-                        }
-                    }
-                    updateVal();
-                }
-            });
-        }
-        window.addEventListener('scroll', animateStatNumbers);
-        window.addEventListener('DOMContentLoaded', animateStatNumbers);
-
-        // Loading screen – fade out on load
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('loadingProgressBar').style.width = "100%";
-            }, 300);
-            setTimeout(function() {
-                document.getElementById('loadingScreen').style.opacity = "0";
-                setTimeout(function() {
-                    document.getElementById('loadingScreen').style.display = "none";
-                }, 700);
-            }, 1200);
-        });
-
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() {
-            this.parentElement.classList.toggle('open');
-        }));
-
-        // Search box (UI only in demo, real filtering would need JS data)
-        const commandSearchInput = document.getElementById("commandSearch");
-        const searchClear = document.getElementById("searchClear");
-        if (commandSearchInput && searchClear) {
-            commandSearchInput.addEventListener("input", function () {
-                searchClear.style.display = this.value.length ? "inline" : "none";
-            });
-            searchClear.addEventListener("click", function () {
-                commandSearchInput.value = "";
-                searchClear.style.display = "none";
-                commandSearchInput.focus();
-            });
-        }
-
-        // Command filter clear -- UI only (no filtering logic)
-        const categoryFilter = document.getElementById("categoryFilter");
-        const clearFiltersBtn = document.getElementById("clearFilters");
-        if (categoryFilter && clearFiltersBtn) {
-            categoryFilter.addEventListener("change", function () {
-                clearFiltersBtn.disabled = this.value === "all";
-            });
-            clearFiltersBtn.addEventListener("click", function () {
-                categoryFilter.value = "all";
-                clearFiltersBtn.disabled = true;
-            });
-        }
-    </script>
+    </footer>
 </body>
 </html>
