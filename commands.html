@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loop Bot Commands</title>
+    <title>Loop - Discord's Premier All-in-One App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #000000;
@@ -13,48 +13,114 @@
             --text-muted: #b3b3b3;
             --border-soft: #202020;
             --border-strong: #3a3a3a;
+            --nav-bg: rgba(0, 0, 0, 0.9);
+            --hero-max-width: 900px;
             --radius: 10px;
+            --floatbar-blur: 20px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
         }
 
         html, body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.01em;
             color: var(--text-main);
-            background: none !important; /* remove default background, starfield will be in #mainStarsBg */
+            /* Remove plain background color, we'll apply the fancy one in .body-starlight-bg */
+            background: none !important;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
         }
 
         body {
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 40px 16px 60px;
-            box-sizing: border-box;
+            flex-direction: column;
+            /* Remove background here; main bg now under a starlight layer */
+            background: none !important;
             position: relative;
             min-height: 100vh;
         }
 
-        /* Starfield main background (as in main site & loading) */
+        /* Starlight background gradient + blur effect layer */
+        .body-starlight-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            /* Soft dark fade with starlight colors and blur for luminous effect */
+            background: 
+                radial-gradient(ellipse 120% 70% at 60% 10%, rgba(80,138,255,0.11), rgba(168,126,255,0.10) 33%, rgba(230,85,255,0.11) 69%, rgba(0,0,0,0.68), rgba(0,0,0,0.95) 100%),
+                #050615;
+            filter: blur(0.8px) saturate(1.13);
+        }
+
+        /* Starfield main background (same as loading) */
         .main-stars-bg {
             position: fixed;
             inset: 0;
             width: 100vw;
             height: 100vh;
-            background: var(--bg);
-            z-index: 0;
-            pointer-events: none;
             overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+            /* Let starfield appear above colored/gradient bg but below main content */
         }
         .main-stars-bg canvas {
             width: 100vw !important;
             height: 100vh !important;
             display: block;
-            opacity: 0.55;
-            filter: blur(2.5px) brightness(1.08);
+            opacity: 0.75;
+            filter: blur(2px) brightness(1.17);
             pointer-events: none;
         }
 
+        /* Place all main content above starlight bg and starfield */
+        .site-content {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 96px 24px 64px;
+            width: 100%;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes simpleFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* General Loading */
         .loading-screen {
             position: fixed;
             inset: 0;
@@ -62,8 +128,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 100;
+            z-index: 1002;
             transition: opacity 0.25s ease;
+            animation: simpleFadeIn 0.6s;
         }
 
         .loading-mark {
@@ -71,449 +138,560 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--text-muted);
+            animation: fadeInUp 1s;
         }
 
-        .commands-page {
-            width: 100%;
-            max-width: 1100px;
-            background: rgba(12, 12, 14, 0.66);
-            border-radius: var(--radius);
-            padding: 26px 22px 28px;
-            border: 1px solid var(--border-soft);
+        /* Commands Loading Styles */
+        .commands-loading-overlay {
+            position: fixed;
+            z-index: 1001;
+            inset: 0;
+            display: none;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .commands-loading-overlay.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: simpleFadeIn 0.25s;
+        }
+
+        .commands-stars-bg {
+            position: absolute;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .commands-stars-bg canvas {
+            width: 100vw !important;
+            height: 100vh !important;
+            display: block;
+            opacity: 0.6;
+            filter: blur(2px) brightness(1.1);
+            pointer-events: none;
+        }
+
+        .commands-loading-content {
             position: relative;
             z-index: 2;
-            box-shadow: 0 3px 18px 2px rgba(0,0,0,.24), 0 1.5px 0 rgba(255,255,255,0.015) inset;
-            -webkit-backdrop-filter: blur(7px);
-            backdrop-filter: blur(7px);
-        }
-
-        .page-header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 10px;
+            justify-content: center;
         }
 
-        .page-title {
-            font-size: 1.7rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            margin: 0;
+        .commands-loading-logo {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            margin-bottom: 36px;
+            filter: drop-shadow(0 2px 16px #fff2);
         }
 
-        .back-link {
+        .commands-progress-bar-outer {
+            width: 160px;
+            height: 3px;
+            background: rgba(255,255,255,0.13);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 auto;
+            box-shadow: 0 1px 4px #111c;
+        }
+
+        .commands-progress-bar-inner {
+            height: 100%;
+            width: 0%;
+            background: #fff;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 3px;
+        }
+
+        /* Floating Bar */
+        .floating-navbar-outer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-top: 32px;
+            margin-bottom: 40px;
+            z-index: 21;
+            pointer-events: none;
+        }
+        .floating-navbar {
+            max-width: 520px;
+            width: min(90vw, 520px);
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            -webkit-backdrop-filter: blur(var(--floatbar-blur));
+            backdrop-filter: blur(var(--floatbar-blur));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 18px;
+            gap: 16px;
+            min-height: 50px;
+            animation: fadeInUp 0.8s both;
+            pointer-events: auto;
+        }
+        .floating-navbar .nav-logo-image {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        .floating-navbar .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        .floating-navbar .nav-links a {
             color: var(--text-muted);
+            font-size: 0.86rem;
+            font-weight: 400;
             text-decoration: none;
-            font-size: 0.95rem;
+            padding: 6px 12px;
+            border-radius: 999px;
+            transition: background 0.16s, color 0.16s;
+            border: none;
+            display: flex;
+            align-items: center;
+        }
+        .floating-navbar .nav-links a:hover,
+        .floating-navbar .nav-links a:focus-visible {
+            background: rgba(255,255,255,0.06);
+            color: #ffffff;
+        }
+
+        /* Hide non-floating navbar on desktop */
+        .navbar {
+            display: none !important;
+        }
+
+        /* Hero */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 64px 0 72px;
+            animation: fadeInUp 0.85s 0.09s both;
+            margin-top: 0;
+        }
+
+        .hero-inner {
+            max-width: var(--hero-max-width);
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 0 8px;
+            animation: fadeInUp 0.8s 0.15s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin: 0 0 16px;
+            animation: fadeInUp 0.8s 0.22s both;
+        }
+
+        .hero-description {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            margin: 0 auto;
+            max-width: 520px;
+            animation: fadeInUp 0.8s 0.29s both;
+        }
+
+        .hero-actions {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+            animation: fadeInUp 0.8s 0.36s both;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 999px;
+            padding: 10px 22px;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: background 0.18s, border-color 0.2s, color 0.18s;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #ffffff;
+            animation: fadeInUp 0.8s 0.41s both;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-strong);
+            animation: fadeInUp 0.8s 0.48s both;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
+            background: #e5e5e5;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus-visible {
+            border-color: #5a5d6b;
+        }
+
+        /* Sections */
+        section {
+            padding: 32px 0 40px;
+        }
+
+        section + section {
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+            text-align: center;
+            animation: fadeInUp 0.8s 0.58s both;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 0 6px;
+        }
+
+        .section-subtitle {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .features-grid > .feature-card {
+            opacity: 0;
+            animation: fadeInUp 0.85s both;
+        }
+        .features-grid > .feature-card:nth-child(1) { animation-delay: 0.05s;}
+        .features-grid > .feature-card:nth-child(2) { animation-delay: 0.18s;}
+        .features-grid > .feature-card:nth-child(3) { animation-delay: 0.29s;}
+        .features-grid > .feature-card:nth-child(4) { animation-delay: 0.41s;}
+        .features-grid > .feature-card:nth-child(5) { animation-delay: 0.53s;}
+        .features-grid > .feature-card:nth-child(6) { animation-delay: 0.65s;}
+
+        .feature-card {
+            background: rgba(0,0,0,0.25);
+            border-radius: 18px;
+            border: 1px solid var(--border-soft);
+            padding: 18px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+            text-align: center;
+            transition: border-color 0.2s, background 0.18s, transform 0.18s;
+        }
+
+        .feature-icon {
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        .feature-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .feature-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .feature-card:hover,
+        .feature-card:focus-within {
+            border-color: var(--border-strong);
+            background: rgba(255,255,255,0.03);
+            transform: translateY(-2px);
+        }
+
+        /* Stats */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 32px;
+            text-align: center;
+            animation: fadeInUp 0.8s 0.67s both;
+        }
+
+        .stat-item-number {
+            font-size: 1.6rem;
+            font-weight: 600;
+            animation: fadeInUp 0.7s 0.73s both;
+        }
+
+        .stat-item-label {
+            margin-top: 4px;
+            font-size: 0.75rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            animation: fadeInUp 0.8s 0.79s both;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-soft);
+            padding: 16px 24px 24px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            animation: fadeInUp 0.6s 1.2s both;
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: 8px;
         }
 
-        .back-link:hover,
-        .back-link:focus {
-            color: var(--text-main);
-        }
-
-        .commands-header {
-            margin: 10px 0 18px;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-        }
-
-        .commands-controls {
+        .footer-links {
             display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            align-items: center;
-            margin-bottom: 12px;
+            gap: 16px;
         }
 
-        .search-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--border-soft);
-            padding: 4px 0 4px 24px;
+        .footer-links a {
+            text-decoration: none;
         }
 
-        .search-input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: var(--text-main);
-            font-size: 0.98rem;
-            width: 190px;
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            text-decoration: underline;
         }
 
-        .search-icon {
-            position: absolute;
-            left: 0;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .search-clear {
-            cursor: pointer;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-left: 8px;
-            opacity: 0.0;
-            pointer-events: none;
-            transition: opacity .18s;
-        }
-
-        .search-clear.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .command-count {
-            margin: 6px 0 12px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .commands-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-            gap: 12px;
-        }
-
-        .command-card {
-            background: rgba(22,22,22,0.46);
-            border-radius: var(--radius);
-            padding: 12px 14px 11px;
-            cursor: pointer;
-            transition: border-color 0.16s, background 0.16s, box-shadow .16s;
-            border: 1.2px solid #232324;
-            box-shadow: 0 1px 8px 0 rgba(0,0,0,0.07);
-            color: #dee0e5;
-            /* force grayscale + fully monochrome look */
-            filter: grayscale(1);
-        }
-        .command-card:hover,
-        .command-card:focus-visible {
-            background: rgba(32,32,32,0.61);
-            border-color: #333338;
-            color: #fafcff;
-            box-shadow: 0 4px 28px 0 rgba(30,30,30,0.19);
-        }
-
-        .command-category-pill {
-            display: inline-flex;
-            align-items: center;
-            padding: 3px 10px;
-            border-radius: 999px;
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.11em;
-            color: #acacb6;
-            background: rgba(40,40,40,0.43);
-            margin-bottom: 4px;
-            /* monochrome & desaturated */
-            filter: grayscale(1) brightness(0.95) contrast(0.93);
-        }
-
-        .command-name {
-            /* monochrome headline */
-            font-size: 1.14rem;
-            font-weight: 600;
-            color: #e5e5e5 !important;
-            margin-bottom: 2px;
-            filter: grayscale(1);
-        }
-
-        .command-details-modal-bg {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.45);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .command-details-modal {
-            width: 100%;
-            max-width: 420px;
-            background: rgba(16,17,25,0.93);
-            border-radius: var(--radius);
-            padding: 18px 18px 16px;
-            border: 1px solid var(--border-soft);
-            position: relative;
-            /* modal: more opaque for readability, still keep subtle transparency */
-            box-shadow: 0 7px 44px 2px #000b;
-            filter: grayscale(1);
-            color: #f2f2f3;
-        }
-
-        .cmd-close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            border: none;
-            background: transparent;
-            color: #b0b1b5;
-            cursor: pointer;
-        }
-
-        .cmd-title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .cmd-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #f7f7f7;
-            filter: grayscale(1);
-        }
-
-        .cmd-copy-btn {
-            border: none;
-            background: #232430;
-            color: #e7e7e7;
-            border-radius: 999px;
-            width: 32px;
-            height: 32px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            filter: grayscale(1);
-        }
-
-        .cmd-desc {
-            font-size: 0.96rem;
-            color: #b3b3b3;
-            margin-bottom: 10px;
-            filter: grayscale(1);
-        }
-
-        .cmd-section {
-            margin-bottom: 6px;
-        }
-
-        .cmd-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: #b3b3b3;
-            margin-bottom: 2px;
-            filter: grayscale(1);
-        }
-
-        .cmd-value {
-            font-size: 0.96rem;
-            color: #fff;
-            filter: grayscale(1);
-        }
-
-        @media (max-width: 720px) {
-            body {
-                padding: 24px 10px 32px;
+        /* Responsive Styles for floating bar */
+        @media (max-width: 800px) {
+            .floating-navbar {
+                flex-direction: row;
+                gap: 13px;
+                padding: 7px 12px 7px 8px;
+                min-height: 49px;
             }
-
-            .commands-page {
-                padding: 20px 14px 22px;
+            .floating-navbar .nav-logo-image {
+                width: 30px;
+                height: 30px;
+                margin-right: 6px;
+            }
+            .floating-navbar .nav-links a {
+                font-size: 0.92rem;
+                padding: 6px 10px;
             }
         }
-
-        /* Custom Modern Select Styles */
-        .filter-group {
-            display: flex;
-            align-items: center;
+        @media (max-width: 640px) {
+            .floating-nav-container {
+                margin-top: 11px;
+                margin-bottom: 18px;
+            }
+            .floating-navbar {
+                padding: 5px 2vw 5px 6px;
+                gap: 10px;
+                min-height: 44px;
+            }
+            .floating-navbar .nav-links {
+                gap: 7px;
+            }
+            .floating-navbar .nav-logo-image {
+                width: 24px;
+                height: 24px;
+            }
         }
-        .category-filter {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background: #18181c;
-            color: var(--text-main);
-            border: 1px solid var(--border-soft);
-            outline: none;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 0.6em 2em 0.6em 1.25em;
-            border-radius: 1.1em;
-            margin-right: 8px;
-            transition: border-color 0.17s, background 0.18s;
-            position: relative;
-            cursor: pointer;
-            filter: grayscale(1);
-        }
-        .category-filter:hover, .category-filter:focus {
-            border-color: var(--border-strong);
-            background: #22222a;
-        }
-        /* Hide default dropdown arrow, add custom */
-        .category-filter {
-            background-image:
-                url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M6 8l4 4 4-4" stroke="%23999999" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-            background-repeat: no-repeat, no-repeat;
-            background-position: right 1em center, right 1em center;
-            background-size: 1.1em, 1.1em;
-        }
-        .category-filter:focus {
-            outline: none;
-        }
-        .category-filter:-moz-focusring {
-            color: #e7e9f0;
-            text-shadow: none;
-        }
-        .category-filter option {
-            background: #18181c !important;
-            color: #cdcdcf;
-            border-radius: 0 !important;
-            padding: 0.7em 1.2em !important;
-            font-size: 1rem;
-            filter: grayscale(1);
-        }
-        .category-filter option:checked,
-        .category-filter option:focus,
-        .category-filter option:hover {
-            background: #2a2b31 !important;
-            color: #fff !important;
-        }
-        .category-filter:focus-visible {
-            outline: none;
-            border-color: var(--border-strong);
-        }
-        .category-filter::-ms-expand {
-            display: none;
-        }
-
-        .clear-filters {
-            border-radius: 100px;
-            padding: 0.5em 1.3em;
-            background: transparent;
-            color: #979797;
-            border: 1px solid var(--border-soft);
-            outline: none;
-            margin-left: 4px;
-            transition: background 0.17s, color .14s;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 500;
-            opacity: .88;
-            filter: grayscale(1);
-        }
-        .clear-filters:enabled:hover, .clear-filters:enabled:focus {
-            background: #191a21;
-            color: #fafbfd;
-            opacity: 1;
-        }
-        .clear-filters:disabled {
-            opacity: 0.55;
-            cursor: default;
+        /* Show legacy sticky nav on small screens if you want: */
+        @media (max-width: 500px) {
+            .floating-nav-container,
+            .floating-nav-outer,
+            .floating-navbar {
+                display: none !important;
+            }
+            .navbar {
+                display: block !important;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Add blurred gradient starlight background -->
+    <div class="body-starlight-bg" aria-hidden="true"></div>
     <div class="main-stars-bg" id="mainStarsBg"></div>
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-mark">Loading Loop</div>
     </div>
-
-    <div class="commands-page">
-        <div class="page-header">
-            <h1 class="page-title">Loop Commands</h1>
-            <a href="index.html" class="back-link">
-                <i class="fas fa-arrow-left"></i> Back to main page
-            </a>
-        </div>
-
-        <div class="commands-header">
-            <p>Searchable list of Loop’s commands based on the bot’s command files.</p>
-        </div>
-
-        <div class="commands-controls">
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search commands..." id="commandSearch">
-                <i class="fas fa-times search-clear" id="searchClear"></i>
-            </div>
-            <div class="filter-group">
-                <select class="category-filter" id="categoryFilter" title="Filter commands by category">
-                    <option value="all">All types</option>
-                    <option value="moderation">Moderation</option>
-                    <option value="economy">Economy</option>
-                    <option value="utility">Utility</option>
-                    <option value="fun">Fun / RP</option>
-                    <option value="config">Config / Setup</option>
-                    <option value="other">Other</option>
-                </select>
-                <button class="clear-filters" id="clearFilters" disabled>
-                    <i class="fas fa-times"></i>
-                    Clear
-                </button>
+    
+    <!-- Commands custom loader overlay - hidden by default -->
+    <div class="commands-loading-overlay" id="commandsLoading">
+        <div class="commands-stars-bg" id="commandsStarsBg"></div>
+        <div class="commands-loading-content">
+            <img src="assets/loop-logo.png" alt="Loop logo" class="commands-loading-logo" />
+            <div class="commands-progress-bar-outer">
+                <div class="commands-progress-bar-inner" id="commandsProgressBar"></div>
             </div>
         </div>
-
-        <div class="command-count" id="commandCount">Showing 0 commands</div>
-
-        <div class="commands-grid" id="commandsGrid"></div>
     </div>
 
-    <!-- Modal placeholder -->
-    <div id="commandDetailsModalContainer"></div>
+    <div class="site-content">
+        <!-- FLOATING NAVBAR (centered round bar) -->
+        <nav class="floating-navbar" aria-label="Main floating navigation">
+            <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
+            <div class="nav-links">
+                <!-- The following 'a' elements are hyperlinks labeled by their contents -->
+                <a href="#features">Features</a>
+                <a href="commands.html" id="navCommands">Commands</a>
+                <a href="premium.html" id="navPremium">Premium</a>
+                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
+            </div>
+        </nav>
+        <!-- Fallback legacy sticky nav for mobile (hidden on desktop by media query) -->
+        <header class="navbar">
+            <div class="navbar-inner">
+                <div class="nav-logo-combined">
+                    <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
+                </div>
+                <nav class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="commands.html" id="navCommandsMobile">Commands</a>
+                    <a href="premium.html" id="navPremiumMobile">Premium</a>
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="page-container">
+            <section class="hero" id="top">
+                <div class="hero-inner">
+                    <h1 class="hero-title">Loop</h1>
+                    <p class="hero-subtitle">Discord's premier all-in-one app</p>
+                    <p class="hero-description">
+                        Advanced protection, detailed logging, rich economy tools, and streamlined server management in a single reliable Discord bot.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                            <i class="fab fa-discord"></i>
+                            <span>Invite to Discord</span>
+                        </a>
+                        <a href="commands.html" class="btn-secondary" id="mainCommandsBtn">
+                            <span>View Commands</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features">
+                <div class="section-header">
+                    <h2 class="section-title">Features</h2>
+                    <p class="section-subtitle">Everything you need to run a modern Discord server.</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="feature-title">Advanced Protection</div>
+                        <p class="feature-text">Anti-raid, anti-nuke, and moderation safeguards to keep your community safe.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-coins"></i></div>
+                        <div class="feature-title">Economy System</div>
+                        <p class="feature-text">Balances, rewards, and configurable games to keep members engaged.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-cog"></i></div>
+                        <div class="feature-title">Server Management</div>
+                        <p class="feature-text">Roles, channels, and automation for smooth day-to-day server operations.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="feature-title">Analytics &amp; Logging</div>
+                        <p class="feature-text">Clear records of activity, actions, and growth over time.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                        <div class="feature-title">Fun &amp; Entertainment</div>
+                        <p class="feature-text">Roleplay, games, and utilities that make your server feel alive.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <div class="feature-title">Community Features</div>
+                        <p class="feature-text">Welcome flows, levels, and rewards that recognize your members.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="stats">
+                <div class="section-header">
+                    <h2 class="section-title">At a glance</h2>
+                </div>
+                <div class="stats-row">
+                    <div>
+                        <div class="stat-item-number">100+</div>
+                        <div class="stat-item-label">Servers</div>
+                    </div>
+                    <div>
+                        <div class="stat-item-number">60,000+</div>
+                        <div class="stat-item-label">Users</div>
+                    </div>
+                    <div>
+                        <div class="stat-item-number">99.9%</div>
+                        <div class="stat-item-label">Uptime</div>
+                    </div>
+                    <div>
+                        <div class="stat-item-number">24/7</div>
+                        <div class="stat-item-label">Support</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-inner">
+                <div>© Loop</div>
+                <div class="footer-links">
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Invite</a>
+                    <a href="premium.html">Premium</a>
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script>
-        // Starfield background canvas logic (from index.html)
-        function drawStars(canvas, count) {
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < count; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                const r = 0.6 + Math.random() * 0.85;
-                const alpha = 0.7 + Math.random()*0.26;
-                ctx.beginPath();
-                ctx.arc(x, y, r, 0, 2 * Math.PI, false);
-                ctx.fillStyle = `rgba(255,255,255,${alpha})`;
-                ctx.shadowColor = "#fff";
-                ctx.shadowBlur = 2 + Math.random()*8;
-                ctx.fill();
-            }
-            ctx.shadowBlur = 0;
-        }
-        function setupMainStarsBg() {
-            const starsBg = document.getElementById('mainStarsBg');
-            if (!starsBg) return;
-            if (!starsBg.querySelector('canvas')) {
-                const canvas = document.createElement('canvas');
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                starsBg.appendChild(canvas);
-            }
-            const canvas = starsBg.querySelector('canvas');
-            drawStars(canvas, Math.floor(56 + Math.random()*24));
-        }
-
-        window.addEventListener('resize', function(){
-            var starsBg = document.getElementById('mainStarsBg');
-            var canvas = starsBg && starsBg.querySelector('canvas');
-            if (canvas) {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                drawStars(canvas, Math.floor(56 + Math.random()*24));
-            }
-        });
-
-        if (document.readyState !== 'loading') {
-            setupMainStarsBg();
-        } else {
-            document.addEventListener('DOMContentLoaded', function(){
-                setupMainStarsBg();
-            });
-        }
-
-        // Loading overlay
+        // Remove normal load screen on standard page load
         window.addEventListener('load', function () {
             const loading = document.getElementById('loadingScreen');
             if (!loading) return;
@@ -523,530 +701,132 @@
             }, 260);
         });
 
-        // This list is extracted and updated to reflect the ACTUAL contents of the "Commands" folder.
-        // Make sure this matches the commands that you have in C:\Users\n3632\Downloads\loop commands\Commands.
-        // Update this array as you add/remove files in that folder.
-        // Example: If you add or remove .js files from Commands/, update here to match.
-        const commandFiles = [
-            "afkmentions",
-            "alias",
-            "antighostping",
-            "antiraid",
-            "antinuke",
-            "autoresponder",
-            "autorole",
-            "avatar",
-            "avatarhistory",
-            "badge",
-            "ban",
-            "birthday",
-            "blackjack",
-            "booster",
-            "bots",
-            "bumpreminder",
-            "buttonrole",
-            "choose",
-            "config",
-            "createembed",
-            "customize",
-            "disablecommand",
-            "editsnipe",
-            "embedcopy",
-            "enablecommand",
-            "evillaugh",
-            "facepalm",
-            "filter",
-            "forcenickname",
-            "fun",
-            "give",
-            "giveaways",
-            "goodbye",
-            "handhold",
-            "happy",
-            "hardban",
-            "headbang",
-            "hex",
-            "hide",
-            "history",
-            "hug",
-            "ignore",
-            "imgonly",
-            "imute",
-            "inrole",
-            "inviteinfo",
-            "iunmute",
-            "jail",
-            "juul",
-            "kick",
-            "kiss",
-            "laugh",
-            "leaderboard",
-            "leveling",
-            "lick",
-            "lock",
-            "love",
-            "mad",
-            "mute",
-            "nervous",
-            "nom",
-            "nsr",
-            "nuke",
-            "nuzzle",
-            "other",
-            "ping",
-            "prefix",
-            "quote",
-            "reaction",
-            "reactionrole",
-            "reactionsnipe",
-            "remind",
-            "restrictcommand",
-            "rmute",
-            "role",
-            "roleall",
-            "rolehumans",
-            "roleicon",
-            "roleplay",
-            "runmute",
-            "seen",
-            "serveravatar",
-            "serverbanner",
-            "serverinfo",
-            "settings",
-            "setup",
-            "slap",
-            "smile",
-            "snipe",
-            "starboard",
-            "steal",
-            "stickyrole",
-            "stickymessage",
-            "tags",
-            "ticket",
-            "timer",
-            "timezone",
-            "topcommands",
-            "transferhistory",
-            "unban",
-            "unhide",
-            "unjail",
-            "unlock",
-            "userinfo",
-            "utility",
-            "vanity",
-            "voicemaster",
-            "webhook",
-            "welcome",
-            "whitelist",
-            "withdraw"
-        ];
-        commandFiles.sort((a, b) => a.localeCompare(b));
-
-        // Map commands to rough categories by name pattern
-        function guessCategory(name) {
-            const n = name.toLowerCase();
-            if ([
-                'ban','hardban','unban','mute','imute','rmute','runmute','iunmute',
-                'jail','unjail','lock','unlock','nuke','antinuke','antiraid',
-                'filter','restrictcommand','blacklist','ignore','timeout'
-            ].includes(n)) return 'moderation';
-
-            if ([
-                'balance','bet','blackjack','leaderboard','give','withdraw',
-                'steal','remind','giveaways','boosts'
-            ].includes(n)) return 'economy';
-
-            if ([
-                'serverinfo','userinfo','avatar','avatarhistory','inviteinfo',
-                'timezone','seen','history','topcommands','transferhistory','hex','ping','editsnipe','snipe','reactionsnipe'
-            ].includes(n)) return 'utility';
-
-            if ([
-                'hug','kiss','slap','love','laugh','juul','roleplay','headbang',
-                'handhold','smile','mad','happy','evillaugh','nuzzle','nom','nervous','lick','facepalm'
-            ].includes(n)) return 'fun';
-
-            if ([
-                'settings','setup','autorole','welcome','goodbye','ticket',
-                'reactionrole','buttonrole','voicemaster','starboard','bumpreminder',
-                'autoresponder','bots','whitelist','roles','role','roleall','rolehumans',
-                'stickyrole','stickymessage','enablecommand','disablecommand','forcenickname','serveravatar','serverbanner','customize','embedcopy','webhook','createembed','config'
-            ].includes(n)) return 'config';
-
-            return 'other';
+        // --- Minimalistic commands loader ---
+        // Starfield generator
+        function drawStars(canvas, numStars) {
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width = window.innerWidth;
+            const h = canvas.height = window.innerHeight;
+            ctx.clearRect(0,0,w,h);
+            for (let i=0; i<numStars; i++) {
+                const x = Math.random()*w;
+                const y = Math.random()*h;
+                const r = 0.45 + Math.random()*1.1;
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, 2*Math.PI, false);
+                ctx.fillStyle = 'rgba(255,255,255,' + (0.3 + Math.random()*0.8) + ')';
+                ctx.shadowColor = "#fff";
+                ctx.shadowBlur = 3 + Math.random()*10;
+                ctx.fill();
+            }
+        }
+        // Set up main page starfield
+        function setupMainStarsBg() {
+            var starsBg = document.getElementById('mainStarsBg');
+            if (!starsBg) return;
+            // Only add canvas if necessary
+            if (!starsBg.querySelector('canvas')) {
+                const canvas = document.createElement('canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                starsBg.appendChild(canvas);
+            }
+            const canvas = starsBg.querySelector('canvas');
+            drawStars(canvas, Math.floor(66 + Math.random()*28));
         }
 
-        // Nice readable description for commands (key: description; update with your commands as needed)
-        const commandDescriptions = {
-            "afkmentions": "Toggle or configure AFK mention detection.",
-            "alias": "Manage command aliases.",
-            "antiraid": "Configure or toggle anti-raid features.",
-            "antighostping": "Anti-ghost ping protection and logging.",
-            "antinuke": "Anti-nuke server security.",
-            "autoresponder": "Custom autoresponder (bot messages).",
-            "autorole": "Auto-assign roles to new users.",
-            "avatar": "Display a user's avatar.",
-            "avatarhistory": "Show previous avatars of a user.",
-            "badge": "Manage or display user badges.",
-            "ban": "Ban a user from the server.",
-            "birthday": "Set or view a member's birthday.",
-            "blackjack": "Blackjack game.",
-            "booster": "See info about server boosters.",
-            "bots": "List bots and bot management.",
-            "bumpreminder": "Set up bump reminders.",
-            "buttonrole": "Button-based role assignment.",
-            "choose": "Randomly pick one of your options.",
-            "config": "Manage bot configs.",
-            "createembed": "Make quick embeds.",
-            "customize": "Server customization commands.",
-            "disablecommand": "Disable a command in your server.",
-            "editsnipe": "Snipe edited message.",
-            "embedcopy": "Copy embeds from other messages.",
-            "enablecommand": "Re-enable a previously disabled command.",
-            "evillaugh": "Send an evil laugh RP.",
-            "facepalm": "Send a facepalm RP.",
-            "filter": "Word filter setup.",
-            "forcenickname": "Force set a member's nick.",
-            "fun": "View fun commands.",
-            "give": "Give currency to another user.",
-            "giveaways": "Giveaway system & controls.",
-            "goodbye": "Setup goodbye message.",
-            "handhold": "Handhold another user (RP/fun).",
-            "hardban": "Ban - also remove all messages.",
-            "happy": "Send happy RP.",
-            "headbang": "Send a headbang RP.",
-            "hex": "Show color hex info.",
-            "hide": "Hide a channel.",
-            "history": "View recent server logs/history.",
-            "hug": "Send a virtual hug.",
-            "ignore": "Ignore a user/channel.",
-            "imute": "Instant mute a user.",
-            "imgonly": "Only allow images in a channel.",
-            "inrole": "List members in a role.",
-            "inviteinfo": "Show information about an invite.",
-            "iunmute": "Instantly unmute a user.",
-            "jail": "Restrict a member (jail).",
-            "juul": "Time for a virtual juul (fun).",
-            "kick": "Kick a member.",
-            "kiss": "Send a kiss RP/fun.",
-            "laugh": "Send a laughing RP/fun.",
-            "leaderboard": "Leaderboard for XP, balance, etc.",
-            "leveling": "Manage leveling options.",
-            "lick": "Lick RP/fun command.",
-            "lock": "Lock the current channel.",
-            "love": "Express love (fun/RP).",
-            "mad": "Mad RP/fun.",
-            "mute": "Mute a user.",
-            "nervous": "Send a nervous RP.",
-            "nsr": "No self-roles, configuration.",
-            "nuke": "Delete all and recreate a channel.",
-            "nom": "Send a nom RP/action.",
-            "nuzzle": "Nuzzle RP/fun.",
-            "other": "Miscellaneous commands.",
-            "ping": "Show bot latency.",
-            "prefix": "View or set server command prefix.",
-            "quote": "Random or quoted message.",
-            "reaction": "React to a message.",
-            "reactionrole": "Set up reaction roles.",
-            "reactionsnipe": "Snipe the last reaction.",
-            "remind": "Set a reminder.",
-            "restrictcommand": "Restrict a command(s) to some roles.",
-            "rmute": "Remove mute from a user.",
-            "role": "Role management.",
-            "roleall": "Add role to everyone.",
-            "rolehumans": "Add role to all humans.",
-            "roleicon": "Role icon controls.",
-            "roleplay": "Fun RP command.",
-            "runmute": "Remove unmute.",
-            "seen": "See when a user was last seen.",
-            "serveravatar": "Get the server avatar.",
-            "serverbanner": "Show server banner.",
-            "serverinfo": "Show server info.",
-            "settings": "Configure bot/server settings.",
-            "setup": "Setup the bot ('wizard').",
-            "slap": "Slap (RP/fun).",
-            "smile": "Smile RP/fun.",
-            "snipe": "Snipe the last deleted message.",
-            "starboard": "Starboard setup & moderation.",
-            "steal": "Steal emojis or images.",
-            "stickyrole": "Persist user roles.",
-            "stickymessage": "Sticky message setup.",
-            "tags": "Tag system.",
-            "ticket": "Server ticketing system.",
-            "timer": "Set a simple timer.",
-            "timezone": "User or server timezone setup.",
-            "topcommands": "Show top-used commands.",
-            "transferhistory": "Currency transfer history.",
-            "unban": "Unban a member.",
-            "unhide": "Show a hidden channel.",
-            "unjail": "Remove from jail.",
-            "unlock": "Unlock the channel.",
-            "userinfo": "Show user info.",
-            "utility": "Utility commands overview.",
-            "vanity": "Manage vanity urls/settings.",
-            "voicemaster": "Voice master features.",
-            "webhook": "Webhook controls.",
-            "welcome": "Welcome message setup.",
-            "whitelist": "Whitelist users/roles.",
-            "withdraw": "Withdraw currency from your account."
-        };
-
-        // Arguments and Permissions stub for example/known commands
-        const commandArguments = {
-            "ban": "<user> [reason]",
-            "mute": "<user> [duration]",
-            "unban": "<user>",
-            "kick": "<user> [reason]",
-            "userinfo": "[user]",
-            "serverinfo": "none",
-            "balance": "none",
-            "give": "<user> <amount>",
-            "avatar": "[user]",
-            "ping": "none",
-            "jail": "<user> [duration]",
-            "hug": "[user]",
-            "slap": "<user>",
-            "nuke": "none",
-            "help": "[command]",
-            "lock": "[channel]",
-            "unlock": "[channel]",
-            "inviteinfo": "[invite]",
-            "settings": "[option]",
-            "withdraw": "<amount>",
-            "remind": "<time> <reminder>",
-            "giveaways": "[start/end/list]",
-            "reactionrole": "<role> <emoji>",
-            "setup": "none",
-            "autorole": "<role>",
-            "role": "<user> <role>",
-            "tickets": "[open/close]",
-            "balance": "none",
-            "leaderboard": "none"
-            // ...You can add more argument help as needed.
-        };
-        const commandPermissions = {
-            "ban": "Ban Members",
-            "mute": "Mute Members",
-            "unban": "Ban Members",
-            "kick": "Kick Members",
-            "userinfo": "none",
-            "serverinfo": "none",
-            "balance": "none",
-            "give": "none",
-            "avatar": "none",
-            "ping": "none",
-            "jail": "Manage Roles",
-            "hug": "none",
-            "slap": "none",
-            "nuke": "Manage Channels",
-            "help": "none",
-            "lock": "Manage Channels",
-            "unlock": "Manage Channels",
-            "inviteinfo": "none",
-            "settings": "Manage Server",
-            "withdraw": "none",
-            "remind": "none",
-            "giveaways": "Manage Guild",
-            "reactionrole": "Manage Roles",
-            "setup": "Manage Server",
-            "autorole": "Manage Roles",
-            "role": "Manage Roles",
-            "ticket": "Manage Channels",
-            "leaderboard": "none"
-            // ...You can add more as needed.
-        };
-
-        // Convert command files into objects with details, then sort alphabetically by name
-        const commandsData = commandFiles.map(name => {
-            const category = guessCategory(name);
-            return {
-                name,
-                category,
-                description: commandDescriptions[name] || ("No description yet."),
-                arguments: commandArguments[name] || "none",
-                permissions: commandPermissions[name] || "none"
-            };
+        // Set up commands loader overlay starfield
+        function setupStarsBg() {
+            const commandsStarsBg = document.getElementById('commandsStarsBg');
+            if (!commandsStarsBg) return;
+            if (!commandsStarsBg.querySelector('canvas')) {
+                const canvas = document.createElement('canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                commandsStarsBg.appendChild(canvas);
+            }
+            const canvas = commandsStarsBg.querySelector('canvas');
+            drawStars(canvas, Math.floor(56 + Math.random() * 24));
+        }
+        // Responsive redraw for main starfield
+        window.addEventListener('resize', function(){
+            var starsBg = document.getElementById('mainStarsBg');
+            var canvas = starsBg && starsBg.querySelector('canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                drawStars(canvas, Math.floor(66 + Math.random()*28));
+            }
+            // also update command loader starfield (existing logic)
+            const commandsStarsBg = document.getElementById('commandsStarsBg');
+            const commandsCanvas = commandsStarsBg && commandsStarsBg.querySelector('canvas');
+            if (commandsCanvas) {
+                commandsCanvas.width = window.innerWidth;
+                commandsCanvas.height = window.innerHeight;
+                drawStars(commandsCanvas, Math.floor(56 + Math.random()*24));
+            }
         });
 
-        function initializeCommandsPage() {
-            const commandsGrid = document.getElementById('commandsGrid');
-            const commandCount = document.getElementById('commandCount');
-            const searchInput = document.getElementById('commandSearch');
-            const categoryFilter = document.getElementById('categoryFilter');
-            const searchClear = document.getElementById('searchClear');
-            const clearFilters = document.getElementById('clearFilters');
-            const modalContainer = document.getElementById('commandDetailsModalContainer');
-
-            let currentSearch = "";
-            let currentCategory = "all";
-            let currentCommands = [...commandsData];
-
-            function updateClearButton() {
-                const hasFilters = currentSearch.length > 0 || currentCategory !== 'all';
-                clearFilters.disabled = !hasFilters;
-                searchClear.classList.toggle('visible', currentSearch.length > 0);
-            }
-
-            function renderCommands() {
-                commandsGrid.innerHTML = "";
-                commandCount.textContent = `Showing ${currentCommands.length} command${currentCommands.length === 1 ? "" : "s"}`;
-                if (currentCommands.length === 0) {
-                    const noResults = document.createElement('div');
-                    noResults.style.cssText = `
-                        grid-column: 1 / -1;
-                        text-align: center;
-                        padding: 40px 20px;
-                        color: rgba(255, 255, 255, 0.65);
-                        filter: grayscale(1);
-                    `;
-                    noResults.innerHTML = `
-                        <i class="fas fa-search" style="font-size: 2.4rem; margin-bottom: 14px; opacity: 0.35; filter: grayscale(1);"></i>
-                        <div>No commands match your search.</div>
-                    `;
-                    commandsGrid.appendChild(noResults);
-                    return;
-                }
-
-                // Sort currentCommands alphabetically before rendering
-                const sortedCommands = [...currentCommands].sort((a, b) => a.name.localeCompare(b.name));
-
-                sortedCommands.forEach(cmd => {
-                    const card = document.createElement('div');
-                    card.className = 'command-card';
-                    card.dataset.category = cmd.category;
-                    card.innerHTML = `
-                        <div class="command-category-pill">${cmd.category}</div>
-                        <div class="command-name">${cmd.name}</div>
-                    `;
-                    card.addEventListener('click', () => showCommandModal(cmd));
-                    commandsGrid.appendChild(card);
-                });
-            }
-
-            function applyFilters() {
-                currentSearch = searchInput.value.toLowerCase().trim();
-                currentCategory = categoryFilter.value;
-
-                currentCommands = commandsData.filter(cmd => {
-                    const matchesText =
-                        cmd.name.toLowerCase().includes(currentSearch) ||
-                        (cmd.description && cmd.description.toLowerCase().includes(currentSearch));
-                    const matchesCategory =
-                        currentCategory === 'all' || cmd.category === currentCategory;
-                    return matchesText && matchesCategory;
-                });
-
-                updateClearButton();
-                renderCommands();
-            }
-
-            function clearAllFilters() {
-                searchInput.value = "";
-                categoryFilter.value = "all";
-                currentSearch = "";
-                currentCategory = "all";
-                applyFilters();
-            }
-
-            function clearSearch() {
-                searchInput.value = "";
-                currentSearch = "";
-                applyFilters();
-            }
-
-            searchInput.addEventListener('input', applyFilters);
-            categoryFilter.addEventListener('change', applyFilters);
-            clearFilters.addEventListener('click', clearAllFilters);
-            searchClear.addEventListener('click', clearSearch);
-
-            searchInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    clearSearch();
-                }
+        // Initialize main stars background on load and soon after DOMContentLoaded
+        if (document.readyState !== 'loading') {
+            setupMainStarsBg();
+        } else {
+            document.addEventListener('DOMContentLoaded', function(){
+                setupMainStarsBg();
             });
-
-            // Animate dropdown when it opens on click (force add .open)
-            categoryFilter.addEventListener('mousedown', function() {
-                categoryFilter.classList.add('open');
-                setTimeout(() => categoryFilter.classList.remove('open'), 400);
-            });
-
-            // Modal rendering
-            let modalOpen = false;
-            function showCommandModal(cmd) {
-                // Remove previous modal if present
-                modalContainer.innerHTML = '';
-
-                const argVal = cmd.arguments;
-                const permVal = cmd.permissions;
-                const cmdTextToCopy = `/${cmd.name}`;
-
-                const modalBg = document.createElement('div');
-                modalBg.className = 'command-details-modal-bg';
-                modalBg.tabIndex = -1;
-
-                const modal = document.createElement('div');
-                modal.className = 'command-details-modal';
-
-                modal.innerHTML = `
-                    <button class="cmd-close-btn" title="Close (Esc)"><i class="fas fa-times"></i></button>
-                    <div class="cmd-title-row">
-                        <span class="cmd-title">${cmd.name}</span>
-                        <button class="cmd-copy-btn" id="cmdCopyBtn" title="Copy command">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <div class="cmd-desc">${cmd.description}</div>
-                    <div class="cmd-section">
-                        <div class="cmd-label">Arguments</div>
-                        <span class="cmd-value">${argVal}</span>
-                    </div>
-                    <div class="cmd-section">
-                        <div class="cmd-label">Permissions</div>
-                        <span class="cmd-value">${permVal}</span>
-                    </div>
-                `;
-                modalBg.appendChild(modal);
-
-                // Effects
-                function doModalClose() {
-                    if (!modalOpen) return;
-                    modalOpen = false;
-                    modalBg.remove();
-                    window.removeEventListener('keydown', modalKeyHandler);
-                }
-                function modalKeyHandler(e) {
-                    if (e.key === "Escape") {
-                        doModalClose();
-                    }
-                }
-
-                modal.querySelector('.cmd-close-btn').onclick = doModalClose;
-                modalBg.onclick = function(e) {
-                    if (e.target === modalBg) doModalClose();
-                };
-                window.addEventListener('keydown', modalKeyHandler);
-
-                modal.querySelector('#cmdCopyBtn').onclick = function() {
-                    navigator.clipboard.writeText(cmdTextToCopy).then(() => {
-                        const btn = modal.querySelector('#cmdCopyBtn');
-                        btn.innerHTML = '<i class="fas fa-check"></i>';
-                        btn.title = "Copied!";
-                        setTimeout(() => {
-                            btn.innerHTML = '<i class="fas fa-copy"></i>';
-                            btn.title = "Copy command";
-                        }, 1200);
-                    });
-                };
-
-                modalContainer.appendChild(modalBg);
-                modalOpen = true;
-            }
-
-            applyFilters();
         }
 
-        window.addEventListener('DOMContentLoaded', initializeCommandsPage);
+        // Progress bar animation
+        function animateProgressBar(elem, cb) {
+            if (!elem) return;
+            elem.style.width = '0%';
+            // Fast-in
+            setTimeout(()=>elem.style.width='70%', 32);
+            setTimeout(()=>elem.style.width='87%', 360);
+            setTimeout(()=>elem.style.width='100%', 720);
+            setTimeout(cb, 850);
+        }
+
+        // Loader show then redirect logic
+        function showCommandsLoaderAndGo(url) {
+            var overlay = document.getElementById('commandsLoading');
+            var bar = document.getElementById('commandsProgressBar');
+            overlay.classList.add('active');
+            setupStarsBg();
+            if (bar) {
+                bar.style.width = '0%';
+                // Animate
+                animateProgressBar(bar, function() {
+                    window.location.href = url;
+                });
+            } else {
+                // Fallback
+                setTimeout(function(){window.location.href=url;}, 900);
+            }
+        }
+
+        // Navigation Events for loader activation
+        function attachCommandsLoaderHandler(selector, link) {
+            var sel = document.getElementById(selector);
+            if (sel) {
+                sel.addEventListener('click', function(e){
+                    // Only left click, no ctrl/cmd, no new tab
+                    if (
+                        e.button === 0 &&
+                        !(e.metaKey || e.ctrlKey || e.altKey || e.shiftKey)
+                    ) {
+                        e.preventDefault();
+                        showCommandsLoaderAndGo(link);
+                    }
+                });
+            }
+        }
+
+        // Attach to navigation (desktop + mobile) and homepage hero buttons
+        attachCommandsLoaderHandler('navCommands', 'commands.html');
+        attachCommandsLoaderHandler('navCommandsMobile', 'commands.html');
+        attachCommandsLoaderHandler('mainCommandsBtn', 'commands.html');
     </script>
 </body>
 </html>
