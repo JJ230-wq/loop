@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loop - Discord's Premier All-in-One App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #000000;
@@ -29,7 +29,7 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             font-weight: 300;
             letter-spacing: 0.01em;
             color: var(--text-main);
@@ -101,7 +101,7 @@
         .page-container {
             max-width: 1120px;
             margin: 0 auto;
-            padding: 96px 24px 64px;
+            padding: 112px 24px 64px;
             width: 100%;
         }
 
@@ -238,70 +238,81 @@
             border-radius: 3px;
         }
 
-        /* Floating Bar */
-        .floating-navbar-outer {
-            width: 100%;
+        /* Top navigation bar (matches commands page) */
+        .site-bar {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1120px, calc(100% - 32px));
+            padding: 10px 20px;
+            box-sizing: border-box;
             display: flex;
-            justify-content: center;
             align-items: center;
-            position: relative;
+            justify-content: center;
             z-index: 21;
-            pointer-events: none;
-            margin-bottom: 48px;
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-        .floating-navbar {
-            max-width: 420px;
-            width: min(80vw, 420px);
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            -webkit-backdrop-filter: blur(var(--floatbar-blur));
-            backdrop-filter: blur(var(--floatbar-blur));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px 12px;
-            gap: 8px;
-            min-height: 40px;
-            pointer-events: auto;
-            transition: border-color 0.3s ease, background 0.3s ease;
-        }
-        .floating-navbar:hover {
-            border-color: var(--border-strong);
-            background: rgba(0, 0, 0, 0.6);
-        }
-        .floating-navbar .nav-logo-image {
-            display: none;
-        }
-        .floating-navbar .nav-links {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            justify-content: center;
-        }
-        .floating-navbar .nav-links a {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            font-weight: 300;
-            text-decoration: none;
-            padding: 6px 14px;
-            border-radius: 999px;
-            transition: all 0.2s ease;
-            border: none;
-            display: flex;
-            align-items: center;
-            letter-spacing: 0.03em;
-        }
-        .floating-navbar .nav-links a:hover,
-        .floating-navbar .nav-links a:focus-visible {
-            background: rgba(255,255,255,0.06);
-            color: #ffffff;
         }
 
-        /* Hide non-floating navbar on desktop */
-        .navbar {
-            display: none !important;
+        .site-bar-inner {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10, 10, 12, 0.92);
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 8px 18px;
+            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
+        }
+
+        .site-bar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-bar-logo {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            object-fit: cover;
+            filter: grayscale(1) brightness(1.15);
+        }
+
+        .site-bar-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .site-bar-nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .site-bar-link {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 999px;
+            transition: color 0.18s ease, background-color 0.18s ease;
+        }
+
+        .site-bar-link:hover,
+        .site-bar-link:focus-visible {
+            color: var(--text-main);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .site-bar-link.is-active {
+            color: var(--text-main);
+            background: rgba(255,255,255,0.10);
         }
 
         /* Hero */
@@ -527,57 +538,42 @@
             text-decoration: underline;
         }
 
-        /* Responsive Styles for floating bar */
-        @media (max-width: 800px) {
-            .floating-navbar {
-                flex-direction: row;
-                gap: 13px;
-                padding: 7px 12px 7px 8px;
-                min-height: 49px;
-            }
-            .floating-navbar .nav-logo-image {
-                width: 30px;
-                height: 30px;
-                margin-right: 6px;
-            }
-            .floating-navbar .nav-links a {
-                font-size: 0.92rem;
-                padding: 6px 10px;
-            }
-        }
+        /* Simple mobile tweaks */
         @media (max-width: 640px) {
-            .floating-nav-container {
-                margin-top: 11px;
-                margin-bottom: 18px;
+            .site-bar {
+                width: calc(100% - 20px);
+                padding-inline: 10px;
             }
-            .floating-navbar {
-                padding: 5px 2vw 5px 6px;
-                gap: 10px;
-                min-height: 44px;
+            .site-bar-inner {
+                padding-inline: 12px;
             }
-            .floating-navbar .nav-links {
-                gap: 7px;
+            .site-bar-nav {
+                gap: 12px;
             }
-            .floating-navbar .nav-logo-image {
-                width: 24px;
-                height: 24px;
-            }
-        }
-        /* Show legacy sticky nav on small screens if you want: */
-        @media (max-width: 500px) {
-            .floating-nav-container,
-            .floating-nav-outer,
-            .floating-navbar {
-                display: none !important;
-            }
-            .navbar {
-                display: block !important;
+            .site-bar-link {
+                font-size: 0.85rem;
+                padding-inline: 8px;
             }
         }
     </style>
 <base target="_blank">
 </head>
 <body>
+    <!-- Top navigation bar -->
+    <header class="site-bar">
+        <div class="site-bar-inner">
+            <div class="site-bar-brand">
+                <img src="assets/loop-logo.png" alt="Loop logo" class="site-bar-logo">
+                <span class="site-bar-name">Loop</span>
+            </div>
+            <nav class="site-bar-nav">
+                <a href="index.html" class="site-bar-link is-active">Home</a>
+                <a href="commands.html" class="site-bar-link">Commands</a>
+                <a href="https://discord.gg/UdFTPjhETq" class="site-bar-link" target="_blank" rel="noopener noreferrer">Support</a>
+            </nav>
+        </div>
+    </header>
+
     <!-- Add blurred gradient starlight background -->
     <div class="body-starlight-bg" aria-hidden="true"></div>
     <div class="main-stars-bg" id="mainStarsBg"></div>
@@ -597,32 +593,6 @@
     </div>
 
     <div class="site-content">
-        <!-- FLOATING NAVBAR (centered round bar) -->
-        <nav class="floating-navbar" aria-label="Main floating navigation">
-            <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
-            <div class="nav-links">
-                <!-- The following 'a' elements are hyperlinks labeled by their contents -->
-                <a href="#features">Features</a>
-                <a href="commands.html" id="navCommands">Commands</a>
-                <a href="premium.html" id="navPremium">Premium</a>
-                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
-            </div>
-        </nav>
-        <!-- Fallback legacy sticky nav for mobile (hidden on desktop by media query) -->
-        <header class="navbar">
-            <div class="navbar-inner">
-                <div class="nav-logo-combined">
-                    <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
-                </div>
-                <nav class="nav-links">
-                    <a href="#features">Features</a>
-                    <a href="commands.html" id="navCommandsMobile">Commands</a>
-                    <a href="premium.html" id="navPremiumMobile">Premium</a>
-                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
-                </nav>
-            </div>
-        </header>
-
         <main class="page-container">
             <section class="hero" id="top">
                 <div class="hero-inner">
