@@ -8,12 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #ffffff;
-            --text-main: #111111;
-            --text-muted: #666666;
-            --border-soft: #e0e0e0;
-            --border-strong: #cccccc;
-            --nav-bg: rgba(255, 255, 255, 0.9);
+            --bg: #050507;
+            --text-main: #f5f5f7;
+            --text-muted: #a0a3ad;
+            --border-soft: #202128;
+            --border-strong: #353743;
+            --nav-bg: rgba(5, 5, 7, 0.9);
             --hero-max-width: 900px;
             --radius: 10px;
         }
@@ -167,25 +167,25 @@
         }
 
         .btn-primary {
-            background: #111111;
-            color: #ffffff;
-            border: 1px solid #111111;
+            background: #f5f5f7;
+            color: #050507;
+            border: 1px solid #f5f5f7;
         }
 
         .btn-secondary {
             background: transparent;
-            color: #111111;
+            color: var(--text-main);
             border: 1px solid var(--border-strong);
         }
 
         .btn-primary:hover,
         .btn-primary:focus-visible {
-            background: #000000;
+            background: #e2e2e7;
         }
 
         .btn-secondary:hover,
         .btn-secondary:focus-visible {
-            border-color: #999999;
+            border-color: #5a5d6b;
         }
 
         /* Sections */
@@ -222,7 +222,7 @@
         }
 
         .feature-card {
-            background: #ffffff;
+            background: #0e0f13;
             border-radius: var(--radius);
             border: 1px solid var(--border-soft);
             padding: 18px 18px 16px;
@@ -233,7 +233,7 @@
 
         .feature-icon {
             font-size: 1rem;
-            color: #111111;
+            color: #f5f5f7;
         }
 
         .feature-title {
@@ -249,7 +249,7 @@
         .feature-card:hover,
         .feature-card:focus-within {
             border-color: var(--border-strong);
-            background: #f6f6f6;
+            background: #15161d;
         }
 
         /* Stats */
@@ -325,7 +325,7 @@
         .commands-list td {
             padding: 8px 6px;
             text-align: left;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-soft);
         }
 
         .commands-list th {
