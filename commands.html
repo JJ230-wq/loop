@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loop Bot Commands</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #000000;
@@ -20,9 +20,11 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-weight: 300;
             color: var(--text-main);
-            background: none !important; /* remove default background, starfield will be in #mainStarsBg */
+            background: none !important;
+            letter-spacing: 0.01em;
         }
 
         body {
@@ -33,6 +35,22 @@
             box-sizing: border-box;
             position: relative;
             min-height: 100vh;
+        }
+
+        /* Starlight background gradient - monochrome */
+        .body-starlight-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            /* Monochrome starlight gradient */
+            background: 
+                radial-gradient(ellipse 120% 70% at 60% 10%, rgba(80,80,80,0.12), rgba(120,120,120,0.08) 33%, rgba(60,60,60,0.10) 69%, rgba(0,0,0,0.70), rgba(0,0,0,0.95) 100%),
+                #050505;
+            filter: blur(0.8px) saturate(0);
         }
 
         /* Starfield main background (as in main site & loading) */
@@ -76,15 +94,12 @@
         .commands-page {
             width: 100%;
             max-width: 1100px;
-            background: rgba(12, 12, 14, 0.66);
+            background: transparent;
             border-radius: var(--radius);
             padding: 26px 22px 28px;
-            border: 1px solid var(--border-soft);
+            border: none;
             position: relative;
             z-index: 2;
-            box-shadow: 0 3px 18px 2px rgba(0,0,0,.24), 0 1.5px 0 rgba(255,255,255,0.015) inset;
-            -webkit-backdrop-filter: blur(7px);
-            backdrop-filter: blur(7px);
         }
 
         .page-header {
@@ -95,16 +110,17 @@
         }
 
         .page-title {
-            font-size: 1.7rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
+            font-size: 2rem;
+            font-weight: 200;
+            letter-spacing: -0.02em;
             margin: 0;
         }
 
         .back-link {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            font-weight: 300;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -118,7 +134,8 @@
         .commands-header {
             margin: 10px 0 18px;
             color: var(--text-muted);
-            font-size: 0.98rem;
+            font-size: 0.92rem;
+            font-weight: 300;
         }
 
         .commands-controls {
@@ -133,7 +150,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid var(--border-soft);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             padding: 4px 0 4px 24px;
         }
 
@@ -142,8 +159,10 @@
             border: none;
             outline: none;
             color: var(--text-main);
-            font-size: 0.98rem;
+            font-size: 0.9rem;
+            font-weight: 300;
             width: 190px;
+            letter-spacing: 0.01em;
         }
 
         .search-icon {
@@ -170,7 +189,8 @@
 
         .command-count {
             margin: 6px 0 12px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            font-weight: 300;
             color: var(--text-muted);
         }
 
@@ -181,16 +201,18 @@
         }
 
         .command-card {
-            background: rgba(22,22,22,0.46);
+            background: rgba(22,22,22,0.35);
             border-radius: var(--radius);
             padding: 12px 14px 11px;
             cursor: pointer;
-            transition: border-color 0.16s, background 0.16s, box-shadow .16s;
-            border: 1.2px solid #232324;
-            box-shadow: 0 1px 8px 0 rgba(0,0,0,0.07);
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.08);
             color: #dee0e5;
-            /* force grayscale + fully monochrome look */
             filter: grayscale(1);
+        }
+        .command-card:hover {
+            background: rgba(22,22,22,0.5);
+            border-color: rgba(255,255,255,0.15);
         }
         .command-card:hover,
         .command-card:focus-visible {
@@ -205,23 +227,22 @@
             align-items: center;
             padding: 3px 10px;
             border-radius: 999px;
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.11em;
+            letter-spacing: 0.12em;
             color: #acacb6;
-            background: rgba(40,40,40,0.43);
+            background: rgba(40,40,40,0.35);
             margin-bottom: 4px;
-            /* monochrome & desaturated */
             filter: grayscale(1) brightness(0.95) contrast(0.93);
         }
 
         .command-name {
-            /* monochrome headline */
-            font-size: 1.14rem;
-            font-weight: 600;
+            font-size: 1.05rem;
+            font-weight: 300;
             color: #e5e5e5 !important;
             margin-bottom: 2px;
             filter: grayscale(1);
+            letter-spacing: 0.01em;
         }
 
         .command-details-modal-bg {
@@ -331,20 +352,21 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background: #18181c;
+            background: rgba(24,24,28,0.6);
             color: var(--text-main);
-            border: 1px solid var(--border-soft);
+            border: 1px solid rgba(255,255,255,0.08);
             outline: none;
             font-family: inherit;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 300;
             padding: 0.6em 2em 0.6em 1.25em;
             border-radius: 1.1em;
             margin-right: 8px;
-            transition: border-color 0.17s, background 0.18s;
+            transition: all 0.2s ease;
             position: relative;
             cursor: pointer;
             filter: grayscale(1);
+            letter-spacing: 0.01em;
         }
         .category-filter:hover, .category-filter:focus {
             border-color: var(--border-strong);
@@ -392,13 +414,13 @@
             padding: 0.5em 1.3em;
             background: transparent;
             color: #979797;
-            border: 1px solid var(--border-soft);
+            border: 1px solid rgba(255,255,255,0.08);
             outline: none;
             margin-left: 4px;
-            transition: background 0.17s, color .14s;
+            transition: all 0.2s ease;
             font-family: inherit;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 300;
             opacity: .88;
             filter: grayscale(1);
         }
@@ -411,9 +433,56 @@
             opacity: 0.55;
             cursor: default;
         }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .commands-page {
+            animation: fadeInUp 0.8s 0.15s both;
+        }
+
+        .page-header {
+            animation: slideDown 0.6s 0.1s both;
+        }
+
+        .command-card {
+            animation: scaleIn 0.5s both;
+        }
     </style>
+<base target="_blank">
 </head>
 <body>
+    <!-- Monochrome starlight background -->
+    <div class="body-starlight-bg" aria-hidden="true"></div>
     <div class="main-stars-bg" id="mainStarsBg"></div>
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-mark">Loading Loop</div>
@@ -421,7 +490,10 @@
 
     <div class="commands-page">
         <div class="page-header">
-            <h1 class="page-title">Loop Commands</h1>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="loop-logo.png" alt="Loop logo" style="width: 32px; height: 32px; filter: grayscale(1) brightness(1.2);">
+                <h1 class="page-title">Loop Commands</h1>
+            </div>
             <a href="index.html" class="back-link">
                 <i class="fas fa-arrow-left"></i> Back to main page
             </a>
