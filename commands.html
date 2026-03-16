@@ -7,435 +7,108 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background: #000;
-            color: #fff;
-            min-height: 100vh;
-        }
-        .commands-page {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px 80px;
-        }
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            background: linear-gradient(135deg, #fff, #ccc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .back-link {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.95rem;
-            padding: 8px 14px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.2s ease;
-        }
-        .back-link:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.12);
-        }
+        /* ... your existing styles ... */
 
-        .commands-header {
-            text-align: left;
-            margin-bottom: 30px;
-        }
-        .commands-header p {
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 300;
-        }
-
-        .commands-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        /* Custom Modern Select Styles */
         .filter-group {
             display: flex;
             align-items: center;
-            gap: 15px;
-            position: relative;
         }
-        .clear-filters {
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .clear-filters:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-        .clear-filters:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .search-container {
-            position: relative;
-            flex: 1;
-            max-width: 400px;
-        }
-        .search-input {
-            width: 100%;
-            padding: 12px 16px 12px 45px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 25px;
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .search-input:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
-        }
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .search-clear {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0;
-            pointer-events: none;
-        }
-        .search-clear.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .search-clear:hover {
-            color: #fff;
-        }
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.1rem;
-        }
-
-        /* --- ANIMATED FILTER DROPDOWN --- */
-        .filter-group {
-            position: relative; /* set up for dropdown shadow/highlight layer */
-        }
-
         .category-filter {
-            position: relative;
-            padding: 12px 20px;
-            background: radial-gradient(circle at top left, rgba(255,255,255,0.16), rgba(255,255,255,0.02));
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px !important;
-            color: #fff;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 300;
-            cursor: pointer;
-            min-width: 170px;
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            background-size: 14px;
-            padding-right: 42px;
-            box-shadow: 0 0 0 0 rgba(255,255,255,0.18);
-            transition:
-                border-color 0.25s,
-                background 0.4s cubic-bezier(.6,0,.7,1.1),
-                box-shadow 0.3s cubic-bezier(.66,.35,.47,.92),
-                transform 0.18s,
-                outline 0.25s;
+            background: linear-gradient(135deg, #242630 80%, #23242a 100%);
+            color: #e7e9f0;
+            border: none;
             outline: none;
-            z-index: 1;
-        }
-        .category-filter:focus,
-        .category-filter.open {
-            border-color: rgba(200, 200, 200, 0.38);
-            background: radial-gradient(circle at top left, rgba(224,224,224,0.24), rgba(255,255,255,0.10));
-            box-shadow:
-                0 4px 24px 0 rgba(180,180,180,0.09),
-                0 0 0 4px rgba(224,224,224,0.23);
-            animation: filterHighlightFade 0.35s cubic-bezier(.79,.01,.42,.97);
-            outline: none;
-        }
-
-        .category-filter:hover {
-            background: radial-gradient(circle at top left, rgba(224,224,224,0.16), rgba(255,255,255,0.03));
-            border-color: rgba(255, 255, 255, 0.30);
-            transform: translateY(-1.5px) scale(1.0125);
-            box-shadow: 0 6px 18px rgba(200, 200, 200, 0.10);
-            transition: 
-                border-color 0.23s, 
-                background 0.32s cubic-bezier(.64,.27,.77,.63), 
-                box-shadow 0.32s cubic-bezier(.41,.91,.79,.95), 
-                transform 0.19s;
-        }
-        .category-filter option {
-            background: #1a1a1a;
-            color: #fff;
-            border-radius: 13px;
-        }
-        @keyframes filterHighlightFade {
-            from {
-                background: radial-gradient(circle at top left, rgba(224,224,224,0.00), rgba(255,255,255,0.00));
-                box-shadow: 0 0 0 0 rgba(224,224,224,0);
-            }
-            to {
-                background: radial-gradient(circle at top left, rgba(224,224,224,0.24), rgba(255,255,255,0.10));
-                box-shadow:
-                    0 4px 24px 0 rgba(180,180,180,0.09),
-                    0 0 0 4px rgba(224,224,224,0.23);
-            }
-        }
-        select.category-filter:focus::-ms-value {
-            background: rgba(224,224,224,0.22);
-            color: #222;
-            border-radius: 14px;
-        }
-        select.category-filter:focus-visible {
-            outline: none;
-            box-shadow: none;
-        }
-        select.category-filter:focus:not(:hover),
-        select.category-filter:active:not(:hover) {
-            animation: filterHighlightFade 0.38s cubic-bezier(.79,.01,.42,.97);
-        }
-        .category-filter:not(:focus):not(:hover) {
-            transition: background 0.32s cubic-bezier(.64,.27,.77,.63);
-        }
-
-        .command-count {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-        .commands-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 16px;
-        }
-        /* --- Command Card for List View --- */
-        .command-card {
-            background: rgba(255, 255, 255, 0.005);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
-            padding: 18px 16px;
-            transition: all 0.2s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.6em 2em 0.6em 1.25em;
+            border-radius: 1.1em;
+            margin-right: 8px;
+            box-shadow: 0 2px 8px 0 rgba(24,28,37,0.1), 0 1.5px 0.5px 0 rgba(44,44,59,0.05);
+            transition: box-shadow 0.17s, background 0.18s;
             position: relative;
             cursor: pointer;
         }
-        .command-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        .category-filter:hover, .category-filter:focus {
+            box-shadow: 0 3px 16px 0 rgba(24,28,37,0.16), 0 1.5px 0.6px 0 rgba(44,44,59,0.08);
+            background: linear-gradient(135deg, #282a36 80%, #292a31 100%);
         }
-        .command-card.open {
-            /* Visually distinguish the selected/open card */
-            background: rgba(216, 216, 216, 0.08);
-            border-color: rgba(224,224,224,0.18);
-            box-shadow: 0 2px 18px 0 rgba(255,255,255,0.07);
-            z-index: 10;
+        /* Hide default dropdown arrow, add custom */
+        .category-filter {
+            background-image:
+                linear-gradient(135deg, #242630 80%, #23242a 100%),
+                url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M6 8l4 4 4-4" stroke="%239C9DB4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+            background-repeat: no-repeat, no-repeat;
+            background-position: right 1em center, right 1em center;
+            background-size: 1.1em, 1.1em;
         }
-        .command-category-pill {
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            padding: 3px 8px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.24);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* --- Command Details Modal --- */
-        .command-details-modal-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 1999;
-            background: rgba(0,0,0,0.61);
-            animation: fadeInModalBg 0.22s cubic-bezier(.74,.22,.61,1.08);
-        }
-        @keyframes fadeInModalBg {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .command-details-modal {
-            position: fixed;
-            left: 50%; top: 50%;
-            transform: translate(-50%, -55%) scale(1);
-            background: rgba(30, 30, 30, 1);
-            border-radius: 20px;
-            padding: 42px 28px 30px 28px;
-            width: 97vw;
-            max-width: 410px;
-            box-shadow: 0 12px 48px 0 rgba(0,0,32,.31), 0 0px 0px 2px #222;
-            z-index: 2000;
-            animation: fadeInModal 0.23s cubic-bezier(.45,.65,.56,1.11);
-        }
-        @keyframes fadeInModal {
-            from { opacity: 0; transform: translate(-50%, -55%) scale(0.91);}
-            to { opacity: 1; transform: translate(-50%, -55%) scale(1);}
-        }
-        .cmd-title-row {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            margin-bottom: 4px;
-        }
-        .cmd-title {
-            font-size: 1.47rem;
-            font-weight: 600;
-            color: #f8f8f8;
-            letter-spacing: 0.01em;
-            word-break: break-all;
-        }
-        .cmd-copy-btn {
+        .category-filter:focus {
             outline: none;
-            border: none;
-            background: none;
-            color: #b4b4b4;
-            border-radius: 9px;
-            font-size: 1.08rem;
-            padding: 3.2px 7px 3.2px 6px;
-            cursor: pointer;
-            transition: background 0.13s, color 0.17s;
-            margin-left: 1.5px;
-            display: flex;
-            align-items: center;
         }
-        .cmd-copy-btn:active,
-        .cmd-copy-btn:focus,
-        .cmd-copy-btn:hover {
-            color: #313131;
-            background: #e0e0e0;
-        }
-        .cmd-desc {
-            color: #ededed;
-            margin-bottom: 17px;
-            font-size: 1.04rem;
-        }
-        .cmd-label {
-            font-size: 0.88rem;
-            color: #a2a2a2;
-            margin-bottom: 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .cmd-section {
-            margin-bottom: 13px;
-        }
-        .cmd-value {
-            color: #f8f8f8;
-            font-size: 1.09rem;
-            border-radius: 10px;
-            background: #19191a;
-            display: inline-block;
-            padding: 6.5px 13px;
-            margin-left: 4px;
-            font-family: inherit;
-            font-weight: 400;
-        }
-        .cmd-close-btn {
-            position: absolute;
-            top: 17px;
-            right: 17px;
-            background: none;
-            border: none;
-            color: #bebebe;
-            font-size: 1.22rem;
-            border-radius: 50%;
-            padding: 5px 7px;
-            cursor: pointer;
-            transition: background 0.19s, color 0.15s;
-        }
-        .cmd-close-btn:hover {
-            background: #2e2e2e;
-            color: #fff;
+        /* Remove outline ring in Firefox */
+        .category-filter:-moz-focusring {
+            color: #e7e9f0;
+            text-shadow: none;
         }
 
-        @media (max-width: 768px) {
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-            .commands-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .search-container {
-                max-width: none;
-            }
-            .command-details-modal {
-                padding: 27px 8vw 20px 8vw;
-                max-width: 97vw;
-            }
+        /* Custom option styling using select pseudo-classes (limited support but works in WebKit, Chrome, Edge, modern Firefox) */
+        .category-filter option {
+            background: #20222b !important;
+            color: #e1e2ed;
+            border-radius: 0 !important;
+            padding: 0.7em 1.2em !important;
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: background 0.14s, color 0.13s;
         }
-        @media (max-width: 520px) {
-            .commands-page {
-                padding: 28px 14px 56px;
-            }
-            .page-title {
-                font-size: 2rem;
-            }
-            .commands-controls {
-                gap: 14px;
-            }
-            .category-filter {
-                width: 100%;
-            }
-            .filter-group {
-                width: 100%;
-                justify-content: space-between;
-            }
-            .clear-filters {
-                padding-inline: 10px;
-            }
-            .commands-grid {
-                grid-template-columns: 1fr;
-            }
-            .command-details-modal {
-                padding: 20px 2vw 13px 2vw;
-            }
+        /* Remove ugly blue highlight & use modern background (not supported in all browsers but works in Chromium and FF ≥ 110) */
+        .category-filter option:checked,
+        .category-filter option:focus,
+        .category-filter option:hover {
+            background: #353746 !important;
+            color: #fff !important;
+        }
+
+        /* Remove blue highlight when dropdown is opened (for Chrome) */
+        .category-filter:focus-visible {
+            outline: none;
+            box-shadow: 0 2px 16px 0 rgba(36,38,55,.15), 0 1.5px 0.5px 0 rgba(30,30,44,0.09);
+        }
+
+        /* extra: increase clickable area for ease, look more modern */
+        .category-filter::-ms-expand {
+            display: none;
+        }
+
+        /* --- End custom select style additions --- */
+
+        /* (Optionally, .clear-filters styling can stay unchanged or also be refined for roundness) */
+        .clear-filters {
+            border-radius: 100px;
+            padding: 0.5em 1.3em;
+            background: #20222a;
+            color: #babacd;
+            border: none;
+            outline: none;
+            margin-left: 4px;
+            transition: background 0.17s, color .14s;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: .88;
+        }
+        .clear-filters:enabled:hover,.clear-filters:enabled:focus {
+            background: #282837;
+            color: #fff;
+            opacity: 1;
+        }
+        .clear-filters:disabled {
+            opacity: 0.55;
+            cursor: default;
         }
     </style>
 </head>
@@ -484,6 +157,124 @@
     <div id="commandDetailsModalContainer"></div>
 
     <script>
+        // This list is extracted and updated to reflect the ACTUAL contents of the "Commands" folder.
+        // Make sure this matches the commands that you have in C:\Users\n3632\Downloads\loop commands\Commands.
+        // Update this array as you add/remove files in that folder.
+        // Example: If you add or remove .js files from Commands/, update here to match.
+        const commandFiles = [
+            "afkmentions",
+            "alias",
+            "antiraid",
+            "antighostping",
+            "antinuke",
+            "autoresponder",
+            "autorole",
+            "avatar",
+            "avatarhistory",
+            "badge",
+            "ban",
+            "birthday",
+            "blackjack",
+            "booster",
+            "bots",
+            "bumpreminder",
+            "buttonrole",
+            "choose",
+            "config",
+            "createembed",
+            "customize",
+            "disablecommand",
+            "editsnipe",
+            "embedcopy",
+            "enablecommand",
+            "evillaugh",
+            "facepalm",
+            "filter",
+            "forcenickname",
+            "fun",
+            "give",
+            "giveaways",
+            "goodbye",
+            "handhold",
+            "hardban",
+            "happy",
+            "headbang",
+            "hex",
+            "hide",
+            "history",
+            "hug",
+            "ignore",
+            "imute",
+            "imgonly",
+            "inrole",
+            "inviteinfo",
+            "iunmute",
+            "jail",
+            "juul",
+            "kick",
+            "kiss",
+            "laugh",
+            "leaderboard",
+            "leveling",
+            "lick",
+            "lock",
+            "love",
+            "mad",
+            "mute",
+            "nervous",
+            "nsr",
+            "nuke",
+            "nom",
+            "nuzzle",
+            "other",
+            "ping",
+            "prefix",
+            "quote",
+            "reaction",
+            "reactionrole",
+            "reactionsnipe",
+            "remind",
+            "restrictcommand",
+            "rmute",
+            "role",
+            "roleall",
+            "rolehumans",
+            "roleicon",
+            "roleplay",
+            "runmute",
+            "seen",
+            "serveravatar",
+            "serverbanner",
+            "serverinfo",
+            "settings",
+            "setup",
+            "slap",
+            "smile",
+            "snipe",
+            "starboard",
+            "steal",
+            "stickyrole",
+            "stickymessage",
+            "ticket",
+            "tags",
+            "timer",
+            "timezone",
+            "topcommands",
+            "transferhistory",
+            "unban",
+            "unhide",
+            "unjail",
+            "unlock",
+            "userinfo",
+            "utility",
+            "vanity",
+            "voicemaster",
+            "webhook",
+            "welcome",
+            "whitelist",
+            "withdraw"
+        ];
+
         // Map commands to rough categories by name pattern
         function guessCategory(name) {
             const n = name.toLowerCase();
@@ -500,52 +291,141 @@
 
             if ([
                 'serverinfo','userinfo','avatar','avatarhistory','inviteinfo',
-                'timezone','seen','history','topcommands','transferhistory'
+                'timezone','seen','history','topcommands','transferhistory','hex','ping','editsnipe','snipe','reactionsnipe'
             ].includes(n)) return 'utility';
 
             if ([
                 'hug','kiss','slap','love','laugh','juul','roleplay','headbang',
-                'handhold','smile','mad','happy','evillaugh','nuzzle','nom','nervous'
+                'handhold','smile','mad','happy','evillaugh','nuzzle','nom','nervous','lick','facepalm'
             ].includes(n)) return 'fun';
 
             if ([
                 'settings','setup','autorole','welcome','goodbye','ticket',
                 'reactionrole','buttonrole','voicemaster','starboard','bumpreminder',
                 'autoresponder','bots','whitelist','roles','role','roleall','rolehumans',
-                'stickyrole','stickymessage','enablecommand','disablecommand'
+                'stickyrole','stickymessage','enablecommand','disablecommand','forcenickname','serveravatar','serverbanner','customize','embedcopy','webhook','createembed','config'
             ].includes(n)) return 'config';
 
             return 'other';
         }
 
-        // Nice readable description for commands (put key:end user description)
+        // Nice readable description for commands (key: description; update with your commands as needed)
         const commandDescriptions = {
-            "prefix": "View guild prefix.",
-            "ban": "Ban a user from the server.",
-            "mute": "Mute a user in the server.",
-            "unban": "Remove a ban from a user.",
-            "kick": "Remove a user from the server.",
-            "userinfo": "See information about a user.",
-            "serverinfo": "Show server information.",
-            "balance": "Check your balance.",
-            "give": "Give currency to another user.",
+            "afkmentions": "Toggle or configure AFK mention detection.",
+            "alias": "Manage command aliases.",
+            "antiraid": "Configure or toggle anti-raid features.",
+            "antighostping": "Anti-ghost ping protection and logging.",
+            "antinuke": "Anti-nuke server security.",
+            "autoresponder": "Custom autoresponder (bot messages).",
+            "autorole": "Auto-assign roles to new users.",
             "avatar": "Display a user's avatar.",
-            "ping": "Show the bot's latency.",
-            "jail": "Temporarily restrict a member.",
+            "avatarhistory": "Show previous avatars of a user.",
+            "badge": "Manage or display user badges.",
+            "ban": "Ban a user from the server.",
+            "birthday": "Set or view a member's birthday.",
+            "blackjack": "Blackjack game.",
+            "booster": "See info about server boosters.",
+            "bots": "List bots and bot management.",
+            "bumpreminder": "Set up bump reminders.",
+            "buttonrole": "Button-based role assignment.",
+            "choose": "Randomly pick one of your options.",
+            "config": "Manage bot configs.",
+            "createembed": "Make quick embeds.",
+            "customize": "Server customization commands.",
+            "disablecommand": "Disable a command in your server.",
+            "editsnipe": "Snipe edited message.",
+            "embedcopy": "Copy embeds from other messages.",
+            "enablecommand": "Re-enable a previously disabled command.",
+            "evillaugh": "Send an evil laugh RP.",
+            "facepalm": "Send a facepalm RP.",
+            "filter": "Word filter setup.",
+            "forcenickname": "Force set a member's nick.",
+            "fun": "View fun commands.",
+            "give": "Give currency to another user.",
+            "giveaways": "Giveaway system & controls.",
+            "goodbye": "Setup goodbye message.",
+            "handhold": "Handhold another user (RP/fun).",
+            "hardban": "Ban - also remove all messages.",
+            "happy": "Send happy RP.",
+            "headbang": "Send a headbang RP.",
+            "hex": "Show color hex info.",
+            "hide": "Hide a channel.",
+            "history": "View recent server logs/history.",
             "hug": "Send a virtual hug.",
-            "slap": "Slap another user (in fun!).",
-            "nuke": "Clear the current channel.",
-            "help": "Get help for commands.",
-            "lock": "Lock a channel.",
-            "unlock": "Unlock a channel.",
+            "ignore": "Ignore a user/channel.",
+            "imute": "Instant mute a user.",
+            "imgonly": "Only allow images in a channel.",
+            "inrole": "List members in a role.",
             "inviteinfo": "Show information about an invite.",
-            "settings": "Display or set server settings.",
-            // ...add more descriptions as needed
+            "iunmute": "Instantly unmute a user.",
+            "jail": "Restrict a member (jail).",
+            "juul": "Time for a virtual juul (fun).",
+            "kick": "Kick a member.",
+            "kiss": "Send a kiss RP/fun.",
+            "laugh": "Send a laughing RP/fun.",
+            "leaderboard": "Leaderboard for XP, balance, etc.",
+            "leveling": "Manage leveling options.",
+            "lick": "Lick RP/fun command.",
+            "lock": "Lock the current channel.",
+            "love": "Express love (fun/RP).",
+            "mad": "Mad RP/fun.",
+            "mute": "Mute a user.",
+            "nervous": "Send a nervous RP.",
+            "nsr": "No self-roles, configuration.",
+            "nuke": "Delete all and recreate a channel.",
+            "nom": "Send a nom RP/action.",
+            "nuzzle": "Nuzzle RP/fun.",
+            "other": "Miscellaneous commands.",
+            "ping": "Show bot latency.",
+            "prefix": "View or set server command prefix.",
+            "quote": "Random or quoted message.",
+            "reaction": "React to a message.",
+            "reactionrole": "Set up reaction roles.",
+            "reactionsnipe": "Snipe the last reaction.",
+            "remind": "Set a reminder.",
+            "restrictcommand": "Restrict a command(s) to some roles.",
+            "rmute": "Remove mute from a user.",
+            "role": "Role management.",
+            "roleall": "Add role to everyone.",
+            "rolehumans": "Add role to all humans.",
+            "roleicon": "Role icon controls.",
+            "roleplay": "Fun RP command.",
+            "runmute": "Remove unmute.",
+            "seen": "See when a user was last seen.",
+            "serveravatar": "Get the server avatar.",
+            "serverbanner": "Show server banner.",
+            "serverinfo": "Show server info.",
+            "settings": "Configure bot/server settings.",
+            "setup": "Setup the bot ('wizard').",
+            "slap": "Slap (RP/fun).",
+            "smile": "Smile RP/fun.",
+            "snipe": "Snipe the last deleted message.",
+            "starboard": "Starboard setup & moderation.",
+            "steal": "Steal emojis or images.",
+            "stickyrole": "Persist user roles.",
+            "stickymessage": "Sticky message setup.",
+            "ticket": "Server ticketing system.",
+            "tags": "Tag system.",
+            "timer": "Set a simple timer.",
+            "timezone": "User or server timezone setup.",
+            "topcommands": "Show top-used commands.",
+            "transferhistory": "Currency transfer history.",
+            "unban": "Unban a member.",
+            "unhide": "Show a hidden channel.",
+            "unjail": "Remove from jail.",
+            "unlock": "Unlock the channel.",
+            "userinfo": "Show user info.",
+            "utility": "Utility commands overview.",
+            "vanity": "Manage vanity urls/settings.",
+            "voicemaster": "Voice master features.",
+            "webhook": "Webhook controls.",
+            "welcome": "Welcome message setup.",
+            "whitelist": "Whitelist users/roles.",
+            "withdraw": "Withdraw currency from your account."
         };
 
         // Arguments and Permissions stub for example/known commands
         const commandArguments = {
-            "prefix": "none",
             "ban": "<user> [reason]",
             "mute": "<user> [duration]",
             "unban": "<user>",
@@ -565,10 +445,19 @@
             "unlock": "[channel]",
             "inviteinfo": "[invite]",
             "settings": "[option]",
-            // ...add more as above
+            "withdraw": "<amount>",
+            "remind": "<time> <reminder>",
+            "giveaways": "[start/end/list]",
+            "reactionrole": "<role> <emoji>",
+            "setup": "none",
+            "autorole": "<role>",
+            "role": "<user> <role>",
+            "tickets": "[open/close]",
+            "balance": "none",
+            "leaderboard": "none"
+            // ...You can add more argument help as needed.
         };
         const commandPermissions = {
-            "prefix": "none",
             "ban": "Ban Members",
             "mute": "Mute Members",
             "unban": "Ban Members",
@@ -588,20 +477,24 @@
             "unlock": "Manage Channels",
             "inviteinfo": "none",
             "settings": "Manage Server",
-            // ...add more as above
+            "withdraw": "none",
+            "remind": "none",
+            "giveaways": "Manage Guild",
+            "reactionrole": "Manage Roles",
+            "setup": "Manage Server",
+            "autorole": "Manage Roles",
+            "role": "Manage Roles",
+            "ticket": "Manage Channels",
+            "leaderboard": "none"
+            // ...You can add more as needed.
         };
 
-        // List of command names derived from JS filenames.
-        const commandFiles = [
-            "voicemaster","history","steal","badge","antiraid","antinuke","jail","unjail","juul","leveling","timer","reactionrole","afkmentions","embedcopy","lastfm","fortniteshop","webhook","createembed","choose","roleicon","boosts","goodbye","welcome","hide","unhide","customize","serveravatar","tags","birthday","nuke","autoresponder","giveaways","seen","vanity","serverbanner","inrole","balance","remind","give","blackjack","topcommands","nsr","hex","imgonly","ticket","buttonrole","bet","roblox","leaderboard","snipe","booster","editsnipe","starboard","timezone","quote","hardban","ignore","restrictcommand","stickyrole","reaction","avatarhistory","serverinfo","reactionsnipe","inviteinfo","withdraw","ban","mute","setup","forcenickname","bots","filter","roles","alias","autorole","avatar","userinfo","whitelist","transferhistory","settings","role","stickymessage","lock","unlock","runmute","iunmute","imute","rmute","enablecommand","disablecommand","smile","slap","nuzzle","nom","nervous","roleall","rolehumans","roleplay","bumpreminder","mad","love","lick","laugh","kiss","hug","headbang","happy","handhold","facepalm","evillaugh"
-        ];
-
+        // Convert command files into objects with details
         const commandsData = commandFiles.map(name => {
             const category = guessCategory(name);
             return {
                 name,
                 category,
-                // If no description, fallback to generated text:
                 description: commandDescriptions[name] || ("No description yet."),
                 arguments: commandArguments[name] || "none",
                 permissions: commandPermissions[name] || "none"
@@ -665,7 +558,8 @@
 
                 currentCommands = commandsData.filter(cmd => {
                     const matchesText =
-                        cmd.name.toLowerCase().includes(currentSearch);
+                        cmd.name.toLowerCase().includes(currentSearch) ||
+                        (cmd.description && cmd.description.toLowerCase().includes(currentSearch));
                     const matchesCategory =
                         currentCategory === 'all' || cmd.category === currentCategory;
                     return matchesText && matchesCategory;
