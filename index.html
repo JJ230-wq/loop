@@ -579,7 +579,6 @@
                 <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
             </div>
         </nav>
-    </div>
         <!-- Fallback legacy sticky nav for mobile (hidden on desktop by media query) -->
         <header class="navbar">
             <div class="navbar-inner">
@@ -588,8 +587,8 @@
                 </div>
                 <nav class="nav-links">
                     <a href="#features">Features</a>
-                    <a href="commands.html" id="navCommands">Commands</a>
-                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
+                    <a href="commands.html" id="navCommandsMobile">Commands</a>
+                    <a href="premium.html" id="navPremiumMobile">Premium</a>
                     <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
                 </nav>
             </div>
@@ -660,7 +659,7 @@
                 </div>
                 <div class="stats-row">
                     <div>
-                        <div class="stat-item-number">45+</div>
+                        <div class="stat-item-number">100+</div>
                         <div class="stat-item-label">Servers</div>
                     </div>
                     <div>
@@ -684,7 +683,7 @@
                 <div>© Loop</div>
                 <div class="footer-links">
                     <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Invite</a>
-                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
+                    <a href="premium.html">Premium</a>
                     <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
                 </div>
             </div>
@@ -735,6 +734,20 @@
             }
             const canvas = starsBg.querySelector('canvas');
             drawStars(canvas, Math.floor(66 + Math.random()*28));
+        }
+
+        // Set up commands loader overlay starfield
+        function setupStarsBg() {
+            const commandsStarsBg = document.getElementById('commandsStarsBg');
+            if (!commandsStarsBg) return;
+            if (!commandsStarsBg.querySelector('canvas')) {
+                const canvas = document.createElement('canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                commandsStarsBg.appendChild(canvas);
+            }
+            const canvas = commandsStarsBg.querySelector('canvas');
+            drawStars(canvas, Math.floor(56 + Math.random() * 24));
         }
         // Responsive redraw for main starfield
         window.addEventListener('resize', function(){
