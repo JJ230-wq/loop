@@ -7,6 +7,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #906df7 0%, #37c7ff 100%);
+            --bg-dark: #181924;
+            --bg-darker: #16161e;
+            --card-bg: #20222b;
+            --accent: #906df7;
+            --accent2: #37c7ff;
+            --border-radius: 18px;
+            --text-main: #e7e9f0;
+            --text-muted: #b3b8ce;
+            --spacing: 30px;
+            --container-width: 1100px;
+            --shadow-1: 0 2px 16px 0 rgba(24, 32, 69, 0.34);
+            --shadow-2: 0 6px 36px 0 rgba(38, 42, 80, 0.22);
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        body {
+            background: radial-gradient(ellipse at 70% 10%, #282d3e 0%, #181924 90%);
+        }
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .header-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 40px 0 16px 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.08rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 5px;
+            transition: background 0.2s, color 0.18s;
+        }
+        .nav-links a:hover, .nav-links a:focus {
+            background: var(--primary-gradient);
+            color: #fff;
+        }
+
         .top-left-logo {
             position: fixed;
             top: 25px;
@@ -21,7 +78,7 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: #0a0a0a;
+            background: #222;
             box-shadow: 0 0 16px 2px rgba(0,0,0,0.4);
         }
         .top-left-logo-fallback {
@@ -35,15 +92,460 @@
             align-items: center;
             justify-content: center;
         }
+        .main-content {
+            text-align: center;
+            margin-top: 60px;
+            padding-bottom: 48px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .button-container {
+            margin-top: 22px;
+        }
+        .btn {
+            background: var(--primary-gradient);
+            color: #fff;
+            font-size: 1.16rem;
+            font-weight: 600;
+            border: none;
+            outline: none;
+            border-radius: 12px;
+            padding: 14px 38px;
+            text-decoration: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-1);
+            transition: background 0.17s, box-shadow 0.15s, transform 0.14s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn:hover, .btn:focus {
+            background: linear-gradient(135deg, #a97dfd 0%, #37c7ff 100%);
+            box-shadow: var(--shadow-2);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        /* Starfield Background (fake but stylish) */
+        .starfield {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 0; top: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .infinity-pattern {
+            width: 200vw;
+            height: 200vh;
+            background-image: radial-gradient(circle, #906df722 0.5px, transparent 1.4px), radial-gradient(circle, #37c7ff18 1.2px, transparent 2px);
+            background-size: 88px 88px;
+            animation: moveStars 90s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes moveStars {
+            0% { transform: translate(0, 0);}
+            100% { transform: translate(-44px, -66px);}
+        }
+
+        /* Features */
+        .features-section {
+            margin-top: 40px;
+            background: rgba(30,32,45,0.74);
+            border-radius: var(--border-radius);
+            padding: 30px 0 10px 0;
+        }
+        .features-header {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+        .features-header h2 {
+            margin: 0 0 8px 0;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        .features-header p {
+            color: var(--text-muted);
+            font-weight: 400;
+            margin: 0;
+        }
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 18px;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            box-shadow: 0 2px 16px 0 rgba(27,29,61,0.14);
+            border-radius: var(--border-radius);
+            padding: 30px 28px;
+            max-width: 290px;
+            flex: 1 1 220px;
+            text-align: center;
+            transition: box-shadow 0.16s, transform 0.18s;
+        }
+        .feature-card:hover, .feature-card:focus-within {
+            box-shadow: 0 8px 32px 0 rgba(58,91,255,0.19);
+            transform: translateY(-3px) scale(1.03);
+        }
+        .feature-icon {
+            font-size: 2.3rem;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 0 16px 4px rgba(144, 109, 247, 0.15);
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.22rem;
+            font-weight: 600;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            margin: 48px 0 0 0;
+            background: rgba(30,32,45,0.82);
+            border-radius: var(--border-radius);
+            box-shadow: 0 3px 20px 0 rgba(41, 48, 80, 0.13);
+        }
+        .stats-container {
+            padding: 24px 0;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 54px;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 18px 36px;
+            text-align: center;
+            box-shadow: 0 1px 12px 0 rgba(90,95,130,0.09);
+            min-width: 150px;
+        }
+        .stat-number {
+            font-size: 2.35rem;
+            font-weight: 700;
+            animation: statFadein .8s 0.2s backwards;
+        }
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 1.06rem;
+        }
+        @keyframes statFadein {
+            from { opacity: 0; transform: translateY(18px);}
+            to { opacity: 1; transform: none;}
+        }
+
+        /* Commands Section */
+        .commands-section {
+            margin: 52px 0 0 0;
+        }
+        .commands-header {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .commands-header h2 {
+            margin: 0 0 7px 0;
+        }
+        .commands-controls {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 5px 10px 5px 36px;
+        }
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 1.08rem;
+            width: 170px;
+            padding: 8px 10px 8px 0;
+        }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            color: var(--accent2);
+            font-size: 1rem;
+        }
+        .search-clear {
+            cursor: pointer;
+            color: var(--text-muted);
+            margin-left: 8px;
+            font-size: 1.1rem;
+            display: none;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+        }
+        .category-filter {
+            appearance: none;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 30px 8px 12px;
+            margin-right: 9px;
+            box-shadow: 0 0 0 #fff;
+        }
+        .category-filter option {
+            background: var(--bg-dark);
+            color: var(--text-main);
+        }
+        .clear-filters {
+            background: #2f3545;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 15px;
+            font-size: 0.99rem;
+            margin-left: 5px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.13s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .clear-filters:disabled {
+            opacity: 0.44;
+            cursor: not-allowed;
+        }
+        .command-count {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.03rem;
+            margin-bottom: 5px;
+        }
+        .commands-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 55px 0 0 0;
+            background: rgba(30,32,45,0.88);
+            border-radius: var(--border-radius);
+            padding: 38px 0 20px 0;
+            box-shadow: var(--shadow-1);
+        }
+        .faq-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .faq-item {
+            background: var(--card-bg);
+            margin: 0 auto 16px auto;
+            border-radius: 14px;
+            box-shadow: 0 1px 12px 0 rgba(66,70,130,0.07);
+            max-width: 730px;
+            padding: 0;
+        }
+        .faq-question {
+            cursor: pointer;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.14rem;
+            font-weight: 600;
+        }
+        .faq-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-left: 12px;
+            transition: transform .17s;
+        }
+        .faq-answer {
+            padding: 0 30px 17px 30px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            display: none;
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+        /* Testimonials */
+        .testimonials-section {
+            margin: 60px 0 20px 0;
+        }
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 19px;
+        }
+        .testimonials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+        }
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            max-width: 340px;
+            flex: 1 1 260px;
+            box-shadow: 0 1px 11px 0 rgba(58,90,255,0.08);
+            padding: 27px 27px;
+            transition: transform 0.17s;
+        }
+        .testimonial-card:hover, .testimonial-card:focus-within {
+            transform: translateY(-2px) scale(1.025);
+        }
+        .testimonial-content {
+            font-size: 1.14rem;
+            margin-bottom: 16px;
+            color: #ddd;
+        }
+        .testimonial-author {
+            display: flex;
+            gap: 13px;
+            align-items: center;
+        }
+        .testimonial-avatar {
+            background: var(--primary-gradient);
+            color: #fff;
+            font-size: 1.15rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .testimonial-info h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .testimonial-info p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            left: 0; top: 0; right: 0; bottom: 0;
+            background: #16161e;
+            color: #fff;
+            z-index: 12000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity .5s;
+        }
+        .loading-container {
+            text-align: center;
+        }
+        .loading-logo {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 18px;
+            border-radius: 18px;
+            background: #20222b;
+            box-shadow: 0 1px 16px 0 rgba(124,147,255,0.13);
+        }
+        .loading-text {
+            color: #fff;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .loading-progress {
+            width: 160px;
+            background: #242844;
+            height: 10px;
+            border-radius: 10px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .loading-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 10px;
+            transition: width .6s;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .container {
+                padding: 0 8px;
+            }
+            .features-grid, .stats-grid, .testimonials-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .feature-card, .stat-card, .testimonial-card {
+                max-width: 98vw;
+            }
+        }
+        @media (max-width: 700px) {
+            .main-content h1 { font-size: 2rem; }
+            .features-header h2, .commands-header h2, .faq-header h2, .testimonials-header h2 { font-size: 1.2rem;}
+            .stats-grid { gap: 18px; }
+        }
     </style>
 </head>
 <body>
-    <div class="loading-screen" id="loadingScreen">
+    <div class="loading-screen" id="loadingScreen" style="display: flex;">
         <div class="loading-container">
             <img src="assets/loop-logo.png" alt="Loop Bot Logo" class="loading-logo" id="loadingLogo">
             <div class="loading-text" id="loadingText">Loading</div>
             <div class="loading-progress">
-                <div class="loading-progress-bar"></div>
+                <div class="loading-progress-bar" id="loadingProgressBar"></div>
             </div>
         </div>
     </div>
@@ -79,7 +581,7 @@
         </div>
     </main>
     <section id="features" class="features-section">
-        <div class="features-container">
+        <div class="container">
             <div class="features-header">
                 <h2>Features</h2>
                 <p>Discover what makes Loop the ultimate Discord bot</p>
@@ -131,7 +633,7 @@
         </div>
     </section>
     <section class="stats-section">
-        <div class="stats-container">
+        <div class="container stats-container">
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number" data-target="20">0</div>
@@ -153,7 +655,7 @@
         </div>
     </section>
     <section id="commands" class="commands-section">
-        <div class="commands-container">
+        <div class="container commands-container">
             <div class="commands-header">
                 <h2>Commands</h2>
                 <p>Explore all available commands for Loop Bot</p>
@@ -181,12 +683,11 @@
                 </div>
             </div>
             <div class="command-count" id="commandCount">Showing 0 of 0 commands</div>
-            <div class="commands-grid" id="commandsGrid">
-            </div>
+            <div class="commands-grid" id="commandsGrid"></div>
         </div>
     </section>
     <section class="faq-section">
-        <div class="faq-container">
+        <div class="container faq-container">
             <div class="faq-header">
                 <h2>Frequently Asked Questions</h2>
                 <p>Everything you need to know about Loop Bot</p>
@@ -239,7 +740,7 @@
         </div>
     </section>
     <section class="testimonials-section">
-        <div class="testimonials-container">
+        <div class="container testimonials-container">
             <div class="testimonials-header">
                 <h2>What Our Users Say</h2>
                 <p>Join thousands of satisfied server owners</p>
@@ -285,6 +786,78 @@
         </div>
     </section>
     <script>
+        // Animate stats on scroll
+        function animateStatNumbers() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = +stat.dataset.target;
+                if (!stat.animated && stat.getBoundingClientRect().top < window.innerHeight) {
+                    stat.animated = true;
+                    let start = 0;
+                    let decimals = 0;
+                    if(target.toString().includes('.')) decimals = target.toString().split('.')[1].length;
+                    const speed = Math.max(Math.abs(target) > 15 ? 35 : 120, 22);
+
+                    function updateVal() {
+                        start += (target / speed);
+                        if ((target > 0 && start < target) || (target < 0 && start > target)) {
+                            stat.textContent = (start).toFixed(decimals);
+                            requestAnimationFrame(updateVal);
+                        } else {
+                            stat.textContent = target;
+                        }
+                    }
+                    updateVal();
+                }
+            });
+        }
+        window.addEventListener('scroll', animateStatNumbers);
+        window.addEventListener('DOMContentLoaded', animateStatNumbers);
+
+        // Loading screen – fade out on load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingProgressBar').style.width = "100%";
+            }, 300);
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = "0";
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = "none";
+                }, 700);
+            }, 1200);
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', function() {
+            this.parentElement.classList.toggle('open');
+        }));
+
+        // Search box (UI only in demo, real filtering would need JS data)
+        const commandSearchInput = document.getElementById("commandSearch");
+        const searchClear = document.getElementById("searchClear");
+        if (commandSearchInput && searchClear) {
+            commandSearchInput.addEventListener("input", function () {
+                searchClear.style.display = this.value.length ? "inline" : "none";
+            });
+            searchClear.addEventListener("click", function () {
+                commandSearchInput.value = "";
+                searchClear.style.display = "none";
+                commandSearchInput.focus();
+            });
+        }
+
+        // Command filter clear -- UI only (no filtering logic)
+        const categoryFilter = document.getElementById("categoryFilter");
+        const clearFiltersBtn = document.getElementById("clearFilters");
+        if (categoryFilter && clearFiltersBtn) {
+            categoryFilter.addEventListener("change", function () {
+                clearFiltersBtn.disabled = this.value === "all";
+            });
+            clearFiltersBtn.addEventListener("click", function () {
+                categoryFilter.value = "all";
+                clearFiltersBtn.disabled = true;
+            });
+        }
     </script>
 </body>
 </html>
