@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop Bot Commands</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .commands-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            background: linear-gradient(135deg, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+        .back-link:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .commands-header {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .commands-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        .commands-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .clear-filters {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .clear-filters:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .clear-filters:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 45px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .search-clear {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .search-clear.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .search-clear:hover {
+            color: #fff;
+        }
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+        }
+
+        .category-filter {
+            padding: 12px 20px;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.16), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 300;
+            cursor: pointer;
+            min-width: 170px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 14px;
+            padding-right: 42px;
+            box-shadow: 0 0 0 0 rgba(255,255,255,0.18);
+            transition:
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.18s ease;
+        }
+        .category-filter:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.42);
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.22), rgba(255,255,255,0.04));
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.16), 0 10px 25px rgba(0,0,0,0.65);
+            transform: translateY(-1px) scale(1.01);
+        }
+        .category-filter:hover {
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.2), rgba(255,255,255,0.04));
+            border-color: rgba(255, 255, 255, 0.28);
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+        }
+        .category-filter option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .command-count {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .command-card {
+            background: rgba(255, 255, 255, 0.005);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            padding: 18px 16px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .command-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .command-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .command-file {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+        }
+        .command-category-pill {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .commands-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-container {
+                max-width: none;
+            }
+        }
+
+        /* Extra small-screen tweaks */
+        @media (max-width: 520px) {
+            .commands-page {
+                padding: 28px 14px 56px;
+            }
+            .page-title {
+                font-size: 2rem;
+            }
+            .commands-controls {
+                gap: 14px;
+            }
+            .category-filter {
+                width: 100%;
+            }
+            .filter-group {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .clear-filters {
+                padding-inline: 10px;
+            }
+            .commands-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="commands-page">
+        <div class="page-header">
+            <h1 class="page-title">Loop Commands</h1>
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to main page
+            </a>
+        </div>
+
+        <div class="commands-header">
+            <p>Searchable list of Loop’s commands based on the bot’s command files.</p>
+        </div>
+
+        <div class="commands-controls">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search commands..." id="commandSearch">
+                <i class="fas fa-times search-clear" id="searchClear"></i>
+            </div>
+            <div class="filter-group">
+                <select class="category-filter" id="categoryFilter" title="Filter commands by category">
+                    <option value="all">All types</option>
+                    <option value="moderation">Moderation</option>
+                    <option value="economy">Economy</option>
+                    <option value="utility">Utility</option>
+                    <option value="fun">Fun / RP</option>
+                    <option value="config">Config / Setup</option>
+                    <option value="other">Other</option>
+                </select>
+                <button class="clear-filters" id="clearFilters" disabled>
+                    <i class="fas fa-times"></i>
+                    Clear
+                </button>
+            </div>
+        </div>
+
+        <div class="command-count" id="commandCount">Showing 0 commands</div>
+
+        <div class="commands-grid" id="commandsGrid"></div>
+    </div>
+
+    <script>
+        // Map commands to rough categories by name pattern
+        function guessCategory(name) {
+            const n = name.toLowerCase();
+            if ([
+                'ban','hardban','unban','mute','imute','rmute','runmute','iunmute',
+                'jail','unjail','lock','unlock','nuke','antinuke','antiraid',
+                'filter','restrictcommand','blacklist','ignore','timeout'
+            ].includes(n)) return 'moderation';
+
+            if ([
+                'balance','bet','blackjack','leaderboard','give','withdraw',
+                'steal','remind','giveaways','boosts'
+            ].includes(n)) return 'economy';
+
+            if ([
+                'serverinfo','userinfo','avatar','avatarhistory','inviteinfo',
+                'timezone','seen','history','topcommands','transferhistory'
+            ].includes(n)) return 'utility';
+
+            if ([
+                'hug','kiss','slap','love','laugh','juul','roleplay','headbang',
+                'handhold','smile','mad','happy','evillaugh','nuzzle','nom','nervous'
+            ].includes(n)) return 'fun';
+
+            if ([
+                'settings','setup','autorole','welcome','goodbye','ticket',
+                'reactionrole','buttonrole','voicemaster','starboard','bumpreminder',
+                'autoresponder','bots','whitelist','roles','role','roleall','rolehumans',
+                'stickyrole','stickymessage','enablecommand','disablecommand'
+            ].includes(n)) return 'config';
+
+            return 'other';
+        }
+
+        // List of command names derived from JS filenames.
+        const commandFiles = [
+            "voicemaster","history","steal","badge","antiraid","antinuke","jail","unjail","juul","leveling","timer","reactionrole","afkmentions","embedcopy","lastfm","fortniteshop","webhook","createembed","choose","roleicon","boosts","goodbye","welcome","hide","unhide","customize","serveravatar","tags","birthday","nuke","autoresponder","giveaways","seen","vanity","serverbanner","inrole","balance","remind","give","blackjack","topcommands","nsr","hex","imgonly","ticket","buttonrole","bet","roblox","leaderboard","snipe","booster","editsnipe","starboard","timezone","quote","hardban","ignore","restrictcommand","stickyrole","reaction","avatarhistory","serverinfo","reactionsnipe","inviteinfo","withdraw","ban","mute","setup","forcenickname","bots","filter","roles","alias","autorole","avatar","userinfo","whitelist","transferhistory","settings","role","stickymessage","lock","unlock","runmute","iunmute","imute","rmute","enablecommand","disablecommand","smile","slap","nuzzle","nom","nervous","roleall","rolehumans","roleplay","bumpreminder","mad","love","lick","laugh","kiss","hug","headbang","happy","handhold","facepalm","evillaugh"
+            // NOTE: there are additional command files in the Commands directory;
+            // extend this list if you add more files.
+        ];
+
+        const commandsData = commandFiles.map(name => {
+            const category = guessCategory(name);
+            return {
+                name,
+                file: name + ".js",
+                category,
+                description: ""
+            };
+        });
+
+        function initializeCommandsPage() {
+            const commandsGrid = document.getElementById('commandsGrid');
+            const commandCount = document.getElementById('commandCount');
+            const searchInput = document.getElementById('commandSearch');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const searchClear = document.getElementById('searchClear');
+            const clearFilters = document.getElementById('clearFilters');
+
+            let currentSearch = "";
+            let currentCategory = "all";
+            let currentCommands = [...commandsData];
+
+            function updateClearButton() {
+                const hasFilters = currentSearch.length > 0 || currentCategory !== 'all';
+                clearFilters.disabled = !hasFilters;
+                searchClear.classList.toggle('visible', currentSearch.length > 0);
+            }
+
+            function renderCommands() {
+                commandsGrid.innerHTML = "";
+                commandCount.textContent = `Showing ${currentCommands.length} command${currentCommands.length === 1 ? "" : "s"}`;
+
+                if (currentCommands.length === 0) {
+                    const noResults = document.createElement('div');
+                    noResults.style.cssText = `
+                        grid-column: 1 / -1;
+                        text-align: center;
+                        padding: 40px 20px;
+                        color: rgba(255, 255, 255, 0.65);
+                    `;
+                    noResults.innerHTML = `
+                        <i class="fas fa-search" style="font-size: 2.4rem; margin-bottom: 14px; opacity: 0.35;"></i>
+                        <div>No commands match your search.</div>
+                    `;
+                    commandsGrid.appendChild(noResults);
+                    return;
+                }
+
+                currentCommands.forEach(cmd => {
+                    const card = document.createElement('div');
+                    card.className = 'command-card';
+                    card.dataset.category = cmd.category;
+                    card.innerHTML = `
+                        <div class="command-category-pill">${cmd.category}</div>
+                        <div class="command-name">${cmd.name}</div>
+                        <div class="command-file">${cmd.file}</div>
+                    `;
+                    commandsGrid.appendChild(card);
+                });
+            }
+
+            function applyFilters() {
+                currentSearch = searchInput.value.toLowerCase().trim();
+                currentCategory = categoryFilter.value;
+
+                currentCommands = commandsData.filter(cmd => {
+                    const matchesText =
+                        cmd.name.toLowerCase().includes(currentSearch) ||
+                        cmd.file.toLowerCase().includes(currentSearch);
+                    const matchesCategory =
+                        currentCategory === 'all' || cmd.category === currentCategory;
+                    return matchesText && matchesCategory;
+                });
+
+                updateClearButton();
+                renderCommands();
+            }
+
+            function clearAllFilters() {
+                searchInput.value = "";
+                categoryFilter.value = "all";
+                currentSearch = "";
+                currentCategory = "all";
+                applyFilters();
+            }
+
+            function clearSearch() {
+                searchInput.value = "";
+                currentSearch = "";
+                applyFilters();
+            }
+
+            searchInput.addEventListener('input', applyFilters);
+            categoryFilter.addEventListener('change', applyFilters);
+            clearFilters.addEventListener('click', clearAllFilters);
+            searchClear.addEventListener('click', clearSearch);
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                }
+            });
+
+            applyFilters();
+        }
+
+        window.addEventListener('DOMContentLoaded', initializeCommandsPage);
+    </script>
+</body>
+</html>
+
