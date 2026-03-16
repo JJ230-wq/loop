@@ -50,6 +50,23 @@
             width: 100%;
         }
 
+        /* Animation - Fade and Translate Up */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Animation - Fade In */
+        @keyframes simpleFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         /* Loading */
         .loading-screen {
             position: fixed;
@@ -60,6 +77,7 @@
             justify-content: center;
             z-index: 100;
             transition: opacity 0.25s ease;
+            animation: simpleFadeIn 0.6s;
         }
 
         .loading-mark {
@@ -67,6 +85,7 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--text-muted);
+            animation: fadeInUp 1s;
         }
 
         /* Navbar */
@@ -78,6 +97,7 @@
             backdrop-filter: blur(8px);
             background: var(--nav-bg);
             border-bottom: 1px solid var(--border-soft);
+            animation: fadeInUp 0.72s both;
         }
 
         .navbar-inner {
@@ -90,34 +110,37 @@
             gap: 16px;
         }
 
-        .nav-logo {
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
+        .nav-logo-combined {
             display: flex;
-            gap: 20px;
-            font-size: 0.92rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            padding: 4px 0;
-            border-bottom: 1px solid transparent;
-        }
-
-        .nav-links a:hover,
-        .nav-links a:focus-visible {
-            border-bottom-color: var(--border-strong);
+            align-items: center;
+            gap: 12px;
+            animation: fadeInUp 1.05s both;
         }
 
         .nav-logo-image {
             width: 40px;
             height: 40px;
             object-fit: contain;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 0.92rem;
+            animation: fadeInUp 1.2s both;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            padding: 4px 0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.18s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            border-bottom-color: var(--border-strong);
         }
 
         /* Hero */
@@ -127,6 +150,7 @@
             align-items: center;
             text-align: center;
             padding: 64px 0 72px;
+            animation: fadeInUp 0.85s 0.09s both;
         }
 
         .hero-inner {
@@ -137,6 +161,7 @@
             font-size: 3rem;
             font-weight: 700;
             margin: 0 0 8px;
+            animation: fadeInUp 0.8s 0.15s both;
         }
 
         .hero-subtitle {
@@ -144,6 +169,7 @@
             font-weight: 400;
             color: var(--text-muted);
             margin: 0 0 16px;
+            animation: fadeInUp 0.8s 0.22s both;
         }
 
         .hero-description {
@@ -151,6 +177,7 @@
             color: var(--text-muted);
             margin: 0 auto;
             max-width: 520px;
+            animation: fadeInUp 0.8s 0.29s both;
         }
 
         .hero-actions {
@@ -158,6 +185,7 @@
             flex-wrap: wrap;
             gap: 12px;
             margin-top: 28px;
+            animation: fadeInUp 0.8s 0.36s both;
         }
 
         .btn-primary,
@@ -171,18 +199,22 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: background 0.18s, border-color 0.2s, color 0.18s;
         }
 
         .btn-primary {
             background: #ffffff;
             color: #000000;
             border: 1px solid #ffffff;
+            animation: fadeInUp 0.8s 0.41s both;
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--text-main);
             border: 1px solid var(--border-strong);
+            animation: fadeInUp 0.8s 0.48s both;
         }
 
         .btn-primary:hover,
@@ -207,6 +239,7 @@
         .section-header {
             margin-bottom: 24px;
             text-align: center;
+            animation: fadeInUp 0.8s 0.58s both;
         }
 
         .section-title {
@@ -227,6 +260,16 @@
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
         }
+        .features-grid > .feature-card {
+            opacity: 0;
+            animation: fadeInUp 0.85s both;
+        }
+        .features-grid > .feature-card:nth-child(1) { animation-delay: 0.05s;}
+        .features-grid > .feature-card:nth-child(2) { animation-delay: 0.18s;}
+        .features-grid > .feature-card:nth-child(3) { animation-delay: 0.29s;}
+        .features-grid > .feature-card:nth-child(4) { animation-delay: 0.41s;}
+        .features-grid > .feature-card:nth-child(5) { animation-delay: 0.53s;}
+        .features-grid > .feature-card:nth-child(6) { animation-delay: 0.65s;}
 
         .feature-card {
             background: #050505;
@@ -236,6 +279,7 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
+            transition: border-color 0.2s, background 0.18s;
         }
 
         .feature-icon {
@@ -266,11 +310,13 @@
             flex-wrap: wrap;
             gap: 32px;
             text-align: center;
+            animation: fadeInUp 0.8s 0.67s both;
         }
 
         .stat-item-number {
             font-size: 1.6rem;
             font-weight: 600;
+            animation: fadeInUp 0.7s 0.73s both;
         }
 
         .stat-item-label {
@@ -279,74 +325,9 @@
             letter-spacing: 0.16em;
             text-transform: uppercase;
             color: var(--text-muted);
+            animation: fadeInUp 0.8s 0.79s both;
         }
 
-        /* Commands preview */
-        .commands-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 18px;
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid var(--border-soft);
-            padding: 4px 0;
-        }
-
-        .search-input {
-            border: none;
-            outline: none;
-            font-size: 0.9rem;
-            background: transparent;
-            min-width: 160px;
-        }
-
-        .category-filter {
-            border: 1px solid var(--border-soft);
-            border-radius: 999px;
-            padding: 6px 18px;
-            font-size: 0.86rem;
-            background: transparent;
-        }
-
-        .command-count {
-            text-align: center;
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .commands-list {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-
-        .commands-list th,
-        .commands-list td {
-            padding: 8px 6px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-soft);
-        }
-
-        .commands-list th {
-            font-weight: 500;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--text-muted);
-        }
-
-        .commands-list-name {
-            width: 35%;
-            white-space: nowrap;
-        }
 
         /* Footer */
         footer {
@@ -354,6 +335,7 @@
             padding: 16px 24px 24px;
             font-size: 0.8rem;
             color: var(--text-muted);
+            animation: fadeInUp 0.6s 1.2s both;
         }
 
         .footer-inner {
@@ -402,11 +384,6 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
-
-            .commands-list th:nth-child(3),
-            .commands-list td:nth-child(3) {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -417,14 +394,15 @@
 
     <header class="navbar">
         <div class="navbar-inner">
-            <div class="nav-logo">Loop</div>
+            <div class="nav-logo-combined">
+                <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
+            </div>
             <nav class="nav-links">
                 <a href="#features">Features</a>
                 <a href="commands.html">Commands</a>
                 <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
                 <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
             </nav>
-            <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image">
         </div>
     </header>
 
@@ -493,11 +471,11 @@
             </div>
             <div class="stats-row">
                 <div>
-                    <div class="stat-item-number">20+</div>
+                    <div class="stat-item-number">45+</div>
                     <div class="stat-item-label">Servers</div>
                 </div>
                 <div>
-                    <div class="stat-item-number">2,000+</div>
+                    <div class="stat-item-number">60,000+</div>
                     <div class="stat-item-label">Users</div>
                 </div>
                 <div>
@@ -509,54 +487,6 @@
                     <div class="stat-item-label">Support</div>
                 </div>
             </div>
-        </section>
-
-        <section id="commands-preview">
-            <div class="section-header">
-                <h2 class="section-title">Commands</h2>
-                <p class="section-subtitle">Search and explore Loop's full command set.</p>
-            </div>
-
-            <div class="commands-controls">
-                <div class="search-container">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                    <input type="text" class="search-input" placeholder="Search commands…" aria-label="Search commands" disabled>
-                </div>
-                <select class="category-filter" aria-label="Filter commands by category" disabled>
-                    <option>All categories</option>
-                </select>
-            </div>
-
-            <div class="command-count">
-                View and filter all commands on the dedicated commands page.
-            </div>
-
-            <table class="commands-list" aria-hidden="true">
-                <thead>
-                    <tr>
-                        <th class="commands-list-name">Example</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>/ban</td>
-                        <td>Ban a member with an optional reason.</td>
-                        <td>Moderation</td>
-                    </tr>
-                    <tr>
-                        <td>/give</td>
-                        <td>Transfer currency to another user.</td>
-                        <td>Economy</td>
-                    </tr>
-                    <tr>
-                        <td>/serverinfo</td>
-                        <td>Show an overview of your server.</td>
-                        <td>Utility</td>
-                    </tr>
-                </tbody>
-            </table>
         </section>
     </main>
 
