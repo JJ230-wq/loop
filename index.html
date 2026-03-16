@@ -61,13 +61,12 @@
                 transform: translateY(0);
             }
         }
-        /* Animation - Fade In */
         @keyframes simpleFadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Loading */
+        /* General Loading */
         .loading-screen {
             position: fixed;
             inset: 0;
@@ -86,6 +85,78 @@
             text-transform: uppercase;
             color: var(--text-muted);
             animation: fadeInUp 1s;
+        }
+
+        /* Commands Loading Styles */
+        .commands-loading-overlay {
+            position: fixed;
+            z-index: 1001;
+            inset: 0;
+            display: none;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .commands-loading-overlay.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: simpleFadeIn 0.25s;
+        }
+
+        .commands-stars-bg {
+            position: absolute;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .commands-stars-bg canvas {
+            width: 100vw !important;
+            height: 100vh !important;
+            display: block;
+            opacity: 0.6;
+            filter: blur(2px) brightness(1.1);
+            pointer-events: none;
+        }
+
+        .commands-loading-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .commands-loading-logo {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            margin-bottom: 36px;
+            filter: drop-shadow(0 2px 16px #fff2);
+        }
+
+        .commands-progress-bar-outer {
+            width: 160px;
+            height: 3px;
+            background: rgba(255,255,255,0.13);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 auto;
+            box-shadow: 0 1px 4px #111c;
+        }
+
+        .commands-progress-bar-inner {
+            height: 100%;
+            width: 0%;
+            background: #fff;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 3px;
         }
 
         /* Navbar */
@@ -328,7 +399,6 @@
             animation: fadeInUp 0.8s 0.79s both;
         }
 
-
         /* Footer */
         footer {
             border-top: 1px solid var(--border-soft);
@@ -384,12 +454,32 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+            .commands-loading-logo {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 28px;
+            }
+            .commands-progress-bar-outer {
+                width: 90vw;
+                max-width: 220px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-mark">Loading Loop</div>
+    </div>
+    
+    <!-- Commands custom loader overlay - hidden by default -->
+    <div class="commands-loading-overlay" id="commandsLoading">
+        <div class="commands-stars-bg" id="commandsStarsBg"></div>
+        <div class="commands-loading-content">
+            <img src="assets/loop-logo.png" alt="Loop logo" class="commands-loading-logo" />
+            <div class="commands-progress-bar-outer">
+                <div class="commands-progress-bar-inner" id="commandsProgressBar"></div>
+            </div>
+        </div>
     </div>
 
     <header class="navbar">
@@ -399,7 +489,7 @@
             </div>
             <nav class="nav-links">
                 <a href="#features">Features</a>
-                <a href="commands.html">Commands</a>
+                <a href="commands.html" id="navCommands">Commands</a>
                 <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
                 <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
             </nav>
@@ -419,7 +509,7 @@
                         <i class="fab fa-discord"></i>
                         <span>Invite to Discord</span>
                     </a>
-                    <a href="commands.html" class="btn-secondary">
+                    <a href="commands.html" class="btn-secondary" id="mainCommandsBtn">
                         <span>View Commands</span>
                     </a>
                 </div>
@@ -502,6 +592,7 @@
     </footer>
 
     <script>
+        // Remove normal load screen on standard page load
         window.addEventListener('load', function () {
             const loading = document.getElementById('loadingScreen');
             if (!loading) return;
@@ -510,6 +601,98 @@
                 loading.style.display = 'none';
             }, 260);
         });
+
+        // --- Minimalistic commands loader ---
+        // Starfield generator
+        function drawStars(canvas, numStars) {
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width = window.innerWidth;
+            const h = canvas.height = window.innerHeight;
+            ctx.clearRect(0,0,w,h);
+            for (let i=0; i<numStars; i++) {
+                const x = Math.random()*w;
+                const y = Math.random()*h;
+                const r = 0.45 + Math.random()*1.1;
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, 2*Math.PI, false);
+                ctx.fillStyle = 'rgba(255,255,255,' + (0.3 + Math.random()*0.8) + ')';
+                ctx.shadowColor = "#fff";
+                ctx.shadowBlur = 3 + Math.random()*10;
+                ctx.fill();
+            }
+        }
+        function setupStarsBg() {
+            let starsBg = document.getElementById('commandsStarsBg');
+            // Only add canvas if necessary
+            if (!starsBg.querySelector('canvas')) {
+                const canvas = document.createElement('canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                starsBg.appendChild(canvas);
+            }
+            const canvas = starsBg.querySelector('canvas');
+            drawStars(canvas, Math.floor(56 + Math.random()*24));
+        }
+        window.addEventListener('resize', function(){
+            const starsBg = document.getElementById('commandsStarsBg');
+            const canvas = starsBg && starsBg.querySelector('canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                drawStars(canvas, Math.floor(56 + Math.random()*24));
+            }
+        });
+
+        // Progress bar animation
+        function animateProgressBar(elem, cb) {
+            if (!elem) return;
+            elem.style.width = '0%';
+            // Fast-in
+            setTimeout(()=>elem.style.width='70%', 32);
+            setTimeout(()=>elem.style.width='87%', 360);
+            setTimeout(()=>elem.style.width='100%', 720);
+            setTimeout(cb, 850);
+        }
+
+        // Loader show then redirect logic
+        function showCommandsLoaderAndGo(url) {
+            var overlay = document.getElementById('commandsLoading');
+            var bar = document.getElementById('commandsProgressBar');
+            overlay.classList.add('active');
+            setupStarsBg();
+            if (bar) {
+                bar.style.width = '0%';
+                // Animate
+                animateProgressBar(bar, function() {
+                    window.location.href = url;
+                });
+            } else {
+                // Fallback
+                setTimeout(function(){window.location.href=url;}, 900);
+            }
+        }
+
+        // Navigation Events for loader activation
+        function attachCommandsLoaderHandler(selector, link) {
+            var sel = document.getElementById(selector);
+            if (sel) {
+                sel.addEventListener('click', function(e){
+                    // Only left click, no ctrl/cmd, no new tab
+                    if (
+                        e.button === 0 &&
+                        !(e.metaKey || e.ctrlKey || e.altKey || e.shiftKey)
+                    ) {
+                        e.preventDefault();
+                        showCommandsLoaderAndGo(link);
+                    }
+                });
+            }
+        }
+
+        // Attach to both navigation and homepage hero buttons
+        attachCommandsLoaderHandler('navCommands', 'commands.html');
+        attachCommandsLoaderHandler('mainCommandsBtn', 'commands.html');
     </script>
 </body>
 </html>
