@@ -164,8 +164,8 @@
         const commandFiles = [
             "afkmentions",
             "alias",
-            "antiraid",
             "antighostping",
+            "antiraid",
             "antinuke",
             "autoresponder",
             "autorole",
@@ -196,16 +196,16 @@
             "giveaways",
             "goodbye",
             "handhold",
-            "hardban",
             "happy",
+            "hardban",
             "headbang",
             "hex",
             "hide",
             "history",
             "hug",
             "ignore",
-            "imute",
             "imgonly",
+            "imute",
             "inrole",
             "inviteinfo",
             "iunmute",
@@ -222,9 +222,9 @@
             "mad",
             "mute",
             "nervous",
+            "nom",
             "nsr",
             "nuke",
-            "nom",
             "nuzzle",
             "other",
             "ping",
@@ -255,8 +255,8 @@
             "steal",
             "stickyrole",
             "stickymessage",
-            "ticket",
             "tags",
+            "ticket",
             "timer",
             "timezone",
             "topcommands",
@@ -274,6 +274,7 @@
             "whitelist",
             "withdraw"
         ];
+        commandFiles.sort((a, b) => a.localeCompare(b));
 
         // Map commands to rough categories by name pattern
         function guessCategory(name) {
@@ -404,8 +405,8 @@
             "steal": "Steal emojis or images.",
             "stickyrole": "Persist user roles.",
             "stickymessage": "Sticky message setup.",
-            "ticket": "Server ticketing system.",
             "tags": "Tag system.",
+            "ticket": "Server ticketing system.",
             "timer": "Set a simple timer.",
             "timezone": "User or server timezone setup.",
             "topcommands": "Show top-used commands.",
@@ -489,7 +490,7 @@
             // ...You can add more as needed.
         };
 
-        // Convert command files into objects with details
+        // Convert command files into objects with details, then sort alphabetically by name
         const commandsData = commandFiles.map(name => {
             const category = guessCategory(name);
             return {
@@ -500,6 +501,8 @@
                 permissions: commandPermissions[name] || "none"
             };
         });
+        // It is already sorted because commandFiles is sorted above. If externally sorting for safety, uncomment below:
+        //commandsData.sort((a, b) => a.name.localeCompare(b.name));
 
         function initializeCommandsPage() {
             const commandsGrid = document.getElementById('commandsGrid');
@@ -539,7 +542,10 @@
                     return;
                 }
 
-                currentCommands.forEach(cmd => {
+                // Sort currentCommands alphabetically before rendering
+                const sortedCommands = [...currentCommands].sort((a, b) => a.name.localeCompare(b.name));
+
+                sortedCommands.forEach(cmd => {
                     const card = document.createElement('div');
                     card.className = 'command-card';
                     card.dataset.category = cmd.category;
