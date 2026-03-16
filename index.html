@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loop - Discord's Premier All-in-One App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #000000;
@@ -29,19 +29,39 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.01em;
             color: var(--text-main);
-            background: var(--bg);
+            /* Remove plain background color, we'll apply the fancy one in .body-starlight-bg */
+            background: none !important;
             -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
         }
 
         body {
             display: flex;
             flex-direction: column;
-            /* Remove background here; main bg now under .main-stars-bg */
+            /* Remove background here; main bg now under a starlight layer */
             background: none !important;
             position: relative;
             min-height: 100vh;
+        }
+
+        /* Starlight background gradient + blur effect layer */
+        .body-starlight-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            /* Soft dark fade with starlight colors and blur for luminous effect */
+            background: 
+                radial-gradient(ellipse 120% 70% at 60% 10%, rgba(80,138,255,0.11), rgba(168,126,255,0.10) 33%, rgba(230,85,255,0.11) 69%, rgba(0,0,0,0.68), rgba(0,0,0,0.95) 100%),
+                #050615;
+            filter: blur(0.8px) saturate(1.13);
         }
 
         /* Starfield main background (same as loading) */
@@ -51,22 +71,23 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            z-index: 0;
+            z-index: 1;
             pointer-events: none;
+            /* Let starfield appear above colored/gradient bg but below main content */
         }
         .main-stars-bg canvas {
             width: 100vw !important;
             height: 100vh !important;
             display: block;
-            opacity: 0.6;
-            filter: blur(2px) brightness(1.1);
+            opacity: 0.75;
+            filter: blur(2px) brightness(1.17);
             pointer-events: none;
         }
 
-        /* Place all main content above starfield bg */
+        /* Place all main content above starlight bg and starfield */
         .site-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -197,55 +218,60 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: start;
+            align-items: center;
             position: relative;
-            margin-top: 28px;
-            margin-bottom: 34px;
+            margin-top: 32px;
+            margin-bottom: 40px;
             z-index: 21;
             pointer-events: none;
         }
         .floating-navbar {
-            background: rgba(22, 22, 22, 0.98);
+            max-width: 520px;
+            width: min(90vw, 520px);
+            background: rgba(0, 0, 0, 0.35);
             border-radius: 999px;
-            box-shadow: 0 8px 40px 0 rgba(0,0,0,0.34), 0 1.5px 0 rgba(255,255,255,0.025) inset;
-            border: 1.5px solid var(--border-strong);
+            border: 1px solid var(--border-soft);
             -webkit-backdrop-filter: blur(var(--floatbar-blur));
             backdrop-filter: blur(var(--floatbar-blur));
             display: flex;
             align-items: center;
-            padding: 8px 32px 8px 18px;
-            gap: 22px;
-            min-height: 62px;
+            justify-content: space-between;
+            padding: 8px 18px;
+            gap: 16px;
+            min-height: 50px;
             animation: fadeInUp 0.8s both;
             pointer-events: auto;
         }
         .floating-navbar .nav-logo-image {
-            width: 38px;
-            height: 38px;
-            margin-right: 10px;
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
             object-fit: contain;
+            flex-shrink: 0;
         }
         .floating-navbar .nav-links {
             display: flex;
-            gap: 22px;
+            gap: 10px;
             align-items: center;
+            justify-content: center;
+            flex: 1;
         }
         .floating-navbar .nav-links a {
-            color: var(--text-main);
-            font-size: 0.97rem;
-            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            font-weight: 400;
             text-decoration: none;
-            padding: 7px 14px;
+            padding: 6px 12px;
             border-radius: 999px;
-            transition: background 0.16s;
+            transition: background 0.16s, color 0.16s;
             border: none;
             display: flex;
             align-items: center;
         }
         .floating-navbar .nav-links a:hover,
         .floating-navbar .nav-links a:focus-visible {
-            background: rgba(36,36,36,0.54);
-            color: #fff;
+            background: rgba(255,255,255,0.06);
+            color: #ffffff;
         }
 
         /* Hide non-floating navbar on desktop */
@@ -382,14 +408,16 @@
         .features-grid > .feature-card:nth-child(6) { animation-delay: 0.65s;}
 
         .feature-card {
-            background: #050505;
-            border-radius: var(--radius);
+            background: rgba(0,0,0,0.25);
+            border-radius: 18px;
             border: 1px solid var(--border-soft);
             padding: 18px 18px 16px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            transition: border-color 0.2s, background 0.18s;
+            gap: 4px;
+            align-items: center;
+            text-align: center;
+            transition: border-color 0.2s, background 0.18s, transform 0.18s;
         }
 
         .feature-icon {
@@ -398,19 +426,20 @@
         }
 
         .feature-title {
-            font-size: 0.98rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .feature-text {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
 
         .feature-card:hover,
         .feature-card:focus-within {
             border-color: var(--border-strong);
-            background: #111111;
+            background: rgba(255,255,255,0.03);
+            transform: translateY(-2px);
         }
 
         /* Stats */
@@ -520,6 +549,8 @@
     </style>
 </head>
 <body>
+    <!-- Add blurred gradient starlight background -->
+    <div class="body-starlight-bg" aria-hidden="true"></div>
     <div class="main-stars-bg" id="mainStarsBg"></div>
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-mark">Loading Loop</div>
@@ -538,21 +569,17 @@
 
     <div class="site-content">
         <!-- FLOATING NAVBAR (centered round bar) -->
-        <div class="floating-nav-container" style="width:100%;">
-            <div class="floating-nav-outer floating-nav-outer" style="width:100%;">
-                <div class="floating-nav-outer">
-                    <nav class="floating-navbar" aria-label="Main floating navigation">
-                        <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
-                        <div class="nav-links">
-                            <a href="#features">Features</a>
-                            <a href="commands.html" id="navCommands">Commands</a>
-                            <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
-                            <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
-                        </div>
-                    </nav>
-                </div>
+        <nav class="floating-navbar" aria-label="Main floating navigation">
+            <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
+            <div class="nav-links">
+                <!-- The following 'a' elements are hyperlinks labeled by their contents -->
+                <a href="#features">Features</a>
+                <a href="commands.html" id="navCommands">Commands</a>
+                <a href="premium.html" id="navPremium">Premium</a>
+                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
             </div>
-        </div>
+        </nav>
+    </div>
         <!-- Fallback legacy sticky nav for mobile (hidden on desktop by media query) -->
         <header class="navbar">
             <div class="navbar-inner">
@@ -707,7 +734,7 @@
                 starsBg.appendChild(canvas);
             }
             const canvas = starsBg.querySelector('canvas');
-            drawStars(canvas, Math.floor(56 + Math.random()*24));
+            drawStars(canvas, Math.floor(66 + Math.random()*28));
         }
         // Responsive redraw for main starfield
         window.addEventListener('resize', function(){
@@ -716,7 +743,7 @@
             if (canvas) {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
-                drawStars(canvas, Math.floor(56 + Math.random()*24));
+                drawStars(canvas, Math.floor(66 + Math.random()*28));
             }
             // also update command loader starfield (existing logic)
             const commandsStarsBg = document.getElementById('commandsStarsBg');
@@ -783,8 +810,9 @@
             }
         }
 
-        // Attach to both navigation and homepage hero buttons
+        // Attach to navigation (desktop + mobile) and homepage hero buttons
         attachCommandsLoaderHandler('navCommands', 'commands.html');
+        attachCommandsLoaderHandler('navCommandsMobile', 'commands.html');
         attachCommandsLoaderHandler('mainCommandsBtn', 'commands.html');
     </script>
 </body>
