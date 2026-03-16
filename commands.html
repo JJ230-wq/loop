@@ -21,8 +21,8 @@
             padding: 0;
             min-height: 100vh;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: var(--bg);
             color: var(--text-main);
+            background: none !important; /* remove default background, starfield will be in #mainStarsBg */
         }
 
         body {
@@ -31,6 +31,28 @@
             align-items: flex-start;
             padding: 40px 16px 60px;
             box-sizing: border-box;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Starfield main background (as in main site & loading) */
+        .main-stars-bg {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg);
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .main-stars-bg canvas {
+            width: 100vw !important;
+            height: 100vh !important;
+            display: block;
+            opacity: 0.55;
+            filter: blur(2.5px) brightness(1.08);
+            pointer-events: none;
         }
 
         .loading-screen {
@@ -54,10 +76,15 @@
         .commands-page {
             width: 100%;
             max-width: 1100px;
-            background: #0e0f13;
+            background: rgba(12, 12, 14, 0.66);
             border-radius: var(--radius);
             padding: 26px 22px 28px;
             border: 1px solid var(--border-soft);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 3px 18px 2px rgba(0,0,0,.24), 0 1.5px 0 rgba(255,255,255,0.015) inset;
+            -webkit-backdrop-filter: blur(7px);
+            backdrop-filter: blur(7px);
         }
 
         .page-header {
@@ -85,7 +112,7 @@
 
         .back-link:hover,
         .back-link:focus {
-            color: var(--accent);
+            color: var(--text-main);
         }
 
         .commands-header {
@@ -154,18 +181,23 @@
         }
 
         .command-card {
-            background: #101119;
+            background: rgba(22,22,22,0.46);
             border-radius: var(--radius);
             padding: 12px 14px 11px;
             cursor: pointer;
-            transition: border-color 0.16s ease, background 0.16s ease;
-            border: 1px solid var(--border-soft);
+            transition: border-color 0.16s, background 0.16s, box-shadow .16s;
+            border: 1.2px solid #232324;
+            box-shadow: 0 1px 8px 0 rgba(0,0,0,0.07);
+            color: #dee0e5;
+            /* force grayscale + fully monochrome look */
+            filter: grayscale(1);
         }
-
         .command-card:hover,
         .command-card:focus-visible {
-            background: #171822;
-            border-color: var(--border-strong);
+            background: rgba(32,32,32,0.61);
+            border-color: #333338;
+            color: #fafcff;
+            box-shadow: 0 4px 28px 0 rgba(30,30,30,0.19);
         }
 
         .command-category-pill {
@@ -176,9 +208,20 @@
             font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.11em;
-            color: var(--text-muted);
-            background: #181924;
+            color: #acacb6;
+            background: rgba(40,40,40,0.43);
             margin-bottom: 4px;
+            /* monochrome & desaturated */
+            filter: grayscale(1) brightness(0.95) contrast(0.93);
+        }
+
+        .command-name {
+            /* monochrome headline */
+            font-size: 1.14rem;
+            font-weight: 600;
+            color: #e5e5e5 !important;
+            margin-bottom: 2px;
+            filter: grayscale(1);
         }
 
         .command-details-modal-bg {
@@ -194,11 +237,15 @@
         .command-details-modal {
             width: 100%;
             max-width: 420px;
-            background: #101119;
+            background: rgba(16,17,25,0.93);
             border-radius: var(--radius);
             padding: 18px 18px 16px;
             border: 1px solid var(--border-soft);
             position: relative;
+            /* modal: more opaque for readability, still keep subtle transparency */
+            box-shadow: 0 7px 44px 2px #000b;
+            filter: grayscale(1);
+            color: #f2f2f3;
         }
 
         .cmd-close-btn {
@@ -207,7 +254,7 @@
             right: 10px;
             border: none;
             background: transparent;
-            color: var(--text-muted);
+            color: #b0b1b5;
             cursor: pointer;
         }
 
@@ -221,12 +268,14 @@
         .cmd-title {
             font-size: 1.2rem;
             font-weight: 600;
+            color: #f7f7f7;
+            filter: grayscale(1);
         }
 
         .cmd-copy-btn {
             border: none;
-            background: #1b1d28;
-            color: var(--text-main);
+            background: #232430;
+            color: #e7e7e7;
             border-radius: 999px;
             width: 32px;
             height: 32px;
@@ -234,12 +283,14 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            filter: grayscale(1);
         }
 
         .cmd-desc {
             font-size: 0.96rem;
-            color: var(--text-muted);
+            color: #b3b3b3;
             margin-bottom: 10px;
+            filter: grayscale(1);
         }
 
         .cmd-section {
@@ -250,12 +301,15 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
-            color: var(--text-muted);
+            color: #b3b3b3;
             margin-bottom: 2px;
+            filter: grayscale(1);
         }
 
         .cmd-value {
             font-size: 0.96rem;
+            color: #fff;
+            filter: grayscale(1);
         }
 
         @media (max-width: 720px) {
@@ -277,7 +331,7 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background: #050507;
+            background: #18181c;
             color: var(--text-main);
             border: 1px solid var(--border-soft);
             outline: none;
@@ -290,15 +344,16 @@
             transition: border-color 0.17s, background 0.18s;
             position: relative;
             cursor: pointer;
+            filter: grayscale(1);
         }
         .category-filter:hover, .category-filter:focus {
             border-color: var(--border-strong);
-            background: #14151f;
+            background: #22222a;
         }
         /* Hide default dropdown arrow, add custom */
         .category-filter {
             background-image:
-                url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M6 8l4 4 4-4" stroke="%239C9DB4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+                url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M6 8l4 4 4-4" stroke="%23999999" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
             background-repeat: no-repeat, no-repeat;
             background-position: right 1em center, right 1em center;
             background-size: 1.1em, 1.1em;
@@ -306,49 +361,37 @@
         .category-filter:focus {
             outline: none;
         }
-        /* Remove outline ring in Firefox */
         .category-filter:-moz-focusring {
             color: #e7e9f0;
             text-shadow: none;
         }
-
-        /* Custom option styling using select pseudo-classes (limited support but works in WebKit, Chrome, Edge, modern Firefox) */
         .category-filter option {
-            background: #050507 !important;
-            color: var(--text-main);
+            background: #18181c !important;
+            color: #cdcdcf;
             border-radius: 0 !important;
             padding: 0.7em 1.2em !important;
             font-size: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-            transition: background 0.14s, color 0.13s;
+            filter: grayscale(1);
         }
-        /* Remove ugly blue highlight & use modern background (not supported in all browsers but works in Chromium and FF ≥ 110) */
         .category-filter option:checked,
         .category-filter option:focus,
         .category-filter option:hover {
-            background: #14151f !important;
-            color: #f5f5f7 !important;
+            background: #2a2b31 !important;
+            color: #fff !important;
         }
-
-        /* Remove blue highlight when dropdown is opened (for Chrome) */
         .category-filter:focus-visible {
             outline: none;
             border-color: var(--border-strong);
         }
-
-        /* extra: increase clickable area for ease, look more modern */
         .category-filter::-ms-expand {
             display: none;
         }
 
-        /* --- End custom select style additions --- */
-
-        /* (Optionally, .clear-filters styling can stay unchanged or also be refined for roundness) */
         .clear-filters {
             border-radius: 100px;
             padding: 0.5em 1.3em;
             background: transparent;
-            color: var(--text-muted);
+            color: #979797;
             border: 1px solid var(--border-soft);
             outline: none;
             margin-left: 4px;
@@ -357,10 +400,11 @@
             font-size: 1rem;
             font-weight: 500;
             opacity: .88;
+            filter: grayscale(1);
         }
-        .clear-filters:enabled:hover,.clear-filters:enabled:focus {
-            background: #14151f;
-            color: #f5f5f7;
+        .clear-filters:enabled:hover, .clear-filters:enabled:focus {
+            background: #191a21;
+            color: #fafbfd;
             opacity: 1;
         }
         .clear-filters:disabled {
@@ -370,6 +414,7 @@
     </style>
 </head>
 <body>
+    <div class="main-stars-bg" id="mainStarsBg"></div>
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-mark">Loading Loop</div>
     </div>
@@ -418,6 +463,56 @@
     <div id="commandDetailsModalContainer"></div>
 
     <script>
+        // Starfield background canvas logic (from index.html)
+        function drawStars(canvas, count) {
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < count; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const r = 0.6 + Math.random() * 0.85;
+                const alpha = 0.7 + Math.random()*0.26;
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, 2 * Math.PI, false);
+                ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+                ctx.shadowColor = "#fff";
+                ctx.shadowBlur = 2 + Math.random()*8;
+                ctx.fill();
+            }
+            ctx.shadowBlur = 0;
+        }
+        function setupMainStarsBg() {
+            const starsBg = document.getElementById('mainStarsBg');
+            if (!starsBg) return;
+            if (!starsBg.querySelector('canvas')) {
+                const canvas = document.createElement('canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                starsBg.appendChild(canvas);
+            }
+            const canvas = starsBg.querySelector('canvas');
+            drawStars(canvas, Math.floor(56 + Math.random()*24));
+        }
+
+        window.addEventListener('resize', function(){
+            var starsBg = document.getElementById('mainStarsBg');
+            var canvas = starsBg && starsBg.querySelector('canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                drawStars(canvas, Math.floor(56 + Math.random()*24));
+            }
+        });
+
+        if (document.readyState !== 'loading') {
+            setupMainStarsBg();
+        } else {
+            document.addEventListener('DOMContentLoaded', function(){
+                setupMainStarsBg();
+            });
+        }
+
         // Loading overlay
         window.addEventListener('load', function () {
             const loading = document.getElementById('loadingScreen');
@@ -772,8 +867,6 @@
                 permissions: commandPermissions[name] || "none"
             };
         });
-        // It is already sorted because commandFiles is sorted above. If externally sorting for safety, uncomment below:
-        //commandsData.sort((a, b) => a.name.localeCompare(b.name));
 
         function initializeCommandsPage() {
             const commandsGrid = document.getElementById('commandsGrid');
@@ -804,9 +897,10 @@
                         text-align: center;
                         padding: 40px 20px;
                         color: rgba(255, 255, 255, 0.65);
+                        filter: grayscale(1);
                     `;
                     noResults.innerHTML = `
-                        <i class="fas fa-search" style="font-size: 2.4rem; margin-bottom: 14px; opacity: 0.35;"></i>
+                        <i class="fas fa-search" style="font-size: 2.4rem; margin-bottom: 14px; opacity: 0.35; filter: grayscale(1);"></i>
                         <div>No commands match your search.</div>
                     `;
                     commandsGrid.appendChild(noResults);
@@ -822,7 +916,7 @@
                     card.dataset.category = cmd.category;
                     card.innerHTML = `
                         <div class="command-category-pill">${cmd.category}</div>
-                        <div class="command-name" style="font-size:1.14rem;font-weight:600;color:#eee;margin-bottom:2px;">${cmd.name}</div>
+                        <div class="command-name">${cmd.name}</div>
                     `;
                     card.addEventListener('click', () => showCommandModal(cmd));
                     commandsGrid.appendChild(card);
@@ -885,8 +979,6 @@
 
                 const argVal = cmd.arguments;
                 const permVal = cmd.permissions;
-
-                // Real command name for copying
                 const cmdTextToCopy = `/${cmd.name}`;
 
                 const modalBg = document.createElement('div');
@@ -929,14 +1021,12 @@
                     }
                 }
 
-                // Close handlers
                 modal.querySelector('.cmd-close-btn').onclick = doModalClose;
                 modalBg.onclick = function(e) {
                     if (e.target === modalBg) doModalClose();
                 };
                 window.addEventListener('keydown', modalKeyHandler);
 
-                // Copy to clipboard
                 modal.querySelector('#cmdCopyBtn').onclick = function() {
                     navigator.clipboard.writeText(cmdTextToCopy).then(() => {
                         const btn = modal.querySelector('#cmdCopyBtn');
