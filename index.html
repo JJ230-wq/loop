@@ -6,14 +6,38 @@
     <title>Loop - Discord's Premier All-in-One App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- ... CSS remains unchanged ... -->
     <style>
-        /* [Same CSS as before, omitted for brevity, unchanged] */
-        /* ... */
+        .top-left-logo {
+            position: fixed;
+            top: 25px;
+            left: 28px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            background: none;
+        }
+        .top-left-logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #0a0a0a;
+            box-shadow: 0 0 16px 2px rgba(0,0,0,0.4);
+        }
+        .top-left-logo-fallback {
+            display: none;
+            width: 48px;
+            height: 48px;
+            font-size: 2rem;
+            color: #fff;
+            background: #222;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-container">
             <img src="assets/loop-logo.png" alt="Loop Bot Logo" class="loading-logo" id="loadingLogo">
@@ -23,20 +47,14 @@
             </div>
         </div>
     </div>
-    
-    <!-- Enhanced Animated Background -->
     <div class="starfield" id="starfield">
         <div class="infinity-pattern"></div>
     </div>
-    
-    
-    <!-- Enhanced Top Left Logo -->
     <a href="index.html" class="top-left-logo">
-        <img src="assets/loop-logo.png" alt="Loop Bot Logo" id="topLeftLogo">
+        <img src="assets/loop-logo.png" alt="Loop Bot Logo" id="topLeftLogo"
+             onerror="this.style.display='none';document.getElementById('topLeftLogoFallback').style.display='flex';">
         <div class="top-left-logo-fallback" id="topLeftLogoFallback" style="display: none;">L</div>
     </a>
-    
-    <!-- Enhanced Header -->
     <header id="header">
         <div class="container header-container">
             <nav class="nav-links">
@@ -47,8 +65,6 @@
             </nav>
         </div>
     </header>
-    
-    <!-- Enhanced Main Content -->
     <main>
         <div class="container">
             <div class="main-content">
@@ -62,15 +78,12 @@
             </div>
         </div>
     </main>
-    
-    <!-- Features Section -->
     <section id="features" class="features-section">
         <div class="features-container">
             <div class="features-header">
                 <h2>Features</h2>
                 <p>Discover what makes Loop the ultimate Discord bot</p>
             </div>
-            
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -79,7 +92,6 @@
                     <h3>Advanced Protection</h3>
                     <p>Comprehensive anti-raid, anti-nuke, and moderation tools to keep your server safe from malicious users and attacks.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-coins"></i>
@@ -87,7 +99,6 @@
                     <h3>Economy System</h3>
                     <p>Complete economy with daily rewards, gambling games, shop system, and leaderboards to engage your community.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-cog"></i>
@@ -95,7 +106,6 @@
                     <h3>Server Management</h3>
                     <p>Powerful tools for role management, channel organization, auto-moderation, and server customization.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
@@ -103,7 +113,6 @@
                     <h3>Analytics & Logging</h3>
                     <p>Detailed logging system and server analytics to track activity, moderation actions, and server growth.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-gamepad"></i>
@@ -111,7 +120,6 @@
                     <h3>Fun & Entertainment</h3>
                     <p>Engaging games, roleplay commands, image generation, and interactive features to keep your community active.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
@@ -122,17 +130,15 @@
             </div>
         </div>
     </section>
-    
-    <!-- Statistics Section -->
     <section class="stats-section">
         <div class="stats-container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number" data-target="45+">0</div>
+                    <div class="stat-number" data-target="20">0</div>
                     <div class="stat-label">Servers</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" data-target="60000+">0</div>
+                    <div class="stat-number" data-target="2000">0</div>
                     <div class="stat-label">Users</div>
                 </div>
                 <div class="stat-card">
@@ -140,21 +146,18 @@
                     <div class="stat-label">Uptime %</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" data-target="24/7">0</div>
-                    <div class="stat-label">Support</div>
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Hours Support</div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Commands Section -->
     <section id="commands" class="commands-section">
         <div class="commands-container">
             <div class="commands-header">
                 <h2>Commands</h2>
                 <p>Explore all available commands for Loop Bot</p>
             </div>
-            
             <div class="commands-controls">
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
@@ -177,23 +180,17 @@
                     </button>
                 </div>
             </div>
-            
             <div class="command-count" id="commandCount">Showing 0 of 0 commands</div>
-            
             <div class="commands-grid" id="commandsGrid">
-                <!-- Commands will be populated by JavaScript -->
             </div>
         </div>
     </section>
-    
-    <!-- FAQ Section -->
     <section class="faq-section">
         <div class="faq-container">
             <div class="faq-header">
                 <h2>Frequently Asked Questions</h2>
                 <p>Everything you need to know about Loop Bot</p>
             </div>
-            
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>How do I invite Loop Bot to my server?</h3>
@@ -203,7 +200,6 @@
                     <p>Simply click the "Purchase" button above to join our Discord server, where you'll find the invite link and setup instructions. Our support team will guide you through the entire process.</p>
                 </div>
             </div>
-            
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>What makes Loop Bot different from other Discord bots?</h3>
@@ -213,7 +209,6 @@
                     <p>Loop Bot offers a comprehensive all-in-one solution with advanced moderation, economy system, logging, and entertainment features. Our bot is constantly updated with new features and has 99.9% uptime.</p>
                 </div>
             </div>
-            
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>Is Loop Bot free to use?</h3>
@@ -223,7 +218,6 @@
                     <p>Loop Bot offers both free and premium tiers. The free version includes basic features, while premium unlocks advanced moderation tools, economy features, and priority support.</p>
                 </div>
             </div>
-            
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>How do I get support if I have issues?</h3>
@@ -233,7 +227,6 @@
                     <p>Join our Discord support server using the "Support" link above. Our team provides 24/7 support and will help you resolve any issues quickly.</p>
                 </div>
             </div>
-            
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>Can I customize Loop Bot for my server?</h3>
@@ -245,15 +238,12 @@
             </div>
         </div>
     </section>
-    
-    <!-- Testimonials Section -->
     <section class="testimonials-section">
         <div class="testimonials-container">
             <div class="testimonials-header">
                 <h2>What Our Users Say</h2>
                 <p>Join thousands of satisfied server owners</p>
             </div>
-            
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-content">
@@ -267,7 +257,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="testimonial-card">
                     <div class="testimonial-content">
                         "The best Discord bot I've ever used. The support team is amazing and the bot never goes down. Worth every penny for premium features."
@@ -280,7 +269,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="testimonial-card">
                     <div class="testimonial-content">
                         "Loop Bot's logging system is phenomenal. We can track everything that happens in our server and the economy features have increased member activity by 300%."
@@ -296,10 +284,7 @@
             </div>
         </div>
     </section>
-    
     <script>
-        // All JavaScript unchanged, omitted for brevity
-        // ...
     </script>
 </body>
 </html>
