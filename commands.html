@@ -7,7 +7,250 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ... your existing styles ... */
+        :root {
+            --bg-dark: #000000;
+            --card-bg: #131318;
+            --accent: #dadbe6;
+            --text-main: #f5f5ff;
+            --text-muted: #a5a8b8;
+            --border-radius: 18px;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px 60px;
+            box-sizing: border-box;
+        }
+
+        .commands-page {
+            width: 100%;
+            max-width: 1100px;
+            background: radial-gradient(circle at top left, #191924 0, #050509 55%);
+            border-radius: var(--border-radius);
+            padding: 26px 22px 28px;
+            box-shadow: 0 16px 60px rgba(0,0,0,0.65);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .page-title {
+            font-size: 1.7rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin: 0;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover,
+        .back-link:focus {
+            color: var(--accent);
+        }
+
+        .commands-header {
+            margin: 10px 0 18px;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .commands-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #151620;
+            border-radius: 999px;
+            padding: 6px 10px 6px 34px;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 0.98rem;
+            width: 190px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .search-clear {
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-left: 8px;
+            opacity: 0.0;
+            pointer-events: none;
+            transition: opacity .18s;
+        }
+
+        .search-clear.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .command-count {
+            margin: 6px 0 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 12px;
+        }
+
+        .command-card {
+            background: rgba(10,10,18,0.9);
+            border-radius: 14px;
+            padding: 12px 14px 11px;
+            cursor: pointer;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+            box-shadow: 0 1px 10px rgba(0,0,0,0.55);
+        }
+
+        .command-card:hover,
+        .command-card:focus-visible {
+            transform: translateY(-2px);
+            background: rgba(23,23,34,0.98);
+            box-shadow: 0 8px 26px rgba(0,0,0,0.8);
+        }
+
+        .command-category-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.11em;
+            color: var(--text-muted);
+            background: rgba(60,62,90,0.3);
+            margin-bottom: 4px;
+        }
+
+        .command-details-modal-bg {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.72);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .command-details-modal {
+            width: 100%;
+            max-width: 420px;
+            background: #0d0d15;
+            border-radius: 18px;
+            padding: 18px 18px 16px;
+            box-shadow: 0 18px 60px rgba(0,0,0,0.85);
+            position: relative;
+        }
+
+        .cmd-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .cmd-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .cmd-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .cmd-copy-btn {
+            border: none;
+            background: rgba(40,42,70,0.75);
+            color: var(--text-main);
+            border-radius: 999px;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .cmd-desc {
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .cmd-section {
+            margin-bottom: 6px;
+        }
+
+        .cmd-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .cmd-value {
+            font-size: 0.96rem;
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 24px 10px 32px;
+            }
+
+            .commands-page {
+                padding: 20px 14px 22px;
+            }
+        }
 
         /* Custom Modern Select Styles */
         .filter-group {
