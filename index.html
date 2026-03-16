@@ -159,17 +159,25 @@
             overflow: hidden;
             z-index: 0;
         }
-        .infinity-pattern {
-            width: 200vw;
-            height: 200vh;
-            background-image: radial-gradient(circle, #494953 0.75px, transparent 1.5px), radial-gradient(circle, #414153 1.2px, transparent 2px);
-            background-size: 86px 86px;
-            animation: moveStars 120s linear infinite;
-            opacity: 0.2;
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0.4;
+            box-shadow: 0 0 6px rgba(255,255,255,0.4);
+            animation-name: starDrift;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
         }
-        @keyframes moveStars {
-            0% { transform: translate(0, 0);}
-            100% { transform: translate(-44px, -66px);}
+        @keyframes starDrift {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+            to {
+                transform: translate3d(-40px, 40px, 0);
+            }
         }
 
         /* Features Section */
@@ -625,9 +633,7 @@
             </div>
         </div>
     </div>
-    <div class="starfield" id="starfield">
-        <div class="infinity-pattern"></div>
-    </div>
+    <div class="starfield" id="starfield"></div>
     <a href="index.html" class="top-left-logo">
         <img src="assets/loop-logo.png" alt="Loop Bot Logo" id="topLeftLogo"
              onerror="this.style.display='none';document.getElementById('topLeftLogoFallback').style.display='flex';">
@@ -650,7 +656,7 @@
                 <p style="color:var(--text-muted);font-weight:200;margin-top:18px;">Loop is the ultimate all-in-one Discord bot designed to keep your server running smoothly with advanced protection, logging, economy, and more.</p>
                 <div class="button-container">
                     <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fas fa-shopping-cart"></i> <span>Purchase</span>
+                        <i class="fab fa-discord"></i> <span>Invite to Discord</span>
                     </a>
                 </div>
             </div>
@@ -774,7 +780,7 @@
                     <i class="fas fa-plus faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Simply click the "Purchase" button above to join our Discord server, where you'll find the invite link and setup instructions. Our support team will guide you through the entire process.</p>
+                    <p>Simply click the "Invite to Discord" button above to join our Discord server, where you'll find the invite link and setup instructions. Our support team will guide you through the entire process.</p>
                 </div>
             </div>
             <div class="faq-item">
@@ -862,6 +868,38 @@
         </div>
     </section>
     <script>
+        // Create moving starfield background
+        document.addEventListener('DOMContentLoaded', function () {
+            const starfield = document.getElementById('starfield');
+            if (!starfield) return;
+
+            const starCount = 90;
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+
+                const size = Math.random() * 1.7 + 1; // 1px – 2.7px
+                const startX = Math.random() * viewportWidth;
+                const startY = Math.random() * viewportHeight;
+                const duration = Math.random() * 40 + 50; // 50s – 90s
+                const delay = Math.random() * -duration;
+                const opacity = Math.random() * 0.4 + 0.25;
+
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = startX + 'px';
+                star.style.top = startY + 'px';
+                star.style.opacity = opacity.toString();
+                star.style.animationDuration = duration + 's';
+                star.style.animationDelay = delay + 's';
+
+                starfield.appendChild(star);
+            }
+        });
+
         // Animate stats on scroll
         function animateStatNumbers() {
             const stats = document.querySelectorAll('.stat-number');
