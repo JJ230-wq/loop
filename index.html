@@ -38,6 +38,38 @@
         body {
             display: flex;
             flex-direction: column;
+            /* Remove background here; main bg now under .main-stars-bg */
+            background: none !important;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Starfield main background (same as loading) */
+        .main-stars-bg {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .main-stars-bg canvas {
+            width: 100vw !important;
+            height: 100vh !important;
+            display: block;
+            opacity: 0.6;
+            filter: blur(2px) brightness(1.1);
+            pointer-events: none;
+        }
+
+        /* Place all main content above starfield bg */
+        .site-content {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         a {
@@ -75,7 +107,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 100;
+            z-index: 1002;
             transition: opacity 0.25s ease;
             animation: simpleFadeIn 0.6s;
         }
@@ -488,6 +520,7 @@
     </style>
 </head>
 <body>
+    <div class="main-stars-bg" id="mainStarsBg"></div>
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-mark">Loading Loop</div>
     </div>
@@ -503,131 +536,133 @@
         </div>
     </div>
 
-    <!-- FLOATING NAVBAR (centered round bar) -->
-    <div class="floating-nav-container" style="width:100%;">
-        <div class="floating-nav-outer floating-nav-outer" style="width:100%;">
-            <div class="floating-nav-outer">
-                <nav class="floating-navbar" aria-label="Main floating navigation">
+    <div class="site-content">
+        <!-- FLOATING NAVBAR (centered round bar) -->
+        <div class="floating-nav-container" style="width:100%;">
+            <div class="floating-nav-outer floating-nav-outer" style="width:100%;">
+                <div class="floating-nav-outer">
+                    <nav class="floating-navbar" aria-label="Main floating navigation">
+                        <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
+                        <div class="nav-links">
+                            <a href="#features">Features</a>
+                            <a href="commands.html" id="navCommands">Commands</a>
+                            <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
+                            <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Fallback legacy sticky nav for mobile (hidden on desktop by media query) -->
+        <header class="navbar">
+            <div class="navbar-inner">
+                <div class="nav-logo-combined">
                     <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
-                    <div class="nav-links">
-                        <a href="#features">Features</a>
-                        <a href="commands.html" id="navCommands">Commands</a>
-                        <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
-                        <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
-                    </div>
+                </div>
+                <nav class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="commands.html" id="navCommands">Commands</a>
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
                 </nav>
             </div>
-        </div>
+        </header>
+
+        <main class="page-container">
+            <section class="hero" id="top">
+                <div class="hero-inner">
+                    <h1 class="hero-title">Loop</h1>
+                    <p class="hero-subtitle">Discord's premier all-in-one app</p>
+                    <p class="hero-description">
+                        Advanced protection, detailed logging, rich economy tools, and streamlined server management in a single reliable Discord bot.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                            <i class="fab fa-discord"></i>
+                            <span>Invite to Discord</span>
+                        </a>
+                        <a href="commands.html" class="btn-secondary" id="mainCommandsBtn">
+                            <span>View Commands</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features">
+                <div class="section-header">
+                    <h2 class="section-title">Features</h2>
+                    <p class="section-subtitle">Everything you need to run a modern Discord server.</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="feature-title">Advanced Protection</div>
+                        <p class="feature-text">Anti-raid, anti-nuke, and moderation safeguards to keep your community safe.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-coins"></i></div>
+                        <div class="feature-title">Economy System</div>
+                        <p class="feature-text">Balances, rewards, and configurable games to keep members engaged.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-cog"></i></div>
+                        <div class="feature-title">Server Management</div>
+                        <p class="feature-text">Roles, channels, and automation for smooth day-to-day server operations.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="feature-title">Analytics &amp; Logging</div>
+                        <p class="feature-text">Clear records of activity, actions, and growth over time.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                        <div class="feature-title">Fun &amp; Entertainment</div>
+                        <p class="feature-text">Roleplay, games, and utilities that make your server feel alive.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <div class="feature-title">Community Features</div>
+                        <p class="feature-text">Welcome flows, levels, and rewards that recognize your members.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="stats">
+                <div class="section-header">
+                    <h2 class="section-title">At a glance</h2>
+                </div>
+                <div class="stats-row">
+                    <div>
+                        <div class="stat-item-number">45+</div>
+                        <div class="stat-item-label">Servers</div>
+                    </div>
+                    <div>
+                        <div class="stat-item-number">60,000+</div>
+                        <div class="stat-item-label">Users</div>
+                    </div>
+                    <div>
+                        <div class="stat-item-number">99.9%</div>
+                        <div class="stat-item-label">Uptime</div>
+                    </div>
+                    <div>
+                        <div class="stat-item-number">24/7</div>
+                        <div class="stat-item-label">Support</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-inner">
+                <div>© Loop</div>
+                <div class="footer-links">
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Invite</a>
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
+                </div>
+            </div>
+        </footer>
     </div>
-    <!-- Fallback legacy sticky nav for mobile (hidden on desktop by media query) -->
-    <header class="navbar">
-        <div class="navbar-inner">
-            <div class="nav-logo-combined">
-                <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
-            </div>
-            <nav class="nav-links">
-                <a href="#features">Features</a>
-                <a href="commands.html" id="navCommands">Commands</a>
-                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
-                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="page-container">
-        <section class="hero" id="top">
-            <div class="hero-inner">
-                <h1 class="hero-title">Loop</h1>
-                <p class="hero-subtitle">Discord's premier all-in-one app</p>
-                <p class="hero-description">
-                    Advanced protection, detailed logging, rich economy tools, and streamlined server management in a single reliable Discord bot.
-                </p>
-                <div class="hero-actions">
-                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                        <i class="fab fa-discord"></i>
-                        <span>Invite to Discord</span>
-                    </a>
-                    <a href="commands.html" class="btn-secondary" id="mainCommandsBtn">
-                        <span>View Commands</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="features">
-            <div class="section-header">
-                <h2 class="section-title">Features</h2>
-                <p class="section-subtitle">Everything you need to run a modern Discord server.</p>
-            </div>
-            <div class="features-grid">
-                <article class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div class="feature-title">Advanced Protection</div>
-                    <p class="feature-text">Anti-raid, anti-nuke, and moderation safeguards to keep your community safe.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-coins"></i></div>
-                    <div class="feature-title">Economy System</div>
-                    <p class="feature-text">Balances, rewards, and configurable games to keep members engaged.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-cog"></i></div>
-                    <div class="feature-title">Server Management</div>
-                    <p class="feature-text">Roles, channels, and automation for smooth day-to-day server operations.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="feature-title">Analytics &amp; Logging</div>
-                    <p class="feature-text">Clear records of activity, actions, and growth over time.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
-                    <div class="feature-title">Fun &amp; Entertainment</div>
-                    <p class="feature-text">Roleplay, games, and utilities that make your server feel alive.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-users"></i></div>
-                    <div class="feature-title">Community Features</div>
-                    <p class="feature-text">Welcome flows, levels, and rewards that recognize your members.</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="stats">
-            <div class="section-header">
-                <h2 class="section-title">At a glance</h2>
-            </div>
-            <div class="stats-row">
-                <div>
-                    <div class="stat-item-number">45+</div>
-                    <div class="stat-item-label">Servers</div>
-                </div>
-                <div>
-                    <div class="stat-item-number">60,000+</div>
-                    <div class="stat-item-label">Users</div>
-                </div>
-                <div>
-                    <div class="stat-item-number">99.9%</div>
-                    <div class="stat-item-label">Uptime</div>
-                </div>
-                <div>
-                    <div class="stat-item-number">24/7</div>
-                    <div class="stat-item-label">Support</div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-inner">
-            <div>© Loop</div>
-            <div class="footer-links">
-                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Invite</a>
-                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
-                <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
-            </div>
-        </div>
-    </footer>
 
     <script>
         // Remove normal load screen on standard page load
@@ -660,8 +695,10 @@
                 ctx.fill();
             }
         }
-        function setupStarsBg() {
-            let starsBg = document.getElementById('commandsStarsBg');
+        // Set up main page starfield
+        function setupMainStarsBg() {
+            var starsBg = document.getElementById('mainStarsBg');
+            if (!starsBg) return;
             // Only add canvas if necessary
             if (!starsBg.querySelector('canvas')) {
                 const canvas = document.createElement('canvas');
@@ -672,15 +709,33 @@
             const canvas = starsBg.querySelector('canvas');
             drawStars(canvas, Math.floor(56 + Math.random()*24));
         }
+        // Responsive redraw for main starfield
         window.addEventListener('resize', function(){
-            const starsBg = document.getElementById('commandsStarsBg');
-            const canvas = starsBg && starsBg.querySelector('canvas');
+            var starsBg = document.getElementById('mainStarsBg');
+            var canvas = starsBg && starsBg.querySelector('canvas');
             if (canvas) {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 drawStars(canvas, Math.floor(56 + Math.random()*24));
             }
+            // also update command loader starfield (existing logic)
+            const commandsStarsBg = document.getElementById('commandsStarsBg');
+            const commandsCanvas = commandsStarsBg && commandsStarsBg.querySelector('canvas');
+            if (commandsCanvas) {
+                commandsCanvas.width = window.innerWidth;
+                commandsCanvas.height = window.innerHeight;
+                drawStars(commandsCanvas, Math.floor(56 + Math.random()*24));
+            }
         });
+
+        // Initialize main stars background on load and soon after DOMContentLoaded
+        if (document.readyState !== 'loading') {
+            setupMainStarsBg();
+        } else {
+            document.addEventListener('DOMContentLoaded', function(){
+                setupMainStarsBg();
+            });
+        }
 
         // Progress bar animation
         function animateProgressBar(elem, cb) {
