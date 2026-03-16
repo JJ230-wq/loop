@@ -364,25 +364,29 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background: rgba(24,24,28,0.6);
+            background: transparent;
             color: var(--text-main);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
             outline: none;
             font-family: inherit;
             font-size: 0.9rem;
             font-weight: 300;
             padding: 0.6em 2em 0.6em 1.25em;
-            border-radius: 1.1em;
+            border-radius: 999px;
             margin-right: 8px;
             transition: all 0.2s ease;
             position: relative;
             cursor: pointer;
             filter: grayscale(1);
             letter-spacing: 0.01em;
+            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
         }
-        .category-filter:hover, .category-filter:focus {
-            border-color: var(--border-strong);
-            background: #22222a;
+        .category-filter:hover,
+        .category-filter:focus {
+            border-color: rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.06);
+            color: var(--text-main);
         }
         /* Hide default dropdown arrow, add custom */
         .category-filter {
@@ -400,9 +404,9 @@
             text-shadow: none;
         }
         .category-filter option {
-            background: #18181c !important;
+            background: rgba(10,10,12,0.9) !important;
             color: #cdcdcf;
-            border-radius: 0 !important;
+            border-radius: 10px !important;
             padding: 0.7em 1.2em !important;
             font-size: 1rem;
             filter: grayscale(1);
@@ -410,8 +414,8 @@
         .category-filter option:checked,
         .category-filter option:focus,
         .category-filter option:hover {
-            background: #2a2b31 !important;
-            color: #fff !important;
+            background: rgba(255,255,255,0.12) !important;
+            color: #ffffff !important;
         }
         .category-filter:focus-visible {
             outline: none;
@@ -492,8 +496,7 @@
 
         /* Top navigation bar */
         .site-bar {
-            position: fixed;
-            top: 0;
+            position: fixed;            top: 0;
             left: 50%;
             transform: translateX(-50%);
             width: min(1100px, calc(100% - 32px));
