@@ -16,6 +16,7 @@
             --nav-bg: rgba(0, 0, 0, 0.9);
             --hero-max-width: 900px;
             --radius: 10px;
+            --floatbar-blur: 20px;
         }
 
         *,
@@ -50,7 +51,7 @@
             width: 100%;
         }
 
-        /* Animation - Fade and Translate Up */
+        /* ANIMATIONS */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -159,59 +160,65 @@
             border-radius: 3px;
         }
 
-        /* Navbar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
-            background: var(--nav-bg);
-            border-bottom: 1px solid var(--border-soft);
-            animation: fadeInUp 0.72s both;
+        /* Floating Bar */
+        .floating-navbar-outer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            position: relative;
+            margin-top: 28px;
+            margin-bottom: 34px;
+            z-index: 21;
+            pointer-events: none;
         }
-
-        .navbar-inner {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 14px 24px;
+        .floating-navbar {
+            background: rgba(22, 22, 22, 0.98);
+            border-radius: 999px;
+            box-shadow: 0 8px 40px 0 rgba(0,0,0,0.34), 0 1.5px 0 rgba(255,255,255,0.025) inset;
+            border: 1.5px solid var(--border-strong);
+            -webkit-backdrop-filter: blur(var(--floatbar-blur));
+            backdrop-filter: blur(var(--floatbar-blur));
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 16px;
+            padding: 8px 32px 8px 18px;
+            gap: 22px;
+            min-height: 62px;
+            animation: fadeInUp 0.8s both;
+            pointer-events: auto;
         }
-
-        .nav-logo-combined {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            animation: fadeInUp 1.05s both;
-        }
-
-        .nav-logo-image {
-            width: 40px;
-            height: 40px;
+        .floating-navbar .nav-logo-image {
+            width: 38px;
+            height: 38px;
+            margin-right: 10px;
             object-fit: contain;
-            display: block;
         }
-
-        .nav-links {
+        .floating-navbar .nav-links {
             display: flex;
-            gap: 20px;
-            font-size: 0.92rem;
-            animation: fadeInUp 1.2s both;
+            gap: 22px;
+            align-items: center;
         }
-
-        .nav-links a {
+        .floating-navbar .nav-links a {
+            color: var(--text-main);
+            font-size: 0.97rem;
+            font-weight: 500;
             text-decoration: none;
-            padding: 4px 0;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.18s;
+            padding: 7px 14px;
+            border-radius: 999px;
+            transition: background 0.16s;
+            border: none;
+            display: flex;
+            align-items: center;
+        }
+        .floating-navbar .nav-links a:hover,
+        .floating-navbar .nav-links a:focus-visible {
+            background: rgba(36,36,36,0.54);
+            color: #fff;
         }
 
-        .nav-links a:hover,
-        .nav-links a:focus-visible {
-            border-bottom-color: var(--border-strong);
+        /* Hide non-floating navbar on desktop */
+        .navbar {
+            display: none !important;
         }
 
         /* Hero */
@@ -222,12 +229,12 @@
             text-align: center;
             padding: 64px 0 72px;
             animation: fadeInUp 0.85s 0.09s both;
+            margin-top: 0;
         }
 
         .hero-inner {
             max-width: var(--hero-max-width);
         }
-
         .hero-title {
             font-size: 3rem;
             font-weight: 700;
@@ -431,37 +438,51 @@
             text-decoration: underline;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .features-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+        /* Responsive Styles for floating bar */
+        @media (max-width: 800px) {
+            .floating-navbar {
+                flex-direction: row;
+                gap: 13px;
+                padding: 7px 12px 7px 8px;
+                min-height: 49px;
+            }
+            .floating-navbar .nav-logo-image {
+                width: 30px;
+                height: 30px;
+                margin-right: 6px;
+            }
+            .floating-navbar .nav-links a {
+                font-size: 0.92rem;
+                padding: 6px 10px;
             }
         }
-
         @media (max-width: 640px) {
-            .navbar-inner {
-                padding-inline: 16px;
+            .floating-nav-container {
+                margin-top: 11px;
+                margin-bottom: 18px;
             }
-
-            .page-container {
-                padding-inline: 16px;
+            .floating-navbar {
+                padding: 5px 2vw 5px 6px;
+                gap: 10px;
+                min-height: 44px;
             }
-
-            .hero-title {
-                font-size: 2.2rem;
+            .floating-navbar .nav-links {
+                gap: 7px;
             }
-
-            .features-grid {
-                grid-template-columns: 1fr;
+            .floating-navbar .nav-logo-image {
+                width: 24px;
+                height: 24px;
             }
-            .commands-loading-logo {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 28px;
+        }
+        /* Show legacy sticky nav on small screens if you want: */
+        @media (max-width: 500px) {
+            .floating-nav-container,
+            .floating-nav-outer,
+            .floating-navbar {
+                display: none !important;
             }
-            .commands-progress-bar-outer {
-                width: 90vw;
-                max-width: 220px;
+            .navbar {
+                display: block !important;
             }
         }
     </style>
@@ -482,6 +503,23 @@
         </div>
     </div>
 
+    <!-- FLOATING NAVBAR (centered round bar) -->
+    <div class="floating-nav-container" style="width:100%;">
+        <div class="floating-nav-outer floating-nav-outer" style="width:100%;">
+            <div class="floating-nav-outer">
+                <nav class="floating-navbar" aria-label="Main floating navigation">
+                    <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image" />
+                    <div class="nav-links">
+                        <a href="#features">Features</a>
+                        <a href="commands.html" id="navCommands">Commands</a>
+                        <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
+                        <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Fallback legacy sticky nav for mobile (hidden on desktop by media query) -->
     <header class="navbar">
         <div class="navbar-inner">
             <div class="nav-logo-combined">
