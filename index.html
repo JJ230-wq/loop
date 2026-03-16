@@ -50,6 +50,25 @@
             width: 100%;
         }
 
+        /* Loading */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: opacity 0.25s ease;
+        }
+
+        .loading-mark {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
         /* Navbar */
         .navbar {
             position: sticky;
@@ -385,6 +404,10 @@
     </style>
 </head>
 <body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-mark">Loading Loop</div>
+    </div>
+
     <header class="navbar">
         <div class="navbar-inner">
             <div class="nav-logo">Loop</div>
@@ -539,5 +562,16 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        window.addEventListener('load', function () {
+            const loading = document.getElementById('loadingScreen');
+            if (!loading) return;
+            loading.style.opacity = '0';
+            setTimeout(function () {
+                loading.style.display = 'none';
+            }, 260);
+        });
+    </script>
 </body>
 </html>
