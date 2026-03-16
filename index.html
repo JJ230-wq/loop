@@ -559,24 +559,33 @@
         .loading-screen {
             position: fixed;
             left: 0; top: 0; right: 0; bottom: 0;
-            background: #0e0e14;
+            background: #000000;
             color: #fff;
             z-index: 12000;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
             transition: opacity .4s;
+        }
+        .loading-screen .loading-stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
         }
         .loading-container {
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         .loading-logo {
             width: 65px;
             height: 65px;
             margin-bottom: 16px;
-            border-radius: 16px;
-            background: #23232a;
-            box-shadow: 0 1px 9px 0 rgba(124,147,255,0.10);
+            border-radius: 50%;
+            background: transparent;
+            box-shadow: none;
         }
         .loading-text {
             color: #ececec;
@@ -586,18 +595,17 @@
             font-weight: 200;
         }
         .loading-progress {
-            width: 142px;
-            background: #191924;
-            height: 10px;
-            border-radius: 9px;
+            width: 160px;
+            height: 2px;
             margin: 0 auto;
+            background: transparent;
             overflow: hidden;
         }
         .loading-progress-bar {
             width: 0%;
             height: 100%;
-            background: var(--primary-gradient);
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 999px;
             transition: width .6s;
         }
 
@@ -869,32 +877,69 @@
         // Create moving starfield background
         document.addEventListener('DOMContentLoaded', function () {
             const starfield = document.getElementById('starfield');
-            if (!starfield) return;
+            if (starfield) {
+                const starCount = 90;
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
 
-            const starCount = 90;
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
 
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
+                    const size = Math.random() * 1.7 + 1; // 1px – 2.7px
+                    const startX = Math.random() * viewportWidth;
+                    const startY = Math.random() * viewportHeight;
+                    const duration = Math.random() * 40 + 50; // 50s – 90s
+                    const delay = Math.random() * -duration;
+                    const opacity = Math.random() * 0.4 + 0.25;
 
-                const size = Math.random() * 1.7 + 1; // 1px – 2.7px
-                const startX = Math.random() * viewportWidth;
-                const startY = Math.random() * viewportHeight;
-                const duration = Math.random() * 40 + 50; // 50s – 90s
-                const delay = Math.random() * -duration;
-                const opacity = Math.random() * 0.4 + 0.25;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+                    star.style.left = startX + 'px';
+                    star.style.top = startY + 'px';
+                    star.style.opacity = opacity.toString();
+                    star.style.animationDuration = duration + 's';
+                    star.style.animationDelay = delay + 's';
 
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = startX + 'px';
-                star.style.top = startY + 'px';
-                star.style.opacity = opacity.toString();
-                star.style.animationDuration = duration + 's';
-                star.style.animationDelay = delay + 's';
+                    starfield.appendChild(star);
+                }
+            }
 
-                starfield.appendChild(star);
+            // Loading screen stars
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                let starLayer = loadingScreen.querySelector('.loading-stars');
+                if (!starLayer) {
+                    starLayer = document.createElement('div');
+                    starLayer.className = 'loading-stars';
+                    loadingScreen.appendChild(starLayer);
+                }
+
+                const loadStarCount = 55;
+                const width = loadingScreen.clientWidth || window.innerWidth;
+                const height = loadingScreen.clientHeight || window.innerHeight;
+
+                for (let i = 0; i < loadStarCount; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'star';
+
+                    const size = Math.random() * 18 + 2; // 2px – 20px max
+                    const x = Math.random() * width;
+                    const y = Math.random() * height;
+                    const duration = Math.random() * 35 + 45; // 45s – 80s
+                    const delay = Math.random() * -duration;
+                    const opacity = Math.random() * 0.5 + 0.3;
+
+                    dot.style.width = size + 'px';
+                    dot.style.height = size + 'px';
+                    dot.style.left = x + 'px';
+                    dot.style.top = y + 'px';
+                    dot.style.opacity = opacity.toString();
+                    dot.style.animationDuration = duration + 's';
+                    dot.style.animationDelay = delay + 's';
+
+                    starLayer.appendChild(dot);
+                }
             }
         });
 
