@@ -510,7 +510,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(10, 10, 12, 0.92);
+            background: rgba(10, 10, 12, 0.35);
             border-radius: 999px;
             border: 1px solid rgba(255,255,255,0.06);
             padding: 8px 18px;
@@ -525,19 +525,11 @@
         }
 
         .site-bar-logo {
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             border-radius: 8px;
-            object-fit: cover;
+            object-fit: contain;
             filter: grayscale(1) brightness(1.15);
-        }
-
-        .site-bar-name {
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-main);
         }
 
         .site-bar-nav {
@@ -574,8 +566,7 @@
     <header class="site-bar">
         <div class="site-bar-inner">
             <div class="site-bar-brand">
-                <img src="moody-logo.png" alt="Moody logo" class="site-bar-logo">
-                <span class="site-bar-name">Moody</span>
+                <img src="loop-logo.png" alt="Loop logo" class="site-bar-logo">
             </div>
             <nav class="site-bar-nav">
                 <a href="commands.html" class="site-bar-link is-active">Commands</a>
