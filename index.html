@@ -8,12 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050507;
-            --text-main: #f5f5f7;
-            --text-muted: #a0a3ad;
-            --border-soft: #202128;
-            --border-strong: #353743;
-            --nav-bg: rgba(5, 5, 7, 0.9);
+            --bg: #000000;
+            --text-main: #ffffff;
+            --text-muted: #b3b3b3;
+            --border-soft: #202020;
+            --border-strong: #3a3a3a;
+            --nav-bg: rgba(0, 0, 0, 0.9);
             --hero-max-width: 900px;
             --radius: 10px;
         }
@@ -87,6 +87,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 16px;
         }
 
         .nav-logo {
@@ -111,6 +112,12 @@
         .nav-links a:hover,
         .nav-links a:focus-visible {
             border-bottom-color: var(--border-strong);
+        }
+
+        .nav-logo-image {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
 
         /* Hero */
@@ -167,9 +174,9 @@
         }
 
         .btn-primary {
-            background: #f5f5f7;
-            color: #050507;
-            border: 1px solid #f5f5f7;
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #ffffff;
         }
 
         .btn-secondary {
@@ -180,7 +187,7 @@
 
         .btn-primary:hover,
         .btn-primary:focus-visible {
-            background: #e2e2e7;
+            background: #e5e5e5;
         }
 
         .btn-secondary:hover,
@@ -222,7 +229,7 @@
         }
 
         .feature-card {
-            background: #0e0f13;
+            background: #050505;
             border-radius: var(--radius);
             border: 1px solid var(--border-soft);
             padding: 18px 18px 16px;
@@ -233,7 +240,7 @@
 
         .feature-icon {
             font-size: 1rem;
-            color: #f5f5f7;
+            color: #ffffff;
         }
 
         .feature-title {
@@ -249,7 +256,7 @@
         .feature-card:hover,
         .feature-card:focus-within {
             border-color: var(--border-strong);
-            background: #15161d;
+            background: #111111;
         }
 
         /* Stats */
@@ -417,6 +424,7 @@
                 <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Premium</a>
                 <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
             </nav>
+            <img src="assets/loop-logo.png" alt="Loop logo" class="nav-logo-image">
         </div>
     </header>
 
