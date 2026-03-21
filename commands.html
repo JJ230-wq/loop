@@ -15,7 +15,7 @@
     <header class="site-bar">
         <div class="site-bar-inner">
             <div class="site-bar-brand">
-                <a href="index..html"><img src="assets/loop-logo.png" alt="Loop logo" class="site-bar-logo"></a>
+                <a href="index.html"><img src="assets/loop-logo.png" alt="Loop logo" class="site-bar-logo"></a>
             </div>
             <nav class="site-bar-nav">
                 <a href="commands.html" class="site-bar-link is-active">Commands</a>
@@ -47,26 +47,13 @@
             <p>Searchable list of Loop’s commands based on the bot’s command files.</p>
         </div>
 
-        <div class="commands-controls">
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search commands..." id="commandSearch">
-                <i class="fas fa-times search-clear" id="searchClear"></i>
+        <div class="tabs-and-search-container">
+            <div class="tab-navigation" id="tabNavigation">
+                <!-- Tabs will be dynamically inserted here -->
             </div>
-            <div class="filter-group">
-                <select class="category-filter" id="categoryFilter" title="Filter commands by category">
-                    <option value="all">All types</option>
-                    <option value="moderation">Moderation</option>
-                    <option value="economy">Economy</option>
-                    <option value="utility">Utility</option>
-                    <option value="fun">Fun / RP</option>
-                    <option value="config">Config / Setup</option>
-                    <option value="other">Other</option>
-                </select>
-                <button class="clear-filters" id="clearFilters" disabled>
-                    <i class="fas fa-times"></i>
-                    Clear
-                </button>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search commands..." id="commandSearch">
+                <i class="fas fa-search search-icon"></i>
             </div>
         </div>
 
