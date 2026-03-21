@@ -51,24 +51,47 @@
         };
     });
 
+    const tabCategories = [
+        { id: 'all', label: 'All Commands' },
+        { id: 'moderation', label: 'Moderation' },
+        { id: 'economy', label: 'Economy' },
+        { id: 'utility', label: 'Utility' },
+        { id: 'fun', label: 'Fun / RP' },
+        { id: 'config', label: 'Config / Setup' },
+        { id: 'other', label: 'Other' }
+    ];
+
+    function renderTabs() {
+        tabNavigation.innerHTML = ''; // Clear existing tabs
+        tabCategories.forEach(function(cat) {
+            const tabButton = document.createElement('button');
+            tabButton.className = 'tab-button';
+            if (cat.id === currentCategory) {
+                tabButton.classList.add('is-active');
+            }
+            tabButton.dataset.category = cat.id;
+            tabButton.textContent = cat.label;
+            tabButton.addEventListener('click', function() {
+                currentCategory = cat.id;
+                applyFilters();
+                // Update active tab visual state
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('is-active'));
+                tabButton.classList.add('is-active');
+            });
+            tabNavigation.appendChild(tabButton);
+        });
+    }
+
     function initializeCommandsPage() {
         const commandsGrid = document.getElementById('commandsGrid');
         const commandCount = document.getElementById('commandCount');
         const searchInput = document.getElementById('commandSearch');
-        const categoryFilter = document.getElementById('categoryFilter');
-        const searchClear = document.getElementById('searchClear');
-        const clearFilters = document.getElementById('clearFilters');
+        const tabNavigation = document.getElementById('tabNavigation');
         const modalContainer = document.getElementById('commandDetailsModalContainer');
 
         let currentSearch = "";
         let currentCategory = "all";
         let currentCommands = [].concat(commandsData);
-
-        function updateClearButton() {
-            const hasFilters = currentSearch.length > 0 || currentCategory !== 'all';
-            clearFilters.disabled = !hasFilters;
-            searchClear.classList.toggle('visible', currentSearch.length > 0);
-        }
 
         function renderCommands() {
             commandsGrid.innerHTML = "";
@@ -99,23 +122,13 @@
 
         function applyFilters() {
             currentSearch = searchInput.value.toLowerCase().trim();
-            currentCategory = categoryFilter.value;
             currentCommands = commandsData.filter(function (cmd) {
                 const matchesText = cmd.name.toLowerCase().includes(currentSearch) || (cmd.description && cmd.description.toLowerCase().includes(currentSearch));
                 const matchesCategory = currentCategory === 'all' || cmd.category === currentCategory;
                 return matchesText && matchesCategory;
             });
 
-            updateClearButton();
             renderCommands();
-        }
-
-        function clearAllFilters() {
-            searchInput.value = "";
-            categoryFilter.value = "all";
-            currentSearch = "";
-            currentCategory = "all";
-            applyFilters();
         }
 
         function clearSearch() {
@@ -172,19 +185,11 @@
         }
 
         searchInput.addEventListener('input', applyFilters);
-        categoryFilter.addEventListener('change', applyFilters);
-        clearFilters.addEventListener('click', clearAllFilters);
-        searchClear.addEventListener('click', clearSearch);
         searchInput.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') clearSearch();
         });
-        categoryFilter.addEventListener('mousedown', function () {
-            categoryFilter.classList.add('open');
-            setTimeout(function () {
-                categoryFilter.classList.remove('open');
-            }, 400);
-        });
 
+        renderTabs();
         applyFilters();
     }
 
