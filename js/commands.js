@@ -61,27 +61,6 @@
         { id: 'other', label: 'Other' }
     ];
 
-    function renderTabs() {
-        tabNavigation.innerHTML = ''; // Clear existing tabs
-        tabCategories.forEach(function(cat) {
-            const tabButton = document.createElement('button');
-            tabButton.className = 'tab-button';
-            if (cat.id === currentCategory) {
-                tabButton.classList.add('is-active');
-            }
-            tabButton.dataset.category = cat.id;
-            tabButton.textContent = cat.label;
-            tabButton.addEventListener('click', function() {
-                currentCategory = cat.id;
-                applyFilters();
-                // Update active tab visual state
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('is-active'));
-                tabButton.classList.add('is-active');
-            });
-            tabNavigation.appendChild(tabButton);
-        });
-    }
-
     function initializeCommandsPage() {
         const commandsGrid = document.getElementById('commandsGrid');
         const commandCount = document.getElementById('commandCount');
@@ -129,6 +108,35 @@
             });
 
             renderCommands();
+        }
+
+        function renderTabs() {
+            tabNavigation.innerHTML = '';
+            tabNavigation.setAttribute('role', 'tablist');
+            tabNavigation.setAttribute('aria-label', 'Command categories');
+            tabCategories.forEach(function (cat) {
+                const tabButton = document.createElement('button');
+                tabButton.type = 'button';
+                tabButton.className = 'tab-button';
+                tabButton.setAttribute('role', 'tab');
+                tabButton.setAttribute('aria-selected', cat.id === currentCategory ? 'true' : 'false');
+                if (cat.id === currentCategory) {
+                    tabButton.classList.add('is-active');
+                }
+                tabButton.dataset.category = cat.id;
+                tabButton.textContent = cat.label;
+                tabButton.addEventListener('click', function () {
+                    if (currentCategory === cat.id) return;
+                    currentCategory = cat.id;
+                    tabNavigation.querySelectorAll('.tab-button').forEach(function (btn) {
+                        var on = btn.dataset.category === currentCategory;
+                        btn.classList.toggle('is-active', on);
+                        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+                    });
+                    applyFilters();
+                });
+                tabNavigation.appendChild(tabButton);
+            });
         }
 
         function clearSearch() {
