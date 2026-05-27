@@ -26,14 +26,14 @@
         name: "autorole add",
         category: "autorole",
         description: "Adds a autorole and assigns on join to member",
-        arguments: "<role>",
+        arguments: "role",
         permissions: "manage roles"
     },
     {
         name: "autorole remove",
         category: "autorole",
         description: "Remove a role from being assigned automatically on join",
-        arguments: "<role>",
+        arguments: "role",
         permissions: "manage roles"
     },
     {
@@ -61,7 +61,7 @@
         name: "antiraid avatar",
         category: "antiraid",
         description: "Punish accounts without a profile picture",
-        arguments: "<setting> <flags>",
+        arguments: "setting flags",
         permissions: "manage guild"
     },
     {
@@ -75,7 +75,7 @@
         name: "antiraid whitelist",
         category: "antiraid",
         description: "Create a one-time whitelist to allow a user to join",
-        arguments: "<member>",
+        arguments: "member",
         permissions: "manage guild"
     },
     {
@@ -89,21 +89,134 @@
         name: "antiraid massjoin",
         category: "antiraid",
         description: "Protect server against mass bot raids",
-        arguments: "<setting> <flags>",
+        arguments: "setting flags",
         permissions: "manage guild"
     },
     {
         name: "antiraid newaccounts",
         category: "antiraid",
         description: "Punish new registered accounts",
-        arguments: "<setting> <flags>",
+        arguments: "setting flags",
         permissions: "none"
+    },
+    {
+        name: "reaction",
+        category: "reaction",
+        description: "Adds a reaction(s) to a message",
+        arguments: "message link, emoji or emote",
+        permissions: "none"
+    },
+    {
+        name: "reaction messages",
+        category: "reaction",
+        description: "Add or remove auto reaction on messages",
+        arguments: "channel first second third",
+        permissions: "none"
+    },
+    {
+        name: "reaction messages list",
+        category: "reaction",
+        description: "List auto reactions for all channels",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "reaction deleteall",
+        category: "reaction",
+        description: "Removes every reaction trigger for a specific word",
+        arguments: "trigger word",
+        permissions: "none"
+    },
+    {
+        name: "reaction clear",
+        category: "reaction",
+        description: "Removes every reaction trigger in the guild",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "reaction owner",
+        category: "reaction",
+        description: "Get the author of a trigger word",
+        arguments: "trigger word",
+        permissions: "none"
+    },
+    {
+        name: "reaction list",
+        category: "reaction",
+        description: "View a list of every reaction trigger in the guild",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "reaction add",
+        category: "reaction",
+        description: "Adds a reaction trigger to the guild",
+        arguments: "emoji trigger word",
+        permissions: "none"
+    },
+    {
+        name: "reaction delete",
+        category: "reaction",
+        description: "Removes a reaction trigger in the guild",
+        arguments: "emoji trigger word",
+        permissions: "none"
+    },
+    {
+        name: "noselfreact",
+        category: "reaction",
+        description: "Prevent self reactions on messages",
+        arguments: "none",
+        permissions: "administrator"
+    },
+    {
+        name: "noselfreact exempt",
+        category: "reaction",
+        description: "Exempt a member, channel, or role from noselfreact",
+        arguments: "member or channel or role",
+        permissions: "administrator"
+    },
+    {
+        name: "noselfreact exempt list",
+        category: "reaction",
+        description: "View all noselfreact exemptions",
+        arguments: "none",
+        permissions: "administrator"
+    },
+    {
+        name: "noselfreact toggle",
+        category: "reaction",
+        description: "Toggle noselfreact on or off",
+        arguments: "setting",
+        permissions: "administrator"
+    },
+    {
+        name: "noselfreact punishment",
+        category: "reaction",
+        description: "Set the punishment for self reacting",
+        arguments: "punishment",
+        permissions: "administrator"
+    },
+    {
+        name: "noselfreact emoji",
+        category: "reaction",
+        description: "Set a specific emoji to monitor for self reacts",
+        arguments: "emoji or emote",
+        permissions: "administrator"
+    },
+    {
+        name: "noselfreact emoji list",
+        category: "reaction",
+        description: "View all monitored emojis for noselfreact",
+        arguments: "none",
+        permissions: "administrator"
     }
 ];
 
 const tabCategories = [
     { id: 'autorole', label: 'Autorole' },
-    { id: 'antiraid', label: 'Antiraid' }
+    { id: 'antiraid', label: 'Antiraid' },
+    { id: 'reaction', label: 'Reaction' }
 ];
 
     function initializeCommandsPage() {
