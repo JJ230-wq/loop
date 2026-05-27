@@ -15,39 +15,96 @@
     });
 
     const commandsData = [
-        {
-            name: "autorole",
-            category: "autorole",
-            description: "Set up automatic role assign on member join",
-            arguments: "none",
-            permissions: "manage roles"
-        },
-        {
-            name: "autorole add",
-            category: "autorole",
-            description: "Adds a autorole and assigns on join to member",
-            arguments: "<role>",
-            permissions: "manage roles"
-        },
-        {
-            name: "autorole remove",
-            category: "autorole",
-            description: "Remove a role from being assigned automatically on join",
-            arguments: "<role>",
-            permissions: "manage roles"
-        },
-        {
-            name: "autorole list",
-            category: "autorole",
-            description: "View a list of every auto role",
-            arguments: "none",
-            permissions: "manage roles"
-        }
-    ];
+    {
+        name: "autorole",
+        category: "autorole",
+        description: "Set up automatic role assign on member join",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "autorole add",
+        category: "autorole",
+        description: "Adds a autorole and assigns on join to member",
+        arguments: "<role>",
+        permissions: "Manage Roles"
+    },
+    {
+        name: "autorole remove",
+        category: "autorole",
+        description: "Remove a role from being assigned automatically on join",
+        arguments: "<role>",
+        permissions: "Manage Roles"
+    },
+    {
+        name: "autorole list",
+        category: "autorole",
+        description: "View a list of every auto role",
+        arguments: "none",
+        permissions: "Manage Roles"
+    },
+    {
+        name: "antiraid",
+        category: "antiraid",
+        description: "Configure protection against potential raids",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "antiraid state",
+        category: "antiraid",
+        description: "Turn off server's raid state",
+        arguments: "none",
+        permissions: "Manage Guild"
+    },
+    {
+        name: "antiraid avatar",
+        category: "antiraid",
+        description: "Punish accounts without a profile picture",
+        arguments: "<setting> <flags>",
+        permissions: "Manage Guild"
+    },
+    {
+        name: "antiraid config",
+        category: "antiraid",
+        description: "View server antiraid configuration",
+        arguments: "none",
+        permissions: "Manage Guild"
+    },
+    {
+        name: "antiraid whitelist",
+        category: "antiraid",
+        description: "Create a one-time whitelist to allow a user to join",
+        arguments: "<member>",
+        permissions: "Manage Guild"
+    },
+    {
+        name: "antiraid whitelist view",
+        category: "antiraid",
+        description: "View all current antinuke whitelists",
+        arguments: "none",
+        permissions: "Manage Guild"
+    },
+    {
+        name: "antiraid massjoin",
+        category: "antiraid",
+        description: "Protect server against mass bot raids",
+        arguments: "<setting> <flags>",
+        permissions: "Manage Guild"
+    },
+    {
+        name: "antiraid newaccounts",
+        category: "antiraid",
+        description: "Punish new registered accounts",
+        arguments: "<setting> <flags>",
+        permissions: "none"
+    }
+];
 
-    const tabCategories = [
-        { id: 'autorole', label: 'Autorole' }
-    ];
+const tabCategories = [
+    { id: 'autorole', label: 'Autorole' },
+    { id: 'antiraid', label: 'Antiraid' }
+];
 
     function initializeCommandsPage() {
         const commandsGrid = document.getElementById('commandsGrid');
