@@ -80,14 +80,13 @@
                 card.className = 'command-card';
                 card.dataset.category = cmd.category;
                 card.innerHTML = `
-                    <div class="command-card-top">
-                        <div class="command-name">${cmd.name}</div>
-                        <button class="command-card-copy-btn" title="Copy command" aria-label="Copy /${cmd.name}">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <div class="command-desc-preview">${cmd.description}</div>
-                `;
+    <div class="command-card-top">
+        <div class="command-name">${cmd.name}</div>
+        <button class="command-card-copy-btn" title="Copy command" aria-label="Copy /${cmd.name}">
+            <i class="fas fa-copy"></i>
+        </button>
+    </div>
+`;
 
                 // Copy button — stop propagation so card click (modal) doesn't also fire
                 card.querySelector('.command-card-copy-btn').addEventListener('click', function (e) {
