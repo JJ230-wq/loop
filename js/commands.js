@@ -195,7 +195,8 @@
                 if (e.key === "Escape") doModalClose();
             }
 
-            modal.querySelector('.cmd-close-btn').onclick = doModalClose;
+            const closeBtn = modal.querySelector('.cmd-close-btn');
+if (closeBtn) closeBtn.onclick = doModalClose;
             modalBg.onclick = function (e) {
                 if (e.target === modalBg) doModalClose();
             };
