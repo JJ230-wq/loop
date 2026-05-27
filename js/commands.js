@@ -166,21 +166,21 @@
             const modal = document.createElement('div');
             modal.className = 'command-details-modal';
             modal.innerHTML = `
-                <button class="cmd-close-btn" title="Close (Esc)"><i class="fas fa-times"></i></button>
-                <div class="cmd-title-row">
-                    <span class="cmd-title">${cmd.name}</span>
-                    <button class="cmd-copy-btn" id="cmdCopyBtn" title="Copy command"><i class="fas fa-copy"></i></button>
-                </div>
-                <div class="cmd-desc">${cmd.description}</div>
-                <div class="cmd-section">
-                    <div class="cmd-label">Arguments</div>
-                    <span class="cmd-value">${argVal}</span>
-                </div>
-                <div class="cmd-section">
-                    <div class="cmd-label">Permissions</div>
-                    <span class="cmd-value">${permVal}</span>
-                </div>
-            `;
+    <div class="cmd-title-row">
+        <span class="cmd-title" style="font-weight:700; font-size:1.15rem;">${cmd.name}</span>
+        <button class="cmd-copy-btn" id="cmdCopyBtn" title="Copy command"><i class="fas fa-copy"></i></button>
+    </div>
+    <div class="cmd-desc" style="margin: 6px 0 14px; color: rgba(255,255,255,0.55); font-size:0.92rem;">${cmd.description}</div>
+    <hr style="border:none; border-top:1px solid rgba(255,255,255,0.08); margin: 0 0 14px;">
+    <div class="cmd-section" style="margin-bottom:12px;">
+        <div class="cmd-label" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-transform:lowercase; margin-bottom:3px;">arguments</div>
+        <div class="cmd-value" style="font-size:0.92rem; color:rgba(255,255,255,0.85);">${argVal}</div>
+    </div>
+    <div class="cmd-section">
+        <div class="cmd-label" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-transform:lowercase; margin-bottom:3px;">permissions</div>
+        <div class="cmd-value" style="font-size:0.92rem; color:rgba(255,255,255,0.85);">${permVal}</div>
+    </div>
+`;
             modalBg.appendChild(modal);
 
             let modalOpen = true;
