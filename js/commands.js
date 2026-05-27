@@ -210,13 +210,182 @@
         description: "View all monitored emojis for noselfreact",
         arguments: "none",
         permissions: "administrator"
+    },
+    {
+        name: "levels",
+        category: "levels",
+        description: "View your level and experience",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "levels messagemode",
+        category: "levels",
+        description: "Set where level up messages will send",
+        arguments: "mode",
+        permissions: "none"
+    },
+    {
+        name: "levels leaderboard",
+        category: "levels",
+        description: "View the highest ranking members",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels leaderboard rename",
+        category: "levels",
+        description: "Set the title of the leaderboard embeds",
+        arguments: "text",
+        permissions: "none"
+    },
+    {
+        name: "levels setrate",
+        category: "levels",
+        description: "Set multiplier for XP gain",
+        arguments: "multiplier",
+        permissions: "none"
+    },
+    {
+        name: "levels sync",
+        category: "levels",
+        description: "Update your members level roles",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels reset",
+        category: "levels",
+        description: "Reset all members level and XP",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels unlock",
+        category: "levels",
+        description: "Enable the leveling system",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels remove",
+        category: "levels",
+        description: "Remove a level role",
+        arguments: "rank",
+        permissions: "none"
+    },
+    {
+        name: "levels cleanup",
+        category: "levels",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels lock",
+        category: "levels",
+        description: "Disable the leveling system",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels message",
+        category: "levels",
+        description: "Set a custom level up message",
+        arguments: "text",
+        permissions: "none"
+    },
+    {
+        name: "levels message view",
+        category: "levels",
+        description: "View the level up message for the server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels config",
+        category: "levels",
+        description: "View the server configuration for the Leveling System",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels list",
+        category: "levels",
+        description: "View all ignored channels and roles",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels stackroles",
+        category: "levels",
+        description: "Enable or disable stacking of roles",
+        arguments: "option",
+        permissions: "none"
+    },
+    {
+        name: "levels ignore",
+        category: "levels",
+        description: "Ignore a channel or role for XP",
+        arguments: "target",
+        permissions: "none"
+    },
+    {
+        name: "levels messages",
+        category: "levels",
+        description: "Toggle level up messages for yourself",
+        arguments: "setting",
+        permissions: "none"
+    },
+    {
+        name: "levels add",
+        category: "levels",
+        description: "Create a level role",
+        arguments: "role rank",
+        permissions: "none"
+    },
+    {
+        name: "levels roles",
+        category: "levels",
+        description: "View all XP roles",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels update",
+        category: "levels",
+        description: "Update a level roles rank",
+        arguments: "role rank",
+        permissions: "none"
+    },
+    {
+        name: "setxp",
+        category: "levels",
+        description: "Set a user's XP",
+        arguments: "user amount",
+        permissions: "none"
+    },
+    {
+        name: "removexp",
+        category: "levels",
+        description: "Remove XP from a user",
+        arguments: "user amount",
+        permissions: "manage guild"
+    },
+    {
+        name: "setlevel",
+        category: "levels",
+        description: "Set a user's level",
+        arguments: "user level",
+        permissions: "manage guild"
     }
 ];
 
 const tabCategories = [
     { id: 'autorole', label: 'Autorole' },
     { id: 'antiraid', label: 'Antiraid' },
-    { id: 'reaction', label: 'Reaction' }
+    { id: 'reaction', label: 'Reaction' },
+    { id: 'levels', label: 'Levels' }
 ];
 
     function initializeCommandsPage() {
