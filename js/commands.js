@@ -20,28 +20,28 @@
             category: "autorole",
             description: "Set up automatic role assign on member join",
             arguments: "none",
-            permissions: "Manage Roles"
+            permissions: "manage roles"
         },
         {
             name: "autorole add",
             category: "autorole",
             description: "Adds a autorole and assigns on join to member",
             arguments: "<role>",
-            permissions: "Manage Roles"
+            permissions: "manage roles"
         },
         {
             name: "autorole remove",
             category: "autorole",
             description: "Remove a role from being assigned automatically on join",
             arguments: "<role>",
-            permissions: "Manage Roles"
+            permissions: "manage roles"
         },
         {
             name: "autorole list",
             category: "autorole",
             description: "View a list of every auto role",
             arguments: "none",
-            permissions: "Manage Roles"
+            permissions: "manage roles"
         }
     ];
 
