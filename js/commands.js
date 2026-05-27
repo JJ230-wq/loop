@@ -212,7 +212,7 @@ const tabCategories = [
 
         function showCommandModal(cmd) {
             modalContainer.innerHTML = '';
-            const argVal = cmd.arguments;
+            const argVal = cmd.arguments.replace(/</g, '&lt;').replace(/>/g, '&gt;');
             const permVal = cmd.permissions;
             const cmdTextToCopy = `/${cmd.name}`;
             const modalBg = document.createElement('div');
