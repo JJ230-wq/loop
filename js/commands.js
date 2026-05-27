@@ -167,7 +167,6 @@
             modal.innerHTML = `
     <div class="cmd-title-row">
         <span class="cmd-title" style="font-weight:700; font-size:1.15rem;">${cmd.name}</span>
-        <button class="cmd-copy-btn" id="cmdCopyBtn" title="Copy command"><i class="fas fa-copy"></i></button>
     </div>
     <div class="cmd-desc" style="margin: 6px 0 14px; color: rgba(255,255,255,0.55); font-size:0.92rem;">${cmd.description}</div>
     <hr style="border:none; border-top:1px solid rgba(255,255,255,0.08); margin: 0 0 14px;">
@@ -200,18 +199,6 @@ if (closeBtn) closeBtn.onclick = doModalClose;
                 if (e.target === modalBg) doModalClose();
             };
             window.addEventListener('keydown', modalKeyHandler);
-
-            modal.querySelector('#cmdCopyBtn').onclick = function () {
-                navigator.clipboard.writeText(cmdTextToCopy).then(function () {
-                    const btn = modal.querySelector('#cmdCopyBtn');
-                    btn.innerHTML = '<i class="fas fa-check"></i>';
-                    btn.title = "Copied!";
-                    setTimeout(function () {
-                        btn.innerHTML = '<i class="fas fa-copy"></i>';
-                        btn.title = "Copy command";
-                    }, 1200);
-                });
-            };
 
             modalContainer.appendChild(modalBg);
         }
