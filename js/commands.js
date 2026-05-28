@@ -1255,7 +1255,57 @@
         description: "Set an icon for your booster role",
         arguments: "url",
         permissions: "boosters only"
-    }
+    },
+
+        {
+    name: "log",
+    category: "logging",
+    description: "No description given",
+    arguments: "none",
+    permissions: "none"
+},
+{
+    name: "log color",
+    category: "logging",
+    description: "No description given",
+    arguments: "channel event color",
+    permissions: "none"
+},
+{
+    name: "log color list",
+    category: "logging",
+    description: "No description given",
+    arguments: "channel",
+    permissions: "none"
+},
+{
+    name: "log remove",
+    category: "logging",
+    description: "No description given",
+    arguments: "channel event",
+    permissions: "none"
+},
+{
+    name: "log add",
+    category: "logging",
+    description: "Set up logging for your community",
+    arguments: "channel event",
+    permissions: "none"
+},
+{
+    name: "log ignore",
+    category: "logging",
+    description: "No description given",
+    arguments: "member or channel",
+    permissions: "none"
+},
+{
+    name: "log ignore list",
+    category: "logging",
+    description: "No description given",
+    arguments: "none",
+    permissions: "none"
+}
 ];
 
 const tabCategories = [
@@ -1265,6 +1315,7 @@ const tabCategories = [
     { id: 'reaction', label: 'Reaction' },
     { id: 'levels', label: 'Levels' },
     { id: 'antinuke', label: 'Antinuke' }
+    { id: 'logging', label: 'Logging' }
 ];
 
     function initializeCommandsPage() {
