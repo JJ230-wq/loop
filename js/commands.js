@@ -1,6 +1,11 @@
 (function () {
     const shared = window.LoopShared;
-    if (!shared) return;
+if (shared) {
+    shared.initLoadingScreen('loadingScreen');
+    shared.initMainStarfield('mainStarsBg', function () {
+        return Math.floor(56 + Math.random() * 24);
+    }, { minRadius: 0.6, radiusSpread: 0.85, minAlpha: 0.7, alphaSpread: 0.26, minBlur: 2, blurSpread: 8 });
+}
 
     shared.initLoadingScreen('loadingScreen');
     shared.initMainStarfield('mainStarsBg', function () {
