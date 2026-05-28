@@ -484,10 +484,782 @@
         description: "Punish users that change the server vanity",
         arguments: "status parameters",
         permissions: "none"
+    },
+
+        {
+        name: "prefix",
+        category: "primary",
+        description: "View guild prefix",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "prefix self",
+        category: "primary",
+        description: "Set personal prefix across all servers with loop",
+        arguments: "prefix",
+        permissions: "server booster"
+    },
+    {
+        name: "prefix set",
+        category: "primary",
+        description: "Set a command prefix for your server",
+        arguments: "prefix",
+        permissions: "administrator"
+    },
+    {
+        name: "prefix remove",
+        category: "primary",
+        description: "Remove a command prefix for your server",
+        arguments: "none",
+        permissions: "administrator"
+    },
+    {
+        name: "settings",
+        category: "primary",
+        description: "Server configuration",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "settings modlog",
+        category: "primary",
+        description: "Set mod logs for punishments in the guild",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "settings staff",
+        category: "primary",
+        description: "Set staff role(s)",
+        arguments: "role",
+        permissions: "manage guild"
+    },
+    {
+        name: "settings staff list",
+        category: "primary",
+        description: "View a list of all staff roles",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "settings config",
+        category: "primary",
+        description: "View settings configuration for the guild",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "settings resetcases",
+        category: "primary",
+        description: "Reset jail-log cases",
+        arguments: "none",
+        permissions: "administrator"
+    },
+    {
+        name: "boosts",
+        category: "primary",
+        description: "Set up a boost message in a channel",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosts variables",
+        category: "primary",
+        description: "View all available variables for boost messages",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosts view",
+        category: "primary",
+        description: "View a boost message for a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosts list",
+        category: "primary",
+        description: "View all boost messages",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosts remove",
+        category: "primary",
+        description: "Remove a boost message from a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosts add",
+        category: "primary",
+        description: "Add a boost message to a channel",
+        arguments: "channel message",
+        permissions: "manage guild"
+    },
+    {
+        name: "alias",
+        category: "primary",
+        description: "Create your own shortcuts for commands",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "alias add",
+        category: "primary",
+        description: "Create an alias for a command",
+        arguments: "shortcut command",
+        permissions: "manage guild"
+    },
+    {
+        name: "alias removeall",
+        category: "primary",
+        description: "Remove all aliases for a command",
+        arguments: "command",
+        permissions: "manage guild"
+    },
+    {
+        name: "alias list",
+        category: "primary",
+        description: "List every alias for all commands",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "alias remove",
+        category: "primary",
+        description: "Remove an alias for a command",
+        arguments: "shortcut",
+        permissions: "manage guild"
+    },
+    {
+        name: "alias reset",
+        category: "primary",
+        description: "Reset every alias for all commands",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "alias view",
+        category: "primary",
+        description: "View command execution for an alias",
+        arguments: "shortcut",
+        permissions: "manage guild"
+    },
+    {
+        name: "stickymessage",
+        category: "primary",
+        description: "Set up a sticky message in a channel",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "stickymessage list",
+        category: "primary",
+        description: "View all sticky messages",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "stickymessage add",
+        category: "primary",
+        description: "Add a sticky message to a channel",
+        arguments: "channel message",
+        permissions: "manage guild"
+    },
+    {
+        name: "stickymessage view",
+        category: "primary",
+        description: "View a sticky message for a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "stickymessage remove",
+        category: "primary",
+        description: "Remove a sticky message from a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "welcome",
+        category: "primary",
+        description: "Set up a welcome message for a channel",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "welcome remove",
+        category: "primary",
+        description: "Remove a welcome message from a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "welcome variables",
+        category: "primary",
+        description: "View all available variables for welcome messages",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "welcome add",
+        category: "primary",
+        description: "Add a welcome message for a channel",
+        arguments: "channel message",
+        permissions: "manage guild"
+    },
+    {
+        name: "welcome list",
+        category: "primary",
+        description: "View all welcome messages",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "welcome view",
+        category: "primary",
+        description: "View a welcome message for a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "goodbye",
+        category: "primary",
+        description: "Set up a goodbye message for a channel",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "goodbye add",
+        category: "primary",
+        description: "Add a goodbye message for a channel",
+        arguments: "channel message",
+        permissions: "manage guild"
+    },
+    {
+        name: "goodbye variables",
+        category: "primary",
+        description: "View all available variables for goodbye messages",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "goodbye remove",
+        category: "primary",
+        description: "Remove a goodbye message from a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "goodbye view",
+        category: "primary",
+        description: "View a goodbye message for a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "goodbye list",
+        category: "primary",
+        description: "View all goodbye messages",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "imgonly",
+        category: "primary",
+        description: "Set up an image only channel",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "imgonly remove",
+        category: "primary",
+        description: "Remove a gallery channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "imgonly list",
+        category: "primary",
+        description: "View all gallery channels",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "imgonly add",
+        category: "primary",
+        description: "Set up a gallery channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "evoke",
+        category: "primary",
+        description: "Change punishment message for a DM or command response",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "evoke remove",
+        category: "primary",
+        description: "Remove custom message for a command",
+        arguments: "command",
+        permissions: "manage guild"
+    },
+    {
+        name: "evoke view",
+        category: "primary",
+        description: "View the custom message for a command",
+        arguments: "command",
+        permissions: "manage guild"
+    },
+    {
+        name: "autoresponder",
+        category: "primary",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "autoresponder remove",
+        category: "primary",
+        description: "Remove a reply for a trigger word",
+        arguments: "trigger",
+        permissions: "manage channels"
+    },
+    {
+        name: "autoresponder add",
+        category: "primary",
+        description: "Create a reply for a trigger word",
+        arguments: "args",
+        permissions: "manage channels"
+    },
+    {
+        name: "autoresponder update",
+        category: "primary",
+        description: "Update a reply for a trigger word",
+        arguments: "args",
+        permissions: "manage channels"
+    },
+    {
+        name: "autoresponder variables",
+        category: "primary",
+        description: "View a list of available variables",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "autoresponder exclusive",
+        category: "primary",
+        description: "No description given",
+        arguments: "role or channel, trigger",
+        permissions: "manage channels"
+    },
+    {
+        name: "autoresponder exclusive list",
+        category: "primary",
+        description: "No description given",
+        arguments: "trigger",
+        permissions: "manage channels"
+    },
+    {
+        name: "autoresponder list",
+        category: "primary",
+        description: "View auto-reply triggers in the guild",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "autoresponder reset",
+        category: "primary",
+        description: "Remove every auto response",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "enablecommand",
+        category: "primary",
+        description: "Enable a previously disabled command in a channel",
+        arguments: "channel or member, command",
+        permissions: "manage channels"
+    },
+    {
+        name: "enablecommand all",
+        category: "primary",
+        description: "Enable a command in every channel",
+        arguments: "command",
+        permissions: "manage channels"
+    },
+    {
+        name: "disablecommand",
+        category: "primary",
+        description: "Disable a command in a channel",
+        arguments: "channel or member, command",
+        permissions: "manage channels"
+    },
+    {
+        name: "disablecommand list",
+        category: "primary",
+        description: "View a list of disabled commands in the guild",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "disablecommand all",
+        category: "primary",
+        description: "Disable a command in every channel",
+        arguments: "command",
+        permissions: "manage channels"
+    },
+    {
+        name: "enablemodule",
+        category: "primary",
+        description: "Enable a module in a channel",
+        arguments: "channel module",
+        permissions: "none"
+    },
+    {
+        name: "enablemodule all",
+        category: "primary",
+        description: "Enable a module in every channel",
+        arguments: "module",
+        permissions: "manage channels"
+    },
+    {
+        name: "disablemodule",
+        category: "primary",
+        description: "Disable a module in a channel",
+        arguments: "channel module",
+        permissions: "manage channels"
+    },
+    {
+        name: "disablemodule all",
+        category: "primary",
+        description: "Disable a module in every channel",
+        arguments: "module",
+        permissions: "manage channels"
+    },
+    {
+        name: "disablemodule list",
+        category: "primary",
+        description: "View a list of disabled modules in the guild",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "ignore",
+        category: "primary",
+        description: "No description given",
+        arguments: "member or channel",
+        permissions: "administrator"
+    },
+    {
+        name: "ignore list",
+        category: "primary",
+        description: "View a list of ignored members or channels",
+        arguments: "none",
+        permissions: "administrator"
+    },
+    {
+        name: "ignore remove",
+        category: "primary",
+        description: "Remove ignoring for a member or channel",
+        arguments: "member or channel",
+        permissions: "administrator"
+    },
+    {
+        name: "ignore add",
+        category: "primary",
+        description: "Ignore a member or channel",
+        arguments: "member or channel",
+        permissions: "administrator"
+    },
+    {
+        name: "seticon",
+        category: "primary",
+        description: "Set a new guild icon",
+        arguments: "url",
+        permissions: "manage guild"
+    },
+    {
+        name: "setsplashbackground",
+        category: "primary",
+        description: "Set a new guild splash background",
+        arguments: "url",
+        permissions: "manage guild"
+    },
+    {
+        name: "setbanner",
+        category: "primary",
+        description: "Set a new guild banner",
+        arguments: "url",
+        permissions: "manage guild"
+    },
+    {
+        name: "unpin",
+        category: "primary",
+        description: "Unpin a message",
+        arguments: "message",
+        permissions: "manage messages"
+    },
+    {
+        name: "pin",
+        category: "primary",
+        description: "Pin the most recent message or by url",
+        arguments: "message",
+        permissions: "manage messages"
+    },
+    {
+        name: "firstmessage",
+        category: "primary",
+        description: "Get a link for the first message in a channel",
+        arguments: "channel",
+        permissions: "none"
+    },
+    {
+        name: "pins",
+        category: "primary",
+        description: "Pin archival system commands",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "pins unpin",
+        category: "primary",
+        description: "Enable or disable the unpinning of messages during archival",
+        arguments: "option",
+        permissions: "manage guild"
+    },
+    {
+        name: "pins config",
+        category: "primary",
+        description: "View pin archival config",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "pins reset",
+        category: "primary",
+        description: "Reset the pin archival config",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "pins channel",
+        category: "primary",
+        description: "Set the pin archival channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "pins archive",
+        category: "primary",
+        description: "Archive the pins in the current channel",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "pins set",
+        category: "primary",
+        description: "Enable or disable the pin archival system",
+        arguments: "option",
+        permissions: "manage guild"
+    },
+    {
+        name: "webhook",
+        category: "primary",
+        description: "Set up webhooks in your server",
+        arguments: "none",
+        permissions: "manage webhooks"
+    },
+    {
+        name: "webhook edit",
+        category: "primary",
+        description: "Send a message to an existing channel webhook",
+        arguments: "messagelink message or embed code",
+        permissions: "manage webhooks"
+    },
+    {
+        name: "webhooks list",
+        category: "primary",
+        description: "List all available webhooks in the server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "webhook delete",
+        category: "primary",
+        description: "Delete a webhook for a channel",
+        arguments: "identifier",
+        permissions: "manage webhooks"
+    },
+    {
+        name: "webhook create",
+        category: "primary",
+        description: "Create a webhook to forward messages to",
+        arguments: "name",
+        permissions: "manage webhooks"
+    },
+    {
+        name: "webhook send",
+        category: "primary",
+        description: "Send a message to an existing channel webhook",
+        arguments: "identifier message or embed code",
+        permissions: "manage webhooks"
+    },
+    {
+        name: "customize",
+        category: "primary",
+        description: "No description given",
+        arguments: "none",
+        permissions: "server owner"
+    },
+    {
+        name: "customize bio",
+        category: "primary",
+        description: "No description given",
+        arguments: "text",
+        permissions: "server owner"
+    },
+    {
+        name: "customize avatar",
+        category: "primary",
+        description: "No description given",
+        arguments: "url",
+        permissions: "server owner"
+    },
+    {
+        name: "customize banner",
+        category: "primary",
+        description: "No description given",
+        arguments: "url",
+        permissions: "server owner"
+    },
+    {
+        name: "badge",
+        category: "primary",
+        description: "No description given",
+        arguments: "setting",
+        permissions: "manage guild"
+    },
+    {
+        name: "badge message",
+        category: "primary",
+        description: "No description given",
+        arguments: "message",
+        permissions: "manage guild"
+    },
+    {
+        name: "badge message view",
+        category: "primary",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "badge channel",
+        category: "primary",
+        description: "No description given",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "badge role",
+        category: "primary",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "badge role remove",
+        category: "primary",
+        description: "No description given",
+        arguments: "role",
+        permissions: "manage guild"
+    },
+    {
+        name: "badge role add",
+        category: "primary",
+        description: "No description given",
+        arguments: "role",
+        permissions: "manage guild"
+    },
+    {
+        name: "badge role list",
+        category: "primary",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "badge sync",
+        category: "primary",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole",
+        category: "primary",
+        description: "Set the base role for where boost roles will go under",
+        arguments: "role",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole award",
+        category: "primary",
+        description: "Reward a member a specific role upon boost",
+        arguments: "role",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole award view",
+        category: "primary",
+        description: "View the current award role",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole award remove",
+        category: "primary",
+        description: "Remove the reward role",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole filter",
+        category: "primary",
+        description: "Blacklist words for booster role names",
+        arguments: "word",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole filter list",
+        category: "primary",
+        description: "View blacklisted words for booster role names",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole rename",
+        category: "primary",
+        description: "Edit your booster role name",
+        arguments: "new name",
+        permissions: "boosters only"
+    },
+    {
+        name: "boosterrole icon",
+        category: "primary",
+        description: "Set an icon for your booster role",
+        arguments: "url",
+        permissions: "boosters only"
     }
 ];
 
 const tabCategories = [
+    { id: 'primary', label: 'Primary' },
     { id: 'autorole', label: 'Autorole' },
     { id: 'antiraid', label: 'Antiraid' },
     { id: 'reaction', label: 'Reaction' },
