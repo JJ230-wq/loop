@@ -378,6 +378,112 @@
         description: "Set a user's level",
         arguments: "user level",
         permissions: "manage guild"
+    },
+
+        {
+        name: "antinuke",
+        category: "antinuke",
+        description: "Antinuke to protect your server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "antinuke admin",
+        category: "antinuke",
+        description: "Give a user permissions to edit antinuke settings",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "antinuke channel",
+        category: "antinuke",
+        description: "Prevent mass channel create and delete",
+        arguments: "status parameters",
+        permissions: "none"
+    },
+    {
+        name: "antinuke admins",
+        category: "antinuke",
+        description: "View all antinuke admins",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "antinuke webhook",
+        category: "antinuke",
+        description: "Prevent mass webhook creation",
+        arguments: "status parameters",
+        permissions: "none"
+    },
+    {
+        name: "antinuke kick",
+        category: "antinuke",
+        description: "Prevent mass member kick",
+        arguments: "status parameters",
+        permissions: "none"
+    },
+    {
+        name: "antinuke permissions",
+        category: "antinuke",
+        description: "Watch for dangerous permissions being granted or removed",
+        arguments: "type permission flags",
+        permissions: "none"
+    },
+    {
+        name: "antinuke whitelist",
+        category: "antinuke",
+        description: "Whitelist a member from triggering antinuke or a bot to join",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "antinuke ban",
+        category: "antinuke",
+        description: "Prevent mass member ban",
+        arguments: "status parameters",
+        permissions: "none"
+    },
+    {
+        name: "antinuke role",
+        category: "antinuke",
+        description: "Prevent mass role delete",
+        arguments: "status parameters",
+        permissions: "none"
+    },
+    {
+        name: "antinuke list",
+        category: "antinuke",
+        description: "View all enabled modules along with whitelisted members and bots",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "antinuke botadd",
+        category: "antinuke",
+        description: "Prevent new bot additions",
+        arguments: "status",
+        permissions: "none"
+    },
+    {
+        name: "antinuke emoji",
+        category: "antinuke",
+        description: "Prevent mass emoji delete",
+        arguments: "status parameters",
+        permissions: "none"
+    },
+    {
+        name: "antinuke config",
+        category: "antinuke",
+        description: "View the server configuration for antinuke",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "antinuke vanity",
+        category: "antinuke",
+        description: "Punish users that change the server vanity",
+        arguments: "status parameters",
+        permissions: "none"
     }
 ];
 
@@ -385,7 +491,8 @@ const tabCategories = [
     { id: 'autorole', label: 'Autorole' },
     { id: 'antiraid', label: 'Antiraid' },
     { id: 'reaction', label: 'Reaction' },
-    { id: 'levels', label: 'Levels' }
+    { id: 'levels', label: 'Levels' },
+    { id: 'antinuke', label: 'Antinuke' }
 ];
 
     function initializeCommandsPage() {
