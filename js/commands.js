@@ -1314,7 +1314,7 @@ const tabCategories = [
     { id: 'antiraid', label: 'Antiraid' },
     { id: 'reaction', label: 'Reaction' },
     { id: 'levels', label: 'Levels' },
-    { id: 'antinuke', label: 'Antinuke' }
+    { id: 'antinuke', label: 'Antinuke' },
     { id: 'logging', label: 'Logging' }
 ];
 
