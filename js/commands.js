@@ -1575,17 +1575,188 @@ if (shared) {
     arguments: "setting",
     permissions: "manage guild"
 },
+
+        {
+        name: "giveaways",
+        category: "giveaways",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "giveaways start",
+        category: "giveaways",
+        description: "Start a giveaway with your provided duration, winners, and prize description",
+        arguments: "channel duration winners prize",
+        permissions: "manage channels"
+    },
+    {
+        name: "giveaway reroll",
+        category: "giveaways",
+        description: "Pick a new winner from an ended giveaway",
+        arguments: "message link winners",
+        permissions: "manage channels"
+    },
+    {
+        name: "giveaways end",
+        category: "giveaways",
+        description: "End an active giveaway early",
+        arguments: "message link",
+        permissions: "manage channels"
+    },
+    {
+        name: "giveaways list",
+        category: "giveaways",
+        description: "View a list of active giveaways in the server",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "giveaways edit",
+        category: "giveaways",
+        description: "Edit options and limits for a specific giveaway",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "giveaways edit prize",
+        category: "giveaways",
+        description: "Change the prize on a giveaway",
+        arguments: "message link prize",
+        permissions: "manage channels"
+    },
+    {
+        name: "giveaways edit duration",
+        category: "giveaways",
+        description: "Change the time on a active giveaway",
+        arguments: "message link date",
+        permissions: "manage channels"
+    },
+    {
+        name: "giveaways edit winners",
+        category: "giveaways",
+        description: "Change the amount of winners for a giveaway",
+        arguments: "message link count",
+        permissions: "manage channels"
+    },
+    {
+        name: "counter",
+        category: "moderation",
+        description: "Create counters for everybody to see",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "counter remove",
+        category: "moderation",
+        description: "Remove a channel counter",
+        arguments: "channel action",
+        permissions: "manage channels"
+    },
+    {
+        name: "counter add",
+        category: "moderation",
+        description: "Create channel counter",
+        arguments: "option channel",
+        permissions: "manage channels"
+    },
+    {
+        name: "counter list",
+        category: "moderation",
+        description: "List every counter available in the server",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "counter set",
+        category: "moderation",
+        description: "Set a channel counter to an existing channel",
+        arguments: "channel option",
+        permissions: "manage channels"
+    },
+    {
+        name: "timer",
+        category: "moderation",
+        description: "Post repeating messages in your server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "timer remove",
+        category: "moderation",
+        description: "Remove repeating message from a channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "timer add",
+        category: "moderation",
+        description: "Add repeating message to a channel",
+        arguments: "channel interval message",
+        permissions: "manage guild"
+    },
+    {
+        name: "timer list",
+        category: "moderation",
+        description: "View all auto messages in your server",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "timer view",
+        category: "moderation",
+        description: "Preview a channel's auto message",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "clearsnipe",
+        category: "moderation",
+        description: "Clear all results for reactions, edits and messages",
+        arguments: "none",
+        permissions: "manage messages"
+    },
+    {
+        name: "reactionhistory",
+        category: "moderation",
+        description: "See logged reactions for a message",
+        arguments: "message link",
+        permissions: "manage messages"
+    },
+    {
+        name: "reactionsnipe",
+        category: "moderation",
+        description: "Snipe the latest reaction that was removed",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "editsnipe",
+        category: "moderation",
+        description: "Snipe the latest message that was edited",
+        arguments: "index",
+        permissions: "none"
+    },
+    {
+        name: "snipe",
+        category: "moderation",
+        description: "Snipe the latest message that was deleted",
+        arguments: "index",
+        permissions: "none"
+    },
+];
 ];
 
 const tabCategories = [
     { id: 'primary', label: 'Primary' },
-    { id: 'autorole', label: 'Autorole' },
+    { id: 'moderation', label: 'Moderation' },
     { id: 'antiraid', label: 'Antiraid' },
+    { id: 'autorole', label: 'Autorole' },
     { id: 'reaction', label: 'Reaction' },
     { id: 'levels', label: 'Levels' },
     { id: 'antinuke', label: 'Antinuke' },
     { id: 'logging', label: 'Logging' },
-    { id: 'starboard', label: 'Starboard' }
+    { id: 'starboard', label: 'Starboard' },
 ];
 
     function initializeCommandsPage() {
