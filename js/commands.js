@@ -204,6 +204,42 @@ if (shared) {
         arguments: "none",
         permissions: "administrator"
     },
+
+        {
+    name: "autoreact",
+    category: "reaction",
+    description: "Auto reaction system for users",
+    arguments: "none",
+    permissions: "none"
+},
+{
+    name: "autoreact add",
+    category: "reaction",
+    description: "Adds auto reaction(s) to a user",
+    arguments: "member emoji",
+    permissions: "manage expressions"
+},
+{
+    name: "autoreact remove",
+    category: "reaction",
+    description: "Removes an auto reaction for a user",
+    arguments: "member emoji",
+    permissions: "manage expressions"
+},
+{
+    name: "autoreact clear",
+    category: "reaction",
+    description: "Clears all auto reactions for a user",
+    arguments: "member",
+    permissions: "manage expressions"
+},
+{
+    name: "autoreact list",
+    category: "reaction",
+    description: "View all auto reactions in the server",
+    arguments: "none",
+    permissions: "none"
+},
     {
         name: "levels",
         category: "levels",
@@ -549,6 +585,154 @@ if (shared) {
         arguments: "none",
         permissions: "administrator"
     },
+
+        {
+    name: "filter",
+    category: "primary",
+    description: "View a variety of options to keep chat clean",
+    arguments: "none",
+    permissions: "manage channels"
+},
+{
+    name: "filter add",
+    category: "primary",
+    description: "Add a filtered word",
+    arguments: "word",
+    permissions: "manage guild manage channels"
+},
+{
+    name: "filter remove",
+    category: "primary",
+    description: "Remove a filtered word",
+    arguments: "word",
+    permissions: "manage guild manage channels"
+},
+{
+    name: "filter list",
+    category: "primary",
+    description: "View a list of filtered words in the server",
+    arguments: "none",
+    permissions: "manage channels"
+},
+{
+    name: "filter removeall",
+    category: "primary",
+    description: "Removes all filtered words",
+    arguments: "none",
+    permissions: "manage channels"
+},
+{
+    name: "filter links",
+    category: "primary",
+    description: "Delete any message that contains a link",
+    arguments: "channel setting parameter",
+    permissions: "manage channels"
+},
+{
+    name: "filter links exempt",
+    category: "primary",
+    description: "Exempt roles from links filter",
+    arguments: "role",
+    permissions: "manage channels"
+},
+{
+    name: "filter links exempt list",
+    category: "primary",
+    description: "View a list of roles exempted from links filter",
+    arguments: "none",
+    permissions: "manage channels"
+},
+{
+    name: "filter spam",
+    category: "primary",
+    description: "Delete messages from users that send messages too fast",
+    arguments: "channel setting parameters",
+    permissions: "manage channels"
+},
+{
+    name: "filter spam exempt",
+    category: "primary",
+    description: "Exempt roles from the antispam filter",
+    arguments: "role",
+    permissions: "manage channels"
+},
+{
+    name: "filter spam exempt list",
+    category: "primary",
+    description: "View a list of roles exempted from the spam filter",
+    arguments: "none",
+    permissions: "manage channels"
+},
+{
+    name: "filter snipe",
+    category: "primary",
+    description: "Filter snipe command from allowing certain content",
+    arguments: "type",
+    permissions: "manage channels"
+},
+{
+    name: "filter caps",
+    category: "primary",
+    description: "Delete messages that contain too many uppercase characters",
+    arguments: "channel setting parameters",
+    permissions: "manage channels"
+},
+{
+    name: "filter caps exempt",
+    category: "primary",
+    description: "Exempt roles from the caps filter",
+    arguments: "role",
+    permissions: "manage channels"
+},
+{
+    name: "filter caps exempt list",
+    category: "primary",
+    description: "View list of roles exempted from caps filter",
+    arguments: "none",
+    permissions: "manage channels"
+},
+{
+    name: "filter invites",
+    category: "primary",
+    description: "Delete any message that contains a server link",
+    arguments: "channel setting parameters",
+    permissions: "manage channels"
+},
+{
+    name: "filter invites exempt",
+    category: "primary",
+    description: "Exempt roles from the invite filter",
+    arguments: "role",
+    permissions: "manage channels"
+},
+{
+    name: "filter invites exempt list",
+    category: "primary",
+    description: "View list of roles exempted from invites filter",
+    arguments: "none",
+    permissions: "manage channels"
+},
+{
+    name: "filter emoji",
+    category: "primary",
+    description: "Delete any message exceeding the threshold for emojis",
+    arguments: "channel setting parameters",
+    permissions: "manage channels"
+},
+{
+    name: "filter emoji exempt",
+    category: "primary",
+    description: "Exempt roles from the emoji filter",
+    arguments: "role",
+    permissions: "manage channels"
+},
+{
+    name: "filter emoji exempt list",
+    category: "primary",
+    description: "View list of roles exempted from emoji filter",
+    arguments: "none",
+    permissions: "manage channels"
+},
     {
         name: "boosts",
         category: "primary",
@@ -1298,7 +1482,99 @@ if (shared) {
     description: "No description given",
     arguments: "none",
     permissions: "none"
-}
+},
+
+        {
+    name: "starboard",
+    category: "starboard",
+    description: "Showcase the best messages in your server",
+    arguments: "none",
+    permissions: "none"
+},
+{
+    name: "starboard emoji",
+    category: "starboard",
+    description: "Sets the emoji that triggers the starboard messages",
+    arguments: "emoji",
+    permissions: "manage guild"
+},
+{
+    name: "starboard config",
+    category: "starboard",
+    description: "View the settings for starboard in guild",
+    arguments: "none",
+    permissions: "manage guild"
+},
+{
+    name: "starboard attachments",
+    category: "starboard",
+    description: "Allow attachments to appear on Starboard posts",
+    arguments: "setting",
+    permissions: "manage guild"
+},
+{
+    name: "starboard set",
+    category: "starboard",
+    description: "Sets the channel where starboard messages will be sent to",
+    arguments: "channel",
+    permissions: "manage guild"
+},
+{
+    name: "starboard unlock",
+    category: "starboard",
+    description: "Enables/unlocks starboard from operating",
+    arguments: "none",
+    permissions: "manage guild"
+},
+{
+    name: "starboard color",
+    category: "starboard",
+    description: "Set default color for starboard posts",
+    arguments: "color",
+    permissions: "manage guild"
+},
+{
+    name: "starboard selfstar",
+    category: "starboard",
+    description: "Allow an author to star their own message",
+    arguments: "setting",
+    permissions: "manage guild"
+},
+{
+    name: "starboard jumpurl",
+    category: "starboard",
+    description: "Allow the jump URL to appear on a Starboard post",
+    arguments: "setting",
+    permissions: "manage guild"
+},
+{
+    name: "starboard lock",
+    category: "starboard",
+    description: "Disables/locks starboard from operating",
+    arguments: "none",
+    permissions: "manage guild"
+},
+{
+    name: "starboard reset",
+    category: "starboard",
+    description: "Resets guild's configuration for starboard",
+    arguments: "none",
+    permissions: "manage guild"
+},
+{
+    name: "starboard threshold",
+    category: "starboard",
+    description: "Sets the default amount stars needed to post",
+    arguments: "threshold",
+    permissions: "manage guild"
+},
+{
+    name: "starboard timestamp",
+    category: "starboard",
+    description: "Allow a timestamp to appear on a Starboard post",
+    arguments: "setting",
+    permissions: "manage guild"
+},
 ];
 
 const tabCategories = [
@@ -1308,7 +1584,8 @@ const tabCategories = [
     { id: 'reaction', label: 'Reaction' },
     { id: 'levels', label: 'Levels' },
     { id: 'antinuke', label: 'Antinuke' },
-    { id: 'logging', label: 'Logging' }
+    { id: 'logging', label: 'Logging' },
+    { id: 'starboard', label: 'Starboard' }
 ];
 
     function initializeCommandsPage() {
