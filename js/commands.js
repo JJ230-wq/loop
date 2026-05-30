@@ -2574,7 +2574,6 @@ if (shared) {
         permissions: "manage roles manage channels"
     },
 ];
-];
 
 const tabCategories = [
     { id: 'primary', label: 'Primary' },
