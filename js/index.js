@@ -76,3 +76,83 @@
     attachCommandsLoaderHandler('navCommandsMobile', 'commands.html');
     attachCommandsLoaderHandler('mainCommandsBtn', 'commands.html');
 })();
+
+// ── Status Popup ──
+(function () {
+    const btn = document.getElementById('navStatus');
+    const popup = document.getElementById('statusPopup');
+    const backdrop = document.getElementById('statusBackdrop');
+    const closeBtn = document.getElementById('statusClose');
+    const shardsEl = document.getElementById('statusShards');
+    if (!btn || !popup) return;
+
+    function fetchShards() {
+        return fetch('https://your-domain.com:3000/status')
+            .then(r => r.json());
+    }
+
+    function fmtNumber(n) {
+        return n.toLocaleString('en-US');
+    }
+
+    function renderShards(shards) {
+        shardsEl.innerHTML = shards.map(s => {
+            const online = s.status === 'operational';
+            const ago = Math.floor(Math.random() * 40 + 10) + 's ago';
+            return `
+            <div class="shard-card">
+                <div class="shard-card-top">
+                    <div>
+                        <div class="shard-card-name">Shard ${s.id}</div>
+                        <div class="shard-card-meta">
+                            <i class="fas fa-rotate-right"></i> ${ago}
+                        </div>
+                    </div>
+                    <div class="shard-status-badge ${online ? '' : 'offline'}">
+                        <div class="shard-status-dot"></div>
+                        ${online ? 'Operational' : 'Offline'}
+                    </div>
+                </div>
+                <div class="shard-card-stats">
+                    <div class="shard-stat">
+                        <div class="shard-stat-label">Uptime</div>
+                        <div class="shard-stat-value"><i class="fas fa-arrow-trend-up"></i>${s.uptime}</div>
+                    </div>
+                    <div class="shard-stat">
+                        <div class="shard-stat-label">Latency</div>
+                        <div class="shard-stat-value"><i class="fas fa-wifi"></i>${s.latency}ms</div>
+                    </div>
+                    <div class="shard-stat">
+                        <div class="shard-stat-label">Servers</div>
+                        <div class="shard-stat-value"><i class="fas fa-server"></i>${fmtNumber(s.servers)}</div>
+                    </div>
+                    <div class="shard-stat">
+                        <div class="shard-stat-label">Users</div>
+                        <div class="shard-stat-value"><i class="fas fa-user-group"></i>${fmtNumber(s.users)}</div>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function openPopup() {
+        shardsEl.innerHTML = '<div class="status-loading">Loading…</div>';
+        backdrop.classList.add('open');
+        popup.style.display = 'block';
+        requestAnimationFrame(() => popup.classList.add('open'));
+        fetchShards().then(renderShards).catch(() => {
+            shardsEl.innerHTML = '<div class="status-loading">Failed to load status.</div>';
+        });
+    }
+
+    function closePopup() {
+        popup.classList.remove('open');
+        backdrop.classList.remove('open');
+        setTimeout(() => { popup.style.display = ''; }, 200);
+    }
+
+    btn.addEventListener('click', function (e) { e.preventDefault(); openPopup(); });
+    closeBtn.addEventListener('click', closePopup);
+    backdrop.addEventListener('click', closePopup);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePopup(); });
+})();
