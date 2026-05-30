@@ -1744,6 +1744,106 @@ if (shared) {
         arguments: "index",
         permissions: "none"
     },
+
+        {
+        name: "snipe",
+        category: "moderation",
+        description: "Snipe the latest message that was deleted",
+        arguments: "index",
+        permissions: "none"
+    },
+    {
+        name: "tempban",
+        category: "moderation",
+        description: "Temporarily ban a user",
+        arguments: "member duration reason",
+        permissions: "ban members"
+    },
+    {
+        name: "remind",
+        category: "moderation",
+        description: "Get reminders for a duration set about whatever you choose",
+        arguments: "reminder",
+        permissions: "none"
+    },
+    {
+        name: "reminder remove",
+        category: "moderation",
+        description: "Remove a reminder",
+        arguments: "id",
+        permissions: "none"
+    },
+    {
+        name: "remind list",
+        category: "moderation",
+        description: "View a list of your reminders",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "reminders",
+        category: "moderation",
+        description: "View a list of your reminders",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "warn",
+        category: "moderation",
+        description: "Warns the mentioned user",
+        arguments: "member reason",
+        permissions: "none"
+    },
+    {
+        name: "thread",
+        category: "moderation",
+        description: "Commands to manage threads and forum posts",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "thread unlock",
+        category: "moderation",
+        description: "Unlock a thread or forum post",
+        arguments: "thread reason",
+        permissions: "manage threads"
+    },
+    {
+        name: "thread add",
+        category: "moderation",
+        description: "Add a member to a thread or forum post",
+        arguments: "thread reason",
+        permissions: "manage threads"
+    },
+    {
+        name: "thread lock",
+        category: "moderation",
+        description: "Lock a thread or forum post",
+        arguments: "thread reason",
+        permissions: "manage threads"
+    },
+    {
+        name: "thread remove",
+        category: "moderation",
+        description: "Remove a member from a thread",
+        arguments: "thread member",
+        permissions: "manage threads"
+    },
+    {
+        name: "thread watch",
+        category: "moderation",
+        description: "No description given",
+        arguments: "thread",
+        permissions: "manage channels"
+    },
+    {
+        name: "thread rename",
+        category: "moderation",
+        description: "Rename a thread",
+        arguments: "thread new name",
+        permissions: "manage threads"
+    },
+];
 ];
 
 const tabCategories = [
