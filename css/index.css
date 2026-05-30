@@ -396,3 +396,164 @@ footer {
         padding-inline: 8px;
     }
 }
+
+/* ── Status Popup ── */
+.status-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 900;
+    backdrop-filter: blur(2px);
+}
+.status-backdrop.open { display: block; }
+
+.status-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.96);
+    opacity: 0;
+    width: min(420px, 92vw);
+    background: #161b22;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    z-index: 901;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    overflow: hidden;
+}
+.status-popup.open {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.status-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.status-popup-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #e6edf3;
+    letter-spacing: 0.01em;
+}
+.status-popup-close {
+    background: none;
+    border: none;
+    color: #8b949e;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+    line-height: 1;
+}
+.status-popup-close:hover { color: #e6edf3; background: rgba(255,255,255,0.07); }
+
+.status-shards {
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.status-loading {
+    text-align: center;
+    color: #8b949e;
+    font-size: 13px;
+    padding: 24px 0;
+}
+
+.shard-card {
+    background: #0d1117;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+.shard-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.shard-card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e6edf3;
+}
+.shard-card-meta {
+    font-size: 11px;
+    color: #8b949e;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.shard-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(35,134,54,0.18);
+    border: 1px solid rgba(35,134,54,0.35);
+    border-radius: 20px;
+    padding: 3px 10px 3px 7px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #3fb950;
+}
+.shard-status-badge.offline {
+    background: rgba(248,81,73,0.15);
+    border-color: rgba(248,81,73,0.3);
+    color: #f85149;
+}
+.shard-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #3fb950;
+    box-shadow: 0 0 6px #3fb950;
+    animation: pulse-green 2s infinite;
+}
+.shard-status-badge.offline .shard-status-dot {
+    background: #f85149;
+    box-shadow: 0 0 6px #f85149;
+    animation: none;
+}
+@keyframes pulse-green {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.shard-card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.shard-stat-label {
+    font-size: 11px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 3px;
+}
+.shard-stat-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #e6edf3;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.shard-stat-value i {
+    font-size: 13px;
+    color: #8b949e;
+}
