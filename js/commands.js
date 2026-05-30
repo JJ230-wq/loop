@@ -1844,7 +1844,6 @@ if (shared) {
         permissions: "manage threads"
     },
 ];
-];
 
 const tabCategories = [
     { id: 'primary', label: 'Primary' },
@@ -1974,10 +1973,11 @@ const tabCategories = [
             modalBg.tabIndex = -1;
 
             const modal = document.createElement('div');
-            modal.className = 'command-details-modal';
-            modal.innerHTML = `
+modal.className = 'command-details-modal';
+modal.innerHTML = `
     <div class="cmd-title-row">
         <span class="cmd-title" style="font-weight:700; font-size:1.15rem;">${cmd.name}</span>
+        <button class="cmd-close-btn" aria-label="Close">✕</button>
     </div>
     <div class="cmd-desc" style="margin: 6px 0 14px; color: rgba(255,255,255,0.55); font-size:0.92rem;">${cmd.description}</div>
     <hr style="border:none; border-top:1px solid rgba(255,255,255,0.08); margin: 0 0 14px;">
