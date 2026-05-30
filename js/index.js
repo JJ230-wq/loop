@@ -87,7 +87,7 @@
     if (!btn || !popup) return;
 
     function fetchShards() {
-        return fetch('https://51.222.117.195:3000/statuss')
+        return fetch('http://51.222.117.195:3000/status')
             .then(r => r.json());
     }
 
