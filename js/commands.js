@@ -1843,6 +1843,469 @@ if (shared) {
         arguments: "thread new name",
         permissions: "manage threads"
     },
+
+        {
+        name: "lockdown",
+        category: "moderation",
+        description: "Lockdown a channel",
+        arguments: "channel reason",
+        permissions: "manage channels"
+    },
+    {
+        name: "lockdown all",
+        category: "moderation",
+        description: "Lock all channels",
+        arguments: "reason",
+        permissions: "manage channels"
+    },
+    {
+        name: "lockdown role",
+        category: "moderation",
+        description: "No description given",
+        arguments: "role",
+        permissions: "manage guild"
+    },
+    {
+        name: "lockdown ignore",
+        category: "moderation",
+        description: "Blocks a channel from being altered when using the unlock all command",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "lockdown ignore remove",
+        category: "moderation",
+        description: "Remove an ignored lockdown channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "lockdown ignore list",
+        category: "moderation",
+        description: "View all ignored lockdown channels",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "lockdown ignore add",
+        category: "moderation",
+        description: "Set an ignored lockdown channel",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "unlock",
+        category: "moderation",
+        description: "Unlock a channel",
+        arguments: "channel reason",
+        permissions: "manage channels"
+    },
+    {
+        name: "unlock all",
+        category: "moderation",
+        description: "Unlocks every channel",
+        arguments: "reason",
+        permissions: "manage channels"
+    },
+    {
+        name: "stripstaff",
+        category: "moderation",
+        description: "No description given",
+        arguments: "member",
+        permissions: "administrator"
+    },
+    {
+        name: "jail",
+        category: "moderation",
+        description: "Jails the mentioned user",
+        arguments: "member duration reason",
+        permissions: "none"
+    },
+    {
+        name: "modstats",
+        category: "moderation",
+        description: "No description given",
+        arguments: "member",
+        permissions: "manage messages"
+    },
+    {
+        name: "warnings",
+        category: "moderation",
+        description: "View warnings for a member",
+        arguments: "member",
+        permissions: "manage messages"
+    },
+    {
+        name: "moderationhistory",
+        category: "moderation",
+        description: "View moderation actions from staff member",
+        arguments: "member command",
+        permissions: "manage messages"
+    },
+    {
+        name: "history",
+        category: "moderation",
+        description: "View a list of every punishment recorded",
+        arguments: "member command",
+        permissions: "manage messages"
+    },
+    {
+        name: "history view",
+        category: "moderation",
+        description: "View an ID's case log",
+        arguments: "case id",
+        permissions: "manage messages"
+    },
+    {
+        name: "history remove",
+        category: "moderation",
+        description: "Remove a punishment from a member",
+        arguments: "member case id",
+        permissions: "none"
+    },
+    {
+        name: "history removeall",
+        category: "moderation",
+        description: "Remove all punishments from a member",
+        arguments: "member",
+        permissions: "administrator"
+    },
+    {
+        name: "jaillist",
+        category: "moderation",
+        description: "View a list of every current jailed member",
+        arguments: "none",
+        permissions: "manage messages"
+    },
+    {
+        name: "proof",
+        category: "moderation",
+        description: "No description given",
+        arguments: "one",
+        permissions: "manage messages"
+    },
+    {
+        name: "proof list",
+        category: "moderation",
+        description: "No description given",
+        arguments: "case id",
+        permissions: "manage messages"
+    },
+    {
+        name: "proof add",
+        category: "moderation",
+        description: "Add attachment(s) to a case log",
+        arguments: "case id media url",
+        permissions: "manage messages"
+    },
+    {
+        name: "proof view",
+        category: "moderation",
+        description: "Show attachments for a case log",
+        arguments: "case id",
+        permissions: "manage messages"
+    },
+    {
+        name: "proof set",
+        category: "moderation",
+        description: "Set the proof and attachments if applicable for a case log",
+        arguments: "case id explanation",
+        permissions: "manage messages"
+    },
+    {
+        name: "proof remove",
+        category: "moderation",
+        description: "Remove an attachment from a case log",
+        arguments: "case id index",
+        permissions: "manage messages"
+    },
+    {
+        name: "case log",
+        category: "moderation",
+        description: "View a case log for a member",
+        arguments: "case id",
+        permissions: "manage messages"
+    },
+    {
+        name: "reason",
+        category: "moderation",
+        description: "Updates the reason on a case log",
+        arguments: "case id reason",
+        permissions: "manage messages"
+    },
+    {
+        name: "timeout",
+        category: "moderation",
+        description: "Mutes the provided member using Discord's timeout feature",
+        arguments: "member duration reason",
+        permissions: "none"
+    },
+    {
+        name: "timeout list",
+        category: "moderation",
+        description: "View list of timed out members",
+        arguments: "none",
+        permissions: "moderate members"
+    },
+    {
+        name: "untimeout",
+        category: "moderation",
+        description: "Removes a timeout for a member",
+        arguments: "member reason",
+        permissions: "none"
+    },
+    {
+        name: "mute",
+        category: "moderation",
+        description: "Mute a member in the server",
+        arguments: "member duration reason",
+        permissions: "none"
+    },
+    {
+        name: "unmute",
+        category: "moderation",
+        description: "Unmute a member in the server",
+        arguments: "member reason",
+        permissions: "moderate members"
+    },
+    {
+        name: "imute",
+        category: "moderation",
+        description: "Remove a member's attach files & embed links permission",
+        arguments: "member reason",
+        permissions: "moderate members"
+    },
+    {
+        name: "iunmute",
+        category: "moderation",
+        description: "Restore a member's attach files & embed links permission",
+        arguments: "member reason",
+        permissions: "moderate members"
+    },
+    {
+        name: "rmute",
+        category: "moderation",
+        description: "Remove a member's add reactions and use external emotes permission",
+        arguments: "member reason",
+        permissions: "moderate members"
+    },
+    {
+        name: "runmute",
+        category: "moderation",
+        description: "Restore a member's add reactions and use external emotes permission",
+        arguments: "member reason",
+        permissions: "moderate members"
+    },
+    {
+        name: "hardban",
+        category: "moderation",
+        description: "Keep a member banned",
+        arguments: "member reason",
+        permissions: "none"
+    },
+    {
+        name: "hardban list",
+        category: "moderation",
+        description: "View a list of hardbanned members",
+        arguments: "none",
+        permissions: "administrator antinuke admin"
+    },
+    {
+        name: "unbanall",
+        category: "moderation",
+        description: "Unbans every member in the guild",
+        arguments: "none",
+        permissions: "server owner"
+    },
+    {
+        name: "unban cancel",
+        category: "moderation",
+        description: "Cancels a unban all task running",
+        arguments: "none",
+        permissions: "server owner"
+    },
+    {
+        name: "unban",
+        category: "moderation",
+        description: "Unbans the mentioned user",
+        arguments: "user reason",
+        permissions: "none"
+    },
+    {
+        name: "softban",
+        category: "moderation",
+        description: "Softbans the mentioned user and deletes 1 day of messages",
+        arguments: "member delete history reason",
+        permissions: "none"
+    },
+    {
+        name: "ban",
+        category: "moderation",
+        description: "Bans the mentioned user",
+        arguments: "member delete history reason",
+        permissions: "ban members"
+    },
+    {
+        name: "ban recent",
+        category: "moderation",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "ban purge",
+        category: "moderation",
+        description: "Set default message history purge upon ban",
+        arguments: "delete history",
+        permissions: "none"
+    },
+    {
+        name: "unjail",
+        category: "moderation",
+        description: "Unjails the mentioned user",
+        arguments: "member reason",
+        permissions: "none"
+    },
+    {
+        name: "temprole",
+        category: "moderation",
+        description: "Temporarily give a role to a member",
+        arguments: "member duration role",
+        permissions: "manage roles"
+    },
+    {
+        name: "temprole list",
+        category: "moderation",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage roles"
+    },
+    {
+        name: "role",
+        category: "moderation",
+        description: "Modify a member's roles",
+        arguments: "member role",
+        permissions: "none"
+    },
+    {
+        name: "role has",
+        category: "moderation",
+        description: "Add a role to members with a specific role",
+        arguments: "role assign role",
+        permissions: "none"
+    },
+    {
+        name: "role has remove",
+        category: "moderation",
+        description: "Remove a role from members with a specific role",
+        arguments: "role remove role",
+        permissions: "none"
+    },
+    {
+        name: "role hoist",
+        category: "moderation",
+        description: "Toggle hoisting a role",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "role humans",
+        category: "moderation",
+        description: "Adds a role to all humans",
+        arguments: "role flags",
+        permissions: "none"
+    },
+    {
+        name: "role humans remove",
+        category: "moderation",
+        description: "Remove a role from all humans",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "role color",
+        category: "moderation",
+        description: "Set a color for a role",
+        arguments: "color role",
+        permissions: "none"
+    },
+    {
+        name: "role color gradient",
+        category: "moderation",
+        description: "Set a gradient color for a role",
+        arguments: "color second color role",
+        permissions: "none"
+    },
+    {
+        name: "role delete",
+        category: "moderation",
+        description: "Deletes a role",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "role mentionable",
+        category: "moderation",
+        description: "Toggle mentioning a role",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "role cancel",
+        category: "moderation",
+        description: "Cancels a mass role task running",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "role restore",
+        category: "moderation",
+        description: "Restore roles to a member",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "role icon",
+        category: "moderation",
+        description: "Set an icon for a role",
+        arguments: "url role",
+        permissions: "none"
+    },
+    {
+        name: "role topcolor",
+        category: "moderation",
+        description: "Changes your highest role's color",
+        arguments: "color member",
+        permissions: "none"
+    },
+    {
+        name: "role bots",
+        category: "moderation",
+        description: "Add a role to all bots",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "role bots remove",
+        category: "moderation",
+        description: "Remove a role from all bots",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "role edit",
+        category: "moderation",
+        description: "Changes a role's name",
+        arguments: "role name",
+        permissions: "none"
+    },
+    {
+        name: "role create",
+        category: "moderation",
+        description: "Creates a role with an optional color",
+        arguments: "color role",
+        permissions: "none"
+    },
 ];
 
 const tabCategories = [
