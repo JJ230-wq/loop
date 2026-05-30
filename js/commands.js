@@ -2306,6 +2306,274 @@ if (shared) {
         arguments: "color role",
         permissions: "none"
     },
+
+        {
+        name: "purge",
+        category: "moderation",
+        description: "Delete the specified amount of messages from the current channel",
+        arguments: "member search",
+        permissions: "none"
+    },
+    {
+        name: "purge bots",
+        category: "moderation",
+        description: "Purge messages from bots in chat",
+        arguments: "search",
+        permissions: "none"
+    },
+    {
+        name: "purge humans",
+        category: "moderation",
+        description: "Purge messages from humans in chat",
+        arguments: "search",
+        permissions: "none"
+    },
+    {
+        name: "purge links",
+        category: "moderation",
+        description: "Purge messages containing links",
+        arguments: "search",
+        permissions: "none"
+    },
+    {
+        name: "purge activity",
+        category: "moderation",
+        description: "Purge activity messages from chat",
+        arguments: "search",
+        permissions: "none"
+    },
+    {
+        name: "purge mentions",
+        category: "moderation",
+        description: "Purge mentions from chat",
+        arguments: "member search",
+        permissions: "none"
+    },
+    {
+        name: "purge images",
+        category: "moderation",
+        description: "Purge images from chat",
+        arguments: "search",
+        permissions: "none"
+    },
+    {
+        name: "purge emoji",
+        category: "moderation",
+        description: "Purge emojis from chat",
+        arguments: "search",
+        permissions: "none"
+    },
+    {
+        name: "dump",
+        category: "moderation",
+        description: "Dump all members of a role",
+        arguments: "role",
+        permissions: "manage roles"
+    },
+    {
+        name: "nuke",
+        category: "moderation",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "nuke add",
+        category: "moderation",
+        description: "Schedule nuke for a channel",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "nuke view",
+        category: "moderation",
+        description: "View message after scheduled nuke for channel",
+        arguments: "channel",
+        permissions: "none"
+    },
+    {
+        name: "nuke remove",
+        category: "moderation",
+        description: "Remove scheduled nuke for a channel",
+        arguments: "channel",
+        permissions: "none"
+    },
+    {
+        name: "nuke list",
+        category: "moderation",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "nuke archive",
+        category: "moderation",
+        description: "Automatically archive pins upon scheduled nuke",
+        arguments: "channel setting",
+        permissions: "none"
+    },
+    {
+        name: "newmembers",
+        category: "moderation",
+        description: "View a list of recently joined members",
+        arguments: "count",
+        permissions: "none"
+    },
+    {
+        name: "recentban",
+        category: "moderation",
+        description: "Chunk ban recently joined members",
+        arguments: "count reason",
+        permissions: "ban members"
+    },
+    {
+        name: "unhide",
+        category: "moderation",
+        description: "Unhide a channel from a role or member",
+        arguments: "channel role|or|member",
+        permissions: "none"
+    },
+    {
+        name: "hide",
+        category: "moderation",
+        description: "Hide a channel from a role or member",
+        arguments: "channel role|or|member",
+        permissions: "none"
+    },
+    {
+        name: "slowmode",
+        category: "moderation",
+        description: "Restricts members to sending one message per interval",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "slowmode off",
+        category: "moderation",
+        description: "Disable slowmode in a channel",
+        arguments: "channel",
+        permissions: "manage channels"
+    },
+    {
+        name: "slowmode on",
+        category: "moderation",
+        description: "Enable slowmode in a channel",
+        arguments: "channel delay|time",
+        permissions: "manage channels"
+    },
+    {
+        name: "setup",
+        category: "moderation",
+        description: "Start process for setting up the moderation system",
+        arguments: "none",
+        permissions: "administrator"
+    },
+    {
+        name: "rename",
+        category: "moderation",
+        description: "Assigns the mentioned user a new nickname in the guild",
+        arguments: "member new|name",
+        permissions: "none"
+    },
+    {
+        name: "restrictcommand",
+        category: "moderation",
+        description: "Only allows people with a certain role to use command",
+        arguments: "cmd role",
+        permissions: "none"
+    },
+    {
+        name: "restrictcommand list",
+        category: "moderation",
+        description: "View a list of every restricted command",
+        arguments: "role|or|command",
+        permissions: "manage guild"
+    },
+    {
+        name: "restrictcommand remove",
+        category: "moderation",
+        description: "Removes the specified roles exclusive permission to use a command",
+        arguments: "cmd role",
+        permissions: "manage guild"
+    },
+    {
+        name: "restrictcommand add",
+        category: "moderation",
+        description: "Allows the specified role exclusive permission to use a command",
+        arguments: "cmd role",
+        permissions: "manage guild"
+    },
+    {
+        name: "stickyrole",
+        category: "moderation",
+        description: "Reapplies a role on join",
+        arguments: "member role",
+        permissions: "server owner"
+    },
+    {
+        name: "stickyrole list",
+        category: "moderation",
+        description: "View a list of every sticky role",
+        arguments: "none",
+        permissions: "server owner"
+    },
+    {
+        name: "stickyrole add",
+        category: "moderation",
+        description: "Reapplies a role on join",
+        arguments: "member role",
+        permissions: "server owner"
+    },
+    {
+        name: "stickyrole remove",
+        category: "moderation",
+        description: "Removes sticky role on join",
+        arguments: "member role",
+        permissions: "server owner"
+    },
+    {
+        name: "raid",
+        category: "moderation",
+        description: "Remove all members that joined in the time provided in the event of a raid",
+        arguments: "time action reason",
+        permissions: "none"
+    },
+    {
+        name: "forcenickname",
+        category: "moderation",
+        description: "Force a members current nickname",
+        arguments: "member name|to|set",
+        permissions: "none"
+    },
+    {
+        name: "forcenickname list",
+        category: "moderation",
+        description: "View a list of all forced nicknames",
+        arguments: "none",
+        permissions: "manage guild manage nicknames"
+    },
+    {
+        name: "topic",
+        category: "moderation",
+        description: "Change the current channel topic",
+        arguments: "text",
+        permissions: "manage channels"
+    },
+    {
+        name: "naughty",
+        category: "moderation",
+        description: "Temporarily make a channel NSFW for 30 seconds",
+        arguments: "channel",
+        permissions: "manage channels"
+    },
+    {
+        name: "permissions",
+        category: "moderation",
+        description: "Check permissions for a member or myself",
+        arguments: "member channel",
+        permissions: "manage roles manage channels"
+    },
+];
 ];
 
 const tabCategories = [
@@ -2428,7 +2696,10 @@ const tabCategories = [
             modalContainer.innerHTML = '';
             const argVal = cmd.arguments === 'none' 
     ? 'none' 
-    : cmd.arguments.split(' ').map(a => `<span style="background:rgba(255,255,255,0.08); border-radius:4px; padding:2px 8px; font-size:0.85rem; margin-right:4px;">${a.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>`).join('');
+    : cmd.arguments.split(' ').map(a => {
+        const display = a.replace(/\|/g, ' ').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return `<span style="background:rgba(255,255,255,0.08); border-radius:4px; padding:2px 8px; font-size:0.85rem; margin-right:4px;">${display}</span>`;
+    }).join('');
             const permVal = cmd.permissions;
             const cmdTextToCopy = `/${cmd.name}`;
             const modalBg = document.createElement('div');
