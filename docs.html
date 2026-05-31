@@ -516,6 +516,12 @@
                 <!-- Variable category tabs -->
                 <div class="var-tabs" id="varTabs">
                     <button class="var-tab is-active" data-category="guild">Guild</button>
+                    <button class="var-tab" data-category="user">User</button>
+                    <button class="var-tab" data-category="channel">Channel</button>
+                    <button class="var-tab" data-category="datetime">Date &amp; Time</button>
+                    <button class="var-tab" data-category="leveling">Leveling</button>
+                    <button class="var-tab" data-category="boosts">Boosts</button>
+                    <button class="var-tab" data-category="bump">Bump Reminder</button>
                 </div>
 
                 <!-- Variable category panels -->
@@ -748,6 +754,83 @@
                     </div>
 
                 </div><!-- /varcategory-guild -->
+
+                <!-- User -->
+                <div class="var-category" id="varcategory-user">
+                    <div class="var-item"><button class="var-row" data-var="user"><code class="var-code">{user}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's name and discriminator</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.id"><code class="var-code">{user.id}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's ID</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.mention"><code class="var-code">{user.mention}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's mention</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.name"><code class="var-code">{user.name}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's name</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.tag"><code class="var-code">{user.tag}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's discriminator</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.avatar"><code class="var-code">{user.avatar}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's profile picture</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.guild_avatar"><code class="var-code">{user.guild_avatar}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's guild profile picture</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.display_avatar"><code class="var-code">{user.display_avatar}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's available profile picture</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.joined_at"><code class="var-code">{user.joined_at}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's guild join date in UTC</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.joined_at_timestamp"><code class="var-code">{user.joined_at_timestamp}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's guild join date in UNIX</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.created_at"><code class="var-code">{user.created_at}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's account creation date in UTC</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.created_at_timestamp"><code class="var-code">{user.created_at_timestamp}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's account creation date in UNIX</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.display_name"><code class="var-code">{user.display_name}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's current display name</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.boost"><code class="var-code">{user.boost}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Yes/No if the user is boosting the guild</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.boost_since"><code class="var-code">{user.boost_since}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's initial guild boost date</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.boost_since_timestamp"><code class="var-code">{user.boost_since_timestamp}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's initial guild boost date in UNIX</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.color"><code class="var-code">{user.color}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's top role hex code</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.top_role"><code class="var-code">{user.top_role}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's top role name, defaults to N/A</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.role_list"><code class="var-code">{user.role_list}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's role list (possibly N/A)</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.role_text_list"><code class="var-code">{user.role_text_list}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's role list in text (possibly N/A)</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.bot"><code class="var-code">{user.bot}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Yes/No if the user is a bot</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.badges_icons"><code class="var-code">{user.badges_icons}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's profile badges with emotes (possibly N/A)</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.badges"><code class="var-code">{user.badges}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's profile badges in text (possibly N/A)</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.join_position"><code class="var-code">{user.join_position}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's join position</div></div>
+                    <div class="var-item"><button class="var-row" data-var="user.join_position_suffix"><code class="var-code">{user.join_position_suffix}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The user's join position with suffix</div></div>
+                </div><!-- /varcategory-user -->
+
+                <!-- Channel -->
+                <div class="var-category" id="varcategory-channel">
+                    <div class="var-item"><button class="var-row" data-var="channel.name"><code class="var-code">{channel.name}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's name</div></div>
+                    <div class="var-item"><button class="var-row" data-var="channel.id"><code class="var-code">{channel.id}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's ID</div></div>
+                    <div class="var-item"><button class="var-row" data-var="channel.mention"><code class="var-code">{channel.mention}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's mention</div></div>
+                    <div class="var-item"><button class="var-row" data-var="channel.topic"><code class="var-code">{channel.topic}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's topic</div></div>
+                    <div class="var-item"><button class="var-row" data-var="channel.type"><code class="var-code">{channel.type}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's type (text/news/..)</div></div>
+                    <div class="var-item"><button class="var-row" data-var="channel.category_id"><code class="var-code">{channel.category_id}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's category ID (possibly N/A)</div></div>
+                    <div class="var-item"><button class="var-row" data-var="channel.category_name"><code class="var-code">{channel.category_name}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's category name (possibly N/A)</div></div>
+                    <div class="var-item"><button class="var-row" data-var="channel.position"><code class="var-code">{channel.position}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's position in the guild channel list</div></div>
+                    <div class="var-item"><button class="var-row" data-var="channel.slowmode_delay"><code class="var-code">{channel.slowmode_delay}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The channel's slowmode delay in seconds (defaults to 0)</div></div>
+                </div><!-- /varcategory-channel -->
+
+                <!-- Date & Time -->
+                <div class="var-category" id="varcategory-datetime">
+                    <div class="var-item"><button class="var-row" data-var="date.now"><code class="var-code">{date.now}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Current date in PST</div></div>
+                    <div class="var-item"><button class="var-row" data-var="date.utc_timestamp"><code class="var-code">{date.utc_timestamp}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Current date as UNIX</div></div>
+                    <div class="var-item"><button class="var-row" data-var="date.now_proper"><code class="var-code">{date.now_proper}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Better formatted date in PST</div></div>
+                    <div class="var-item"><button class="var-row" data-var="date.now_short"><code class="var-code">{date.now_short}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Short formatted date in PST</div></div>
+                    <div class="var-item"><button class="var-row" data-var="date.now_shorter"><code class="var-code">{date.now_shorter}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Shorter formatted date in PST</div></div>
+                    <div class="var-item"><button class="var-row" data-var="time.now"><code class="var-code">{time.now}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">12 hour timestamp in PST</div></div>
+                    <div class="var-item"><button class="var-row" data-var="time.now_military"><code class="var-code">{time.now_military}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">24 hour timestamp in PST</div></div>
+                    <div class="var-item"><button class="var-row" data-var="date.utc_now"><code class="var-code">{date.utc_now}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Current date in UTC</div></div>
+                    <div class="var-item"><button class="var-row" data-var="date.utc_now_proper"><code class="var-code">{date.utc_now_proper}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Better formatted date in UTC</div></div>
+                    <div class="var-item"><button class="var-row" data-var="date.utc_now_short"><code class="var-code">{date.utc_now_short}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Short formatted date in UTC</div></div>
+                    <div class="var-item"><button class="var-row" data-var="date.utc_now_shorter"><code class="var-code">{date.utc_now_shorter}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Shorter formatted date in UTC</div></div>
+                    <div class="var-item"><button class="var-row" data-var="time.utc_now"><code class="var-code">{time.utc_now}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">12 hour timestamp in UTC</div></div>
+                    <div class="var-item"><button class="var-row" data-var="time.utc_now_military"><code class="var-code">{time.utc_now_military}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">24 hour timestamp in UTC</div></div>
+                </div><!-- /varcategory-datetime -->
+
+                <!-- Leveling -->
+                <div class="var-category" id="varcategory-leveling">
+                    <div class="var-item"><button class="var-row" data-var="level.new_rank"><code class="var-code">{level.new_rank}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Member's new level at time of level up</div></div>
+                    <div class="var-item"><button class="var-row" data-var="level.user_xp"><code class="var-code">{level.user_xp}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Member's current XP</div></div>
+                </div><!-- /varcategory-leveling -->
+
+                <!-- Boosts -->
+                <div class="var-category" id="varcategory-boosts">
+                    <div class="var-item"><button class="var-row" data-var="boost.count"><code class="var-code">{boost.count}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Amount of times user has boosted</div></div>
+                    <div class="var-item"><button class="var-row" data-var="guild.boost_count_b"><code class="var-code">{guild.boost_count}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">Overall guild boost count</div></div>
+                </div><!-- /varcategory-boosts -->
+
+                <!-- Bump Reminder -->
+                <div class="var-category" id="varcategory-bump">
+                    <div class="var-item"><button class="var-row" data-var="bumpreminder.last_user_bump"><code class="var-code">{bumpreminder.last_user_bump}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The last user to bump the server</div></div>
+                    <div class="var-item"><button class="var-row" data-var="bumpreminder.next_bump"><code class="var-code">{bumpreminder.next_bump}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">A relative timestamp for the next bump</div></div>
+                </div><!-- /varcategory-bump -->
 
             </div>
 
