@@ -311,6 +311,97 @@
         .footer-links { display: flex; gap: 16px; }
         .footer-links a:hover { text-decoration: underline; }
 
+        /* ── Variable tabs ── */
+        .var-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .var-tab {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            color: rgba(255,255,255,0.5);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 400;
+            padding: 6px 14px;
+            cursor: pointer;
+            transition: color 0.15s, background 0.15s, border-color 0.15s;
+            letter-spacing: 0.01em;
+        }
+        .var-tab:hover {
+            color: rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.08);
+        }
+        .var-tab.is-active {
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.18);
+        }
+
+        /* Variable category panel */
+        .var-category { display: none; }
+        .var-category.is-active { display: block; }
+
+        /* Individual variable item */
+        .var-item {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .var-item:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+
+        .var-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 11px 4px;
+            cursor: pointer;
+            transition: background 0.15s;
+            border-radius: 6px;
+            gap: 12px;
+        }
+        .var-row:hover { background: rgba(255,255,255,0.03); }
+        .var-row.is-open { background: rgba(255,255,255,0.04); }
+
+        .var-code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            background: rgba(255,255,255,0.07);
+            padding: 3px 8px;
+            border-radius: 5px;
+            text-align: left;
+            white-space: nowrap;
+        }
+        .var-row.is-open .var-code { color: #fff; }
+
+        .var-arrow {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.25);
+            transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+        .var-row.is-open .var-arrow { transform: rotate(90deg); color: rgba(255,255,255,0.5); }
+
+        .var-desc {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, padding 0.2s ease;
+            font-size: 0.855rem;
+            color: rgba(255,255,255,0.45);
+            padding: 0 4px;
+            line-height: 1.6;
+        }
+        .var-desc.is-open {
+            opacity: 1;
+            padding: 0 4px 10px 4px;
+        }
+
         @media (max-width: 860px) {
             .docs-sidebar { width: 220px; }
             .docs-main { padding: 24px 24px 60px 24px; }
@@ -421,10 +512,243 @@
                 </div>
                 <h1 class="docs-page-title">Variables</h1>
                 <p class="docs-page-subtitle">Use dynamic variables in your messages to display live server and member data.</p>
-                <div class="docs-coming-soon">
-                    <i class="fas fa-flask"></i>
-                    <span>Documentation coming soon.</span>
+
+                <!-- Variable category tabs -->
+                <div class="var-tabs" id="varTabs">
+                    <button class="var-tab is-active" data-category="guild">Guild</button>
                 </div>
+
+                <!-- Variable category panels -->
+                <div class="var-category" id="varcategory-guild">
+
+                    <!-- Each variable row is a collapsible -->
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.name">
+                            <code class="var-code">{guild.name}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's name</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.id">
+                            <code class="var-code">{guild.id}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's ID</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.count">
+                            <code class="var-code">{guild.count}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's member count</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.region">
+                            <code class="var-code">{guild.region}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's voice region</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.shard">
+                            <code class="var-code">{guild.shard}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's shard ID on bot</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.owner_id">
+                            <code class="var-code">{guild.owner_id}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's owner ID</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.created_at">
+                            <code class="var-code">{guild.created_at}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's creation date in UTC</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.created_at_timestamp">
+                            <code class="var-code">{guild.created_at_timestamp}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's creation date in UNIX</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.emoji_count">
+                            <code class="var-code">{guild.emoji_count}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's emoji count</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.role_count">
+                            <code class="var-code">{guild.role_count}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's role count</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.boost_count">
+                            <code class="var-code">{guild.boost_count}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's boost count</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.boost_tier">
+                            <code class="var-code">{guild.boost_tier}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's boost tier, defaults to No Level if none</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.preferred_locale">
+                            <code class="var-code">{guild.preferred_locale}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's preferred locale</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.key_features">
+                            <code class="var-code">{guild.key_features}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's list of features (possibly N/A)</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.icon">
+                            <code class="var-code">{guild.icon}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's icon URL as a PNG (possibly N/A)</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.banner">
+                            <code class="var-code">{guild.banner}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's banner URL as a PNG (possibly N/A)</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.splash">
+                            <code class="var-code">{guild.splash}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's splash URL as a PNG (possibly N/A)</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.discovery">
+                            <code class="var-code">{guild.discovery}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's discovery splash URL as a PNG (possibly N/A)</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.max_presences">
+                            <code class="var-code">{guild.max_presences}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's max presences amount</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.max_members">
+                            <code class="var-code">{guild.max_members}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's max members amount</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.max_video_channel_users">
+                            <code class="var-code">{guild.max_video_channel_users}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's max video channel users</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.afk_timeout">
+                            <code class="var-code">{guild.afk_timeout}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's AFK timeout in seconds</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.afk_channel">
+                            <code class="var-code">{guild.afk_channel}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's AFK channel (possibly N/A)</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.channels">
+                            <code class="var-code">{guild.channels}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's list of text, voice &amp; category channels (possibly N/A)</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.channels_count">
+                            <code class="var-code">{guild.channels_count}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's total channel count</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.text_channels">
+                            <code class="var-code">{guild.text_channels}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's list of text channels</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.text_channels_count">
+                            <code class="var-code">{guild.text_channels_count}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's text channel count</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.voice_channels">
+                            <code class="var-code">{guild.voice_channels}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's list of voice channels</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.voice_channels_count">
+                            <code class="var-code">{guild.voice_channels_count}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's voice channel count</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.category_channels">
+                            <code class="var-code">{guild.category_channels}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's list of category channels</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.category_channels_count">
+                            <code class="var-code">{guild.category_channels_count}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's category channel count</div>
+                    </div>
+                    <div class="var-item">
+                        <button class="var-row" data-var="guild.vanity">
+                            <code class="var-code">{guild.vanity}</code>
+                            <i class="fas fa-chevron-right var-arrow"></i>
+                        </button>
+                        <div class="var-desc">The guild's custom vanity url</div>
+                    </div>
+
+                </div><!-- /varcategory-guild -->
+
             </div>
 
             <!-- Scripting - Embeds -->
@@ -535,6 +859,44 @@
             item.addEventListener('click', function (e) {
                 e.preventDefault();
                 showPanel(item.getAttribute('data-panel'));
+            });
+        });
+
+        // ── Variable tabs ──
+        document.querySelectorAll('.var-tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                var cat = tab.getAttribute('data-category');
+                document.querySelectorAll('.var-tab').forEach(function (t) { t.classList.remove('is-active'); });
+                document.querySelectorAll('.var-category').forEach(function (c) { c.classList.remove('is-active'); });
+                tab.classList.add('is-active');
+                var panel = document.getElementById('varcategory-' + cat);
+                if (panel) panel.classList.add('is-active');
+            });
+        });
+
+        // Activate first category by default
+        var firstCat = document.querySelector('.var-category');
+        if (firstCat) firstCat.classList.add('is-active');
+
+        // ── Variable row toggles ──
+        document.querySelectorAll('.var-row').forEach(function (row) {
+            row.addEventListener('click', function () {
+                var desc = row.nextElementSibling;
+                var isOpen = row.classList.contains('is-open');
+                // Close all others in same category
+                var parent = row.closest('.var-category');
+                if (parent) {
+                    parent.querySelectorAll('.var-row.is-open').forEach(function (r) {
+                        r.classList.remove('is-open');
+                        var d = r.nextElementSibling;
+                        if (d) { d.style.maxHeight = '0'; d.classList.remove('is-open'); }
+                    });
+                }
+                if (!isOpen && desc) {
+                    row.classList.add('is-open');
+                    desc.style.maxHeight = desc.scrollHeight + 'px';
+                    desc.classList.add('is-open');
+                }
             });
         });
 
