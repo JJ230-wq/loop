@@ -2573,6 +2573,92 @@ if (shared) {
         arguments: "member channel",
         permissions: "manage roles manage channels"
     },
+
+        {
+        name: "lastfm",
+        category: "lastfm",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "lastfm set",
+        category: "lastfm",
+        description: "Set your Last.fm username",
+        arguments: "username",
+        permissions: "none"
+    },
+    {
+        name: "lastfm taste",
+        category: "lastfm",
+        description: "Compare your music taste between you and someone else",
+        arguments: "member period",
+        permissions: "none"
+    },
+    {
+        name: "lastfm favorites",
+        category: "lastfm",
+        description: "View yours or a member's liked tracks",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "lastfm toptracks",
+        category: "lastfm",
+        description: "View your most listened to tracks",
+        arguments: "member period",
+        permissions: "none"
+    },
+    {
+        name: "lastfm milestone",
+        category: "lastfm",
+        description: "No description given",
+        arguments: "number",
+        permissions: "none"
+    },
+    {
+        name: "lastfm count",
+        category: "lastfm",
+        description: "View your total Last.fm scrobbles",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "lastfm streak",
+        category: "lastfm",
+        description: "View your current listening streak",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "lastfm whois",
+        category: "lastfm",
+        description: "View Last.fm profile information",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "lastfm customcommand",
+        category: "lastfm",
+        description: "Set your own custom Now Playing command",
+        arguments: "substring",
+        permissions: "none"
+    },
+    {
+        name: "lastfm customreactions",
+        category: "lastfm",
+        description: "Set personal upvote and downvote reaction for Now Playing",
+        arguments: "upvote downvote",
+        permissions: "none"
+    },
+    {
+        name: "lastfm mode",
+        category: "lastfm",
+        description: "Use a different embed for Now Playing or create your own",
+        arguments: "type",
+        permissions: "none"
+    },
+];
 ];
 
 const tabCategories = [
@@ -2585,6 +2671,7 @@ const tabCategories = [
     { id: 'antinuke', label: 'Antinuke' },
     { id: 'logging', label: 'Logging' },
     { id: 'starboard', label: 'Starboard' },
+    { id: 'lastfm', label: 'Last.fm' },
 ];
 
     function initializeCommandsPage() {
