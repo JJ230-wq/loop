@@ -11,28 +11,26 @@
     <base target="_blank">
 </head>
 <body>
-    <!-- Top navigation bar -->
     <header class="site-bar">
         <div class="site-bar-inner">
             <div class="site-bar-brand">
-                <a href="index.html"><img src="assets/loop-logo.png" alt="Loop logo" class="site-bar-logo"></a>
+                <a href="index.html" target="_self"><img src="assets/loop-logo.png" alt="Loop logo" class="site-bar-logo"></a>
             </div>
             <nav class="site-bar-nav">
-                <a href="index.html" class="site-bar-link is-active">Home</a>
-                <a href="commands.html" class="site-bar-link" id="navCommands">Commands</a>
+                <a href="commands.html" class="site-bar-link" id="navCommands" target="_self">Commands</a>
                 <a href="status.html" class="site-bar-link" target="_self">Status</a>
+                <a href="docs.html" class="site-bar-link" target="_self">Docs</a>
+                <a href="faq.html" class="site-bar-link" target="_self">FAQ</a>
             </nav>
         </div>
     </header>
 
-    <!-- Add blurred gradient starlight background -->
     <div class="body-starlight-bg" aria-hidden="true"></div>
     <div class="main-stars-bg" id="mainStarsBg"></div>
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-mark">Loading Loop</div>
     </div>
-    
-    <!-- Commands custom loader overlay - hidden by default -->
+
     <div class="commands-loading-overlay" id="commandsLoading">
         <div class="commands-stars-bg" id="commandsStarsBg"></div>
         <div class="commands-loading-content">
@@ -53,11 +51,11 @@
                         Advanced protection, detailed logging, rich economy tools, and streamlined server management in a single reliable Discord bot.
                     </p>
                     <div class="hero-actions">
-                        <a href="https://discord.gg/hHWEurhSHA" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                        <a href="https://discord.gg/hHWEurhSHA" target="_blank" rel="noopener noreferrer" class="btn-secondary">
                             <i class="fab fa-discord"></i>
                             <span>Invite to Discord</span>
                         </a>
-                        <a href="commands.html" class="btn-secondary" id="mainCommandsBtn">
+                        <a href="commands.html" class="btn-secondary" id="mainCommandsBtn" target="_self">
                             <span>View Commands</span>
                         </a>
                     </div>
@@ -132,14 +130,13 @@
             <div class="footer-inner">
                 <div>© Loop</div>
                 <div class="footer-links">
-                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Invite</a>
-                    <a href="premium.html">Premium</a>
+                    <a href="https://discord.gg/hHWEurhSHA" target="_blank" rel="noopener noreferrer">Invite</a>
+                    <a href="premium.html" target="_self">Premium</a>
                     <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
                 </div>
             </div>
         </footer>
     </div>
-
 
     <script src="js/shared.js"></script>
     <script src="js/index.js"></script>
