@@ -22,36 +22,25 @@
 
         a { color: inherit; text-decoration: none; }
 
-        .body-starlight-bg {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
-        }
-        .main-stars-bg {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
-        }
-        .main-stars-bg canvas {
-            opacity: 0.75;
-            filter: blur(2px) brightness(1.17);
-        }
+        .body-starlight-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+        .main-stars-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+        .main-stars-bg canvas { opacity: 0.75; filter: blur(2px) brightness(1.17); }
 
         .loading-screen {
             position: fixed; inset: 0; z-index: 9999; background: #000;
             display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.26s;
-            animation: simpleFadeIn 0.6s;
+            transition: opacity 0.26s; animation: simpleFadeIn 0.6s;
         }
         .loading-mark {
             font-size: 0.9rem; font-weight: 400; letter-spacing: 0.12em;
-            color: rgba(255,255,255,0.45); text-transform: uppercase;
-            animation: fadeInUp 1s;
+            color: rgba(255,255,255,0.45); text-transform: uppercase; animation: fadeInUp 1s;
         }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(35px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes simpleFadeIn {
-            from { opacity: 0; } to { opacity: 1; }
-        }
+        @keyframes simpleFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .site-bar {
             position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
@@ -78,27 +67,91 @@
         .site-bar-link:hover { color: #fff; background: rgba(255,255,255,0.06); }
         .site-bar-link.is-active { color: #fff; }
 
+        /* ── Page ── */
         .site-content {
             position: relative; z-index: 2; flex: 1;
             display: flex; flex-direction: column;
             animation: fadeInUp 0.9s 0.15s both;
         }
 
-        .coming-soon-wrap {
-            flex: 1; display: flex; align-items: center;
-            justify-content: center; padding: 112px 24px 64px;
+        .faq-wrap {
+            flex: 1;
+            max-width: 760px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 108px 24px 80px;
         }
-        .coming-soon-inner { text-align: center; }
-        .coming-soon-icon {
-            font-size: 2.8rem; color: rgba(255,255,255,0.15); margin-bottom: 24px;
+
+        .faq-header {
+            margin-bottom: 40px;
         }
-        .coming-soon-title {
-            font-size: 2rem; font-weight: 600; letter-spacing: -0.02em;
-            color: #e6edf3; margin-bottom: 10px;
+
+        .faq-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #e6edf3;
+            margin-bottom: 6px;
         }
-        .coming-soon-sub {
-            font-size: 0.9rem; color: rgba(255,255,255,0.35);
-            max-width: 340px; margin: 0 auto; line-height: 1.6;
+
+        .faq-subtitle {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ── FAQ items ── */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 22px 0;
+        }
+        .faq-item:first-child {
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .faq-bullet {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .faq-q-text {
+            font-size: 0.975rem;
+            font-weight: 500;
+            color: #e6edf3;
+            line-height: 1.5;
+        }
+
+        .faq-answer {
+            padding-left: 19px;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.7;
+        }
+
+        .faq-answer a {
+            color: #4f9ef8;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .faq-answer a:hover {
+            color: #78b4fa;
+            text-decoration: underline;
         }
 
         footer {
@@ -117,6 +170,7 @@
             .site-bar { width: calc(100% - 20px); padding-inline: 10px; }
             .site-bar-nav { gap: 4px; }
             .site-bar-link { font-size: 0.8rem; padding: 5px 8px; }
+            .faq-wrap { padding: 96px 16px 60px; }
         }
     </style>
 </head>
@@ -142,11 +196,55 @@
     </header>
 
     <div class="site-content">
-        <div class="coming-soon-wrap">
-            <div class="coming-soon-inner">
-                <div class="coming-soon-icon"><i class="fas fa-circle-question"></i></div>
-                <h1 class="coming-soon-title">Coming Soon</h1>
-                <p class="coming-soon-sub">Frequently asked questions are being put together. Check back soon.</p>
+        <div class="faq-wrap">
+
+            <div class="faq-header">
+                <h1 class="faq-title">Frequently Asked Questions</h1>
+                <p class="faq-subtitle">Answers to the most common questions about Loop.</p>
+            </div>
+
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-bullet"></div>
+                        <div class="faq-q-text">Is Loop bot free?</div>
+                    </div>
+                    <div class="faq-answer">No, Loop bot is not free. You must purchase it one-time for $10.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-bullet"></div>
+                        <div class="faq-q-text">How do I transfer Loop to another server?</div>
+                    </div>
+                    <div class="faq-answer">In order to transfer the bot you must open a transfer ticket in the <a href="https://discord.gg/hHWEurhSHA" target="_blank" rel="noopener noreferrer">Discord Server</a>.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-bullet"></div>
+                        <div class="faq-q-text">I didn't purchase the bot but have it in my server — can I transfer it?</div>
+                    </div>
+                    <div class="faq-answer">No, only the original customer we have on record can transfer it.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-bullet"></div>
+                        <div class="faq-q-text">How do I pay for Loop?</div>
+                    </div>
+                    <div class="faq-answer">To purchase Loop you can join our <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Dedicated Support</a> server and open a buy ticket.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-bullet"></div>
+                        <div class="faq-q-text">If I transferred the bot once, can I do it again?</div>
+                    </div>
+                    <div class="faq-answer">No, once you have transferred the bot once you will need to purchase it again for a new server.</div>
+                </div>
+
             </div>
         </div>
 
