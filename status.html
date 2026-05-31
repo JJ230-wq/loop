@@ -22,7 +22,6 @@
 
         a { color: inherit; text-decoration: none; }
 
-        /* ── Starfield ── */
         .body-starlight-bg {
             position: fixed;
             inset: 0;
@@ -40,7 +39,6 @@
             filter: blur(2px) brightness(1.17);
         }
 
-        /* ── Loading screen ── */
         .loading-screen {
             position: fixed;
             inset: 0;
@@ -69,12 +67,7 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
 
-        /* ── Nav ── */
         .site-bar {
             position: fixed;
             top: 16px;
@@ -116,7 +109,6 @@
         .site-bar-link:hover { color: #fff; background: rgba(255,255,255,0.06); }
         .site-bar-link.is-active { color: #fff; }
 
-        /* ── Page content ── */
         .site-content {
             position: relative;
             z-index: 2;
@@ -126,210 +118,37 @@
             animation: fadeInUp 0.9s 0.15s both;
         }
 
-        .page-container {
-            max-width: 680px;
-            margin: 0 auto;
+        /* Coming Soon layout */
+        .coming-soon-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 112px 24px 64px;
-            width: 100%;
         }
-
-        /* ── Page header ── */
-        .status-header {
-            margin-bottom: 32px;
-            animation: fadeInUp 0.8s 0.2s both;
+        .coming-soon-inner {
+            text-align: center;
         }
-        .status-header-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 6px;
+        .coming-soon-icon {
+            font-size: 2.8rem;
+            color: rgba(255,255,255,0.15);
+            margin-bottom: 24px;
         }
-        .status-page-title {
-            font-size: 1.4rem;
+        .coming-soon-title {
+            font-size: 2rem;
             font-weight: 600;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
+            color: #e6edf3;
+            margin-bottom: 10px;
         }
-        .status-overall-badge {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            background: rgba(35,134,54,0.18);
-            border: 1px solid rgba(35,134,54,0.35);
-            border-radius: 20px;
-            padding: 5px 12px 5px 9px;
-            font-size: 13px;
-            font-weight: 500;
-            color: #3fb950;
-        }
-        .status-overall-badge.degraded {
-            background: rgba(210,153,34,0.15);
-            border-color: rgba(210,153,34,0.3);
-            color: #e3b341;
-        }
-        .status-overall-badge.outage {
-            background: rgba(248,81,73,0.15);
-            border-color: rgba(248,81,73,0.3);
-            color: #f85149;
-        }
-        .overall-dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: #3fb950;
-            box-shadow: 0 0 6px #3fb950;
-            animation: pulse-green 2s infinite;
-        }
-        .status-overall-badge.degraded .overall-dot {
-            background: #e3b341;
-            box-shadow: 0 0 6px #e3b341;
-            animation: none;
-        }
-        .status-overall-badge.outage .overall-dot {
-            background: #f85149;
-            box-shadow: 0 0 6px #f85149;
-            animation: none;
-        }
-        .status-subtitle {
-            font-size: 0.85rem;
+        .coming-soon-sub {
+            font-size: 0.9rem;
             color: rgba(255,255,255,0.35);
+            max-width: 340px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
-        @keyframes pulse-green {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        /* ── Refresh button ── */
-        .status-refresh-btn {
-            background: none;
-            border: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.45);
-            cursor: pointer;
-            font-size: 12px;
-            padding: 5px 10px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.15s, border-color 0.15s, background 0.15s;
-            font-family: 'Inter', sans-serif;
-        }
-        .status-refresh-btn:hover {
-            color: #fff;
-            border-color: rgba(255,255,255,0.25);
-            background: rgba(255,255,255,0.05);
-        }
-        .status-refresh-btn.spinning i { animation: spin 0.7s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* ── Shard list ── */
-        .status-shards {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            animation: fadeInUp 0.8s 0.3s both;
-        }
-
-        .status-loading {
-            text-align: center;
-            color: rgba(255,255,255,0.3);
-            font-size: 13px;
-            padding: 48px 0;
-        }
-        .status-error {
-            text-align: center;
-            color: #f85149;
-            font-size: 13px;
-            padding: 48px 0;
-        }
-
-        /* ── Shard card ── */
-        .shard-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 14px;
-            padding: 16px 18px;
-            transition: border-color 0.2s, background 0.2s;
-        }
-        .shard-card:hover {
-            border-color: rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.05);
-        }
-        .shard-card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-        }
-        .shard-card-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #e6edf3;
-        }
-        .shard-card-meta {
-            font-size: 11px;
-            color: rgba(255,255,255,0.3);
-            margin-top: 2px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .shard-status-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(35,134,54,0.18);
-            border: 1px solid rgba(35,134,54,0.35);
-            border-radius: 20px;
-            padding: 3px 10px 3px 7px;
-            font-size: 12px;
-            font-weight: 500;
-            color: #3fb950;
-        }
-        .shard-status-badge.offline {
-            background: rgba(248,81,73,0.15);
-            border-color: rgba(248,81,73,0.3);
-            color: #f85149;
-        }
-        .shard-status-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: #3fb950;
-            box-shadow: 0 0 6px #3fb950;
-            animation: pulse-green 2s infinite;
-        }
-        .shard-status-badge.offline .shard-status-dot {
-            background: #f85149;
-            box-shadow: 0 0 6px #f85149;
-            animation: none;
-        }
-        .shard-card-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .shard-stat-label {
-            font-size: 10px;
-            color: rgba(255,255,255,0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.07em;
-            margin-bottom: 3px;
-        }
-        .shard-stat-value {
-            font-size: 15px;
-            font-weight: 600;
-            color: #e6edf3;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-        .shard-stat-value i {
-            font-size: 12px;
-            color: rgba(255,255,255,0.3);
-        }
-
-        /* ── Footer ── */
         footer {
             position: relative;
             z-index: 2;
@@ -337,7 +156,6 @@
             padding: 16px 24px 24px;
             font-size: 0.8rem;
             color: rgba(255,255,255,0.3);
-            animation: fadeInUp 0.6s 1.2s both;
         }
         .footer-inner {
             max-width: 1120px;
@@ -352,9 +170,8 @@
 
         @media (max-width: 640px) {
             .site-bar { width: calc(100% - 20px); padding-inline: 10px; }
-            .site-bar-nav { gap: 12px; }
-            .site-bar-link { font-size: 0.85rem; padding-inline: 8px; }
-            .shard-card-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .site-bar-nav { gap: 4px; }
+            .site-bar-link { font-size: 0.8rem; padding: 5px 8px; }
         }
     </style>
 </head>
@@ -371,41 +188,28 @@
                 <a href="index.html" target="_self"><img src="assets/loop-logo.png" alt="Loop logo" class="site-bar-logo"></a>
             </div>
             <nav class="site-bar-nav">
-                <a href="index.html" class="site-bar-link" target="_self">Home</a>
-                <a href="commands.html" class="site-bar-link" id="navCommands" target="_self">Commands</a>
+                <a href="commands.html" class="site-bar-link" target="_self">Commands</a>
                 <a href="status.html" class="site-bar-link is-active" target="_self">Status</a>
+                <a href="docs.html" class="site-bar-link" target="_self">Docs</a>
+                <a href="faq.html" class="site-bar-link" target="_self">FAQ</a>
             </nav>
         </div>
     </header>
 
     <div class="site-content">
-        <main class="page-container">
-            <div class="status-header">
-                <div class="status-header-top">
-                    <h1 class="status-page-title">Bot Status</h1>
-                    <div style="display:flex;align-items:center;gap:10px;">
-                        <button class="status-refresh-btn" id="refreshBtn">
-                            <i class="fas fa-rotate-right"></i> Refresh
-                        </button>
-                        <div class="status-overall-badge" id="overallBadge">
-                            <div class="overall-dot"></div>
-                            All Systems Operational
-                        </div>
-                    </div>
-                </div>
-                <p class="status-subtitle" id="lastUpdated">Fetching status…</p>
+        <div class="coming-soon-wrap">
+            <div class="coming-soon-inner">
+                <div class="coming-soon-icon"><i class="fas fa-chart-bar"></i></div>
+                <h1 class="coming-soon-title">Coming Soon</h1>
+                <p class="coming-soon-sub">Status monitoring is on its way. Check back soon for live uptime and shard information.</p>
             </div>
-
-            <div class="status-shards" id="statusShards">
-                <div class="status-loading">Loading…</div>
-            </div>
-        </main>
+        </div>
 
         <footer>
             <div class="footer-inner">
                 <div>© Loop</div>
                 <div class="footer-links">
-                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Invite</a>
+                    <a href="https://discord.gg/hHWEurhSHA" target="_blank" rel="noopener noreferrer">Invite</a>
                     <a href="premium.html" target="_self">Premium</a>
                     <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
                 </div>
@@ -427,90 +231,6 @@
                 minBlur: 3, blurSpread: 10
             });
         }
-
-        const shardsEl = document.getElementById('statusShards');
-        const overallBadge = document.getElementById('overallBadge');
-        const lastUpdated = document.getElementById('lastUpdated');
-        const refreshBtn = document.getElementById('refreshBtn');
-
-        function fetchShards() {
-            return fetch('http://51.222.117.195:25603/status')
-                .then(r => r.json());
-        }
-
-        function fmtNumber(n) {
-            return n.toLocaleString('en-US');
-        }
-
-        function timeSince(ms) {
-            const s = Math.floor((Date.now() - ms) / 1000);
-            if (s < 60) return `${s}s ago`;
-            if (s < 3600) return `${Math.floor(s/60)}m ago`;
-            return `${Math.floor(s/3600)}h ago`;
-        }
-
-        function renderShards(shards) {
-            const allOnline = shards.every(s => s.status === 'operational');
-            const anyOnline = shards.some(s => s.status === 'operational');
-
-            overallBadge.className = 'status-overall-badge' + (!anyOnline ? ' outage' : !allOnline ? ' degraded' : '');
-            overallBadge.innerHTML = `<div class="overall-dot"></div>${allOnline ? 'All Systems Operational' : !anyOnline ? 'Major Outage' : 'Partial Outage'}`;
-
-            const now = new Date();
-            lastUpdated.textContent = `Last updated at ${now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`;
-
-            shardsEl.innerHTML = shards.map(s => {
-                const online = s.status === 'operational';
-                return `
-                <div class="shard-card">
-                    <div class="shard-card-top">
-                        <div>
-                            <div class="shard-card-name">Shard ${s.id}</div>
-                            <div class="shard-card-meta">
-                                <i class="fas fa-rotate-right"></i> just now
-                            </div>
-                        </div>
-                        <div class="shard-status-badge ${online ? '' : 'offline'}">
-                            <div class="shard-status-dot"></div>
-                            ${online ? 'Operational' : 'Offline'}
-                        </div>
-                    </div>
-                    <div class="shard-card-stats">
-                        <div class="shard-stat">
-                            <div class="shard-stat-label">Uptime</div>
-                            <div class="shard-stat-value"><i class="fas fa-arrow-trend-up"></i>${s.uptime}</div>
-                        </div>
-                        <div class="shard-stat">
-                            <div class="shard-stat-label">Latency</div>
-                            <div class="shard-stat-value"><i class="fas fa-wifi"></i>${s.latency}ms</div>
-                        </div>
-                        <div class="shard-stat">
-                            <div class="shard-stat-label">Servers</div>
-                            <div class="shard-stat-value"><i class="fas fa-server"></i>${fmtNumber(s.servers)}</div>
-                        </div>
-                        <div class="shard-stat">
-                            <div class="shard-stat-label">Users</div>
-                            <div class="shard-stat-value"><i class="fas fa-user-group"></i>${fmtNumber(s.users)}</div>
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
-        }
-
-        function load() {
-            shardsEl.innerHTML = '<div class="status-loading">Loading…</div>';
-            refreshBtn.classList.add('spinning');
-            fetchShards()
-                .then(renderShards)
-                .catch(() => {
-                    shardsEl.innerHTML = '<div class="status-error"><i class="fas fa-triangle-exclamation"></i> Failed to load status. The API may be unreachable.</div>';
-                    lastUpdated.textContent = 'Could not connect to API';
-                })
-                .finally(() => refreshBtn.classList.remove('spinning'));
-        }
-
-        refreshBtn.addEventListener('click', load);
-        load();
     })();
     </script>
 </body>
