@@ -449,13 +449,11 @@
             <a class="sidebar-link is-active" data-panel="introduction" href="#" target="_self">
                 <i class="fas fa-book-open"></i> Introduction
             </a>
-
-            <div class="sidebar-section-label">Configuration</div>
-
-            <!-- Customization — plain link -->
             <a class="sidebar-link" data-panel="customization-overview" href="#" target="_self">
                 <i class="fas fa-paintbrush"></i> Customization
             </a>
+
+            <div class="sidebar-section-label">Configuration</div>
 
             <!-- Scripting dropdown -->
             <div class="sidebar-dropdown" id="dropdown-scripting">
@@ -468,7 +466,20 @@
                 </button>
                 <div class="sidebar-dropdown-panel" id="panel-scripting">
                     <a class="sidebar-dropdown-item" data-panel="scripting-variables" href="#" target="_self">Variables</a>
-                    <a class="sidebar-dropdown-item" data-panel="scripting-embeds" href="#" target="_self">Embeds</a>
+                </div>
+            </div>
+
+            <!-- Roles dropdown -->
+            <div class="sidebar-dropdown" id="dropdown-roles">
+                <button class="sidebar-dropdown-toggle" data-dropdown="roles">
+                    <span class="sidebar-dropdown-toggle-left">
+                        <i class="fas fa-shield-halved"></i>
+                        Roles
+                    </span>
+                    <i class="fas fa-chevron-right sidebar-dropdown-arrow"></i>
+                </button>
+                <div class="sidebar-dropdown-panel" id="panel-roles">
+                    <a class="sidebar-dropdown-item" data-panel="roles-vanity" href="#" target="_self">Vanity Roles</a>
                 </div>
             </div>
 
@@ -834,16 +845,16 @@
 
             </div>
 
-            <!-- Scripting - Embeds -->
-            <div class="docs-content-panel" id="panel-scripting-embeds">
+            <!-- Roles - Vanity Roles -->
+            <div class="docs-content-panel" id="panel-roles-vanity">
                 <div class="docs-breadcrumb">
                     Configuration <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i>
-                    Scripting <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Embeds</span>
+                    Roles <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Vanity Roles</span>
                 </div>
-                <h1 class="docs-page-title">Embeds</h1>
-                <p class="docs-page-subtitle">Build rich embed messages for welcome messages, announcements, and more.</p>
+                <h1 class="docs-page-title">Vanity Roles</h1>
+                <p class="docs-page-subtitle">Automatically assign roles based on a member's vanity or custom status.</p>
                 <div class="docs-coming-soon">
-                    <i class="fas fa-layer-group"></i>
+                    <i class="fas fa-shield-halved"></i>
                     <span>Documentation coming soon.</span>
                 </div>
             </div>
