@@ -2659,7 +2659,6 @@ if (shared) {
         permissions: "none"
     },
 ];
-];
 
 const tabCategories = [
     { id: 'primary', label: 'Primary' },
