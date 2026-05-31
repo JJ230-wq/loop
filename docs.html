@@ -361,20 +361,23 @@
 
             <div class="sidebar-section-label">Configuration</div>
 
-            <!-- Customization dropdown -->
-            <div class="sidebar-dropdown" id="dropdown-customization">
-                <button class="sidebar-dropdown-toggle" data-dropdown="customization">
+            <!-- Customization — plain link -->
+            <a class="sidebar-link" data-panel="customization-overview" href="#" target="_self">
+                <i class="fas fa-paintbrush"></i> Customization
+            </a>
+
+            <!-- Scripting dropdown -->
+            <div class="sidebar-dropdown" id="dropdown-scripting">
+                <button class="sidebar-dropdown-toggle" data-dropdown="scripting">
                     <span class="sidebar-dropdown-toggle-left">
-                        <i class="fas fa-paintbrush"></i>
-                        Customization
+                        <i class="fas fa-code"></i>
+                        Scripting
                     </span>
                     <i class="fas fa-chevron-right sidebar-dropdown-arrow"></i>
                 </button>
-                <div class="sidebar-dropdown-panel" id="panel-customization">
-                    <a class="sidebar-dropdown-item" data-panel="customization-overview" href="#" target="_self">Overview</a>
-                    <a class="sidebar-dropdown-item" data-panel="customization-prefix" href="#" target="_self">Prefix</a>
-                    <a class="sidebar-dropdown-item" data-panel="customization-welcome" href="#" target="_self">Welcome Messages</a>
-                    <a class="sidebar-dropdown-item" data-panel="customization-goodbye" href="#" target="_self">Goodbye Messages</a>
+                <div class="sidebar-dropdown-panel" id="panel-scripting">
+                    <a class="sidebar-dropdown-item" data-panel="scripting-variables" href="#" target="_self">Variables</a>
+                    <a class="sidebar-dropdown-item" data-panel="scripting-embeds" href="#" target="_self">Embeds</a>
                 </div>
             </div>
 
@@ -397,14 +400,12 @@
 
                 <div class="docs-section-title">Getting Started</div>
                 <p class="docs-paragraph">Loop is an all-in-one Discord bot with moderation, economy, leveling, antinuke, and more. Once invited, use <code>,setup</code> to begin configuring the moderation system for your server.</p>
-                <p class="docs-paragraph">Use the sidebar to browse documentation for each feature. Select a section to expand it and navigate to specific topics.</p>
             </div>
 
             <!-- Customization overview panel -->
             <div class="docs-content-panel" id="panel-customization-overview">
                 <div class="docs-breadcrumb">
-                    Configuration <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i>
-                    Customization <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Overview</span>
+                    Configuration <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Customization</span>
                 </div>
                 <h1 class="docs-page-title">Customization</h1>
                 <p class="docs-page-subtitle">Tailor Loop's behavior and appearance to fit your server.</p>
@@ -412,51 +413,32 @@
                 <p class="docs-paragraph">Loop gives server owners and admins control over the prefix, welcome and goodbye messages, boost messages, auto-responses, and more. Select a topic in the sidebar to learn more.</p>
             </div>
 
-            <!-- Customization - Prefix -->
-            <div class="docs-content-panel" id="panel-customization-prefix">
+            <!-- Scripting - Variables -->
+            <div class="docs-content-panel" id="panel-scripting-variables">
                 <div class="docs-breadcrumb">
                     Configuration <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i>
-                    Customization <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Prefix</span>
+                    Scripting <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Variables</span>
                 </div>
-                <h1 class="docs-page-title">Prefix</h1>
-                <p class="docs-page-subtitle">Change how you invoke Loop commands in your server.</p>
-                <div class="docs-info-box">Default prefix is <code>,</code></div>
-                <div class="docs-section-title">Commands</div>
-                <p class="docs-paragraph"><code>,prefix set (symbol)</code> — Set a custom prefix for your server. Requires Administrator.</p>
-                <p class="docs-paragraph"><code>,prefix remove</code> — Remove the custom prefix and revert to default. Requires Administrator.</p>
-                <p class="docs-paragraph"><code>,prefix self (symbol)</code> — Set a personal prefix across all servers (Server Boosters only).</p>
+                <h1 class="docs-page-title">Variables</h1>
+                <p class="docs-page-subtitle">Use dynamic variables in your messages to display live server and member data.</p>
+                <div class="docs-coming-soon">
+                    <i class="fas fa-flask"></i>
+                    <span>Documentation coming soon.</span>
+                </div>
             </div>
 
-            <!-- Customization - Welcome Messages -->
-            <div class="docs-content-panel" id="panel-customization-welcome">
+            <!-- Scripting - Embeds -->
+            <div class="docs-content-panel" id="panel-scripting-embeds">
                 <div class="docs-breadcrumb">
                     Configuration <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i>
-                    Customization <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Welcome Messages</span>
+                    Scripting <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Embeds</span>
                 </div>
-                <h1 class="docs-page-title">Welcome Messages</h1>
-                <p class="docs-page-subtitle">Greet new members with a custom message when they join your server.</p>
-                <div class="docs-section-title">Commands</div>
-                <p class="docs-paragraph"><code>,welcome add (channel) (message)</code> — Add a welcome message for a channel.</p>
-                <p class="docs-paragraph"><code>,welcome remove (channel)</code> — Remove a welcome message from a channel.</p>
-                <p class="docs-paragraph"><code>,welcome view (channel)</code> — Preview the welcome message for a channel.</p>
-                <p class="docs-paragraph"><code>,welcome list</code> — View all welcome messages configured in the server.</p>
-                <p class="docs-paragraph"><code>,welcome variables</code> — View all available variables you can use in welcome messages.</p>
-            </div>
-
-            <!-- Customization - Goodbye Messages -->
-            <div class="docs-content-panel" id="panel-customization-goodbye">
-                <div class="docs-breadcrumb">
-                    Configuration <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i>
-                    Customization <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Goodbye Messages</span>
+                <h1 class="docs-page-title">Embeds</h1>
+                <p class="docs-page-subtitle">Build rich embed messages for welcome messages, announcements, and more.</p>
+                <div class="docs-coming-soon">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Documentation coming soon.</span>
                 </div>
-                <h1 class="docs-page-title">Goodbye Messages</h1>
-                <p class="docs-page-subtitle">Send a farewell message when a member leaves your server.</p>
-                <div class="docs-section-title">Commands</div>
-                <p class="docs-paragraph"><code>,goodbye add (channel) (message)</code> — Add a goodbye message for a channel.</p>
-                <p class="docs-paragraph"><code>,goodbye remove (channel)</code> — Remove a goodbye message from a channel.</p>
-                <p class="docs-paragraph"><code>,goodbye view (channel)</code> — Preview the goodbye message for a channel.</p>
-                <p class="docs-paragraph"><code>,goodbye list</code> — View all goodbye messages configured in the server.</p>
-                <p class="docs-paragraph"><code>,goodbye variables</code> — View all available variables you can use in goodbye messages.</p>
             </div>
 
         </main>
@@ -489,8 +471,6 @@
             const panel = document.getElementById('panel-' + id);
             const toggle = document.querySelector('[data-dropdown="' + id + '"]');
             if (!panel || !toggle) return;
-
-            // Measure content height
             panel.style.maxHeight = panel.scrollHeight + 'px';
             panel.classList.add('is-open');
             toggle.classList.add('is-open');
@@ -500,7 +480,6 @@
             const panel = document.getElementById('panel-' + id);
             const toggle = document.querySelector('[data-dropdown="' + id + '"]');
             if (!panel || !toggle) return;
-
             panel.style.maxHeight = '0';
             panel.classList.remove('is-open');
             toggle.classList.remove('is-open');
@@ -518,20 +497,16 @@
 
         // ── Panel navigation ──
         function showPanel(panelId) {
-            // Hide all panels
             document.querySelectorAll('.docs-content-panel').forEach(function (p) {
                 p.classList.remove('is-active');
             });
-            // Remove active from all sidebar links and items
             document.querySelectorAll('.sidebar-link, .sidebar-dropdown-item').forEach(function (el) {
                 el.classList.remove('is-active');
             });
 
-            // Show target panel
             const target = document.getElementById('panel-' + panelId);
             if (target) target.classList.add('is-active');
 
-            // Mark active link
             const activeLink = document.querySelector('[data-panel="' + panelId + '"]');
             if (activeLink) activeLink.classList.add('is-active');
         }
@@ -562,9 +537,6 @@
                 showPanel(item.getAttribute('data-panel'));
             });
         });
-
-        // Open the customization dropdown by default since it's the first one
-        openDropdown('customization');
 
     })();
     </script>
