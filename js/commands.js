@@ -1104,6 +1104,28 @@ if (shared) {
         arguments: "module",
         permissions: "manage channels"
     },
+
+        {
+        name: "disablerole",
+        category: "primary",
+        description: "Disable a role from using a command in a channel",
+        arguments: "channel cmd role",
+        permissions: "manage channels"
+    },
+    {
+        name: "disablerole list",
+        category: "primary",
+        description: "View a list of all commands disabled in channels",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "enablerole",
+        category: "primary",
+        description: "Re-enable a role to use a command in a channel",
+        arguments: "channel cmd role",
+        permissions: "manage channels"
+    },
     {
         name: "disablemodule",
         category: "primary",
@@ -2658,6 +2680,246 @@ if (shared) {
         arguments: "type",
         permissions: "none"
     },
+
+        {
+        name: "balance",
+        category: "economy",
+        description: "Check yours or another users balance",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "bet",
+        category: "economy",
+        description: "Bet money on a dice roll with multiplier",
+        arguments: "amount",
+        permissions: "none"
+    },
+    {
+        name: "bet admin",
+        category: "economy",
+        description: "Set predetermined roll for a user next bet",
+        arguments: "member amount",
+        permissions: "administrator"
+    },
+    {
+        name: "blackjack",
+        category: "economy",
+        description: "Play a game of blackjack",
+        arguments: "amount",
+        permissions: "none"
+    },
+    {
+        name: "daily",
+        category: "economy",
+        description: "Claim your daily coins",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "hunt",
+        category: "economy",
+        description: "Go hunting to earn coins",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "mine",
+        category: "economy",
+        description: "Go mining to earn coins",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "mines",
+        category: "economy",
+        description: "Play a minesweeper-style gambling game",
+        arguments: "amount",
+        permissions: "none"
+    },
+    {
+        name: "monthly",
+        category: "economy",
+        description: "Claim your monthly coins",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "rob",
+        category: "economy",
+        description: "Rob a user",
+        arguments: "member amount",
+        permissions: "none"
+    },
+    {
+        name: "yearly",
+        category: "economy",
+        description: "Claim your yearly coins",
+        arguments: "none",
+        permissions: "none"
+    },
+
+        {
+        name: "voicemaster",
+        category: "voicemaster",
+        description: "Make temporary voice channels in your server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster configuration",
+        category: "voicemaster",
+        description: "See current configuration for current Voice Channel",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster unlock",
+        category: "voicemaster",
+        description: "Unlock your voice channel",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster ghost",
+        category: "voicemaster",
+        description: "Hide your voice channel",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster claim",
+        category: "voicemaster",
+        description: "Claim an inactive voice channel",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster unghost",
+        category: "voicemaster",
+        description: "Unhide your voice channel",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster sendinterface",
+        category: "voicemaster",
+        description: "Forcefully resend VoiceMaster interface",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster name",
+        category: "voicemaster",
+        description: "Rename your voice channel",
+        arguments: "new name",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster limit",
+        category: "voicemaster",
+        description: "Set a member limit to your voice channel",
+        arguments: "limit",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster role",
+        category: "voicemaster",
+        description: "Grant roles to members who join and remove from members leaving",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster transfer",
+        category: "voicemaster",
+        description: "Transfer ownership of your channel to another member",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster reset",
+        category: "voicemaster",
+        description: "Reset server configuration for VoiceMaster",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster join",
+        category: "voicemaster",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster join role",
+        category: "voicemaster",
+        description: "No description given",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster setup",
+        category: "voicemaster",
+        description: "Begin VoiceMaster server configuration setup",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster permit",
+        category: "voicemaster",
+        description: "Permit a member or role to join your VC",
+        arguments: "member or role",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster reject",
+        category: "voicemaster",
+        description: "Reject a member or role from joining VC",
+        arguments: "member or role",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster category",
+        category: "voicemaster",
+        description: "Redirect voice channels to custom",
+        arguments: "channel",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster default",
+        category: "voicemaster",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster default interface",
+        category: "voicemaster",
+        description: "Send interface to new Voice Channels",
+        arguments: "setting",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster default role",
+        category: "voicemaster",
+        description: "Set the default role for loop to set permissions for",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster default name",
+        category: "voicemaster",
+        description: "Set default name for new Voice Channels",
+        arguments: "name",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster lock",
+        category: "voicemaster",
+        description: "Lock your voice channel",
+        arguments: "none",
+        permissions: "none"
+    },
 ];
 
 const tabCategories = [
@@ -2671,6 +2933,8 @@ const tabCategories = [
     { id: 'logging', label: 'Logging' },
     { id: 'starboard', label: 'Starboard' },
     { id: 'lastfm', label: 'Last.fm' },
+    { id: 'economy', label: 'Economy' },
+    { id: 'voicemaster', label: 'VoiceMaster' },
 ];
 
     function initializeCommandsPage() {
