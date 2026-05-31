@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop – FAQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+    <base target="_blank">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #e6edf3;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .body-starlight-bg {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        }
+        .main-stars-bg {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        }
+        .main-stars-bg canvas {
+            opacity: 0.75;
+            filter: blur(2px) brightness(1.17);
+        }
+
+        .loading-screen {
+            position: fixed; inset: 0; z-index: 9999; background: #000;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.26s;
+            animation: simpleFadeIn 0.6s;
+        }
+        .loading-mark {
+            font-size: 0.9rem; font-weight: 400; letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.45); text-transform: uppercase;
+            animation: fadeInUp 1s;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(35px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes simpleFadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+
+        .site-bar {
+            position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+            z-index: 100; width: min(1120px, calc(100% - 32px));
+            background: rgba(0,0,0,0.55); backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 0 20px;
+        }
+        .site-bar-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 48px; padding-inline: 4px;
+        }
+        .site-bar-brand { display: flex; align-items: center; }
+        .site-bar-logo {
+            width: 26px; height: 26px; border-radius: 8px; object-fit: cover;
+            filter: grayscale(1) brightness(1.15);
+        }
+        .site-bar-nav { display: flex; align-items: center; gap: 4px; }
+        .site-bar-link {
+            font-size: 0.88rem; font-weight: 400; color: rgba(255,255,255,0.55);
+            padding: 6px 12px; border-radius: 8px;
+            transition: color 0.15s, background 0.15s; letter-spacing: 0.01em;
+        }
+        .site-bar-link:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .site-bar-link.is-active { color: #fff; }
+
+        .site-content {
+            position: relative; z-index: 2; flex: 1;
+            display: flex; flex-direction: column;
+            animation: fadeInUp 0.9s 0.15s both;
+        }
+
+        .coming-soon-wrap {
+            flex: 1; display: flex; align-items: center;
+            justify-content: center; padding: 112px 24px 64px;
+        }
+        .coming-soon-inner { text-align: center; }
+        .coming-soon-icon {
+            font-size: 2.8rem; color: rgba(255,255,255,0.15); margin-bottom: 24px;
+        }
+        .coming-soon-title {
+            font-size: 2rem; font-weight: 600; letter-spacing: -0.02em;
+            color: #e6edf3; margin-bottom: 10px;
+        }
+        .coming-soon-sub {
+            font-size: 0.9rem; color: rgba(255,255,255,0.35);
+            max-width: 340px; margin: 0 auto; line-height: 1.6;
+        }
+
+        footer {
+            position: relative; z-index: 2;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 16px 24px 24px; font-size: 0.8rem; color: rgba(255,255,255,0.3);
+        }
+        .footer-inner {
+            max-width: 1120px; margin: 0 auto;
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+        }
+        .footer-links { display: flex; gap: 16px; }
+        .footer-links a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .site-bar { width: calc(100% - 20px); padding-inline: 10px; }
+            .site-bar-nav { gap: 4px; }
+            .site-bar-link { font-size: 0.8rem; padding: 5px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="body-starlight-bg" aria-hidden="true"></div>
+    <div class="main-stars-bg" id="mainStarsBg"></div>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-mark">Loading Loop</div>
+    </div>
+
+    <header class="site-bar">
+        <div class="site-bar-inner">
+            <div class="site-bar-brand">
+                <a href="index.html" target="_self"><img src="assets/loop-logo.png" alt="Loop logo" class="site-bar-logo"></a>
+            </div>
+            <nav class="site-bar-nav">
+                <a href="commands.html" class="site-bar-link" target="_self">Commands</a>
+                <a href="status.html" class="site-bar-link" target="_self">Status</a>
+                <a href="docs.html" class="site-bar-link" target="_self">Docs</a>
+                <a href="faq.html" class="site-bar-link is-active" target="_self">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="site-content">
+        <div class="coming-soon-wrap">
+            <div class="coming-soon-inner">
+                <div class="coming-soon-icon"><i class="fas fa-circle-question"></i></div>
+                <h1 class="coming-soon-title">Coming Soon</h1>
+                <p class="coming-soon-sub">Frequently asked questions are being put together. Check back soon.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-inner">
+                <div>© Loop</div>
+                <div class="footer-links">
+                    <a href="https://discord.gg/hHWEurhSHA" target="_blank" rel="noopener noreferrer">Invite</a>
+                    <a href="premium.html" target="_self">Premium</a>
+                    <a href="https://discord.gg/UdFTPjhETq" target="_blank" rel="noopener noreferrer">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/shared.js"></script>
+    <script>
+    (function () {
+        const shared = window.LoopShared;
+        if (shared) {
+            shared.initLoadingScreen('loadingScreen');
+            shared.initMainStarfield('mainStarsBg', function () {
+                return Math.floor(66 + Math.random() * 28);
+            }, { minRadius: 0.45, radiusSpread: 1.1, minAlpha: 0.3, alphaSpread: 0.8, minBlur: 3, blurSpread: 10 });
+        }
+    })();
+    </script>
+</body>
+</html>
