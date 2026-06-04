@@ -2920,6 +2920,84 @@ if (shared) {
         arguments: "none",
         permissions: "none"
     },
+
+        {
+        name: "roblox",
+        category: "roblox",
+        description: "Gets profile information on the given roblox user",
+        arguments: "username",
+        permissions: "none"
+    },
+    {
+        name: "roblox link",
+        category: "roblox",
+        description: "Link your Roblox account to your Discord account",
+        arguments: "username",
+        permissions: "none"
+    },
+    {
+        name: "roblox verify",
+        category: "roblox",
+        description: "Verify your Roblox account after setting your bio code",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "roblox fromdiscord",
+        category: "roblox",
+        description: "Get the linked Roblox account from a Discord user",
+        arguments: "user id",
+        permissions: "none"
+    },
+    {
+        name: "roblox todiscord",
+        category: "roblox",
+        description: "Get the linked Discord account from a Roblox user",
+        arguments: "username",
+        permissions: "none"
+    },
+    {
+        name: "roblox devex",
+        category: "roblox",
+        description: "Convert Robux to USD using the current DevEx rate",
+        arguments: "robux",
+        permissions: "none"
+    },
+    {
+        name: "roblox template",
+        category: "roblox",
+        description: "View details and link for a Roblox asset",
+        arguments: "asset id",
+        permissions: "none"
+    },
+    {
+        name: "roblox inventory",
+        category: "roblox",
+        description: "View a Roblox user's public inventory",
+        arguments: "username",
+        permissions: "none"
+    },
+    {
+        name: "roblox item",
+        category: "roblox",
+        description: "Search for a Roblox limited item",
+        arguments: "query",
+        permissions: "none"
+    },
+    {
+        name: "roblox outfits",
+        category: "roblox",
+        description: "View all outfits for a Roblox user",
+        arguments: "username",
+        permissions: "none"
+    },
+    {
+        name: "roblox check",
+        category: "roblox",
+        description: "Check if a Roblox user owns a specific asset",
+        arguments: "username asset id or name",
+        permissions: "none"
+    },
 ];
 
 const tabCategories = [
@@ -2935,6 +3013,7 @@ const tabCategories = [
     { id: 'lastfm', label: 'Last.fm' },
     { id: 'economy', label: 'Economy' },
     { id: 'voicemaster', label: 'VoiceMaster' },
+    { id: 'roblox', label: 'Roblox' },
 ];
 
     function initializeCommandsPage() {
