@@ -62,15 +62,20 @@
     }
 
     function initLoadingScreen(loadingId) {
-        window.addEventListener('load', function () {
-            const loading = document.getElementById(loadingId);
-            if (!loading) return;
-            loading.style.opacity = '0';
-            setTimeout(function () {
-                loading.style.display = 'none';
-            }, 260);
-        });
+    const hide = function () {
+        const loading = document.getElementById(loadingId);
+        if (!loading) return;
+        loading.style.opacity = '0';
+        setTimeout(function () {
+            loading.style.display = 'none';
+        }, 260);
+    };
+    if (document.readyState === 'complete') {
+        hide();
+    } else {
+        window.addEventListener('load', hide);
     }
+}
 
     window.LoopShared = {
         drawStars,
