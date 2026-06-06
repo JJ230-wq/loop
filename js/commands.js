@@ -272,7 +272,7 @@ if (shared) {
         name: "noselfreact emoji",
         category: "reaction",
         description: "Set a specific emoji to monitor for self reacts",
-        arguments: "emoji or emote",
+        arguments: "emoji|or|emote",
         permissions: "administrator"
     },
     {
@@ -1151,7 +1151,7 @@ if (shared) {
         name: "disablecommand",
         category: "primary",
         description: "Disable a command in a channel",
-        arguments: "channel or member, command",
+        arguments: "channel|or|member, command",
         permissions: "manage channels"
     },
     {
@@ -3073,7 +3073,7 @@ if (shared) {
         name: "roblox check",
         category: "roblox",
         description: "Check if a Roblox user owns a specific asset",
-        arguments: "username|asset id|or|name"
+        arguments: "username|asset id|or|name",
         permissions: "none"
     },
 ];
