@@ -36,6 +36,84 @@ if (shared) {
         arguments: "none",
         permissions: "manage roles"
     },
+
+        {
+        name: "buttonrole",
+        category: "autorole",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild manage roles"
+    },
+    {
+        name: "buttonrole list",
+        category: "autorole",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild manage roles"
+    },
+    {
+        name: "buttonrole add",
+        category: "autorole",
+        description: "Add a button role to a message",
+        arguments: "message-link role style emoji label",
+        permissions: "manage guild manage roles"
+    },
+    {
+        name: "buttonrole reset",
+        category: "autorole",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild manage roles"
+    },
+    {
+        name: "buttonrole removeall",
+        category: "autorole",
+        description: "No description given",
+        arguments: "message-link",
+        permissions: "manage guild manage roles"
+    },
+    {
+        name: "buttonrole remove",
+        category: "autorole",
+        description: "Remove a button role from a message",
+        arguments: "message-link index",
+        permissions: "manage guild manage roles"
+    },
+    {
+        name: "reactionrole",
+        category: "autorole",
+        description: "Set up self-assignable roles with reactions",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "reactionrole add",
+        category: "autorole",
+        description: "Adds a reaction role to a message",
+        arguments: "message-link reaction role",
+        permissions: "none"
+    },
+    {
+        name: "reactionrole reset",
+        category: "autorole",
+        description: "Clears every reaction role from the guild",
+        arguments: "none",
+        permissions: "manage guild manage roles"
+    },
+    {
+        name: "reactionrole restore",
+        category: "autorole",
+        description: "Choose whether reaction roles restore when members rejoin",
+        arguments: "option",
+        permissions: "manage guild manage roles"
+    },
+    {
+        name: "reactionrole list",
+        category: "autorole",
+        description: "View a list of every reaction role",
+        arguments: "none",
+        permissions: "manage guild manage roles"
+    },
     {
         name: "antiraid",
         category: "antiraid",
@@ -166,7 +244,7 @@ if (shared) {
         name: "noselfreact exempt",
         category: "reaction",
         description: "Exempt a member, channel, or role from noselfreact",
-        arguments: "member or channel or role",
+        arguments: "member|or|channel|or|role",
         permissions: "administrator"
     },
     {
@@ -1031,7 +1109,7 @@ if (shared) {
         name: "autoresponder exclusive",
         category: "primary",
         description: "No description given",
-        arguments: "role or channel, trigger",
+        arguments: "role|or|channel, trigger",
         permissions: "manage channels"
     },
     {
@@ -1059,7 +1137,7 @@ if (shared) {
         name: "enablecommand",
         category: "primary",
         description: "Enable a previously disabled command in a channel",
-        arguments: "channel or member, command",
+        arguments: "channel|or|member, command",
         permissions: "manage channels"
     },
     {
@@ -1151,7 +1229,7 @@ if (shared) {
         name: "ignore",
         category: "primary",
         description: "No description given",
-        arguments: "member or channel",
+        arguments: "member|or|channel",
         permissions: "administrator"
     },
     {
@@ -1165,14 +1243,14 @@ if (shared) {
         name: "ignore remove",
         category: "primary",
         description: "Remove ignoring for a member or channel",
-        arguments: "member or channel",
+        arguments: "member|or|channel",
         permissions: "administrator"
     },
     {
         name: "ignore add",
         category: "primary",
         description: "Ignore a member or channel",
-        arguments: "member or channel",
+        arguments: "member|or|channel",
         permissions: "administrator"
     },
     {
@@ -1277,7 +1355,7 @@ if (shared) {
         name: "webhook edit",
         category: "primary",
         description: "Send a message to an existing channel webhook",
-        arguments: "messagelink message or embed code",
+        arguments: "messagelink|message or embed code",
         permissions: "manage webhooks"
     },
     {
@@ -1305,7 +1383,7 @@ if (shared) {
         name: "webhook send",
         category: "primary",
         description: "Send a message to an existing channel webhook",
-        arguments: "identifier message or embed code",
+        arguments: "identifier|message or embed code",
         permissions: "manage webhooks"
     },
     {
@@ -1495,7 +1573,7 @@ if (shared) {
     name: "log ignore",
     category: "logging",
     description: "No description given",
-    arguments: "member or channel",
+    arguments: "member|or|channel",
     permissions: "none"
 },
 {
@@ -2868,14 +2946,14 @@ if (shared) {
         name: "voicemaster permit",
         category: "voicemaster",
         description: "Permit a member or role to join your VC",
-        arguments: "member or role",
+        arguments: "member|or|role",
         permissions: "none"
     },
     {
         name: "voicemaster reject",
         category: "voicemaster",
         description: "Reject a member or role from joining VC",
-        arguments: "member or role",
+        arguments: "member|or|role",
         permissions: "none"
     },
     {
@@ -2995,7 +3073,7 @@ if (shared) {
         name: "roblox check",
         category: "roblox",
         description: "Check if a Roblox user owns a specific asset",
-        arguments: "username asset id or name",
+        arguments: "username asset id|or|name",
         permissions: "none"
     },
 ];
@@ -3124,8 +3202,8 @@ const tabCategories = [
             modalContainer.innerHTML = '';
             const argVal = cmd.arguments === 'none' 
     ? 'none' 
-    : cmd.arguments.split(' ').map(a => {
-        const display = a.replace(/\|/g, ' ').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    : cmd.arguments.split('|').map(a => {
+    const display = a.trim().replace(/</g, '&lt;').replace(/>/g, '&gt;');
         return `<span style="background:rgba(255,255,255,0.08); border-radius:4px; padding:2px 8px; font-size:0.85rem; margin-right:4px;">${display}</span>`;
     }).join('');
             const permVal = cmd.permissions;
