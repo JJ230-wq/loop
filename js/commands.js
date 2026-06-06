@@ -3255,5 +3255,9 @@ if (closeBtn) closeBtn.onclick = doModalClose;
         applyFilters();
     }
 
+    if (document.readyState === 'loading') {
     window.addEventListener('DOMContentLoaded', initializeCommandsPage);
+} else {
+    initializeCommandsPage();
+}
 })();
