@@ -55,7 +55,7 @@ if (shared) {
         name: "buttonrole add",
         category: "autorole",
         description: "Add a button role to a message",
-        arguments: "message-link role style emoji label",
+        arguments: "messagelink role style emoji label",
         permissions: "manage guild manage roles"
     },
     {
@@ -69,14 +69,14 @@ if (shared) {
         name: "buttonrole removeall",
         category: "autorole",
         description: "No description given",
-        arguments: "message-link",
+        arguments: "messagelink",
         permissions: "manage guild manage roles"
     },
     {
         name: "buttonrole remove",
         category: "autorole",
         description: "Remove a button role from a message",
-        arguments: "message-link index",
+        arguments: "messagelink index",
         permissions: "manage guild manage roles"
     },
     {
@@ -90,7 +90,7 @@ if (shared) {
         name: "reactionrole add",
         category: "autorole",
         description: "Adds a reaction role to a message",
-        arguments: "message-link reaction role",
+        arguments: "messagelink reaction role",
         permissions: "none"
     },
     {
@@ -1573,7 +1573,7 @@ if (shared) {
     name: "log ignore",
     category: "logging",
     description: "No description given",
-    arguments: "member|or|channel",
+    arguments: "member or channel",
     permissions: "none"
 },
 {
@@ -3073,7 +3073,7 @@ if (shared) {
         name: "roblox check",
         category: "roblox",
         description: "Check if a Roblox user owns a specific asset",
-        arguments: "username asset id|or|name",
+        arguments: "username|asset id|or|name"
         permissions: "none"
     },
 ];
