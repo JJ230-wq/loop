@@ -3065,7 +3065,7 @@ if (shared) {
         name: "roblox check",
         category: "roblox",
         description: "Check if a Roblox user owns a specific asset",
-        arguments: "username|asset id|or|name",
+        arguments: "username asset id|or|name",
         permissions: "none"
     },
 ];
