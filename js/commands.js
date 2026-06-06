@@ -1844,14 +1844,6 @@ if (shared) {
         arguments: "index",
         permissions: "none"
     },
-
-        {
-        name: "snipe",
-        category: "moderation",
-        description: "Snipe the latest message that was deleted",
-        arguments: "index",
-        permissions: "none"
-    },
     {
         name: "tempban",
         category: "moderation",
