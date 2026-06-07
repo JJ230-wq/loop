@@ -3152,15 +3152,15 @@ const tabCategories = [
         }
 
         function applyFilters() {
-            currentSearch = searchInput.value.toLowerCase().trim();
-            currentCommands = commandsData.filter(function (cmd) {
-                const matchesText = cmd.name.toLowerCase().includes(currentSearch) || (cmd.description && cmd.description.toLowerCase().includes(currentSearch));
-                const matchesCategory = currentCategory === 'all' || cmd.category === currentCategory;
-                return matchesText && matchesCategory;
-            });
+    currentSearch = searchInput.value.toLowerCase().trim();
+    currentCommands = commandsData.filter(function (cmd) {
+        const matchesText = cmd.name.toLowerCase().includes(currentSearch) || (cmd.description && cmd.description.toLowerCase().includes(currentSearch));
+        const matchesCategory = currentSearch !== '' || currentCategory === 'all' || cmd.category === currentCategory;
+        return matchesText && matchesCategory;
+    });
 
-            renderCommands();
-        }
+    renderCommands();
+}
 
         function renderTabs() {
             tabNavigation.innerHTML = '';
