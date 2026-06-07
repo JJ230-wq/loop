@@ -1852,6 +1852,13 @@ if (shared) {
         permissions: "ban members"
     },
     {
+        name: "tempmute",
+        category: "moderation",
+        description: "Temporarily mute a user for a duration",
+        arguments: "user duration",
+        permissions: "manage roles"
+    },
+    {
         name: "remind",
         category: "moderation",
         description: "Get reminders for a duration set about whatever you choose",
