@@ -3154,12 +3154,64 @@ const tabCategories = [
         function applyFilters() {
     currentSearch = searchInput.value.toLowerCase().trim();
     currentCommands = commandsData.filter(function (cmd) {
-        const matchesText = cmd.name.toLowerCase().includes(currentSearch) || (cmd.description && cmd.description.toLowerCase().includes(currentSearch));
-        const matchesCategory = currentSearch !== '' || currentCategory === 'all' || cmd.category === currentCategory;
-        return matchesText && matchesCategory;
+        const matchesCategory = currentCategory === 'all' || cmd.category === currentCategory;
+        return matchesCategory;
     });
-
     renderCommands();
+    renderDropdown();
+}
+
+function renderDropdown() {
+    let dropdown = document.getElementById('searchDropdown');
+    if (!currentSearch) {
+        if (dropdown) dropdown.remove();
+        return;
+    }
+    const matches = commandsData.filter(function (cmd) {
+        return cmd.name.toLowerCase().includes(currentSearch) || (cmd.description && cmd.description.toLowerCase().includes(currentSearch));
+    }).slice(0, 12);
+    if (!dropdown) {
+        dropdown = document.createElement('div');
+        dropdown.id = 'searchDropdown';
+        searchInput.parentElement.appendChild(dropdown);
+    }
+    if (matches.length === 0) {
+        dropdown.innerHTML = '<div class="search-dropdown-empty">No commands found</div>';
+        return;
+    }
+    dropdown.innerHTML = matches.map(function (cmd) {
+        const tabLabel = tabCategories.find(t => t.id === cmd.category);
+        return `<div class="search-dropdown-item" data-name="${cmd.name}" data-category="${cmd.category}">
+            <span class="search-dropdown-name">${cmd.name}</span>
+            <span class="search-dropdown-cat">${tabLabel ? tabLabel.label : cmd.category}</span>
+        </div>`;
+    }).join('');
+    dropdown.querySelectorAll('.search-dropdown-item').forEach(function (item) {
+        item.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            const name = item.dataset.name;
+            const category = item.dataset.category;
+            searchInput.value = '';
+            currentSearch = '';
+            currentCategory = category;
+            tabNavigation.querySelectorAll('.tab-button').forEach(function (btn) {
+                var on = btn.dataset.category === currentCategory;
+                btn.classList.toggle('is-active', on);
+                btn.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            currentCommands = commandsData.filter(c => c.category === category);
+            renderCommands();
+            dropdown.remove();
+            setTimeout(function () {
+                const card = Array.from(commandsGrid.querySelectorAll('.command-card')).find(c => c.querySelector('.command-name').textContent === name);
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    card.style.outline = '2px solid rgba(255,255,255,0.4)';
+                    setTimeout(() => card.style.outline = '', 1500);
+                }
+            }, 80);
+        });
+    });
 }
 
         function renderTabs() {
@@ -3254,9 +3306,15 @@ if (closeBtn) closeBtn.onclick = doModalClose;
         }
 
         searchInput.addEventListener('input', applyFilters);
-        searchInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') clearSearch();
-        });
+searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') clearSearch();
+});
+searchInput.addEventListener('blur', function () {
+    setTimeout(function () {
+        const d = document.getElementById('searchDropdown');
+        if (d) d.remove();
+    }, 150);
+});
 
         renderTabs();
         applyFilters();
