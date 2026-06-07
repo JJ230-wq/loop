@@ -450,10 +450,13 @@
                 <i class="fas fa-book-open"></i> Introduction
             </a>
             <a class="sidebar-link" data-panel="customization-overview" href="#" target="_self">
-                <i class="fas fa-paintbrush"></i> Customization
-            </a>
+    <i class="fas fa-paintbrush"></i> Customization
+</a>
+<a class="sidebar-link" data-panel="customization-antinuke" href="#" target="_self">
+    <i class="fas fa-shield-halved"></i> Antinuke
+</a>
 
-            <div class="sidebar-section-label">Configuration</div>
+<div class="sidebar-section-label">Configuration</div>
 
             <!-- Scripting dropdown -->
             <div class="sidebar-dropdown" id="dropdown-scripting">
@@ -522,6 +525,31 @@
 <div class="docs-section-title">Customizing Loop's bio</div>
 <p class="docs-paragraph">You can set Loop's bio using the <code>,customize bio</code> command.</p>
 <img src="assets/customize_bio.png" alt="Customizing Loop bio" style="max-width:100%;border-radius:10px;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+            </div>
+
+            <!-- Customization - Antinuke -->
+            <div class="docs-content-panel" id="panel-customization-antinuke">
+                <div class="docs-breadcrumb">
+                    Overview <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> <span>Antinuke</span>
+                </div>
+                <h1 class="docs-page-title">Antinuke</h1>
+                <p class="docs-page-subtitle">Protect your server from mass destructive actions with Loop's antinuke system.</p>
+
+                <div class="docs-section-title">Allowing users to configure antinuke</div>
+                <p class="docs-paragraph">Only the <strong>server owner</strong> is allowed to configure antinuke. But however you can allow other users to configure it as well with the <code>,antinuke admin</code> command.</p>
+                <img src="assets/an_admin.png" alt="Antinuke admin command" style="max-width:100%;border-radius:10px;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+
+                <div class="docs-section-title">Exempting users from antinuke</div>
+                <p class="docs-paragraph">You can exempt users from the antinuke with the <code>,antinuke whitelist</code> command.</p>
+                <img src="assets/an_whitelist.png" alt="Antinuke whitelist command" style="max-width:100%;border-radius:10px;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+
+                <div class="docs-section-title">Viewing the antinuke configuration</div>
+                <p class="docs-paragraph">You can use the <code>,antinuke config</code> command to view the current antinuke configuration.</p>
+                <img src="assets/an_config.png" alt="Antinuke config command" style="max-width:100%;border-radius:10px;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+
+                <div class="docs-section-title">Viewing the modules &amp; whitelist</div>
+                <p class="docs-paragraph">You can use the <code>,antinuke list</code> command to view enabled modules and whitelisted users.</p>
+                <img src="assets/an_list.png" alt="Antinuke list command" style="max-width:100%;border-radius:10px;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
             </div>
 
             <!-- Scripting - Variables -->
