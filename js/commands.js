@@ -3447,7 +3447,7 @@ function renderDropdown() {
                     tabButton.classList.add('is-active');
                 }
                 tabButton.dataset.category = cat.id;
-                tabButton.textContent = cat.label;
+                tabButton.innerHTML = `<span class="tab-corner-tr"></span><span class="tab-corner-bl"></span>${cat.label}`;
                 tabButton.addEventListener('click', function () {
                     if (currentCategory === cat.id) return;
                     currentCategory = cat.id;
