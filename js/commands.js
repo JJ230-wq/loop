@@ -3434,9 +3434,8 @@ function renderDropdown() {
 }
 
         function renderTabs() {
-            tabNavigation.innerHTML = '';
-            tabNavigation.setAttribute('role', 'tablist');
-            tabNavigation.setAttribute('aria-label', 'Command categories');
+            const tabScroll = document.getElementById('tabScroll');
+tabScroll.innerHTML = '';
             tabCategories.forEach(function (cat) {
                 const tabButton = document.createElement('button');
                 tabButton.type = 'button';
@@ -3447,7 +3446,7 @@ function renderDropdown() {
                     tabButton.classList.add('is-active');
                 }
                 tabButton.dataset.category = cat.id;
-                tabButton.innerHTML = `<span class="tab-corner-tr"></span><span class="tab-corner-bl"></span>${cat.label}`;
+                tabButton.textContent = cat.label;
                 tabButton.addEventListener('click', function () {
                     if (currentCategory === cat.id) return;
                     currentCategory = cat.id;
@@ -3458,7 +3457,7 @@ function renderDropdown() {
                     });
                     applyFilters();
                 });
-                tabNavigation.appendChild(tabButton);
+                tabScroll.appendChild(tabButton);
             });
         }
 
@@ -3543,5 +3542,10 @@ searchInput.addEventListener('blur', function () {
     window.addEventListener('DOMContentLoaded', initializeCommandsPage);
 } else {
     initializeCommandsPage();
+
+        document.getElementById('tabPrev').onclick = () =>
+    document.getElementById('tabScroll').scrollBy({ left: -140, behavior: 'smooth' });
+document.getElementById('tabNext').onclick = () =>
+    document.getElementById('tabScroll').scrollBy({ left: 140, behavior: 'smooth' });
 }
 })();
