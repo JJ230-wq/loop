@@ -144,56 +144,6 @@ body {
     outline-offset: 2px;
 }
 
-/* Corner brackets on active tab */
-.tab-button.is-active::before,
-.tab-button.is-active::after {
-    content: '';
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    pointer-events: none;
-}
-.tab-button.is-active::before {
-    top: 2px;
-    left: 2px;
-    border-top: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-left: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-radius: 2px 0 0 0;
-}
-.tab-button.is-active::after {
-    bottom: 2px;
-    right: 2px;
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-right: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-radius: 0 0 2px 0;
-}
-
-/* Other two corners via injected spans */
-.tab-corner-tr,
-.tab-corner-bl {
-    display: none;
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    pointer-events: none;
-}
-.tab-button.is-active .tab-corner-tr {
-    display: block;
-    top: 2px;
-    right: 2px;
-    border-top: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-right: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-radius: 0 2px 0 0;
-}
-.tab-button.is-active .tab-corner-bl {
-    display: block;
-    bottom: 2px;
-    left: 2px;
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-left: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-radius: 0 0 0 2px;
-}
-
 .search-container {
     position: relative;
     display: flex;
