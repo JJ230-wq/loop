@@ -3528,24 +3528,24 @@ searchInput.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') clearSearch();
 });
 searchInput.addEventListener('blur', function () {
-    setTimeout(function () {
-        const d = document.getElementById('searchDropdown');
-        if (d) d.remove();
-    }, 150);
-});
+            setTimeout(function () {
+                const d = document.getElementById('searchDropdown');
+                if (d) d.remove();
+            }, 150);
+        });
+
+        document.getElementById('tabPrev').onclick = () =>
+            document.getElementById('tabScroll').scrollBy({ left: -140, behavior: 'smooth' });
+        document.getElementById('tabNext').onclick = () =>
+            document.getElementById('tabScroll').scrollBy({ left: 140, behavior: 'smooth' });
 
         renderTabs();
         applyFilters();
     }
 
     if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', initializeCommandsPage);
-} else {
-    initializeCommandsPage();
-
-        document.getElementById('tabPrev').onclick = () =>
-    document.getElementById('tabScroll').scrollBy({ left: -140, behavior: 'smooth' });
-document.getElementById('tabNext').onclick = () =>
-    document.getElementById('tabScroll').scrollBy({ left: 140, behavior: 'smooth' });
-}
+        window.addEventListener('DOMContentLoaded', initializeCommandsPage);
+    } else {
+        initializeCommandsPage();
+    }
 })();
