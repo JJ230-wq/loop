@@ -3075,6 +3075,224 @@ if (shared) {
         arguments: "username asset id|or|name",
         permissions: "none"
     },
+
+        {
+        name: "roleplay",
+        category: "roleplay",
+        description: "Enable or disable roleplay commands in the server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "airkiss",
+        category: "roleplay",
+        description: "Airkiss a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "angrystare",
+        category: "roleplay",
+        description: "Angrily stare at a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "bite",
+        category: "roleplay",
+        description: "Bite a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "bleh",
+        category: "roleplay",
+        description: "Bleh at a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "brofist",
+        category: "roleplay",
+        description: "Brofist a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "celebrate",
+        category: "roleplay",
+        description: "Celebrate with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "cheers",
+        category: "roleplay",
+        description: "No description given",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "clap",
+        category: "roleplay",
+        description: "Clap with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "confused",
+        category: "roleplay",
+        description: "Act confused at a user",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "cool",
+        category: "roleplay",
+        description: "Cool with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "cry",
+        category: "roleplay",
+        description: "Cry with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "cuddle",
+        category: "roleplay",
+        description: "Cuddle with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "dance",
+        category: "roleplay",
+        description: "Dance with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "drool",
+        category: "roleplay",
+        description: "Drool on a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "evillaugh",
+        category: "roleplay",
+        description: "Laugh evilly at a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "facepalm",
+        category: "roleplay",
+        description: "Facepalm with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "handhold",
+        category: "roleplay",
+        description: "Hold a users hand",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "happy",
+        category: "roleplay",
+        description: "Act happy with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "headbang",
+        category: "roleplay",
+        description: "Head bang with a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "hug",
+        category: "roleplay",
+        description: "Hug a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "kiss",
+        category: "roleplay",
+        description: "Kiss a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "laugh",
+        category: "roleplay",
+        description: "Laugh at a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "lick",
+        category: "roleplay",
+        description: "Lick a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "love",
+        category: "roleplay",
+        description: "Love a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "mad",
+        category: "roleplay",
+        description: "Act mad at a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "nervous",
+        category: "roleplay",
+        description: "Act nervous at a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "nom",
+        category: "roleplay",
+        description: "Nom on a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "nuzzle",
+        category: "roleplay",
+        description: "Nuzzle on a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "slap",
+        category: "roleplay",
+        description: "Slap a user",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "smile",
+        category: "roleplay",
+        description: "Smile at a user",
+        arguments: "member",
+        permissions: "none"
+    },
 ];
 
 const tabCategories = [
@@ -3091,6 +3309,7 @@ const tabCategories = [
     { id: 'economy', label: 'Economy' },
     { id: 'voicemaster', label: 'VoiceMaster' },
     { id: 'roblox', label: 'Roblox' },
+    { id: 'roleplay', label: 'Roleplay' },
 ];
 
     function initializeCommandsPage() {
