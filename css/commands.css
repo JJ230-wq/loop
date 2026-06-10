@@ -454,3 +454,25 @@ body {
     color: rgba(255,255,255,0.35);
     font-size: 0.88rem;
 }
+
+@media (max-width: 720px) {
+    .tabs-and-search-container {
+        position: sticky;
+        top: 52px; /* adjust to match your site-bar height */
+        z-index: 10;
+        background: rgba(8, 8, 12, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        margin: 0 -14px;
+        padding: 10px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .commands-page {
+        padding-top: 16px;
+    }
+
+    .command-count {
+        margin-top: 10px;
+    }
+}
