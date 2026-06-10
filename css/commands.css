@@ -384,9 +384,18 @@ body {
         padding: 24px 10px 32px;
     }
     .commands-page {
-        padding: 20px 14px 22px;
+        padding: 16px 14px 22px;
     }
     .tabs-and-search-container {
+        position: sticky;
+        top: 52px;
+        z-index: 10;
+        background: rgba(8, 8, 12, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        margin: 0 -14px;
+        padding: 10px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         flex-direction: column;
         align-items: stretch;
     }
@@ -407,71 +416,6 @@ body {
     .tab-nav-arrow {
         display: none;
     }
-}
-
-#searchDropdown {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    right: 0;
-    background: rgba(16, 17, 25, 0.97);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    z-index: 999;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    min-width: 260px;
-}
-
-.search-dropdown-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 9px 14px;
-    cursor: pointer;
-    transition: background 0.15s;
-    gap: 12px;
-}
-
-.search-dropdown-item:hover {
-    background: rgba(255, 255, 255, 0.07);
-}
-
-.search-dropdown-name {
-    font-size: 0.9rem;
-    color: #e5e5e5;
-    font-weight: 300;
-}
-
-.search-dropdown-cat {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.35);
-    white-space: nowrap;
-}
-
-.search-dropdown-empty {
-    padding: 12px 14px;
-    color: rgba(255,255,255,0.35);
-    font-size: 0.88rem;
-}
-
-@media (max-width: 720px) {
-    .tabs-and-search-container {
-        position: sticky;
-        top: 52px; /* adjust to match your site-bar height */
-        z-index: 10;
-        background: rgba(8, 8, 12, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        margin: 0 -14px;
-        padding: 10px 14px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .commands-page {
-        padding-top: 16px;
-    }
-
     .command-count {
         margin-top: 10px;
     }
