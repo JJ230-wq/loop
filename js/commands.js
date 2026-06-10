@@ -2674,6 +2674,532 @@ if (shared) {
     },
 
         {
+        name: "sticker",
+        category: "utility",
+        description: "Modify or add stickers to your server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "sticker remove",
+        category: "utility",
+        description: "Removes sticker from the server",
+        arguments: "name",
+        permissions: "manage expressions"
+    },
+    {
+        name: "sticker cleanup",
+        category: "utility",
+        description: "Cleans server sticker names",
+        arguments: "none",
+        permissions: "manage expressions manage guild"
+    },
+    {
+        name: "sticker rename",
+        category: "utility",
+        description: "Rename the attached sticker to given new name",
+        arguments: "new name",
+        permissions: "manage expressions"
+    },
+    {
+        name: "sticker add",
+        category: "utility",
+        description: "Downloads sticker and adds to the server",
+        arguments: "url name",
+        permissions: "none"
+    },
+    {
+        name: "rotate",
+        category: "utility",
+        description: "Rotate an image by a provided degree",
+        arguments: "degree url",
+        permissions: "attach files"
+    },
+    {
+        name: "compress",
+        category: "utility",
+        description: "Compress image to lower quality",
+        arguments: "ratio url",
+        permissions: "attach files"
+    },
+    {
+        name: "emoji",
+        category: "utility",
+        description: "Returns a large emoji or server emote",
+        arguments: "emoji",
+        permissions: "none"
+    },
+    {
+        name: "emoji removemany",
+        category: "utility",
+        description: "Bulk remove emotes from the server",
+        arguments: "emotes",
+        permissions: "manage expressions"
+    },
+    {
+        name: "emoji remove",
+        category: "utility",
+        description: "Removes emotes from the server",
+        arguments: "emoji",
+        permissions: "manage expressions"
+    },
+    {
+        name: "emoji addmany",
+        category: "utility",
+        description: "Bulk add emotes to the server",
+        arguments: "emotes",
+        permissions: "none"
+    },
+    {
+        name: "emoji rename",
+        category: "utility",
+        description: "Renames emote to the new name provided",
+        arguments: "emoji new name",
+        permissions: "manage expressions"
+    },
+    {
+        name: "emoji add",
+        category: "utility",
+        description: "Downloads emote and adds to the server",
+        arguments: "emoji characters",
+        permissions: "none"
+    },
+    {
+        name: "osu",
+        category: "utility",
+        description: "Retrieve simple OSU! profile information",
+        arguments: "username game",
+        permissions: "none"
+    },
+    {
+        name: "define",
+        category: "utility",
+        description: "Get definition of a word",
+        arguments: "word",
+        permissions: "none"
+    },
+    {
+        name: "urbandictionary",
+        category: "utility",
+        description: "Gets the definition of a word/slang from Urban Dictionary",
+        arguments: "word",
+        permissions: "none"
+    },
+    {
+        name: "inviteinfo",
+        category: "utility",
+        description: "View basic invite code information",
+        arguments: "code",
+        permissions: "none"
+    },
+    {
+        name: "boosters",
+        category: "utility",
+        description: "View all recent server boosters",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "boosters lost",
+        category: "utility",
+        description: "View list of most recent lost boosters",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "roles",
+        category: "utility",
+        description: "View all roles in the server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "hex",
+        category: "utility",
+        description: "Grab the most dominant color from an image",
+        arguments: "url or attachment or member",
+        permissions: "none"
+    },
+    {
+        name: "bots",
+        category: "utility",
+        description: "View all bots in the server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "members",
+        category: "utility",
+        description: "View members in a role",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "seen",
+        category: "utility",
+        description: "Check when a user was last seen",
+        arguments: "member",
+        permissions: "attach files embed links"
+    },
+    {
+        name: "membercount",
+        category: "utility",
+        description: "View server member count",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "roleinfo",
+        category: "utility",
+        description: "View information about a role",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "channelinfo",
+        category: "utility",
+        description: "View information about a channel",
+        arguments: "channel",
+        permissions: "none"
+    },
+    {
+        name: "avatar",
+        category: "utility",
+        description: "Get avatar of a member or yourself",
+        arguments: "user",
+        permissions: "none"
+    },
+    {
+        name: "serveravatar",
+        category: "utility",
+        description: "Get the server avatar of a member or yourself",
+        arguments: "user",
+        permissions: "none"
+    },
+    {
+        name: "serverbanner",
+        category: "utility",
+        description: "Get the server banner of a member or yourself",
+        arguments: "user",
+        permissions: "none"
+    },
+    {
+        name: "banner",
+        category: "utility",
+        description: "Get the banner of a member or yourself",
+        arguments: "user",
+        permissions: "none"
+    },
+    {
+        name: "guildicon",
+        category: "utility",
+        description: "Returns guild icon",
+        arguments: "guild id",
+        permissions: "none"
+    },
+    {
+        name: "guildbanner",
+        category: "utility",
+        description: "Returns banner icon",
+        arguments: "guild id",
+        permissions: "none"
+    },
+    {
+        name: "splash",
+        category: "utility",
+        description: "Returns splash background",
+        arguments: "guild id",
+        permissions: "none"
+    },
+    {
+        name: "serverinfo",
+        category: "utility",
+        description: "View information about a server",
+        arguments: "guild id",
+        permissions: "none"
+    },
+    {
+        name: "userinfo",
+        category: "utility",
+        description: "View information about a member or yourself",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "birthday",
+        category: "utility",
+        description: "View your birthday or somebody elses",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "birthday unlock",
+        category: "utility",
+        description: "Enable/Unlock the birthday system",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "birthday list",
+        category: "utility",
+        description: "View a list of every member's birthday",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "birthday channel",
+        category: "utility",
+        description: "Set the birthday channel",
+        arguments: "channel",
+        permissions: "none"
+    },
+    {
+        name: "birthday role",
+        category: "utility",
+        description: "Set the birthday role",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "birthday lock",
+        category: "utility",
+        description: "Disable/Lock the birthday system",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "birthday config",
+        category: "utility",
+        description: "View the configuration for the birthday system",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "birthday set",
+        category: "utility",
+        description: "Set your birthday",
+        arguments: "date",
+        permissions: "none"
+    },
+    {
+        name: "birthday celebrate",
+        category: "utility",
+        description: "Set the celebration role",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "birthday celebrate list",
+        category: "utility",
+        description: "View a list of celebrated roles",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "timezone",
+        category: "utility",
+        description: "View your current time or somebody elses",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "timezone set",
+        category: "utility",
+        description: "Set your timezone",
+        arguments: "location",
+        permissions: "none"
+    },
+    {
+        name: "timezone list",
+        category: "utility",
+        description: "View a list of every member's timezone",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "embed",
+        category: "utility",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "embed preview",
+        category: "utility",
+        description: "No description given",
+        arguments: "name",
+        permissions: "none"
+    },
+    {
+        name: "embed list",
+        category: "utility",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "embed create",
+        category: "utility",
+        description: "No description given",
+        arguments: "name",
+        permissions: "none"
+    },
+    {
+        name: "embed copy",
+        category: "utility",
+        description: "No description given",
+        arguments: "messagelink",
+        permissions: "none"
+    },
+    {
+        name: "embed delete",
+        category: "utility",
+        description: "No description given",
+        arguments: "name",
+        permissions: "none"
+    },
+    {
+        name: "uwu",
+        category: "utility",
+        description: "Uwuify text",
+        arguments: "text",
+        permissions: "none"
+    },
+    {
+        name: "freaky",
+        category: "utility",
+        description: "Freakify text",
+        arguments: "text",
+        permissions: "none"
+    },
+    {
+        name: "quickpoll",
+        category: "utility",
+        description: "Add up/down arrow to message initiating a poll",
+        arguments: "msg",
+        permissions: "none"
+    },
+    {
+        name: "afk",
+        category: "utility",
+        description: "Set an AFK status for when you are mentioned",
+        arguments: "status",
+        permissions: "none"
+    },
+    {
+        name: "afk mentions",
+        category: "utility",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "poll",
+        category: "utility",
+        description: "Create a short poll",
+        arguments: "time question",
+        permissions: "none"
+    },
+    {
+        name: "editembed",
+        category: "utility",
+        description: "Edit an embed you created",
+        arguments: "messagelink embed code",
+        permissions: "none"
+    },
+    {
+        name: "createembed",
+        category: "utility",
+        description: "Create your own embed",
+        arguments: "embed code",
+        permissions: "none"
+    },
+    {
+        name: "embedcode",
+        category: "utility",
+        description: "Copy an existing embeds code for creating an embed",
+        arguments: "messagelink",
+        permissions: "none"
+    },
+    {
+        name: "choose",
+        category: "utility",
+        description: "Give me choices and I will pick for you",
+        arguments: "choices",
+        permissions: "none"
+    },
+    {
+        name: "jumbo",
+        category: "utility",
+        description: "No description given",
+        arguments: "emoji",
+        permissions: "none"
+    },
+    {
+        name: "help",
+        category: "utility",
+        description: "View extended help for commands",
+        arguments: "command",
+        permissions: "none"
+    },
+    {
+        name: "invites",
+        category: "utility",
+        description: "View all active invites",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "clearnames",
+        category: "utility",
+        description: "Reset your name history",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "names",
+        category: "utility",
+        description: "View username and nickname history of a member or yourself",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "topcommands",
+        category: "utility",
+        description: "View the most used commands",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "nba",
+        category: "utility",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "nfl",
+        category: "utility",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "soccer",
+        category: "utility",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "futbol",
+        category: "utility",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+
+        {
         name: "lastfm",
         category: "lastfm",
         description: "No description given",
@@ -3298,6 +3824,7 @@ if (shared) {
 const tabCategories = [
     { id: 'primary', label: 'Primary' },
     { id: 'moderation', label: 'Moderation' },
+    { id: 'utility', label: 'Utility'},
     { id: 'antiraid', label: 'Antiraid' },
     { id: 'autorole', label: 'Autorole' },
     { id: 'reaction', label: 'Reaction' },
