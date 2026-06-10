@@ -3325,7 +3325,7 @@ const tabCategories = [
 
         function renderCommands() {
             commandsGrid.innerHTML = "";
-            commandCount.textContent = `Showing ${currentCommands.length} command${currentCommands.length === 1 ? "" : "s"}`;
+            commandCount.textContent = '';
             if (currentCommands.length === 0) {
                 const noResults = document.createElement('div');
                 noResults.style.cssText = "grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: rgba(255, 255, 255, 0.65); filter: grayscale(1);";
