@@ -3446,7 +3446,8 @@ tabScroll.innerHTML = '';
                     tabButton.classList.add('is-active');
                 }
                 tabButton.dataset.category = cat.id;
-                tabButton.textContent = cat.label;
+                const count = commandsData.filter(c => c.category === cat.id).length;
+tabButton.innerHTML = `${cat.label} <span style="background:rgba(255,255,255,0.1); border-radius:999px; padding:1px 8px; font-size:0.75rem; color:rgba(255,255,255,0.45); margin-left:4px;">${count}</span>`;
                 tabButton.addEventListener('click', function () {
                     if (currentCategory === cat.id) return;
                     currentCategory = cat.id;
