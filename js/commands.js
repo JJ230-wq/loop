@@ -3819,6 +3819,105 @@ if (shared) {
         arguments: "member",
         permissions: "none"
     },
+
+        {
+    name: "youtube message",
+    category: "socials",
+    description: "Customize the message for YouTube notifications",
+    arguments: "channel url, message",
+    permissions: "manage guild"
+},
+{
+    name: "youtube message view",
+    category: "socials",
+    description: "View YouTube message for new posts",
+    arguments: "channel url",
+    permissions: "manage guild"
+},
+{
+    name: "youtube list",
+    category: "socials",
+    description: "View all YouTube post notifications",
+    arguments: "none",
+    permissions: "manage guild"
+},
+{
+    name: "youtube add",
+    category: "socials",
+    description: "Enable post notifications for a channel",
+    arguments: "channel, channel url",
+    permissions: "manage guild"
+},
+{
+    name: "youtube remove",
+    category: "socials",
+    description: "Disable post notifications for a channel",
+    arguments: "channel, channel url",
+    permissions: "manage guild"
+},
+{
+    name: "kick add",
+    category: "socials",
+    description: "No description given",
+    arguments: "channel, username",
+    permissions: "none"
+},
+{
+    name: "kick list",
+    category: "socials",
+    description: "No description given",
+    arguments: "none",
+    permissions: "none"
+},
+{
+    name: "kick message",
+    category: "socials",
+    description: "No description given",
+    arguments: "username, message",
+    permissions: "none"
+},
+{
+    name: "kick message view",
+    category: "socials",
+    description: "No description given",
+    arguments: "username",
+    permissions: "none"
+},
+{
+    name: "twitch list",
+    category: "socials",
+    description: "View all Twitch stream notifications",
+    arguments: "none",
+    permissions: "manage guild"
+},
+{
+    name: "twitch add",
+    category: "socials",
+    description: "Add stream notifications to a channel",
+    arguments: "channel, streamer",
+    permissions: "manage guild"
+},
+{
+    name: "twitch message",
+    category: "socials",
+    description: "Set a message for Twitch notifications",
+    arguments: "streamer, message",
+    permissions: "none"
+},
+{
+    name: "twitch message view",
+    category: "socials",
+    description: "View Twitch message for new streams",
+    arguments: "streamer",
+    permissions: "none"
+},
+{
+    name: "twitch remove",
+    category: "socials",
+    description: "Remove stream notifications from a channel",
+    arguments: "channel, streamer",
+    permissions: "manage guild"
+},
 ];
 
 const tabCategories = [
@@ -3837,6 +3936,7 @@ const tabCategories = [
     { id: 'voicemaster', label: 'VoiceMaster' },
     { id: 'roblox', label: 'Roblox' },
     { id: 'roleplay', label: 'Roleplay' },
+    { id: 'socials', label: 'Socials' },
 ];
 
     function initializeCommandsPage() {
