@@ -3900,8 +3900,13 @@ const tabCategories = [
         function applyFilters() {
     currentSearch = searchInput.value.toLowerCase().trim();
     currentCommands = commandsData.filter(function (cmd) {
-        const matchesCategory = currentCategory === 'all' || cmd.category === currentCategory;
-        return matchesCategory;
+        const matchesCategory = currentSearch
+            ? true  // show all categories when searching
+            : (currentCategory === 'all' || cmd.category === currentCategory);
+        const matchesSearch = !currentSearch ||
+            cmd.name.toLowerCase().includes(currentSearch) ||
+            (cmd.description && cmd.description.toLowerCase().includes(currentSearch));
+        return matchesCategory && matchesSearch;
     });
     renderCommands();
     renderDropdown();
