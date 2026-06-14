@@ -402,6 +402,62 @@
             padding: 0 4px 10px 4px;
         }
 
+        /* ── Embed docs specific ── */
+        .embed-list {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+        .embed-list li {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.75;
+            padding-left: 18px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+        .embed-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: rgba(255,255,255,0.25);
+        }
+        .embed-list code {
+            background: rgba(255,255,255,0.1);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.85);
+        }
+        .embed-subhead {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #e6edf3;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+        .embed-code-block {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+        .embed-code-block code {
+            display: block;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: none;
+            padding: 0;
+        }
+        .embed-code-block code + code {
+            margin-top: 4px;
+        }
+
         @media (max-width: 860px) {
             .docs-sidebar { width: 220px; }
             .docs-main { padding: 24px 24px 60px 24px; }
@@ -570,6 +626,7 @@
                     <button class="var-tab" data-category="leveling">Leveling</button>
                     <button class="var-tab" data-category="boosts">Boosts</button>
                     <button class="var-tab" data-category="bump">Bump Reminder</button>
+                    <button class="var-tab" data-category="embed">Embed</button>
                 </div>
 
                 <!-- Variable category panels -->
@@ -879,6 +936,82 @@
                     <div class="var-item"><button class="var-row" data-var="bumpreminder.last_user_bump"><code class="var-code">{bumpreminder.last_user_bump}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">The last user to bump the server</div></div>
                     <div class="var-item"><button class="var-row" data-var="bumpreminder.next_bump"><code class="var-code">{bumpreminder.next_bump}</code><i class="fas fa-chevron-right var-arrow"></i></button><div class="var-desc">A relative timestamp for the next bump</div></div>
                 </div><!-- /varcategory-bump -->
+
+                <!-- Embed -->
+                <div class="var-category" id="varcategory-embed">
+
+                    <div class="docs-section-title" style="margin-top:0;">Structure</div>
+                    <p class="docs-paragraph">Loop uses a very easy but structured key-value pair for embeds which is separated by a colon.</p>
+                    <p class="docs-paragraph">The syntax for standard parameters is:</p>
+                    <ul class="embed-list">
+                        <li><code>{</code> - Opens the parameter block</li>
+                        <li><code>:</code> - Separates parameter from content</li>
+                        <li><code>$v</code> - Separates the parameter</li>
+                        <li><code>}</code> - Ends a parameter</li>
+                    </ul>
+
+                    <div class="docs-section-title">Example</div>
+                    <p class="docs-paragraph">You can use the given information to begin making your own custom made embeds</p>
+                    <img src="assets/embed_example.png" alt="Embed example" style="max-width:100%;border-radius:10px;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+
+                    <div class="docs-section-title">Available parameters</div>
+                    <ul class="embed-list">
+                        <li><code>url</code> - The embed URL</li>
+                        <li><code>color</code> - The embed color</li>
+                        <li><code>title</code> - The embed title</li>
+                        <li><code>description</code> - The embed description</li>
+                        <li><code>image</code> - The embed image URL</li>
+                        <li><code>thumbnail</code> - The embed thumbnail URL</li>
+                        <li><code>timestamp</code> - The embed timestamp</li>
+                    </ul>
+
+                    <p class="docs-paragraph">The following parameters require additional arguments which are separated by <code>&amp;&amp;</code></p>
+
+                    <div class="embed-subhead">Author</div>
+                    <ul class="embed-list">
+                        <li><code>name</code> - The author's name</li>
+                        <li><code>icon</code> - The author's icon</li>
+                        <li><code>url</code> - The author's URL</li>
+                    </ul>
+                    <div class="embed-code-block">
+                        <code>Syntax: {author: name &amp;&amp; icon &amp;&amp; url}</code>
+                        <code>Example: {author: {user} &amp;&amp; {user.avatar}}</code>
+                    </div>
+
+                    <div class="embed-subhead">Field</div>
+                    <ul class="embed-list">
+                        <li><code>name</code> - The field name</li>
+                        <li><code>value</code> - The field value</li>
+                    </ul>
+                    <div class="embed-code-block">
+                        <code>Syntax: {field: name &amp;&amp; value}</code>
+                        <code>Example: {field: {user} &amp;&amp; this is the value}</code>
+                    </div>
+
+                    <div class="embed-subhead">Footer</div>
+                    <ul class="embed-list">
+                        <li><code>text</code> - The footer text</li>
+                        <li><code>icon</code> - The footer icon</li>
+                    </ul>
+                    <div class="embed-code-block">
+                        <code>Syntax: {footer: text &amp;&amp; icon}</code>
+                        <code>Example: {footer: {user}}</code>
+                        <code>{footer: {user} &amp;&amp; {user.avatar}}</code>
+                    </div>
+
+                    <div class="embed-subhead">Button</div>
+                    <ul class="embed-list">
+                        <li><code>type</code> - Link, Blurple, Green, Gray, or Red</li>
+                        <li><code>label</code> - The button label</li>
+                        <li><code>url</code> - The button URL or emoji</li>
+                    </ul>
+                    <div class="embed-code-block">
+                        <code>Syntax: {button: type &amp;&amp; label &amp;&amp; url &amp;&amp; enabled|disabled}</code>
+                        <code>Example: {button: blurple &amp;&amp; heyy &amp;&amp; disabled}</code>
+                        <code>{button: https://example.com &amp;&amp; click this}</code>
+                    </div>
+
+                </div><!-- /varcategory-embed -->
 
             </div>
 
