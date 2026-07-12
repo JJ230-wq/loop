@@ -1485,6 +1485,55 @@ if (shared) {
         permissions: "manage guild"
     },
     {
+        name: "boosterrole share",
+        category: "primary",
+        description: "Share your booster role with others",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "boosterrole share remove",
+        category: "primary",
+        description: "Remove yourself from a shared booster role",
+        arguments: "role",
+        permissions: "none"
+    },
+    {
+        name: "boosterrole share max",
+        category: "primary",
+        description: "Limit how many members can be in a booster role",
+        arguments: "number",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole share limit",
+        category: "primary",
+        description: "Limit how many booster roles a member can have",
+        arguments: "number",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole share list",
+        category: "primary",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole limit",
+        category: "primary",
+        description: "Set limit for booster roles",
+        arguments: "limit",
+        permissions: "manage guild"
+    },
+    {
+        name: "boosterrole link",
+        category: "primary",
+        description: "Link an existing role to be a booster role",
+        arguments: "member|role",
+        permissions: "manage guild"
+    },
+    {
         name: "boosterrole award",
         category: "primary",
         description: "Reward a member a specific role upon boost",
