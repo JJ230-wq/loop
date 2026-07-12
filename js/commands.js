@@ -3171,6 +3171,55 @@ if (shared) {
         permissions: "none"
     },
     {
+        name: "highlight",
+        category: "utility",
+        description: "Set notifications for when a keyword is said",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "highlight add",
+        category: "utility",
+        description: "Add a highlighted keyword",
+        arguments: "keyword",
+        permissions: "none"
+    },
+    {
+        name: "highlight remove",
+        category: "utility",
+        description: "Remove a highlighted keyword",
+        arguments: "keyword",
+        permissions: "none"
+    },
+    {
+        name: "highlight list",
+        category: "utility",
+        description: "List all keywords in a server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "highlight reset",
+        category: "utility",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "highlight ignore",
+        category: "utility",
+        description: "Ignore notifications from members or a channel or role",
+        arguments: "member or channel or role",
+        permissions: "none"
+    },
+    {
+        name: "highlight ignore list",
+        category: "utility",
+        description: "List all ignored members, channels & roles",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
         name: "nba",
         category: "utility",
         description: "No description given",
