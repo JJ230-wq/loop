@@ -3418,16 +3418,44 @@ if (shared) {
         permissions: "none"
     },
     {
+        name: "deposit",
+        category: "economy",
+        description: "Deposit coins from your wallet to your bank",
+        arguments: "amount",
+        permissions: "none"
+    },
+    {
+        name: "fish",
+        category: "economy",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "give",
+        category: "economy",
+        description: "Give coins to another user",
+        arguments: "user, amount",
+        permissions: "none"
+    },
+    {
         name: "hunt",
         category: "economy",
-        description: "Go hunting to earn coins",
+        description: "No description given",
         arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "loan",
+        category: "economy",
+        description: "Withdraw coins from your bank to your wallet",
+        arguments: "amount",
         permissions: "none"
     },
     {
         name: "mine",
         category: "economy",
-        description: "Go mining to earn coins",
+        description: "No description given",
         arguments: "none",
         permissions: "none"
     },
@@ -3435,7 +3463,7 @@ if (shared) {
         name: "mines",
         category: "economy",
         description: "Play a minesweeper-style gambling game",
-        arguments: "amount",
+        arguments: "bet",
         permissions: "none"
     },
     {
@@ -3448,8 +3476,8 @@ if (shared) {
     {
         name: "rob",
         category: "economy",
-        description: "Rob a user",
-        arguments: "member amount",
+        description: "Rob coins from another member",
+        arguments: "member, amount",
         permissions: "none"
     },
     {
