@@ -665,6 +665,53 @@ if (shared) {
     },
 
         {
+        name: "settings resetcases",
+        category: "primary",
+        description: "Reset jail-log cases",
+        arguments: "none",
+        permissions: "administrator"
+    },
+    {
+        name: "fakepermissions",
+        category: "primary",
+        description: "Set up fake permissions for a role through the bot",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "fakepermissions list",
+        category: "primary",
+        description: "List all fake permissions",
+        arguments: "role",
+        permissions: "server owner"
+    },
+    {
+        name: "fakepermissions add",
+        category: "primary",
+        description: "Grants a fake permission to a role",
+        arguments: "role, permission",
+        permissions: "server owner"
+    },
+    {
+        name: "fakepermissions remove",
+        category: "primary",
+        description: "Removes a fake permission from a role",
+        arguments: "role, permission",
+        permissions: "server owner"
+    },
+    {
+        name: "fakepermissions reset",
+        category: "primary",
+        description: "Resets all fake permissions",
+        arguments: "none",
+        permissions: "server owner"
+    },
+
+        {
+    name: "filter",
+    category: "primary",
+
+        {
     name: "filter",
     category: "primary",
     description: "View a variety of options to keep chat clean",
