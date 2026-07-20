@@ -706,8 +706,7 @@ if (shared) {
         arguments: "none",
         permissions: "server owner"
     },
-
-        {
+    {
     name: "filter",
     category: "primary",
     description: "View a variety of options to keep chat clean",
