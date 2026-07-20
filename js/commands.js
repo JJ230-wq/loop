@@ -710,10 +710,6 @@ if (shared) {
         {
     name: "filter",
     category: "primary",
-
-        {
-    name: "filter",
-    category: "primary",
     description: "View a variety of options to keep chat clean",
     arguments: "none",
     permissions: "manage channels"
