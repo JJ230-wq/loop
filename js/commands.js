@@ -2378,6 +2378,20 @@ if (shared) {
         permissions: "none"
     },
     {
+        name: "role add",
+        category: "moderation",
+        description: "Add a role to a member",
+        arguments: "member role",
+        permissions: "manage roles"
+    },
+    {
+        name: "role remove",
+        category: "moderation",
+        description: "Remove a role from a member",
+        arguments: "member role",
+        permissions: "manage roles"
+    },
+    {
         name: "role has",
         category: "moderation",
         description: "Add a role to members with a specific role",
@@ -2691,6 +2705,27 @@ if (shared) {
         category: "moderation",
         description: "Allows the specified role exclusive permission to use a command",
         arguments: "cmd role",
+        permissions: "manage guild"
+    },
+    {
+        name: "restrictmodule",
+        category: "moderation",
+        description: "Restrict module to a specific role",
+        arguments: "module role",
+        permissions: "manage guild"
+    },
+    {
+        name: "restrictmodule remove",
+        category: "moderation",
+        description: "Remove role restriction from a module",
+        arguments: "module role",
+        permissions: "manage guild"
+    },
+    {
+        name: "restrictmodule list",
+        category: "moderation",
+        description: "Show a list of all restricted modules",
+        arguments: "none",
         permissions: "manage guild"
     },
     {
@@ -3689,6 +3724,13 @@ if (shared) {
         category: "voicemaster",
         description: "Lock your voice channel",
         arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "voicemaster staff",
+        category: "voicemaster",
+        description: "Set a staff role for Voice Master",
+        arguments: "role",
         permissions: "none"
     },
 
