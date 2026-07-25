@@ -689,14 +689,14 @@ if (shared) {
         name: "fakepermissions add",
         category: "primary",
         description: "Grants a fake permission to a role",
-        arguments: "role, permission",
+        arguments: "role permission",
         permissions: "server owner"
     },
     {
         name: "fakepermissions remove",
         category: "primary",
         description: "Removes a fake permission from a role",
-        arguments: "role, permission",
+        arguments: "role permission",
         permissions: "server owner"
     },
     {
@@ -1151,7 +1151,7 @@ if (shared) {
         name: "autoresponder exclusive",
         category: "primary",
         description: "No description given",
-        arguments: "role|or|channel, trigger",
+        arguments: "role|or|channel trigger",
         permissions: "manage channels"
     },
     {
@@ -1179,7 +1179,7 @@ if (shared) {
         name: "enablecommand",
         category: "primary",
         description: "Enable a previously disabled command in a channel",
-        arguments: "channel|or|member, command",
+        arguments: "channel|or|member command",
         permissions: "manage channels"
     },
     {
@@ -1193,7 +1193,7 @@ if (shared) {
         name: "disablecommand",
         category: "primary",
         description: "Disable a command in a channel",
-        arguments: "channel|or|member, command",
+        arguments: "channel|or|member command",
         permissions: "manage channels"
     },
     {
@@ -2809,7 +2809,7 @@ if (shared) {
         name: "honeypot add",
         category: "moderation",
         description: "Set up a honeypot channel",
-        arguments: "channel, punishment",
+        arguments: "channel punishment",
         permissions: "manage channels"
     },
     {
@@ -3561,7 +3561,7 @@ if (shared) {
         name: "give",
         category: "economy",
         description: "Give coins to another user",
-        arguments: "user, amount",
+        arguments: "user amount",
         permissions: "none"
     },
     {
@@ -3603,7 +3603,7 @@ if (shared) {
         name: "rob",
         category: "economy",
         description: "Rob coins from another member",
-        arguments: "member, amount",
+        arguments: "member amount",
         permissions: "none"
     },
     {
@@ -4083,7 +4083,7 @@ if (shared) {
     name: "youtube message",
     category: "socials",
     description: "Customize the message for YouTube notifications",
-    arguments: "channel url, message",
+    arguments: "channel url message",
     permissions: "manage guild"
 },
 {
@@ -4104,21 +4104,21 @@ if (shared) {
     name: "youtube add",
     category: "socials",
     description: "Enable post notifications for a channel",
-    arguments: "channel, channel url",
+    arguments: "channel channel url",
     permissions: "manage guild"
 },
 {
     name: "youtube remove",
     category: "socials",
     description: "Disable post notifications for a channel",
-    arguments: "channel, channel url",
+    arguments: "channel channel url",
     permissions: "manage guild"
 },
 {
     name: "kick add",
     category: "socials",
     description: "No description given",
-    arguments: "channel, username",
+    arguments: "channel username",
     permissions: "none"
 },
 {
@@ -4132,7 +4132,7 @@ if (shared) {
     name: "kick message",
     category: "socials",
     description: "No description given",
-    arguments: "username, message",
+    arguments: "username message",
     permissions: "none"
 },
 {
@@ -4153,14 +4153,14 @@ if (shared) {
     name: "twitch add",
     category: "socials",
     description: "Add stream notifications to a channel",
-    arguments: "channel, streamer",
+    arguments: "channel streamer",
     permissions: "manage guild"
 },
 {
     name: "twitch message",
     category: "socials",
     description: "Set a message for Twitch notifications",
-    arguments: "streamer, message",
+    arguments: "streamer message",
     permissions: "none"
 },
 {
@@ -4174,7 +4174,7 @@ if (shared) {
     name: "twitch remove",
     category: "socials",
     description: "Remove stream notifications from a channel",
-    arguments: "channel, streamer",
+    arguments: "channel streamer",
     permissions: "manage guild"
 },
 ];
