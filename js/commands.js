@@ -2798,6 +2798,55 @@ if (shared) {
         arguments: "member channel",
         permissions: "manage roles manage channels"
     },
+    {
+        name: "honeypot",
+        category: "moderation",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "honeypot add",
+        category: "moderation",
+        description: "Set up a honeypot channel",
+        arguments: "channel, punishment",
+        permissions: "manage channels"
+    },
+    {
+        name: "honeypot remove",
+        category: "moderation",
+        description: "Remove a honeypot channel",
+        arguments: "channel",
+        permissions: "manage channels"
+    },
+    {
+        name: "honeypot list",
+        category: "moderation",
+        description: "List all honey pot channels",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "honeypot exempt",
+        category: "moderation",
+        description: "Exempt a role or member from honeypot punishments",
+        arguments: "role or member",
+        permissions: "manage channels"
+    },
+    {
+        name: "honeypot exempt list",
+        category: "moderation",
+        description: "View list of roles or members exempt from honeypot punishment",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "honeypot log",
+        category: "moderation",
+        description: "Set up logging for honeypot punishments",
+        arguments: "channel",
+        permissions: "manage channels"
+    },
 
         {
         name: "sticker",
