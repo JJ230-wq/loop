@@ -4206,7 +4206,7 @@ const tabCategories = [
         const modalContainer = document.getElementById('commandDetailsModalContainer');
 
         let currentSearch = "";
-        let currentCategory = "autorole";
+        let currentCategory = "primary";
         let currentCommands = [].concat(commandsData);
 
         function renderCommands() {
