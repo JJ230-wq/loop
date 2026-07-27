@@ -55,7 +55,7 @@ if (shared) {
         name: "buttonrole add",
         category: "autorole",
         description: "Add a button role to a message",
-        arguments: "messagelink role style emoji label",
+        arguments: "messagelink|role|style|emoji|label",
         permissions: "manage guild manage roles"
     },
     {
@@ -76,7 +76,7 @@ if (shared) {
         name: "buttonrole remove",
         category: "autorole",
         description: "Remove a button role from a message",
-        arguments: "messagelink index",
+        arguments: "messagelink|index",
         permissions: "manage guild manage roles"
     },
     {
@@ -90,7 +90,7 @@ if (shared) {
         name: "reactionrole add",
         category: "autorole",
         description: "Adds a reaction role to a message",
-        arguments: "messagelink reaction role",
+        arguments: "messagelink|reaction role",
         permissions: "none"
     },
     {
@@ -132,7 +132,7 @@ if (shared) {
         name: "antiraid avatar",
         category: "antiraid",
         description: "Punish accounts without a profile picture",
-        arguments: "setting flags",
+        arguments: "setting|flags",
         permissions: "manage guild"
     },
     {
@@ -160,28 +160,28 @@ if (shared) {
         name: "antiraid massjoin",
         category: "antiraid",
         description: "Protect server against mass bot raids",
-        arguments: "setting flags",
+        arguments: "setting|flags",
         permissions: "manage guild"
     },
     {
         name: "antiraid newaccounts",
         category: "antiraid",
         description: "Punish new registered accounts",
-        arguments: "setting flags",
+        arguments: "setting|flags",
         permissions: "none"
     },
     {
         name: "reaction",
         category: "reaction",
         description: "Adds a reaction(s) to a message",
-        arguments: "message link, emoji or emote",
+        arguments: "message link|emoji or emote",
         permissions: "none"
     },
     {
         name: "reaction messages",
         category: "reaction",
         description: "Add or remove auto reaction on messages",
-        arguments: "channel first second third",
+        arguments: "channel first|second third",
         permissions: "none"
     },
     {
@@ -223,14 +223,14 @@ if (shared) {
         name: "reaction add",
         category: "reaction",
         description: "Adds a reaction trigger to the guild",
-        arguments: "emoji trigger word",
+        arguments: "emoji|trigger word",
         permissions: "none"
     },
     {
         name: "reaction delete",
         category: "reaction",
         description: "Removes a reaction trigger in the guild",
-        arguments: "emoji trigger word",
+        arguments: "emoji|trigger word",
         permissions: "none"
     },
     {
@@ -272,7 +272,7 @@ if (shared) {
         name: "noselfreact emoji",
         category: "reaction",
         description: "Set a specific emoji to monitor for self reacts",
-        arguments: "emoji|or|emote",
+        arguments: "emoji or emote",
         permissions: "administrator"
     },
     {
@@ -281,6 +281,13 @@ if (shared) {
         description: "View all monitored emojis for noselfreact",
         arguments: "none",
         permissions: "administrator"
+    },
+    {
+        name: "nsr bypass",
+        category: "reaction",
+        description: "Allow staff to bypass self-react monitoring",
+        arguments: "setting",
+        permissions: "server owner"
     },
 
         {
@@ -294,14 +301,14 @@ if (shared) {
     name: "autoreact add",
     category: "reaction",
     description: "Adds auto reaction(s) to a user",
-    arguments: "member emoji",
+    arguments: "member|emoji",
     permissions: "manage expressions"
 },
 {
     name: "autoreact remove",
     category: "reaction",
     description: "Removes an auto reaction for a user",
-    arguments: "member emoji",
+    arguments: "member|emoji",
     permissions: "manage expressions"
 },
 {
