@@ -181,7 +181,7 @@ if (shared) {
         name: "reaction messages",
         category: "reaction",
         description: "Add or remove auto reaction on messages",
-        arguments: "channel first|second third",
+        arguments: "channel|first|second|third",
         permissions: "none"
     },
     {
@@ -244,7 +244,7 @@ if (shared) {
         name: "noselfreact exempt",
         category: "reaction",
         description: "Exempt a member, channel, or role from noselfreact",
-        arguments: "member|or|channel|or|role",
+        arguments: "member or channel or role",
         permissions: "administrator"
     },
     {
@@ -455,7 +455,7 @@ if (shared) {
         name: "levels add",
         category: "levels",
         description: "Create a level role",
-        arguments: "role rank",
+        arguments: "role|rank",
         permissions: "none"
     },
     {
@@ -469,28 +469,28 @@ if (shared) {
         name: "levels update",
         category: "levels",
         description: "Update a level roles rank",
-        arguments: "role rank",
+        arguments: "role|rank",
         permissions: "none"
     },
     {
         name: "setxp",
         category: "levels",
         description: "Set a user's XP",
-        arguments: "user amount",
+        arguments: "user|amount",
         permissions: "none"
     },
     {
         name: "removexp",
         category: "levels",
         description: "Remove XP from a user",
-        arguments: "user amount",
+        arguments: "user|amount",
         permissions: "manage guild"
     },
     {
         name: "setlevel",
         category: "levels",
         description: "Set a user's level",
-        arguments: "user level",
+        arguments: "user|level",
         permissions: "manage guild"
     },
 
@@ -512,7 +512,7 @@ if (shared) {
         name: "antinuke channel",
         category: "antinuke",
         description: "Prevent mass channel create and delete",
-        arguments: "status parameters",
+        arguments: "status|parameters",
         permissions: "none"
     },
     {
@@ -526,7 +526,7 @@ if (shared) {
         name: "antinuke webhook",
         category: "antinuke",
         description: "Prevent mass webhook creation",
-        arguments: "status parameters",
+        arguments: "status|parameters",
         permissions: "none"
     },
     {
@@ -540,7 +540,7 @@ if (shared) {
         name: "antinuke permissions",
         category: "antinuke",
         description: "Watch for dangerous permissions being granted or removed",
-        arguments: "type permission flags",
+        arguments: "type|permission|flags",
         permissions: "none"
     },
     {
@@ -554,14 +554,14 @@ if (shared) {
         name: "antinuke ban",
         category: "antinuke",
         description: "Prevent mass member ban",
-        arguments: "status parameters",
+        arguments: "status|parameters",
         permissions: "none"
     },
     {
         name: "antinuke role",
         category: "antinuke",
         description: "Prevent mass role delete",
-        arguments: "status parameters",
+        arguments: "status|parameters",
         permissions: "none"
     },
     {
@@ -582,7 +582,7 @@ if (shared) {
         name: "antinuke emoji",
         category: "antinuke",
         description: "Prevent mass emoji delete",
-        arguments: "status parameters",
+        arguments: "status|parameters",
         permissions: "none"
     },
     {
@@ -596,7 +596,7 @@ if (shared) {
         name: "antinuke vanity",
         category: "antinuke",
         description: "Punish users that change the server vanity",
-        arguments: "status parameters",
+        arguments: "status|parameters",
         permissions: "none"
     },
 
@@ -696,14 +696,14 @@ if (shared) {
         name: "fakepermissions add",
         category: "primary",
         description: "Grants a fake permission to a role",
-        arguments: "role permission",
+        arguments: "role|permission",
         permissions: "server owner"
     },
     {
         name: "fakepermissions remove",
         category: "primary",
         description: "Removes a fake permission from a role",
-        arguments: "role permission",
+        arguments: "role|permission",
         permissions: "server owner"
     },
     {
@@ -752,7 +752,7 @@ if (shared) {
     name: "filter links",
     category: "primary",
     description: "Delete any message that contains a link",
-    arguments: "channel setting parameter",
+    arguments: "channel|setting|parameter",
     permissions: "manage channels"
 },
 {
@@ -773,7 +773,7 @@ if (shared) {
     name: "filter spam",
     category: "primary",
     description: "Delete messages from users that send messages too fast",
-    arguments: "channel setting parameters",
+    arguments: "channel|setting|parameters",
     permissions: "manage channels"
 },
 {
@@ -801,7 +801,7 @@ if (shared) {
     name: "filter caps",
     category: "primary",
     description: "Delete messages that contain too many uppercase characters",
-    arguments: "channel setting parameters",
+    arguments: "channel|setting|parameters",
     permissions: "manage channels"
 },
 {
@@ -822,7 +822,7 @@ if (shared) {
     name: "filter invites",
     category: "primary",
     description: "Delete any message that contains a server link",
-    arguments: "channel setting parameters",
+    arguments: "channel|setting|parameters",
     permissions: "manage channels"
 },
 {
@@ -843,7 +843,7 @@ if (shared) {
     name: "filter emoji",
     category: "primary",
     description: "Delete any message exceeding the threshold for emojis",
-    arguments: "channel setting parameters",
+    arguments: "channel|setting|parameters",
     permissions: "manage channels"
 },
 {
@@ -899,7 +899,7 @@ if (shared) {
         name: "boosts add",
         category: "primary",
         description: "Add a boost message to a channel",
-        arguments: "channel message",
+        arguments: "channel|message",
         permissions: "manage guild"
     },
     {
@@ -913,7 +913,7 @@ if (shared) {
         name: "alias add",
         category: "primary",
         description: "Create an alias for a command",
-        arguments: "shortcut command",
+        arguments: "shortcut|command",
         permissions: "manage guild"
     },
     {
@@ -969,7 +969,7 @@ if (shared) {
         name: "stickymessage add",
         category: "primary",
         description: "Add a sticky message to a channel",
-        arguments: "channel message",
+        arguments: "channel|message",
         permissions: "manage guild"
     },
     {
@@ -1011,7 +1011,7 @@ if (shared) {
         name: "welcome add",
         category: "primary",
         description: "Add a welcome message for a channel",
-        arguments: "channel message",
+        arguments: "channel|message",
         permissions: "manage guild"
     },
     {
@@ -1039,7 +1039,7 @@ if (shared) {
         name: "goodbye add",
         category: "primary",
         description: "Add a goodbye message for a channel",
-        arguments: "channel message",
+        arguments: "channel|message",
         permissions: "manage guild"
     },
     {
@@ -1186,7 +1186,7 @@ if (shared) {
         name: "enablecommand",
         category: "primary",
         description: "Enable a previously disabled command in a channel",
-        arguments: "channel|or|member command",
+        arguments: "channel or member|command",
         permissions: "manage channels"
     },
     {
@@ -1200,7 +1200,7 @@ if (shared) {
         name: "disablecommand",
         category: "primary",
         description: "Disable a command in a channel",
-        arguments: "channel|or|member command",
+        arguments: "channel or member|command",
         permissions: "manage channels"
     },
     {
@@ -1221,7 +1221,7 @@ if (shared) {
         name: "enablemodule",
         category: "primary",
         description: "Enable a module in a channel",
-        arguments: "channel module",
+        arguments: "channel|module",
         permissions: "none"
     },
     {
@@ -1236,7 +1236,7 @@ if (shared) {
         name: "disablerole",
         category: "primary",
         description: "Disable a role from using a command in a channel",
-        arguments: "channel cmd role",
+        arguments: "channel|cmd|role",
         permissions: "manage channels"
     },
     {
@@ -1250,14 +1250,14 @@ if (shared) {
         name: "enablerole",
         category: "primary",
         description: "Re-enable a role to use a command in a channel",
-        arguments: "channel cmd role",
+        arguments: "channel|cmd|role",
         permissions: "manage channels"
     },
     {
         name: "disablemodule",
         category: "primary",
         description: "Disable a module in a channel",
-        arguments: "channel module",
+        arguments: "channel|module",
         permissions: "manage channels"
     },
     {
@@ -1278,7 +1278,7 @@ if (shared) {
         name: "ignore",
         category: "primary",
         description: "No description given",
-        arguments: "member|or|channel",
+        arguments: "member or channel",
         permissions: "administrator"
     },
     {
@@ -1292,14 +1292,14 @@ if (shared) {
         name: "ignore remove",
         category: "primary",
         description: "Remove ignoring for a member or channel",
-        arguments: "member|or|channel",
+        arguments: "member or channel",
         permissions: "administrator"
     },
     {
         name: "ignore add",
         category: "primary",
         description: "Ignore a member or channel",
-        arguments: "member|or|channel",
+        arguments: "member or channel",
         permissions: "administrator"
     },
     {
@@ -1657,14 +1657,14 @@ if (shared) {
     name: "log remove",
     category: "logging",
     description: "No description given",
-    arguments: "channel event",
+    arguments: "channel|event",
     permissions: "none"
 },
 {
     name: "log add",
     category: "logging",
     description: "Set up logging for your community",
-    arguments: "channel event",
+    arguments: "channel|event",
     permissions: "none"
 },
 {
@@ -1785,14 +1785,14 @@ if (shared) {
         name: "giveaways start",
         category: "giveaways",
         description: "Start a giveaway with your provided duration, winners, and prize description",
-        arguments: "channel duration winners prize",
+        arguments: "channel|duration|winners|prize",
         permissions: "manage channels"
     },
     {
         name: "giveaway reroll",
         category: "giveaways",
         description: "Pick a new winner from an ended giveaway",
-        arguments: "message link winners",
+        arguments: "message link|winners",
         permissions: "manage channels"
     },
     {
@@ -1820,21 +1820,21 @@ if (shared) {
         name: "giveaways edit prize",
         category: "giveaways",
         description: "Change the prize on a giveaway",
-        arguments: "message link prize",
+        arguments: "message link|prize",
         permissions: "manage channels"
     },
     {
         name: "giveaways edit duration",
         category: "giveaways",
         description: "Change the time on a active giveaway",
-        arguments: "message link date",
+        arguments: "message link|date",
         permissions: "manage channels"
     },
     {
         name: "giveaways edit winners",
         category: "giveaways",
         description: "Change the amount of winners for a giveaway",
-        arguments: "message link count",
+        arguments: "message link|count",
         permissions: "manage channels"
     },
     {
@@ -1848,14 +1848,14 @@ if (shared) {
         name: "counter remove",
         category: "moderation",
         description: "Remove a channel counter",
-        arguments: "channel action",
+        arguments: "channel|action",
         permissions: "manage channels"
     },
     {
         name: "counter add",
         category: "moderation",
         description: "Create channel counter",
-        arguments: "option channel",
+        arguments: "option|channel",
         permissions: "manage channels"
     },
     {
@@ -1869,7 +1869,7 @@ if (shared) {
         name: "counter set",
         category: "moderation",
         description: "Set a channel counter to an existing channel",
-        arguments: "channel option",
+        arguments: "channel|option",
         permissions: "manage channels"
     },
     {
@@ -1890,7 +1890,7 @@ if (shared) {
         name: "timer add",
         category: "moderation",
         description: "Add repeating message to a channel",
-        arguments: "channel interval message",
+        arguments: "channel|interval|message",
         permissions: "manage guild"
     },
     {
@@ -1946,14 +1946,14 @@ if (shared) {
         name: "tempban",
         category: "moderation",
         description: "Temporarily ban a user",
-        arguments: "member duration reason",
+        arguments: "member|duration|reason",
         permissions: "ban members"
     },
     {
         name: "tempmute",
         category: "moderation",
         description: "Temporarily mute a user for a duration",
-        arguments: "user duration",
+        arguments: "user|duration",
         permissions: "manage roles"
     },
     {
@@ -1988,7 +1988,7 @@ if (shared) {
         name: "warn",
         category: "moderation",
         description: "Warns the mentioned user",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "none"
     },
     {
@@ -2002,28 +2002,28 @@ if (shared) {
         name: "thread unlock",
         category: "moderation",
         description: "Unlock a thread or forum post",
-        arguments: "thread reason",
+        arguments: "thread|reason",
         permissions: "manage threads"
     },
     {
         name: "thread add",
         category: "moderation",
         description: "Add a member to a thread or forum post",
-        arguments: "thread reason",
+        arguments: "thread|reason",
         permissions: "manage threads"
     },
     {
         name: "thread lock",
         category: "moderation",
         description: "Lock a thread or forum post",
-        arguments: "thread reason",
+        arguments: "thread|reason",
         permissions: "manage threads"
     },
     {
         name: "thread remove",
         category: "moderation",
         description: "Remove a member from a thread",
-        arguments: "thread member",
+        arguments: "thread|member",
         permissions: "manage threads"
     },
     {
@@ -2037,7 +2037,7 @@ if (shared) {
         name: "thread rename",
         category: "moderation",
         description: "Rename a thread",
-        arguments: "thread new name",
+        arguments: "thread|new name",
         permissions: "manage threads"
     },
 
@@ -2045,7 +2045,7 @@ if (shared) {
         name: "lockdown",
         category: "moderation",
         description: "Lockdown a channel",
-        arguments: "channel reason",
+        arguments: "channel|reason",
         permissions: "manage channels"
     },
     {
@@ -2094,7 +2094,7 @@ if (shared) {
         name: "unlock",
         category: "moderation",
         description: "Unlock a channel",
-        arguments: "channel reason",
+        arguments: "channel|reason",
         permissions: "manage channels"
     },
     {
@@ -2136,14 +2136,14 @@ if (shared) {
         name: "moderationhistory",
         category: "moderation",
         description: "View moderation actions from staff member",
-        arguments: "member command",
+        arguments: "member|command",
         permissions: "manage messages"
     },
     {
         name: "history",
         category: "moderation",
         description: "View a list of every punishment recorded",
-        arguments: "member command",
+        arguments: "member|command",
         permissions: "manage messages"
     },
     {
@@ -2157,7 +2157,7 @@ if (shared) {
         name: "history remove",
         category: "moderation",
         description: "Remove a punishment from a member",
-        arguments: "member case id",
+        arguments: "member|case id",
         permissions: "none"
     },
     {
@@ -2192,7 +2192,7 @@ if (shared) {
         name: "proof add",
         category: "moderation",
         description: "Add attachment(s) to a case log",
-        arguments: "case id media url",
+        arguments: "case id|media url",
         permissions: "manage messages"
     },
     {
@@ -2206,14 +2206,14 @@ if (shared) {
         name: "proof set",
         category: "moderation",
         description: "Set the proof and attachments if applicable for a case log",
-        arguments: "case id explanation",
+        arguments: "case id|explanation",
         permissions: "manage messages"
     },
     {
         name: "proof remove",
         category: "moderation",
         description: "Remove an attachment from a case log",
-        arguments: "case id index",
+        arguments: "case id|index",
         permissions: "manage messages"
     },
     {
@@ -2227,14 +2227,14 @@ if (shared) {
         name: "reason",
         category: "moderation",
         description: "Updates the reason on a case log",
-        arguments: "case id reason",
+        arguments: "case id|reason",
         permissions: "manage messages"
     },
     {
         name: "timeout",
         category: "moderation",
         description: "Mutes the provided member using Discord's timeout feature",
-        arguments: "member duration reason",
+        arguments: "member|duration|reason",
         permissions: "none"
     },
     {
@@ -2248,56 +2248,56 @@ if (shared) {
         name: "untimeout",
         category: "moderation",
         description: "Removes a timeout for a member",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "none"
     },
     {
         name: "mute",
         category: "moderation",
         description: "Mute a member in the server",
-        arguments: "member duration reason",
+        arguments: "member|duration|reason",
         permissions: "none"
     },
     {
         name: "unmute",
         category: "moderation",
         description: "Unmute a member in the server",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "moderate members"
     },
     {
         name: "imute",
         category: "moderation",
         description: "Remove a member's attach files & embed links permission",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "moderate members"
     },
     {
         name: "iunmute",
         category: "moderation",
         description: "Restore a member's attach files & embed links permission",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "moderate members"
     },
     {
         name: "rmute",
         category: "moderation",
         description: "Remove a member's add reactions and use external emotes permission",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "moderate members"
     },
     {
         name: "runmute",
         category: "moderation",
         description: "Restore a member's add reactions and use external emotes permission",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "moderate members"
     },
     {
         name: "hardban",
         category: "moderation",
         description: "Keep a member banned",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "none"
     },
     {
@@ -2325,21 +2325,21 @@ if (shared) {
         name: "unban",
         category: "moderation",
         description: "Unbans the mentioned user",
-        arguments: "user reason",
+        arguments: "user|reason",
         permissions: "none"
     },
     {
         name: "softban",
         category: "moderation",
         description: "Softbans the mentioned user and deletes 1 day of messages",
-        arguments: "member delete history reason",
+        arguments: "member|delete history|reason",
         permissions: "none"
     },
     {
         name: "ban",
         category: "moderation",
         description: "Bans the mentioned user",
-        arguments: "member delete history reason",
+        arguments: "member|delete history|reason",
         permissions: "ban members"
     },
     {
@@ -2360,14 +2360,14 @@ if (shared) {
         name: "unjail",
         category: "moderation",
         description: "Unjails the mentioned user",
-        arguments: "member reason",
+        arguments: "member|reason",
         permissions: "none"
     },
     {
         name: "temprole",
         category: "moderation",
         description: "Temporarily give a role to a member",
-        arguments: "member duration role",
+        arguments: "member|duration|role",
         permissions: "manage roles"
     },
     {
@@ -2381,35 +2381,35 @@ if (shared) {
         name: "role",
         category: "moderation",
         description: "Modify a member's roles",
-        arguments: "member role",
+        arguments: "member|role",
         permissions: "none"
     },
     {
         name: "role add",
         category: "moderation",
         description: "Add a role to a member",
-        arguments: "member role",
+        arguments: "member|role",
         permissions: "manage roles"
     },
     {
         name: "role remove",
         category: "moderation",
         description: "Remove a role from a member",
-        arguments: "member role",
+        arguments: "member|role",
         permissions: "manage roles"
     },
     {
         name: "role has",
         category: "moderation",
         description: "Add a role to members with a specific role",
-        arguments: "role assign role",
+        arguments: "role|assign role",
         permissions: "none"
     },
     {
         name: "role has remove",
         category: "moderation",
         description: "Remove a role from members with a specific role",
-        arguments: "role remove role",
+        arguments: "role|remove role",
         permissions: "none"
     },
     {
@@ -2423,7 +2423,7 @@ if (shared) {
         name: "role humans",
         category: "moderation",
         description: "Adds a role to all humans",
-        arguments: "role flags",
+        arguments: "role|flags",
         permissions: "none"
     },
     {
@@ -2437,14 +2437,14 @@ if (shared) {
         name: "role color",
         category: "moderation",
         description: "Set a color for a role",
-        arguments: "color role",
+        arguments: "color|role",
         permissions: "none"
     },
     {
         name: "role color gradient",
         category: "moderation",
         description: "Set a gradient color for a role",
-        arguments: "color second color role",
+        arguments: "color|second color|role",
         permissions: "none"
     },
     {
@@ -2479,14 +2479,14 @@ if (shared) {
         name: "role icon",
         category: "moderation",
         description: "Set an icon for a role",
-        arguments: "url role",
+        arguments: "url|role",
         permissions: "none"
     },
     {
         name: "role topcolor",
         category: "moderation",
         description: "Changes your highest role's color",
-        arguments: "color member",
+        arguments: "color|member",
         permissions: "none"
     },
     {
@@ -2514,7 +2514,7 @@ if (shared) {
         name: "role create",
         category: "moderation",
         description: "Creates a role with an optional color",
-        arguments: "color role",
+        arguments: "color|role",
         permissions: "none"
     },
 
@@ -2557,7 +2557,7 @@ if (shared) {
         name: "purge mentions",
         category: "moderation",
         description: "Purge mentions from chat",
-        arguments: "member search",
+        arguments: "member|search",
         permissions: "none"
     },
     {
@@ -2620,7 +2620,7 @@ if (shared) {
         name: "nuke archive",
         category: "moderation",
         description: "Automatically archive pins upon scheduled nuke",
-        arguments: "channel setting",
+        arguments: "channel|setting",
         permissions: "none"
     },
     {
@@ -2634,21 +2634,21 @@ if (shared) {
         name: "recentban",
         category: "moderation",
         description: "Chunk ban recently joined members",
-        arguments: "count reason",
+        arguments: "count|reason",
         permissions: "ban members"
     },
     {
         name: "unhide",
         category: "moderation",
         description: "Unhide a channel from a role or member",
-        arguments: "channel role|or|member",
+        arguments: "channel|role or member",
         permissions: "none"
     },
     {
         name: "hide",
         category: "moderation",
         description: "Hide a channel from a role or member",
-        arguments: "channel role|or|member",
+        arguments: "channel|role or member",
         permissions: "none"
     },
     {
@@ -2669,7 +2669,7 @@ if (shared) {
         name: "slowmode on",
         category: "moderation",
         description: "Enable slowmode in a channel",
-        arguments: "channel delay|time",
+        arguments: "channel|delay time",
         permissions: "manage channels"
     },
     {
@@ -2683,21 +2683,21 @@ if (shared) {
         name: "rename",
         category: "moderation",
         description: "Assigns the mentioned user a new nickname in the guild",
-        arguments: "member new|name",
+        arguments: "member|new name",
         permissions: "none"
     },
     {
         name: "restrictcommand",
         category: "moderation",
         description: "Only allows people with a certain role to use command",
-        arguments: "cmd role",
+        arguments: "cmd|role",
         permissions: "none"
     },
     {
         name: "restrictcommand list",
         category: "moderation",
         description: "View a list of every restricted command",
-        arguments: "role|or|command",
+        arguments: "role or command",
         permissions: "manage guild"
     },
     {
@@ -2718,14 +2718,14 @@ if (shared) {
         name: "restrictmodule",
         category: "moderation",
         description: "Restrict module to a specific role",
-        arguments: "module role",
+        arguments: "module|role",
         permissions: "manage guild"
     },
     {
         name: "restrictmodule remove",
         category: "moderation",
         description: "Remove role restriction from a module",
-        arguments: "module role",
+        arguments: "module|role",
         permissions: "manage guild"
     },
     {
@@ -2739,7 +2739,7 @@ if (shared) {
         name: "stickyrole",
         category: "moderation",
         description: "Reapplies a role on join",
-        arguments: "member role",
+        arguments: "member|role",
         permissions: "server owner"
     },
     {
@@ -2753,28 +2753,28 @@ if (shared) {
         name: "stickyrole add",
         category: "moderation",
         description: "Reapplies a role on join",
-        arguments: "member role",
+        arguments: "member|role",
         permissions: "server owner"
     },
     {
         name: "stickyrole remove",
         category: "moderation",
         description: "Removes sticky role on join",
-        arguments: "member role",
+        arguments: "member|role",
         permissions: "server owner"
     },
     {
         name: "raid",
         category: "moderation",
         description: "Remove all members that joined in the time provided in the event of a raid",
-        arguments: "time action reason",
+        arguments: "time|action|reason",
         permissions: "none"
     },
     {
         name: "forcenickname",
         category: "moderation",
         description: "Force a members current nickname",
-        arguments: "member name|to|set",
+        arguments: "member|name to set",
         permissions: "none"
     },
     {
@@ -2802,7 +2802,7 @@ if (shared) {
         name: "permissions",
         category: "moderation",
         description: "Check permissions for a member or myself",
-        arguments: "member channel",
+        arguments: "member| channel",
         permissions: "manage roles manage channels"
     },
     {
@@ -2816,7 +2816,7 @@ if (shared) {
         name: "honeypot add",
         category: "moderation",
         description: "Set up a honeypot channel",
-        arguments: "channel punishment",
+        arguments: "channel|punishment",
         permissions: "manage channels"
     },
     {
@@ -2887,21 +2887,21 @@ if (shared) {
         name: "sticker add",
         category: "utility",
         description: "Downloads sticker and adds to the server",
-        arguments: "url name",
+        arguments: "url|name",
         permissions: "none"
     },
     {
         name: "rotate",
         category: "utility",
         description: "Rotate an image by a provided degree",
-        arguments: "degree url",
+        arguments: "degree|url",
         permissions: "attach files"
     },
     {
         name: "compress",
         category: "utility",
         description: "Compress image to lower quality",
-        arguments: "ratio url",
+        arguments: "ratio|url",
         permissions: "attach files"
     },
     {
@@ -2936,21 +2936,21 @@ if (shared) {
         name: "emoji rename",
         category: "utility",
         description: "Renames emote to the new name provided",
-        arguments: "emoji new name",
+        arguments: "emoji|new name",
         permissions: "manage expressions"
     },
     {
         name: "emoji add",
         category: "utility",
         description: "Downloads emote and adds to the server",
-        arguments: "emoji characters",
+        arguments: "emoji|characters",
         permissions: "none"
     },
     {
         name: "osu",
         category: "utility",
         description: "Retrieve simple OSU! profile information",
-        arguments: "username game",
+        arguments: "username|game",
         permissions: "none"
     },
     {
