@@ -2817,21 +2817,21 @@ if (shared) {
         category: "moderation",
         description: "Set up a honeypot channel",
         arguments: "channel|punishment",
-        permissions: "manage channels"
+        permissions: "administrator"
     },
     {
         name: "honeypot remove",
         category: "moderation",
         description: "Remove a honeypot channel",
         arguments: "channel",
-        permissions: "manage channels"
+        permissions: "administrator"
     },
     {
     name: "honeypot list",
     category: "moderation",
     description: "List all honey pot channels",
     arguments: "none",
-    permissions: "manage channels"
+    permissions: "administrator"
 },
 
         {
