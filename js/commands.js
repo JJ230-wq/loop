@@ -2827,33 +2827,12 @@ if (shared) {
         permissions: "manage channels"
     },
     {
-        name: "honeypot list",
-        category: "moderation",
-        description: "List all honey pot channels",
-        arguments: "none",
-        permissions: "manage channels"
-    },
-    {
-        name: "honeypot exempt",
-        category: "moderation",
-        description: "Exempt a role or member from honeypot punishments",
-        arguments: "role or member",
-        permissions: "manage channels"
-    },
-    {
-        name: "honeypot exempt list",
-        category: "moderation",
-        description: "View list of roles or members exempt from honeypot punishment",
-        arguments: "none",
-        permissions: "manage channels"
-    },
-    {
-        name: "honeypot log",
-        category: "moderation",
-        description: "Set up logging for honeypot punishments",
-        arguments: "channel",
-        permissions: "manage channels"
-    },
+    name: "honeypot list",
+    category: "moderation",
+    description: "List all honey pot channels",
+    arguments: "none",
+    permissions: "manage channels"
+},
 
         {
         name: "sticker",
@@ -4246,8 +4225,8 @@ const tabCategories = [
 
                 // Copy button — stop propagation so card click (modal) doesn't also fire
                 card.querySelector('.command-card-copy-btn').addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(`/${cmd.name}`).then(function () {
+    e.stopPropagation();
+    navigator.clipboard.writeText(`,${cmd.name}`).then(function () {
                         const btn = card.querySelector('.command-card-copy-btn');
                         btn.innerHTML = '<i class="fas fa-check"></i>';
                         setTimeout(function () {
@@ -4375,7 +4354,7 @@ tabButton.innerHTML = `${cat.label} <span style="background:rgba(255,255,255,0.1
         return `<span style="background:rgba(255,255,255,0.08); border-radius:4px; padding:2px 8px; font-size:0.85rem; margin-right:4px;">${display}</span>`;
     }).join('');
             const permVal = cmd.permissions;
-            const cmdTextToCopy = `/${cmd.name}`;
+            const cmdTextToCopy = `,${cmd.name}`;
             const modalBg = document.createElement('div');
             modalBg.className = 'command-details-modal-bg';
             modalBg.tabIndex = -1;
