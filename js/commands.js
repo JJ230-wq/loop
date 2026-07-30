@@ -4217,7 +4217,7 @@ const tabCategories = [
                 card.innerHTML = `
     <div class="command-card-top">
         <div class="command-name">${cmd.name}</div>
-        <button class="command-card-copy-btn" title="Copy command" aria-label="Copy /${cmd.name}">
+        <button class="command-card-copy-btn" title="Copy command" aria-label="Copy ,${cmd.name}">
             <i class="fas fa-copy"></i>
         </button>
     </div>
