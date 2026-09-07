@@ -3483,7 +3483,7 @@ if (shared) {
         name: "lastfm customreactions",
         category: "lastfm",
         description: "Set personal upvote and downvote reaction for Now Playing",
-        arguments: "upvote downvote",
+        arguments: "upvote|downvote",
         permissions: "none"
     },
     {
