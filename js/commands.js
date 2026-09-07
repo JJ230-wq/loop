@@ -3512,7 +3512,7 @@ if (shared) {
         name: "bet admin",
         category: "economy",
         description: "Set predetermined roll for a user next bet",
-        arguments: "member amount",
+        arguments: "member|amount",
         permissions: "administrator"
     },
     {
@@ -3547,7 +3547,7 @@ if (shared) {
         name: "give",
         category: "economy",
         description: "Give coins to another user",
-        arguments: "user amount",
+        arguments: "user|amount",
         permissions: "none"
     },
     {
@@ -3589,7 +3589,7 @@ if (shared) {
         name: "rob",
         category: "economy",
         description: "Rob coins from another member",
-        arguments: "member amount",
+        arguments: "member|amount",
         permissions: "none"
     },
     {
