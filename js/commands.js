@@ -3769,6 +3769,119 @@ if (shared) {
         permissions: "none"
     },
 
+            {
+        name: "pen",
+        category: "fun",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "pen hit",
+        category: "fun",
+        description: "Hit the pen",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "pen stats",
+        category: "fun",
+        description: "Show the servers pen stats",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "blinker",
+        category: "fun",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "blinker hit",
+        category: "fun",
+        description: "Hit the blinker",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "blinker stats",
+        category: "fun",
+        description: "Show the servers blinker stats",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "geekbar",
+        category: "fun",
+        description: "No description given",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "geekbar hit",
+        category: "fun",
+        description: "Hit the geekbar",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "geekbar stats",
+        category: "fun",
+        description: "Show the servers geekbar stats",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "juul",
+        category: "fun",
+        description: "Share a juul with your friends!",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "juul hit",
+        category: "fun",
+        description: "Hit the servers juul",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "juul pass",
+        category: "fun",
+        description: "Pass the servers juul to someone else",
+        arguments: "member",
+        permissions: "none"
+    },
+    {
+        name: "juul toggle",
+        category: "fun",
+        description: "Toggle the servers juul on or off",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "juul stats",
+        category: "fun",
+        description: "Show the servers juul stats",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "juul flavor",
+        category: "fun",
+        description: "Change the servers juul's flavor",
+        arguments: "flavor",
+        permissions: "manage guild"
+    },
+    {
+        name: "juul steal",
+        category: "fun",
+        description: "Steal the servers juul",
+        arguments: "none",
+        permissions: "none"
+    },
+
         {
         name: "roblox",
         category: "roblox",
@@ -4179,6 +4292,7 @@ const tabCategories = [
     { id: 'lastfm', label: 'Last.fm' },
     { id: 'economy', label: 'Economy' },
     { id: 'voicemaster', label: 'VoiceMaster' },
+     { id: 'fun', label: 'Fun' },
     { id: 'roblox', label: 'Roblox' },
     { id: 'roleplay', label: 'Roleplay' },
     { id: 'socials', label: 'Socials' },
