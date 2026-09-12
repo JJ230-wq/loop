@@ -1632,6 +1632,84 @@ if (shared) {
         permissions: "boosters only"
     },
 
+            {
+        name: "confess",
+        category: "primary",
+        description: "Send an anonymous confession in this server",
+        arguments: "message",
+        permissions: "none"
+    },
+    {
+        name: "confession",
+        category: "primary",
+        description: "Manage the confession system",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession add",
+        category: "primary",
+        description: "Set up a channel where confessions will be posted",
+        arguments: "channel",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession remove",
+        category: "primary",
+        description: "Remove a confession channel",
+        arguments: "channel",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession list",
+        category: "primary",
+        description: "View a list of every confession channel",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession blacklist",
+        category: "primary",
+        description: "Manage blacklisted words for confessions",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession blacklist add",
+        category: "primary",
+        description: "Add a word or phrase to the confession blacklist",
+        arguments: "word",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession blacklist remove",
+        category: "primary",
+        description: "Remove a word from the confession blacklist",
+        arguments: "word",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession blacklist view",
+        category: "primary",
+        description: "View all blacklisted words for confessions",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession emoji",
+        category: "primary",
+        description: "No description given",
+        arguments: "none",
+        permissions: "manage channels"
+    },
+    {
+        name: "confession emoji set",
+        category: "primary",
+        description: "Set upvote and downvote reaction for confessions",
+        arguments: "upvote emoji|downvote emoji",
+        permissions: "manage channels"
+    },
+
         {
     name: "log",
     category: "logging",
