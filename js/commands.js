@@ -4354,6 +4354,133 @@ if (shared) {
     arguments: "channel streamer",
     permissions: "manage guild"
 },
+
+            // ---- LEVELS: message leaderboards ----
+    {
+        name: "levels daily",
+        category: "levels",
+        description: "View the top members by messages sent today",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels weekly",
+        category: "levels",
+        description: "View the top members by messages sent this week",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "levels monthly",
+        category: "levels",
+        description: "View the top members by messages sent this month",
+        arguments: "none",
+        permissions: "none"
+    },
+
+    // ---- UTILITY: say ----
+    {
+        name: "say",
+        category: "utility",
+        description: "Make the bot send a message",
+        arguments: "text",
+        permissions: "none"
+    },
+
+    // ---- UTILITY: countdown ----
+    {
+        name: "countdown",
+        category: "utility",
+        description: "Set and view countdowns to a date",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "countdown add",
+        category: "utility",
+        description: "Add a countdown to a date",
+        arguments: "name|date",
+        permissions: "none"
+    },
+    {
+        name: "countdown remove",
+        category: "utility",
+        description: "Remove a countdown for a date",
+        arguments: "name",
+        permissions: "none"
+    },
+    {
+        name: "countdown clear",
+        category: "utility",
+        description: "Remove all of your countdowns",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "countdown list",
+        category: "utility",
+        description: "View a list of your countdowns",
+        arguments: "none",
+        permissions: "none"
+    },
+
+    // ---- FUN: gang ----
+    {
+        name: "gang",
+        category: "fun",
+        description: "Create and manage your own gang",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "gang create",
+        category: "fun",
+        description: "Create your own gang",
+        arguments: "name",
+        permissions: "none"
+    },
+    {
+        name: "gang disband",
+        category: "fun",
+        description: "Disband your gang",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "gang info",
+        category: "fun",
+        description: "View information about your gang",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "gang invite",
+        category: "fun",
+        description: "Invite someone to your gang",
+        arguments: "user",
+        permissions: "none"
+    },
+    {
+        name: "gang leave",
+        category: "fun",
+        description: "Leave your current gang",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "gang promote",
+        category: "fun",
+        description: "Promote a member to admin",
+        arguments: "user",
+        permissions: "none"
+    },
+    {
+        name: "gang transfer",
+        category: "fun",
+        description: "Transfer gang ownership",
+        arguments: "user",
+        permissions: "none"
+    },
 ];
 
 const tabCategories = [
@@ -4366,6 +4493,7 @@ const tabCategories = [
     { id: 'levels', label: 'Levels' },
     { id: 'antinuke', label: 'Antinuke' },
     { id: 'logging', label: 'Logging' },
+    { id: 'giveaways', label: 'Giveaways' },
     { id: 'starboard', label: 'Starboard' },
     { id: 'lastfm', label: 'Last.fm' },
     { id: 'economy', label: 'Economy' },
