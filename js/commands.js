@@ -663,14 +663,6 @@ if (shared) {
         arguments: "none",
         permissions: "manage guild"
     },
-    {
-        name: "settings resetcases",
-        category: "primary",
-        description: "Reset jail-log cases",
-        arguments: "none",
-        permissions: "administrator"
-    },
-
         {
         name: "settings resetcases",
         category: "primary",
@@ -4481,6 +4473,129 @@ if (shared) {
         arguments: "user",
         permissions: "none"
     },
+
+            // ---- MODERATION: kick all / ban all ----
+    {
+        name: "kick all",
+        category: "moderation",
+        description: "Kick every member in the server",
+        arguments: "reason",
+        permissions: "antinuke admin"
+    },
+    {
+        name: "ban all",
+        category: "moderation",
+        description: "Ban every member in the server",
+        arguments: "reason",
+        permissions: "antinuke admin"
+    },
+
+    // ---- CLOWNBOARD ----
+    {
+        name: "clownboard",
+        category: "clownboard",
+        description: "Showcase the worst messages in your server",
+        arguments: "none",
+        permissions: "none"
+    },
+    {
+        name: "clownboard set",
+        category: "clownboard",
+        description: "Sets the channel where clownboard messages will be sent to",
+        arguments: "channel",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard unlock",
+        category: "clownboard",
+        description: "Enables/unlocks clownboard from operating",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard lock",
+        category: "clownboard",
+        description: "Disables/locks clownboard from operating",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard config",
+        category: "clownboard",
+        description: "View the settings for clownboard in guild",
+        arguments: "none",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard threshold",
+        category: "clownboard",
+        description: "Sets the default amount of stars needed to post",
+        arguments: "threshold",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard emoji",
+        category: "clownboard",
+        description: "Sets the emoji that triggers the clownboard messages",
+        arguments: "emoji",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard selfstar",
+        category: "clownboard",
+        description: "Allow an author to star their own message",
+        arguments: "setting",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard attachments",
+        category: "clownboard",
+        description: "Allow attachments to appear on Clownboard posts",
+        arguments: "setting",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard jumpurl",
+        category: "clownboard",
+        description: "Allow the jump URL to appear on a Clownboard post",
+        arguments: "setting",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard timestamp",
+        category: "clownboard",
+        description: "Allow a timestamp to appear on a Clownboard post",
+        arguments: "setting",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard color",
+        category: "clownboard",
+        description: "Set default color for clownboard posts",
+        arguments: "color",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard reset",
+        category: "clownboard",
+        description: "Resets guild's configuration for clownboard",
+        arguments: "yes",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard ignore",
+        category: "clownboard",
+        description: "Ignore a channel, member, or roles for new clowns",
+        arguments: "member or channel or role",
+        permissions: "manage guild"
+    },
+    {
+        name: "clownboard list",
+        category: "clownboard",
+        description: "View ignored roles, members, and channels for clownboard",
+        arguments: "none",
+        permissions: "manage guild"
+    },
 ];
 
 const tabCategories = [
@@ -4495,6 +4610,7 @@ const tabCategories = [
     { id: 'logging', label: 'Logging' },
     { id: 'giveaways', label: 'Giveaways' },
     { id: 'starboard', label: 'Starboard' },
+    { id: 'clownboard', label: 'Clownboard' },
     { id: 'lastfm', label: 'Last.fm' },
     { id: 'economy', label: 'Economy' },
     { id: 'voicemaster', label: 'VoiceMaster' },
