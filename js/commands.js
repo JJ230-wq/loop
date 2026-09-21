@@ -4474,7 +4474,15 @@ if (shared) {
         permissions: "none"
     },
 
-            // ---- MODERATION: kick all / ban all ----
+            
+     // ---- MODERATION: kick / kick all / ban all ----
+    {
+        name: "kick",
+        category: "moderation",
+        description: "Kicks the mentioned user from the guild",
+        arguments: "member|reason",
+        permissions: "kick members"
+    },
     {
         name: "kick all",
         category: "moderation",
