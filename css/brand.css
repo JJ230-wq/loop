@@ -1,0 +1,196 @@
+
+/* ==========================================
+   MALENCHOLY - DARK STARLIGHT THEME
+   Lightweight CSS-only background effects
+========================================== */
+
+:root {
+    --night-bg: #050711;
+    --night-panel: rgba(13, 18, 36, 0.78);
+    --night-panel-hover: rgba(22, 29, 53, 0.88);
+    --night-border: rgba(180, 195, 255, 0.12);
+    --night-text: #edf0ff;
+    --night-muted: #929bb9;
+    --night-accent: #a9b8ff;
+}
+
+html {
+    background: var(--night-bg);
+    color-scheme: dark;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at 50% -15%, rgba(67, 79, 150, 0.23), transparent 55%),
+        radial-gradient(ellipse at 90% 75%, rgba(51, 62, 119, 0.12), transparent 45%),
+        var(--night-bg) !important;
+    color: var(--night-text);
+    min-height: 100vh;
+}
+
+/* Static stars - no canvas or JavaScript */
+.body-starlight-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+
+    background-image:
+        radial-gradient(1px 1px at 8% 18%, rgba(255,255,255,.85) 50%, transparent 100%),
+        radial-gradient(1px 1px at 22% 73%, rgba(255,255,255,.65) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 37% 32%, rgba(210,220,255,.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 52% 82%, rgba(255,255,255,.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 68% 16%, rgba(255,255,255,.8) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 83% 53%, rgba(210,220,255,.75) 50%, transparent 100%),
+        radial-gradient(1px 1px at 94% 88%, rgba(255,255,255,.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 14% 94%, rgba(255,255,255,.65) 50%, transparent 100%),
+        radial-gradient(1px 1px at 74% 42%, rgba(255,255,255,.55) 50%, transparent 100%);
+
+    background-size: 100% 100%;
+}
+
+/* Shooting star */
+.body-starlight-bg::after {
+    content: "";
+    position: absolute;
+    top: 18%;
+    left: -25%;
+    width: 150px;
+    height: 1px;
+    opacity: 0;
+    transform: rotate(-28deg);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(190, 205, 255, 0.8),
+        rgba(255, 255, 255, 0.95)
+    );
+    filter: drop-shadow(0 0 5px rgba(180, 200, 255, 0.8));
+    animation: malencholy-shooting-star 12s ease-in-out infinite;
+}
+
+@keyframes malencholy-shooting-star {
+    0%, 72% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(-28deg);
+    }
+
+    74% {
+        opacity: 1;
+    }
+
+    82% {
+        opacity: 0;
+        transform: translate(125vw, 55vh) rotate(-28deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(125vw, 55vh) rotate(-28deg);
+    }
+}
+
+/* Remove old canvas starfield */
+.main-stars-bg {
+    display: none !important;
+}
+
+.main-stars-bg canvas {
+    display: none !important;
+}
+
+/* Navigation */
+.site-bar {
+    background: rgba(8, 12, 27, 0.78) !important;
+    border: 1px solid var(--night-border) !important;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.2);
+}
+
+.site-bar-link {
+    transition: color .2s ease, background .2s ease;
+}
+
+.site-bar-link:hover,
+.site-bar-link.is-active {
+    color: #fff !important;
+}
+
+/* Panels and cards */
+.command-card,
+.docs-info-box,
+.faq-item,
+.status-card,
+.status-component,
+.feature-card {
+    background: var(--night-panel) !important;
+    border-color: var(--night-border) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.14);
+}
+
+.command-card:hover,
+.feature-card:hover {
+    background: var(--night-panel-hover) !important;
+    border-color: rgba(180, 195, 255, 0.25) !important;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+    background-color: rgba(12, 17, 34, 0.9);
+    color: var(--night-text);
+    border-color: var(--night-border);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--night-muted);
+}
+
+/* Buttons */
+button {
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--night-accent);
+    outline-offset: 3px;
+}
+
+/* Footer */
+footer {
+    border-color: var(--night-border) !important;
+    color: var(--night-muted) !important;
+}
+
+/* Loading screen */
+.loading-screen {
+    background: var(--night-bg) !important;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .body-starlight-bg::after {
+        animation: none !important;
+        display: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
